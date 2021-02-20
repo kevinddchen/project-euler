@@ -1,0 +1,683 @@
+\documentclass{article}
+\usepackage[margin=1in]{geometry}
+\usepackage[tbtags]{amsmath} 				% split tags on lower right
+\usepackage{amssymb, mathrsfs}			% for math script fonts
+\usepackage{physics}
+\usepackage{graphicx}			% for images
+\usepackage{tensor}				% for tensors
+\usepackage{slashed}				% for Dirac slash
+\usepackage{bm}								% for bold Greek
+\usepackage[colorlinks=true]{hyperref}	% for hyperlinks in contents
+
+\usepackage[T1]{fontenc} 		% updated fonts (e.g. textcen has caps letters)
+
+\setlength\parindent{0pt}
+
+\newcommand{\stirling}[2]{\genfrac{[}{]}{0pt}{}{#1}{#2}}
+
+\title{Project Euler Solutions}
+\author{Kevin Chen}
+
+\begin{document}
+
+\maketitle
+
+Solutions that are particularly enlightening are explained here. 
+Questions labeled with a $\star$ can be solved by hand or can be evaluated by an explicit formula in terms of simple functions. \\
+
+\subsection*{1$\star$ -- Multiples of 3 and 5} 
+The sum of the first $n$ numbers is $n(n+1)/2$. 
+So the sum of the multiples of $k$ under 1000 is $S_k = k n_k(n_k+1)/2$ where $n_k=\lfloor 999/k \rfloor$. 
+The answer is $S = S_3 + S_5 - S_{15}$, or written explicitly,
+\[ \boxed{ 3\frac{333 \cdot 334}{2} + 5\frac{199 \cdot 200}{2} - 15\frac{66 \cdot 67}{2} } \]
+
+\subsection*{2$\star$ -- Even Fibonacci numbers} 
+The closed-form expression for Fibonacci numbers is $F_n = (\varphi_+^n - \varphi_-^n)/\sqrt{5}$, where $\varphi_\pm = (1\pm\sqrt{5})/2$.
+This can be proved by induction, using the fact that $\varphi_\pm$ are the solutions to $x^2 = x + 1$.
+As $|\varphi_-| < 1$, for large $n$ we can approximate $F_n \approx \varphi_+^n/\sqrt{5}$. 
+Using this, we can find indices $n$ where $F_n$ is less than four million. 
+$4 \cdot 10^6 > F_n \approx \varphi_+^n/\sqrt{5}$ implies that $n < (\ln 4 + 6 \ln 10 + \ln \sqrt{5})/(\ln \varphi_+) \approx 33.263$. 
+Therefore we are considering $1 \leq n \leq 33$. 
+Every third Fibonacci number is even, so we are finding the sum $S = F_3 + F_6 + \dotso + F_{33}$. 
+However, by definition of Fibonacci numbers, $S = (F_1 + F_2) + (F_4 + F_5) + \dotso + (F_{31} + F_{32})$ as well. 
+Therefore $S = (F_1 + F_2 + F_3 + \dotso + F_{33})/2$. 
+The sum of the first $n$ Fibonacci numbers is $F_{n+2} - 1$, so given that $F_{35} = 9227465$ the sum is $\boxed{ (9227465 - 1)/2 }$
+
+\subsection*{5$\star$ -- Smallest multiple} 
+This is easiest done by hand by writing down the prime factorizations for each number, and picking the smallest collection of prime divisors that will cover all numbers.
+
+\subsection*{6$\star$ -- Sum square difference} 
+The sum of the first $n$ numbers is $\frac{n(n+1)}{2}$. 
+The sum of the squares of the first $n$ numbers is $\frac{n(n+1)(2n+1)}{6}$. 
+Therefore the answer is,
+\[ \boxed{ \left(\frac{100 \cdot 101}{2}\right)^2 -  \frac{100 \cdot 101 \cdot 201}{6} } \]
+
+\subsection*{9$\star$ -- Special Pythagorean triplet} 
+A \emph{primitive Pythagorean triplet} $a^2 + b^2 = c^2$ is one where $a$, $b$, and $c$ do not all share a common factor.
+These are in a one-to-one correspondence with coprime integers $m$, $n$ with opposite parity and $0 < n < m$, where we take
+\begin{align*}
+a &= m^2 - n^2 & b &= 2mn & c &= m^2+n^2
+\end{align*}
+All Pythagorean triplets are integer multiples of primitive Pythagorean triplets, $(ka)^2 + (kb)^2 = (kc)^2$.
+Therefore, for a generic triplet, if $a+b+c = 2km(m+n) = 1000$ then $km(m+n) = 500 = 5^3 2^2$. 
+$m+n$ must be odd so we just check each case:
+
+\begin{itemize}
+\item[(i)] $m+n = 1$. We cannot satisfy $0 < n < m$. 
+\item[(ii)] $m+n = 5$. We can have $m = 1, 2, 4$ but $n < m$ only allows $m = 4, n = 1, k = 25$. We have a solution $a = 200, b = 375, c = 425$.
+\item[(iii)] $m+n = 25$. We can have $m = 1, 2, 4, 5, 10, 20$ but $n < m$ only allows $m = 20, n = 5$. However, this contradicts $m,n$ coprime.
+\item[(iv)] $m+n=125$. We can have $m = 1, 2, 4$ but we cannot satisfy $n < m$. 
+\end{itemize}
+
+Therefore the answer is $\boxed{ 200 \cdot 375 \cdot 425 }$
+
+\subsection*{10 -- Summation of primes} 
+A very fast way of generating prime numbers up to some $N$ is to use a Sieve of Eratosthenes. 
+Create a list of the first $N$ numbers, and start removing multiples of primes, starting at 2, then 3, then 5, and so forth.
+We will be left with a table of primes.
+
+\subsection*{12 -- Highly divisible triangular number} 
+We need a fast way of counting divisors. 
+Given an integer $n$ and its prime factorization, $n = p_1^{a_1} p_2^{a_2} \dotsb p_k^{a_k}$, the number of ways we can multiply the primes together gives the number of divisors of $n$. 
+Thus the number of divisors of $n$ is $(a_1 + 1)(a_2 + 1)\dotsb(a_k+1)$. 
+
+\subsection*{14 -- Longest Collatz sequence} 
+A useful programming technique in dynamical programming is \emph{memoization}. 
+In a process where you anticipate that a function would be called multiple times with the same input, it is often more efficient to remember a table of input-output values, which you should consult first.
+
+\subsection*{15$\star$ -- Lattice paths} 
+This is a combinatorics problem. 
+The number of paths through the grid is equivalent to the number of ways of choosing 20 ``right'' moves from 40 total moves, setting the other moves to ``down''. 
+Written explicitly, the answer is 
+\[ \boxed{ \binom{40}{20} = \frac{40!}{20! \cdot 20!} } \]
+
+\subsection*{17$\star$ -- Number letter counts} 
+This problem is actually not toodious by hand. 
+The numbers $1 \to 9$ use 36 letters and the numbers $10 \to 19$ use 70 letters. 
+The numbers $20 \to 29$ then use $6\cdot10 + 36$ letters as ``twenty'' uses 6 letters. 
+Continuing in this fashion, the numbers $1 \to 99$ use $(6+6+5+5+5+7+6+6)\cdot10 + 36\cdot9 + 70 = 854$ letters. 
+Next, the numbers $100 \to 199$ use $(3+10)\cdot100 + 854 - 3$ letters. 
+The $(3+10)$ factor comes from ``one hundred and'' using $3 + 10$ letters, and we subtract 3 letters at the end because we drop the ``and'' for 100. Continuing in this fashion, the numbers $1 \to 999$ use $(36 + 10\cdot9)\cdot100 + 854\cdot10 - 3\cdot9 = 21113$ letters. Then add 11 for ``one thousand'' to get a total of $\boxed{ 21124 }$.
+
+\subsection*{19$\star$ -- Counting Sundays} 
+Very interesting to use John Conway's Doomsday algorithm, but (un)surprisingly the answer is $1200/7$ rounded to the nearest integer.
+
+\subsection*{23 -- Non-abundant sums} 
+There is an interesting way to sum up the divisors of a number. 
+Let $n$ be a number and suppose its prime factorization is $n = p_1^{a_1} p_2^{a_2} \dotso p_k^{a_k}$. 
+Then $(1+p_1+p_1^2+\dotso+p_1^{a_1})(1+p_2+p_2^2+\dotso+p_2^{a_2}) \cdots (1+p_k+p_k^2+\dotso+p_k^{a_k})$ expanded would be the sum of all numbers that divide $n$. 
+But $(1+p_i+p_i^2+\dotso+p_i^{a_i}) = \frac{p_i^{a_i+1}-1}{p_i-1}$, so 
+\[ \sum_{d|n} d = \prod_{i=1}^k \frac{p_i^{a_i+1}-1}{p_i-1} \]
+
+\subsection*{24$\star$ -- Lexicographic permutations} 
+Our goal is to find the (unique) coefficients for $10^6 = a_9\cdot9! + a_8\cdot8! + \dotso + a_1\cdot1!$, which we can find using a long-division-like algorithm. 
+$9!$ goes into $10^6$ two times, so $a_9$ is the $3^\text{rd}$ smallest unused digit, i.e. $a_9 = 2$. 
+$10^6 - 2 \cdot 9! = 274240$, which $8!$ goes into 6 times.
+So $a_8$ is the $7^\text{th}$ smallest unused digit, i.e. $a_8 = 7$. 
+We repeat to create our permutation. 
+However, because of indexing convention, we are looking for the coefficients of $10^6 - 1$ instead.
+
+\subsection*{25$\star$ -- 1000-digit Fibonacci number} 
+As explained in Problem 2, for large $n$ we can approximate $F_n \approx \varphi_+^n / \sqrt{5}$. 
+So if some $F_n$ has a thousand digits, $10^{999} < F_n \approx \varphi_+^n / \sqrt{5}$ implies that $n > (999 \ln 10 + \ln \sqrt{5})/ \ln \varphi_+ \approx 4781.859$. 
+This gives that $n = \boxed{4782}$ as the first Fibonacci number with more than a thousand digits.
+
+\subsection*{26 -- Reciprocal cycles} 
+If $n$ is not divisible by 2 or 5, then $1/n$ will have a repeating decimal representation with periodicity equal to the order of 10 modulo $n$, i.e.~the smallest integer $k \geq 1$ such that $10^k \equiv 1$ mod $n$. 
+This can be checked using long-division. 
+
+\subsection*{28$\star$ -- Number spiral diagonals} 
+For a shell around the center with dimensions $n \times n$, the values at the corners are $n^2$, $n^2 - (n-1)$, $n^2 - 2(n-1)$, and $n^2 - 3(n-1)$. 
+So we are summing $4n^2 - 6n + 6$ for odd $n$ from 3 to 1001. 
+We can rewrite this slightly by letting $n = 2m+1$ so that now we are summing $16m^2 + 4m + 4$ for integer $m$ from 1 to 500. 
+Now, recall that the sum of the first $m$ digits is $\frac{m(m+1)}{2}$ and the sum of the squares of the first $m$ digits is $\frac{m(m+1)(2m+1)}{6}$. 
+Therefore the answer is 
+\[ \boxed{ 16 \frac{500 \cdot 501 \cdot 1001}{6} + 4 \frac{500 \cdot 501}{2} + 4 \cdot 500 } \]
+
+\subsection*{43$\star$ -- Sub-string divisibility} 
+Rule 3 implies that $d_6 = 0$ or 5. 
+But if $d_6=0$, then by Rule 5, $d_7=d_8$. 
+Therefore $d_6 = 5$. 
+Given that $500 \equiv 5$ mod 11, we have the following possibilities for $d_6d_7d_8$: 506, 517, 528, 539, 550 (ignored), 561, 572, 583, and 594. 
+For each of these values, we check what value of $d_9$ allows $d_7d_8d_9$ to be divisible by 13. 
+For example, take 506 and $060 \equiv 8$ mod 13, so $065$ is a possibility, but repeats 5 so it is ignored. 
+Continuing this way, we get only four candidates for $d_6d_7d_8d_9$: 5286, 5390, 5728, and 5832. 
+Repeating for $d_{10}$ for divisibility by 17, we get three candidates for $d_6d_7\dotsc d_{10}$: 52867, 53901, and 57289. \\
+
+Next, we find $d_5$ such that $d_5d_6d_7$ is divisible by 7. 
+We do this by recalling that $100 \equiv 2$ mod 7. 
+Then for $d_6d_7 = 52$, $52 \equiv 3$ mod 7 so 252 and 952 are possible, but the first is ignored. 
+For $d_6d_7 = 53$, $53 \equiv 4$ mod 7 so 553 is possible but is ignored. 
+For $d_6d_7=57$, $57 \equiv 1$ mod 7 so 357 is possible. 
+Thus we have two candidates for $d_5d_6\dotsc d_{10}$: 952867 and 357289. \\
+
+Considering the first candidate, Rule 1 allows 0 and 4 as possible values for $d_4$. 
+If $d_4 = 4$, then it is impossible to make $d_3d_4d_5$ divisible by 3 from our remaining digits 0, 1, and 3 (a number if divisible by 3 if its digits add up to 3). 
+Therefore $d_4 = 0$, which forces $d_3=0$. 
+$d_1$ and $d_2$ are 1 and 4 with no restrictions. \\
+
+Considering the second candidate, possible values for $d_4$ are 0, 4, and 6. For the same reasons above, we can deduce that $d_3$ and $d_4$ are 0 and 6 with no restrictions, and likewise $d_1$ and $d_2$ are 1 and 4. \\
+
+We have discovered six numbers that satisfy every condition, and their sum is
+\[ \boxed{ (14+41)10^8 + 30952867 \cdot 2 + (1406+1460+4106+4160)10^6 + 357289 \cdot 4 } \]
+
+\subsection*{45$\star$ -- Triangular, pentagonal, and hexagonal} 
+Every hexagonal number is a triangle number, $T_{2n-1} = H_n$, so it suffices to solve $H_n = P_m$ or $n(2n-1) = m(3m-1)/2$ for positive integer solutions. 
+After some rearrangement, we get $(6m-1)^2 - 3(4n-1)^2 = -2$. 
+Letting $x = 6m-1$ and $y = 4n-1$, we are looking for positive integer solutions to the Pell equation $x^2 - 3y^2 = -2$.
+Solutions are $(1+\sqrt{3})(2+\sqrt{3})^k$ for $k = 0, 1, 2, \dotsc$ (see Problem 94).
+What remains is to check that $x_k \equiv 5$ mod 6 and $y_k \equiv 3$ mod 4. 
+The answer can be reached after a few iterations.
+
+\subsection*{63$\star$ -- Powerful digit counts} 
+$10^n$ has $n+1$ digits, so we only need to consider bases 1 through 9. 
+If we take 9, $9^n$ will never have more than $n$ digits, so the point where $9^n$ has less than $n$ digits is when $9^n < 10^{n-1}$. 
+This simplifies to $n > \frac{1}{1 - \log_{10}9} \approx 21.854$. 
+Thus for $1 \leq n \leq 21$, $9^n$ has $n$ digits. 
+We can calculate this for each digit and add them up to get the answer. Written explicitly, the answer is 
+\[ \boxed{ \sum\limits_{n=1}^9 \left\lfloor \frac{1}{1 - \log_{10} n} \right\rfloor } \]
+
+\subsection*{64 -- Odd period square roots} 
+The continued fraction expansion for an irrational square root $\sqrt{n}$ is a repeating non-terminating sequence $[a_0; \overline{a_1, a_2, \dotsc, a_p}]$.
+The coeffcients $a_n$ can be calculated using the recursion relation,
+\begin{align*}
+m_0 &= 0 & d_0 &= 1 & a_0 &= \lfloor \sqrt{n} \rfloor \\
+m_{n+1} &= d_na_n - m_n  &  d_{n+1} &= \frac{n - m_{n+1}^2}{d_n} & a_{n+1} &= \left\lfloor \frac{\sqrt{n} + m_{n+1}}{d_{n+1}} \right\rfloor 
+\end{align*}
+Then once $a_n = 2a_0$, one period has passed.
+
+\subsection*{65 -- Convergents of e} 
+Given a continued fraction expansion $[a_0; a_1, a_2, \dotsc]$, the convergents can be calculated by the recurrence relation,
+\begin{align*}
+p_{-1} &= 1 & q_{-1} &= 0 \\ 
+p_0 &= a_0 & q_0 &= 1 \\ 
+p_n &= a_n p_{n-1} + p_{n-2} & q_n &= a_n q_{n-1} + q_{n-2} 
+\end{align*}
+Then the fraction $p_n/q_n$ gives the $n$th convergent.
+
+\subsection*{67 -- Maximum path sum II} 
+Start from the bottom and work upwards.
+
+\subsection*{69$\star$ -- Totient maximum} 
+The totient of $n$ is given by $\phi(n) =n \prod (1-1/p_i)$, where the product is over all distinct prime factors $p_i$ of $n$. 
+However, notice that $n/\phi(n) = \prod p_i/(p_i -1)$. 
+Each term is greater than 1 and smaller primes give larger terms, so $n/\phi(n)$ is maximized by multiplying together small primes in increasing order. The largest product under 1 million is $\boxed{510510} = 2 \cdot 3\cdot5\cdot7\cdot11\cdot13\cdot17$.
+
+\subsection*{72 -- Counting fractions} 
+The number of reduced fractions with denominator $d$ is precisely the totatives of $d$. 
+Therefore the answer is $$\sum\limits_{n=2}^{10^6} \phi(n)$$
+
+\subsection*{76 -- Counting summations} 
+This problem is basically asking for the integer partition of 100. 
+This can be calculated using the recursive formula: $p(n) = \sum_k (-1)^{k-1} p(n - g_k)$ over all non-zero integers $k$, where $g_k = k(3k - 1)/2$ is the $k$th pentagonal number, $p(0) = 1$ and $p(x) = 0$ for $x < 0$.
+
+\subsection*{79$\star$ -- Passcode derivation} 
+Easier to do by hand. 
+
+\subsection*{83 -- Path sum: four ways} 
+We can solve this problem by an implementation of Dijkstra's algorithm. 
+You traverse through the graph by keeping track of nodes you have visited and the minimum distance to that node, always advancing a step from the node with smallest distance.
+
+\subsection*{84 -- Monopoly odds} 
+We can model the monopoly board as a Markov chain. 
+Then use a computer-algebra system to find eigenvectors or multiply the matrix over and over to get the transient behaviour.
+
+\subsection*{86 -- Cuboid route} 
+Here we present a new method for generating Pythagorean triples.
+Given a primitive triple, we can generate three different primitive triples using the following linear transformations,
+\[
+\mqty[ -1 & 2 & 2 \\ -2 & 1 & 2 \\ -2 & 2 & 3 ] \mqty[ a \\ b \\ c ], \quad
+\mqty[ 1 & 2 & 2 \\ 2 & 1 & 2 \\ 2 & 2 & 3 ] \mqty[ a \\ b \\ c ], \quad
+\mqty[ 1 & -2 & 2 \\ 2 & -1 & 2 \\ 2 & -2 & 3 ] \mqty[ a \\ b \\ c ]
+\]
+Using an initial seed $(3, 4, 5)$ every primitive triple can be generated using this method.
+
+\subsection*{94$\star$ -- Almost equilateral triangles} 
+Given a triangle with side lengths $(a, a, a+i)$ where $i = \pm 1$, we can derive the area using Heron's formula to be $A = \frac{a+i}{4}\sqrt{(3a+i)(a-i)}$. 
+In order to have an integer area, $(3a+i)(a-i) = y^2$ for some integer $y$.
+We can rearrange this as $(3a-i)^2 - 3y^2 = 4$. 
+If we let $x = 3a-i$, then we are solving the Pell equation $x^2 - 3y^2 = 4$. 
+Solutions are $2(2+\sqrt{3})^{1+k}$ for $k = 0, 1, 2, \dotsc$.\footnote{For an explanation on how to sovle these equations, see \url{https://acollectionofelectrons.wordpress.com/2016/11/24/almost-equilateral-triangles-part-i/}}
+What remains is if $x_k \equiv 1$ mod 3, then $i = -1$ and if $x_k \equiv 2$ mod 3, then $i = +1$. 
+The answer can be reached after a few iterations.
+
+\subsection*{100$\star$ -- Arranged probability} 
+Let $b$ be the number of blue disks and $t$ be the total number of disks. 
+We are looking for solutions where $\frac{b}{t} \cdot \frac{b-1}{t-1} = \frac{1}{2}$. 
+Expanding and rearranging we can get $(2t-1)^2 - 2(2b-1)^2 = -1$. 
+Letting $x = 2t-1$ and $y = 2b-1$ we get the negative Pell's equation $x^2 - 2y^2 = -1$. 
+Solutions are $(1+\sqrt{2})^{1 + 2k}$ for $k = 0, 1, 2, \dotsc$ (see Problem 94).
+Then $x, y \equiv 1$ mod 2 comes for free. 
+The answer can be reached after a few iterations.
+
+\subsection*{101 -- Optimum polynomial} 
+The optimum polynomial $OP(k, n)$ is simply the polynomial $P$ interpolated on the points $n = 1, 2, \dotsc, k$ such that $P(n) = u_n$. 
+This polynomial has degree $k-1$, so we are looking for the coefficients $P(n) = a_0 + a_1x^1 + \cdots + a_{k-1}x^{k-1}$. 
+These coefficients can be found using linear algebra.
+For instance, take $u_n = n^3$ and $k=3$, so $P(n) = a_0 + a_1x + a_2x^2$. 
+Then we have the set of equations:
+\[ \mqty{ a_0 + a_1\cdot1 + a_2\cdot1^2 = u_1 \\ a_0 + a_1\cdot2 + a_2\cdot2^2 = u_2 \\ a_0 + a_1\cdot3 + a_2\cdot3^2 = u_3 }
+\quad\longleftrightarrow\quad \mqty[ 1 & 1 & 1 \\ 1 & 2 & 4 \\ 1 & 3 & 9 ] \mqty[ a_0 \\ a_1 \\ a_2 ] = \mqty[ 1 \\ 8 \\ 27 ] \]
+We let $M$ be the matrix $M_{ij} = i^j$, $\mathbf{a} = (a_0, a_1, a_2)$ and $\mathbf{x} = (u_1, u_2, u_3)$. 
+$M$ is called the \emph{Vandermonde matrix} and is invertible, so we have a unique solution $\mathbf{a}$ such that $M\mathbf{a} = \mathbf{x}$. 
+This can be generalized for any $k$. \\
+
+However, this method relies on the matrix inversion of large $k \times k$ matrices. 
+A better method is \emph{Lagrange interpolation}. 
+Given a set of points $\{x_1, x_2, \dotsc, x_k\}$ and values $\{u_1, u_2, \dotsc, u_k\}$, we find polynomials $P_i$ such that $P_i(x_j) = \delta_{ij}$. 
+An explicit formula is:
+$$ P_i(x) = \frac{\prod_{j \neq i}(x_{\phantom{i}} - x_j)}{\prod_{j \neq i}(x_i - x_j)}$$
+Then our interpolation is simply $P(x) = \sum\limits_{i=1}^k u_i P_i(x)$.
+
+\subsection*{106$\star$ -- Special subset sums: meta-testing} 
+This problem can then be solved by hand, which we demonstrate by an example. 
+It is useful to note that as a consequence of property (ii), we only need to test subset pairs of equal numbers of elements. 
+Take $n=7$. 
+First let us consider all disjoint subset pairs $A, B$ with 3 elements each. 
+There are $\binom{7}{6} = 7$ ways to pick these 6 elements. 
+Next, order our 6 elements in increasing magnitude, and for each element let ``$+$'' represent set-inclusion by $A$ and ``$-$'' represent set-inclusion by $B$. 
+The corresponding string of ``$+$'' and ``$-$'' is defined to be our \textit{pattern}. 
+For instance if our 6 elements are $\{1, 2, 3, 4, 5, 6\}$ and our pattern is $+-++--$, then $A = \{1, 3, 4\}$ and $B = \{2, 5, 6\}$. 
+Without loss of generality we can assume that the smallest number belongs to $A$ and all patterns start with a ``$+$''. 
+We then define the \textit{partial sums} of a pattern by taking $+ \mapsto 1$ and $- \mapsto -1$ and computing the partial sums left to right. 
+For the same example above, the sequence of partial sums is $(1, 0, 1, 2, 1, 0)$. 
+Subset pairs whose partial sums never become negative do not need to be tested for equality, as each element of $A$ is strictly less than a unique element from $B$ and $S(A) < S(B)$. 
+Therefore, with 6 elements we only need to test subset pairs that have one of the 5 patterns: $++---+, +-+--+, +--++-, +--+-+, +---++$. 
+Next, we consider subset pairs with 2 elements each, where there are $\binom{7}{4}=35$ different combinations and only 1 pattern: $+--+$. 
+Therefore the total number of tests is $7\cdot5 + 35\cdot1 = 70$.\\
+
+We can count the number of patterns to test for general $n$ and subset pairs with $k$ elements each (total $2k$ elements). 
+The total number of patterns that start with a ``+'' is $\frac{1}{2}\binom{2k}{k}$. 
+The number of patterns that have non-negative partial sums is given by the $k$-th Catalan number, $C_k = \binom{2k}{k} \frac{1}{k+1}$. 
+Thus the number of paths to test is the difference, $\frac{1}{2}\binom{2k}{k} \frac{k-1}{k+1}$. 
+This is multiplied by $\binom{n}{2k}$ and added for all $2 \leq k \leq n/2$. 
+Written explicitly, the number of subset pairs to test is,
+$$\boxed{ \frac{1}{2}\sum_{k=2}^{\lfloor{n/2}\rfloor} \binom{n}{2k} \binom{2k}{k} \frac{k-1}{k+1} }$$
+In particular, for this question $n = 12$.
+
+\subsection*{107 -- Minimal network} 
+This can be solved using Kruskal's algorithm. 
+You start with a graph with no edges and add edges one-by-one in increasing order of weight, skipping those that do not combine two trees, until your graph is connected.
+
+\subsection*{108 -- Diophantine reciprocals I} 
+$n < x, y$ so let $x = n+a$ and $y = n+b$. 
+Then with some algebra we can show that $\frac{1}{n} = \frac{1}{n+a} + \frac{1}{n+b} \implies n^2 = ab$. 
+Therefore the number of solutions is the number of ways to represent $n^2$ as the product of two numbers, or half its number of divisors.
+
+\subsection*{113$\star$ -- Non-bouncy numbers} 
+Given $d$ digits, there are $\binom{8+d}{8}$ increasing numbers. 
+To derive this, you can work out that for $d$ nested sums and $k \geq 1$ that
+$$\sum_{n_1=1}^k \left( \sum_{n_2=1}^{n_1} \left( \dotso \left(\sum_{n_d=1}^{n_{d-1}} 1\right) \dotso \right) \right) = \binom{k+d-1}{d} = \binom{k+d-1}{k-1}$$
+and then letting $k=9$ for the digits 1 through 9. 
+Alternatively, we can explain the formula inductively: for $d=1$, we have the set of digits $\{1, 2, 3, \dotsc, 9\}$, from which we choose one. 
+For $d=2$, we have the set $\{1, 2, 3, \dotsc, 9, \#\}$ where $\#$ means that we double the first digit.
+From this set, we pick two elements. 
+For $d=3$, we have the set $\{1, 2, 3, \dotsc, 9, \#_1, \#_2\}$ where $\#_1$ means we double the first digit selected and $\#_2$ means we double the second digit selected, and we pick three elements.
+This continues for higher $d$, so the number of increasing numbers is $\binom{8+d}{d}$.\\
+
+The number of decreasing numbers is very similar as we are allowed digits 0 through 9, so for $d$ digits we have $\binom{9+d}{9}-1$ possibilities, minus 1 as we cannot start a number with 0. 
+But we overcount numbers that are just repeating digits, which there are 9 of.
+Thus for $d$ digits there are $\binom{8+d}{8} + \binom{9+d}{9} - 10$ non-bouncy numbers. 
+If we sum this up for $1 \leq d \leq 100$, we get 
+$$ \sum_{d=1}^{100} \binom{8+d}{8} + \sum_{d=1}^{100} \binom{9+d}{9} - \sum_{d=1}^{100} 10 = \left( \binom{8+100+1}{8+1} - 1 \right) + \left( \binom{9+100+1}{9+1} - 1 \right) - 1000 $$
+$$ = \boxed{ \binom{109}{9} + \binom{110}{10} - 1002 }$$
+Here we used the formula $\sum\limits_{m=0}^n \binom{m}{k} = \binom{n+1}{k+1}$.
+
+\subsection*{114$\star$ -- Counting block combinations I} 
+Let $f(n)$ be the number of ways to fill a row $n$ units in length. 
+You can work out by hand that $f(n) = f(-1) + f(0) + f(1) + f(2) + \dotso + f(n-4) + f(n-1)$ where $f(-1) = f(0) = 1$. 
+This is equivalent to defining $f(n) = 2f(n-1) - f(n-2) + f(n-4)$ where $f(0) = f(1) = f(2) = 1$ and $f(3) = 2$. 
+The answer is $f(50)$, which can be calculated by hand.
+
+\subsection*{115 -- Counting block combinations II} 
+Nearly identical to Problem 114, but generalized. 
+Now $F(m, n) = 2F(m, n-1) - F(m, n-2) + F(m, n-m-1)$ where $F(m, n) = 1$ when $n < m$ and $F(m, m) = 2$.
+
+\subsection*{116$\star$ -- Red, green or blue tiles} 
+The number of ways to tile with red tiles is $f_2(n)-1$, where $f_2(n) = f_2(n-1) + f_2(n-2)$ with initial values $f_2(1) = 1$ and $f_2(2) = 2$. 
+These are precisely the Fibonacci numbers. 
+Similarly, the number of ways to tile with green tiles is $f_3(n)-1$, where $f_3(n) = f_3(n-1) + f_3(n-3)$ with initial values $f_3(1) = f_3(2) = 1$ and $f_3(3) = 2$.  
+Finally, the number of ways to tile with blue tiles is $f_4(n)-1$, where $f_4(n) = f_4(n-1) + f_4(n-4)$ with initial values $f_4(1) = f_4(2) = f_4(3) = 1$ and $f_4(4) = 2$. 
+The answer is then $f_2(50) + f_3(50) + f_4(50) - 3$. 
+It is possible to compute this value by hand.
+
+\subsection*{117$\star$ -- Red, green, and blue tiles} 
+The number of ways to tile is $f(n)$, where $f(n) = f(n-1) + f(n-2) + f(n-3) + f(n-4)$ with initial values $f(0) = 1$ and $f(n<0) = 0$. 
+These are the tetranacci numbers. 
+The answer is $f(50)$, which can be calculated by hand.
+
+\subsection*{120$\star$ -- Square remainders} 
+By expanding, you can determine that for odd $n$, $(a \pm 1)^n \equiv an$ mod $a^2$, and for even $n$, $(a \pm 1)^n \equiv 1$ mod $a^2$. 
+Thus we are trying to maximize $2an$ mod $a^2$ for odd $n$, or equivalently finding largest even multiple of $a$ less than $a^2$. 
+For odd $a$ this is $a^2 - a$, and for even $a$ this is $a^2 - 2a$. 
+We are summing over all $3 \leq a \leq 1000$, so the answer is the sum of $(2k-1)^2 - (2k-1) + (2k)^2 - 2(2k) = 8k^2 - 10k + 2$ for $2 \leq k \leq 500$. 
+Recall that the sum of the first $n$ numbers is $n(n+1)/2$ and the sum of the squares of the first $n$ numbers is $n(n+1)(2n+1)/6$. 
+Therefore the answer is
+$$\boxed{ \left(8\cdot\frac{500\cdot501\cdot1001}{6} - 10\cdot\frac{500\cdot501}{2} + 2\cdot500\right) - (8-10+2) }$$
+
+\subsection*{121$\star$ -- Disc game prize fund}  
+With $n=4$ turns, the number of ways to draw exactly $k=2$ red disks is 
+\[ \sum_{1 \leq i < j \leq 4} i j = 1\cdot2 + 1\cdot3 + 1\cdot4 + 2\cdot3 + 2\cdot4 + 3\cdot4 \equiv \stirling{5}{3} \]
+where $\stirling{a}{b}$ is the \emph{unsigned Stirling number of the first kind}.
+In general, for $n$ turns, the number of ways to draw $k$ red disks is equal to $\stirling{n+1}{k+1}$.
+Thus for $n = 15$ turns, the number of ways to win is $W = \stirling{16}{16} + \stirling{16}{15} + \cdots + \stirling{16}{9}$. 
+There are $(n+1)!$ total outcomes, so if we award $x$ pounds for a win, our expected profit is $-(x-1)\cdot\frac{W}{16!} + 1\cdot\frac{16!-W}{16!}$. 
+The break-even point is when our profit equals 0, which we can then solve for $x$ to get $x = \frac{16!-W}{W}+1 = \frac{16!}{W}$ and take the floor. 
+Written explicitly, the answer is
+$$\boxed{ \left\lfloor16! \left/ \sum_{k=9}^{16} \stirling{16}{k} \right. \right\rfloor}$$ 
+The unsigned Stirling numbers of the first kind are easily generated using the recurrence relation $\stirling{n+1}{k} = n\stirling{n}{k} + \stirling{n}{k-1}$ with the initial conditions $\stirling{0}{0} = 1$ and $\stirling{0}{n} = \stirling{n}{0} = 0$ for $n > 0$. 
+It may help to use the identity $n! = \sum_{k=0}^n \stirling{n}{k}$.
+
+\subsection*{129 -- Repunit divisibility} 
+We can generate $R(k)$ mod $n$ by the recurrence relation $R(k+1) = 10R(k) + 1$ with initial value $R(1) = 1$. 
+There are finitely many numbers mod $n$, so $R(k)$ will eventually loop on itself. 
+But because $n$ and 10 are coprime, the recurrence relation is invertible and creates a cycle. 
+As $10\cdot0 + 1 = 1 = R(1)$, 0 is in our cycle and there exists a non-zero $k$ such that $R(k) \equiv 0$ mod $n$. 
+Then $A(n)$ is the smallest such $k$. 
+Additionally, as there are $n$ numbers and for one of then $R(k) \equiv 0$ mod $n$, we have $A(n) \leq n$. 
+Therefore, for this problem we can start finding $A(n)$ from $n=10^6$. 
+
+\subsection*{131 -- Prime cube partnership} 
+We claim that $n$ is a perfect cube. 
+Assume for a contradiction that $n = x \cdot y^3$ where $x \neq 1$ and is cubefree. 
+As $n^3 + n^2p = n^2(n+p)$ is a perfect cube, so $x | n+p$. 
+But $x|n$, so $x|p$ and $x=p$ as $p$ is prime. 
+But then $n^2(n+p) = 2p^3y^6$ which is not a perfect cube. 
+Therefore $n$ is a perfect cube, which implies that $n+p$ is a perfect cube as well. 
+Therefore $p$ is the difference of two perfect cubes. 
+But if $p = k^3 - (k-a)^3 = a(3k^2 - 3ka + a^2)$, we require $a=1$ and $p$ is the difference of two consecutive cubes. 
+What remains is to generate consecutive cubes and test for primality.
+
+\subsection*{132 -- Large repunit factors} 
+$R(k) = (10^k-1)/9$, so if we are checking divisibility of $R(k)$ by some prime $p$, $(10^k-1)/9 \equiv 0$ mod $p$ if only if  $10^k \equiv 1$ mod $p$,  for $p \neq 3$. 
+Therefore all we need to test is that $10^{10^9} \equiv 1$ mod $p$. 
+We can simplify a little more using Fermat's little theorem, which says $10^{p-1} \equiv 1$ mod $p$. 
+Therefore it suffices that we check $10^{\text{gcd}(10^9,\:p-1)} \equiv 1$ mod $p$.
+
+\subsection*{137$\star$ -- Fibonacci golden nuggets} 
+Here we work out the generating function for the Fibonacci numbers.
+\begin{align*}
+A_F(x) &= \sum\limits_{k=1}^\infty F_k x^k \\
+&= F_1x + F_2x^2 + \sum\limits_{k=3}^\infty F_k x^k \\
+&= x + x^2 + \sum\limits_{k=3}^\infty F_{k-1} x^k +  \sum\limits_{k=3}^\infty F_{k-2} x^k \\
+&= x + x^2  - F_1x^2 + x\sum\limits_{k=1}^\infty F_k x^k +  x^2\sum\limits_{k=1}^\infty F_k x^k \\
+&=  x + xA_F(x) + x^2A_F(x)
+\end{align*}
+So the generating function for the Fibonacci numbers if $A_F(x) = \frac{x}{1-x-x^2}$.
+If we set $A_F(x) = n$, we can rearrange to get the equation $nx^2 + (n+1)x - n = 0$. 
+By the quadratic formula, $x$ is rational when $(n+1)^2 + 4n^2$ equals a square number $y^2$. 
+We can rearrange again to get $(5n+1)^2 + 4 = 5y^2$. 
+Letting $x=5n+1$, we are solving the Pell equation $x^2 - 5y^2  = -4$. 
+Solution are $2(1/2 + \sqrt{5}/2)^{1 + 2k}$ for $k = 0, 1, 2, \dotsc$ (see Problem 94). 
+What remains is to find $x_k \equiv 1$ mod 5, which occurs when $k \equiv 0$ mod 2.
+The answer can be reached after a few iterations.
+
+\subsection*{138$\star$ -- Special isosceles triangles} 
+Suppose we have a triangle with sides lengths $L, L, 2b$ and height $h = b + i$ perpendicular to side $2b$ where $i = \pm 1$. 
+From the Pythagorean Theorem we have $b^2 + (2b+i)^2 = L^2$, which can be rearranged to $(5b+2i)^2+1 = 5L^2$. 
+Letting $x = 5b+2i$ and $y= L$ we are solving the negative Pell equation $x^2 - 5y^2 = -1$. 
+Solutions are $(1/2 + \sqrt{5}/2)^{3(1 + 2k)}$ for $k = 0, 1, 2, \dotsc$ (see Problem 94). 
+$x_k \equiv 2$ or 3 mod 5 comes for free. 
+The answer can be reached after a few iterations.
+
+\subsection*{139$\star$ -- Pythagorean tiles} 
+Suppose $a^2 + (a+k)^2 = c^2$ is a primitive Pythagorean triplet with $k > 0$. 
+We are looking for cases where $k$ divides $c$. 
+We have $2a^2 + 2ak + k^2 = c^2 \implies 2a^2 = c^2 - k(2a +k)$ but as $k|c$, we have $k=1$, $k=2$, or $k|a$. 
+The second is impossible as $a$ and $a+k$ would have the same parity, but for primitive triplets exactly one of $a$ and $a+k$ is odd. 
+The third is impossible as $k$ divides $a$, $a+k$, and $c$ so the triplet is not primitive. 
+Therefore $k=1$ and we are searching for primitive triplets with legs that differ by 1. \\
+
+Suppose $a^2 + (a+1)^2 = c^2$. 
+We can rearrange this as $(2a+1)^2 + 1 = 2c^2$. 
+Letting $x = 2a+1$ and $y = c$, we are solving the negative Pell equation $x^2 - 2y^2 = -1$. 
+Solutions are $(1+\sqrt{2})^{1+2k}$ for $k = 0, 1, 2, \dotsc$ (see Problem 94). 
+Then $x_k \equiv 1$ mod 2 comes for free. 
+The answer can be reached after a few iterations. 
+But here we only generate primitive triplets, so once we find the perimeter $P$ there are $\lfloor 10^8/P \rfloor$ triangles corresponding to a particular primitive triplet.
+
+\subsection*{140$\star$ -- Modified Fibonacci golden nuggets} 
+Using the same steps as Problem 137, the generating function is $A_G(x) = x(1+3x)/(1-x-x^2)$. 
+We are eventually solving the Pell equation $x^2 - 5y^2 = 44$ for $x = 5n+7$. 
+There are two fundamental solutions, $(8 + 2\sqrt{5})$ and $(7 + \sqrt{5})$, and further solutions are generated by multiplying powers of $(3/2 + \sqrt{5}/2)$ (see Problem 94). 
+The answer can be reached after a few iterations.
+
+\subsection*{145$\star$ -- How many reversible numbers are there below one-billion?} 
+Let us define two types of pairs of digits with opposite parity: $\alpha-$pairs, where the two digits sum less than 10, and $\beta-$pairs, where the two digits sum greater than 10. 
+There are 30 $\alpha-$pairs and 20 $\beta-$pairs, but only 20 $\alpha-$pairs if you exclude those that contain the digit 0. 
+Next let $x$ be any number from 0 to 4, which there are 5 of. 
+Then the table below summarizes the allowed patterns for reversible numbers. \\
+
+$\quad \begin{array}{l | l | l} \text{\# of digits} & \text{Pattern} & \text{Count} \\ \hline
+1 & - & 0 \\
+2 & \alpha\alpha & 20 \\
+3 & \beta x \beta & 20\cdot 5 \\
+4 & \alpha\alpha\alpha\alpha & 20 \cdot 30 \\
+5 & - & 0 \\
+6 & \alpha\alpha\alpha\alpha\alpha\alpha & 20 \cdot 30^2 \\
+7 & \beta x \beta x \beta x \beta & 20^2 \cdot 5^3 \\
+8 & \alpha\alpha\alpha\alpha\alpha\alpha\alpha\alpha & 20 \cdot 30^3 \\
+9 & - & 0 \end{array}$ \\
+
+Therefore the answer is $\boxed{20 + 20\cdot 5 + 20 \cdot 30 + 20 \cdot 30^2 + 20^2 \cdot 5^3 + 20 \cdot 30^3}$.
+
+\subsection*{148$\star$ -- Exploring Pascal's triangle}
+It is best to start by drawing the non-multiples of 7 on Pascal's triangle.
+Rows 1--7 form a triangle with 28 non-multiples of 7.
+Call this $X_1$.
+Rows 1--14 form a ``tri-force'' symbol, containing three copies of $X_1$.
+This pattern continues for rows 1--49, where we have 28 copies of $X_1$ forming a ``generalized tri-force'' with seven triangles on its bottom layer.
+Call this $X_2$, which contains a total of $28^2 = 784$ non-multiples of 7.
+This pattern continues again, where rows 1--98 form a tri-force symbol, containing three copies of $X_2$, and so forth. \\
+
+Using this picture, we can come up with an algorithm of computing the number of non-multiples of 7 in the first $10^9$ rows.
+Let us list the first 7 triangle numbers:
+\begin{align*}
+T_0 &= 0 & T_1 &= 1 & T_2 &= 3 & T_3 &= 6 & T_4 &= 10 & T_5 &= 15 & T_6 &= 21
+\end{align*}
+First, we factorize $10^9$ in base 7: $10^9 = 33531600616_7$.
+The highest digit is $3 \times 7^{10}$, so we expect there to be $T_3 = 6$ completed $X_{10}s$, and $3+1 = 4$ incomplete $X_{10}$s.
+the next highest digit is $3 \times 7^9$, so each of these incomplete $X_{10}$s contains $T_3 = 6$ completed $X_9$s, and $3+1$ incomplete $X_8$s.
+This continues, and the total number of non-multiples of 7 is
+\[ \boxed{ 28^{10} T_3 + 4 \qty( 28^9 T_3 + 4 \qty( 28^8 T_5 + 6 \qty( 28^7 T_3 + 4 \qty( 28^6 T_1 + 2 \qty( 28^5 T_6 + 7 \qty( 28^2 T_6 + 7 \qty\big( 28 T_1 + 2 \qty\big( T_6 )))))))) } \]
+
+
+\subsection*{162$\star$ -- Hexadecimal numbers} 
+For a given number of digits $n$, we can count the number of possible hexadecimal numbers using the inclusion-exclusion principle. 
+If boldface \textbf{1} denotes ``the set of numbers that contains at least one 1'', and likewise for \textbf{0} and \textbf{A}, then $|\mathbf{0} \cap \mathbf{1} \cap \mathbf{A}| = |\mathbf{0}| + |\mathbf{1}| + |\mathbf{A}| - |\mathbf{0} \cup \mathbf{1}| - |\mathbf{0} \cup \mathbf{A}| - |\mathbf{1} \cup \mathbf{A}| + |\mathbf{0} \cup \mathbf{1} \cup \mathbf{A}|$.
+Add this up for $3 \leq n \leq 16$ to get the solution, 
+\[ \boxed{ \sum_{n=3}^{16} \left(15 \cdot 16^{n-1} - 43 \cdot 15^{n-1} + 41 \cdot 14^{n-1} - 13^n\right) } \]
+
+\subsection*{169 -- Exploring the number of different ways a number can be expressed as a sum of powers of 2} 
+The function $f(n)$ is equivalent to the number of ways of expressing $n$ as a binary string, but also permitting the usage of the digit 2. 
+For instance, $f(10) = f(1010_2) = \{1010, 210, 1002, 202, 122\}$ and $f(11) = f(1011_2) = \{1011, 211\}$. 
+We can establish two properties of the function $f(n)$:
+ \[ f(2n) = f(n) + f(n-1), \quad f(2n+1) = f(n) \]
+\begin{itemize}
+\item if $n$ is even (i.e. $n = 2k$) its binary string ends with a 0. Then its binary string representations are those of $k$ with a 0 digit appended at the end and those of $k-1$ with a 2 digit appended. For instance, $f(10) = f(1010_2) = \{1010, 210, 1002, 202, 122\} = \{101, 21\}_0 + \{100, 20, 12\}_2 = f(101_2) + f(100_2) = f(5) + f(4)$.
+\item if $n$ is odd (i.e. $n = 2k+1$) its binary string ends with a 1. Then its binary string representations are those of $k$ with a 1 digit appended. For instance, $f(11) = f(1011_2) = \{1011, 211\} = \{101, 21\}_1 = f(5)$.
+\end{itemize}
+With this, we can recursively find $f(n)$ for all $n$.
+
+\subsection*{183 -- Maximum product of parts} 
+For a given $N$, we want to maximize $(N/k)^k$. 
+We can do this by differentiating with respect to $k$ to get $(N/k)^k[\ln(N/k) - 1]$, so the maximum is when $k = N/e$. 
+But this is not an integer, so we test the integers above and below for the larger value of $(N/k)^k$. 
+Once we know our $k$, if $k/\text{gcd}(k, N)$ contains prime factors other than 2 or 5, then the decimal does not terminate.
+
+\subsection*{188 -- The hyperexponentiation of a number} 
+We are finding $1777\uparrow\uparrow1855 \equiv 1777^{1777\uparrow\uparrow1854}$ mod $10^8$. 
+The generalized Fermat's little theorem says that $1777^{\phi(n)} \equiv 1$ mod $n$, where $\phi(n)$ is the totient function. 
+So $1777^{1777\uparrow\uparrow1854} \equiv 1777^{k\cdot\phi(10^8) + a_1} \equiv 1777^{a_1}$ for some integer $a_1 \equiv 1777\uparrow\uparrow1854$ mod $\phi(10^8)$. 
+We can repeat this process by taking successive totients, defining a sequence $a_1, a_2, \dotsc$. 
+Eventually we will reach the totient $\phi^{(n)}(10^8) = 2$. 
+As 1777 is odd, any power of 1777 is odd so $a_n = 1$. 
+We can then work backwards using the recursive formula $a_{i} \equiv 1777^{a_{i+1}}$ mod $\phi^{(i)}(10^8)$ until we find $a_0$, which is the answer.
+
+\subsection*{197 -- Investigating the behaviour of a recursively defined sequence} 
+The function given is very close to the analytic function $f(x) = 1.42\cdot2^{-x^2}$. 
+Here we are looking for stable fixed-points for the function $f(x)$, if they exist, i.e. points $x_0$ where $f(x_0) = x_0$ and $|f'(x_0)| < 1$. 
+There is one fixed-point for $f(x)$ at $x_0 \approx 0.855$, but $f'(x_0) \approx -1.014$ so it is not stable. 
+Next we have to look for fixed-points of the double map, $f\big(f(x)\big)$, which are $x_0 \approx 1.029$ and $x_1 \approx 0.681$. 
+These fixed-points are stable and satisfy $f(x_0) = x_1$ and $f(x_1) = x_0$. 
+If an initial point $u_0$ is picked near these values, iteratively calling $u_{n+1} = f(u_n)$ will converge upon these two fixed-points.
+
+\subsection*{216 -- Investigating the primality of numbers of the form $2n^2 - 1$}
+
+We can use a sieve method to generate all primes.
+This relies on two claims: \\
+
+\textbf{Claim 1:} If $d$ is a non-trivial (i.e.~$d \neq 1$) divisor of $t(n) = 2n^2 - 1$, then
+\begin{itemize}
+\item[(a)] $d$ does not divide $n$, $n+1$, or $n-1$.
+\item[(b)] $d$ divides $t(n + k t(n))$ for all $k \in \mathbb{Z}$.
+\end{itemize}
+\emph{Proof.} For (a), note that $t(n) = 2n^2 - 1 = 2(n \pm 1)^2 \mp 4(n \pm 1) + 1$ and $d$ cannot divide 1.
+This guarantees that for no $k$ will $n + kt(n)$ be 0 or $\pm 1$.
+For (b), note that $t(n + kt(n)) = t(n)\qty[ 1 + 2k(2n + kt(n))]$. $\blacksquare$ \\
+
+\textbf{Claim 2:} Let $d$ be the smallest non-trivial divisor of $t(n) = 2n^2 - 1$.
+If $d \neq t(n)$ then $d$ divides $t(n')$ for some $2 \leq n' < n$. \\
+
+\emph{Proof.} We just need to prove that $d < 2n$. 
+Then, from Claim 1, we have $2 \leq |n - d| < n$ and so $d$ divides $t(n-d)$. 
+As $d$ is the smallest divisor of $t(n)$ but $d \neq t(n)$, we necessarily have $d^2 \leq t(n)$.
+\[ d^2 \leq t(n) = 2n^2 - 1 < 2n^2 \qquad\implies\qquad d < \sqrt{2} n < 2 n \qquad \blacksquare\]
+
+\subsection*{231 -- The prime factorisation of binomial coefficients} 
+Kummer's theorem on binomial coefficients states that given integers $n \geq m \geq 0$ and a prime $p$ that the maximum integer $k$ such that $p^k$ divides $\binom{n}{m}$ is equal to the number of carries then $m$ is added to $n-m$ in base $p$.
+
+\subsection*{235 -- An Arithmetic Geometric sequence} 
+The sum of the first $n$ terms of a arithmetico-geometric sequence is given by
+\[ \sum\limits_{k=1}^n [a+(k-1)d]r^{k-1} = \frac{a + (d-a)r - (a+nd)r^n +(a+nd-d)r^{n+1}}{(1-r)^2}\]
+
+\subsection*{301$\star$ -- Nim} 
+Given $k$ piles with $a_k$ stones, if $a_1 \wedge a_2 \wedge \dotsb \wedge a_k = 0$, then you have a losing game ($\wedge$ is the binary xor operation). 
+For 3 piles, $a_1 \wedge a_2 \wedge a_3 = 0 \iff a_1 \wedge a_2 = a_3$. 
+Then for this question, our requirement becomes $n \wedge 2n = 3n = n + 2n$. 
+This is only true if the binary representation for $n$ does not have two adjacent ``1'' digits. 
+For instance if $n = 1011_2$, $2n = 10110_2$ and $n \wedge 2n = 11101_2 \neq 100001_2 = n+2n$. 
+So we are finding the number of binary strings of length $m$ with no adjacent ``1'' digits, which is given by the $m$-th Fibonacci number, with $F_1 = 2, F_2 = 3$. 
+Thus using these seeds, $F_{30} = \boxed{2178309}$ gives our answer.
+
+\subsection*{317$\star$ -- Firecracker}
+This problem has a closed-form answer from physics.
+Let us place the firecracker as it explodes at the origin, with the $y$-axis extending upwards and the $x$-axis extending in a horizontal direction.
+Let us pick a height $H$, and we want to find the largest range $R$ for a projectile at this height.
+So if a projectile is launched at angle $\theta$ to the horizon with speed $v$, we have the usual equations of motion,
+\[  y(t) = v \cos\theta t - \frac{1}{2} gt^2 \qq{,} x(t) = v t \sin\theta \]
+where $t$ is the time elapsed in seconds ($t=0$ at the origin) and $g$ is the acceleration due to gravity.
+Combining these equations and eliminating $t$ gives,
+\[ H (1 - \cos 2\theta) = R \sin 2 \theta - \frac{g R^2}{v^2} \]
+where $R = R(\theta)$ is a function of $\theta$.
+Now we differentiate both sides with respect to $\theta$ and set $\dv*{R}{\theta}=0$ to solve for the angle which maximizes the range, we get the condition $\tan 2\theta = R/H$.
+Plugging this angle back into our previous equation, we get an expression for $R$,
+\[ R = \sqrt{4 h_\text{max} (h_\text{max} - H)} \qq{,} h_\text{max} \equiv \frac{v^2}{2g} \]
+where $h_\text{max}$ is the maximum height reached by the projectile.
+For different values of $H$ between $h_\text{max}$ and $-h_0 \equiv - 100$, this gives the envelope for particles from the firecracker.
+As the volume is rotationally symmetrical along its vertical axis, we can slice it up into small disks with radius $R$ and width $\dd{H}$.
+So we can integrate to find the total volume,
+\[ V = \int_{-h_0}^{h_\text{max}} \pi R^2 \dd{H} = \int_{-h_0}^{h_\text{max}} 4\pi {h_\text{max}}({h_\text{max}} - H) \dd{H} = 2 \pi h_\text{max} (h_\text{max} + h_0)^2 \]
+If we plug-in the values ${h_\text{max}} = 20^2/2 \times 9.81$ and $h_0 = 100$, we have the answer,
+\[ \boxed{ 2 \pi \qty(\frac{20^2}{2 \cdot 9.81}) \qty(\frac{20^2}{2 \cdot 9.81} + 100)^2 } \]
+
+\subsection*{381 -- (prime-k) factorial} 
+Wilson's Theorem states that for prime $p$, $(p-1)! \equiv -1 $ mod $p$. 
+Thus we can deduce that $(p-2)! \equiv 1$, $(p-3)! \equiv -1/2$, $(p-4)! \equiv 1/6$, and $(p-5)! \equiv -1/24$ mod $p$ (fractions are to be interpreted as modular inverses). 
+Thus $S(p) \equiv -3/8 $ mod $p$.
+
+\subsection*{389$\star$ -- Platonic Dice}
+We are interested in finding a generating function $G(x)$ with the property,
+\[ G(x) = \sum_{n=1} P_n x^n \]
+where $n$ is the sum on the dice and $P_n$ is the probability of obtaining that sum.
+For the normalization of probabilities, we require $G(x) = 1$.
+We can see that for a single 4-sided die, the generating function is
+\[ G(x) = \frac{1}{4}(x + x^2 + x^3 + x^4) \]
+Now according to the problem statement, for each outcome of rolling a number in $\{1,2,3,4\}$ we roll that many 6-sided dice.
+The generating function for this situation can be obtained by replacing
+\[ x \to \frac{1}{6}(x+x^2+x^3+x^4+x^5+x^6) \]
+or in other words, if we define,
+\[ g_4(x) \equiv \frac{1}{4}(x+x^2+x^3+x^4) \qq{,} g_6(x) \equiv \frac{1}{6}(x+x^2+x^3+x^4+x^5+x^6)\]
+then the new generating function is
+\[ G(x) = g_4 (g_6(x)) = g_4 \circ g_6(x) \]
+This works because the powers of $x$ in the generating function tell us both the sum on the dice and the number of new rolls to perform.
+In general, if we define,
+\[ g_n(x) \equiv \frac{1}{n}(x+x^2 + x^3 + \cdots + x^n) \]
+then the generating function for this problem is
+\[ G(x) = g_4 \circ g_6 \circ g_8 \circ g_{12} \circ g_{20} (x) \]
+We want to calculate the variance of $I$, given by $\sigma^2 = \ev{I^2} - \ev{I}^2$.
+This can be calculated from our generating functions,
+\[ \ev{I} = \sum_{n=1} n P_n = \dv{x} \qty( \sum_{n=1} P_n x^n)_{x=1} = G'(1) \]
+\[ \ev{I^2} = \sum_{n=1} n^2 P_n = \dv{x} \qty( x \dv{x} G(x) )_{x=1} = G'(1) + G''(1) \]
+Using the normal derivative rules,
+\[ G'(x) = g'_{20}(x) \times g'_{12} \circ g_{20}(x) \times g'_8 \circ g_{12} \circ g_{20}(x) \times g'_6 \circ g_8 \circ g_{12} \circ g_{20}(x) \times g'_4 \circ g_6 \circ g_8 \circ g_{12} \circ g_{20}(x)\]
+Note that $g_n(1) = 1$, so
+\[ G'(1) = g'_4(1) \times g'_6(1) \times g'_8(1) \times g'_{12}(1) \times g'_{20}(1) \]
+Likewise, you can show that,
+\[  G''(1) = G'(1)\qty( \frac{g''_{20}}{g'_{20}} + g'_{20} \qty(\frac{g''_{12}}{g'_{12}} + g'_{12} \qty(\frac{g''_8}{g'_8} + g'_8 \qty(\frac{g''_6}{g'_6} + g'_6 \cdot \frac{g''_4}{g'_4}))))_{x=1}  \]
+Now you can also work out that,
+\[ g'_n(1) = \frac{1}{2}(n+1) \qq{,} \frac{g''_n(1)}{g'_n(1)} = \frac{2}{3}(n-1) \]
+Plugging everything in, this gives,
+\[ G'(1) = \frac{85995}{32} \qq{,} G''(1) = G'(1) \cdot \frac{85963}{24} \]
+And the final answer for $\sigma^2$ is,
+\[ \frac{2464129395}{1024} \approx \boxed{ 2406376.3623} \]
+
+\subsection*{407 -- Idempotents} 
+For a particular $n$, let is prime factorization be $n = p_1^{a_1} p_2^{a_2} \cdots p_k^{a_k}$ for distinct primes $p_1, \dotsc , p_k$.
+The Chinese Remainder Theorem defines a ring isomorphism,
+\[ \mathbf{Z}_n \cong \mathbf{Z}_{p_1^{a_1}} \oplus  \mathbf{Z}_{p_2^{a_2}} \oplus \cdots \oplus \mathbf{Z}_{p_k^{a_k}} \]
+The only idempotents in $\mathbf{Z}_{p^a}$ for any prime $p$ are 0 and 1.
+Therefore, $\mathbf{Z}_n$ has $2^k$ idempotents corresponding to every possible selection of 0 or 1 in each $\mathbf{Z}_{p_i^{a_i}}$, i.e.
+\[ \underbrace{(0, 0, \dotsc, 0)}_{k \text{-tuple}} \quad,\quad (1, 0, \dotsc, 0) \quad,\quad (0, 1, \dotsc, 0) \quad , \quad \dotsc \quad , \quad (1, 1, \dotsc, 1) \]
+We use the isomorphism defined by the Chinese Remainder Theorem to convert elements of $\bigoplus_i \mathbf{Z}_{p_i^{a_i}}$ into elements of $\mathbf{Z}_n $.
+
+
+\subsection*{500 -- Problem 500!!} 
+Recall that given the prime factorization of a number $n = p_1^{a_1} p_2^{a_2} \dotsb p_k^{a_k}$, the number of divisors of $n$ is $(a_1 + 1)(a_2 + 1)\cdots(a_k+1)$. 
+So a number with $2^{500500}$ divisors is $2\times 3\times\cdots\times p_{500500}$. 
+However, this is not the smallest number, as we can replace $p_{500500}$ with $2^2$ to get $2^3\times3\times\cdots\times p_{500499}$. 
+We repeat this, replacing the largest primes in the product with powers of smaller primes.
+
+\subsection*{577$\star$ -- Counting hexagons}
+With length $n=3$, we are able to construct a hexagon from the center point with ``radius 1'' (i.e.~the vertices are a unit distance away from the center).
+If the side length is increased to $n=4$, then we can construct 3 such hexagons, then 6 such hexagons with $n=5$, and so forth.
+This pattern of triangular numbers continues: with side length $n$ we are able to construct $T_{n-2}$ hexagons with radius 1, where $T_n = n(n+1)/2$ is the $n$th triangular number. \\
+
+However, at $n=6$, we are able to construct two new types of hexagons from the center point with ``radius 2'' (i.e.~the vertices are two units away from the center, counting distances along the edges of the equilateral triangles). 
+We can construct one of each type, so including the 10 hexagons with radius 1, we have 12 total hexagons, hence $H(6)=12$.
+With $n=7$, we are able to construct 3 of each type of hexagon with radius 2, and adding the 15 hexagons with radius 1, we have $15 + 2\times 3 = 21$ total hexagons, hence $H(7)=21$.
+Again, these radius 2 hexagons follow the same triangular number pattern: with side length $n$ we are able to construct $2T_{n-5}$ hexagons with radius 2. \\
+
+Then at $n=9$, we are able to construct three new types of hexagons from the center point with ``radius 3''.
+This pattern also continues: when the side length $n$ is a multiple of 3, we are able to construct $n/3$ new types of hexagons.
+These new hexagons follow the same triangular number pattern. \\
+
+To give a sample calculation, in calculating $H(20)$, we can have up to radius 6 hexagons.
+The total number of hexagons we can construct is,
+\[ T_{18} + 2T_{15} + 3 T_{12} + 4 T_{9} + 5 T_{6} + 6 T_{3} = 966 \]
+Using this, we can express our sum as a sum over triangular numbers:
+\[ \sum_{n=3}^{12345} H(n) = \sum_{n=1}^{12345-2} T_n + 2\times \sum_{n=1}^{12345-5}T_n + 3 \times \sum_{n=1}^{12345-8} T_n + \cdots + 4115 \times \sum_{n=1}^1 T_n \]
+We will use the following formulas,
+\begin{align*}
+\sum_{n=1}^N n &= \frac{N(N+1)}{2} & \sum_{n=1}^N n^2 &= \frac{N(N+1)(2N+1)}{6} \\
+\sum_{n=1}^N n^3 &= \frac{N^2 (N+1)^2}{4} & \sum_{n=1}^N n^4 &= \frac{N(N+1)(2N+1)(3N^2 + 3N - 1)}{30}
+\end{align*}
+So we can write,
+\[ \sum_{n=1}^N T_n = \frac{N(N+1)(N+2)}{6} \]
+This implies,
+\begin{align*}
+\sum_{n=3}^{12345} H(n) &= 4115 \frac{1(1+1)(1+2)}{6} + 4114 \frac{4(4+1)(4+2)}{6} + \cdots +\frac{12343(12343+1)(12343+2)}{6} \\
+&= \frac{1}{6} \sum_{n=0}^{4114} (4115-n)(1+3n)(2+3n)(3+3n)
+\end{align*}
+Expanding this out and using the sums for $n, n^2, n^3, n^4$ above, we get the answer $\boxed{ 265695031399260211} $.
+
+\subsection*{587 -- Concave triangle}
+If the circle has unit radius, then the L-section has area $1 - \pi/4$.
+If the corner of the L-section is at the origin, then the straight line is given by the equation $y = nx$ for a particular value of $n$.
+The intersect of this straight line and the circle occurs at the $x$-value,
+\[ x_n = \frac{n+1-\sqrt{2n}}{n^2+1} \]
+Then using calculus, the area of the concave triangle is,
+\[ \int_0^{x_n} \dd{x} \qty[(1 - \sqrt{1 - (x-1)^2}) - nx]  = \frac{1}{2} \qty[ (1-x_n) \sqrt{1 - (1 - x_n)^2} + \sin^{-1}(1-x_n) - nx_n^2 + 2x_n - \frac{\pi}{2} ] \]
+We iterate through values of $n$ until the area is small enough.
+
+\end{document}

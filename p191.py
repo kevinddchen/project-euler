@@ -1,0 +1,37 @@
+#!/usr/bin/python
+#ANSWER 1918080160
+
+from time import time
+
+def addDict(d, L, i):
+    """ For each element x in L add i to dct[x]. """
+    for x in L:
+        if x in d:
+            d[x] += i
+        else:
+            d[x] = i
+
+def getNext(s):
+    """ Generate next possible strings. """
+    yield s[0]+s[2]+'O'         ## on time
+    if s[1:] != 'AA':
+        yield s[0]+s[2]+'A'     ## absent
+    if s[0] != 'L':
+        yield 'L'+s[2]+'L'      ## late
+
+def p191():
+    ## format is string of three characters. The first remembers if the string ever
+    ## contains a late, and the last two remembers the last two day history.
+    dct = {'XXX':1}
+    for i in xrange(30):
+        new_dct = {}
+        for s in dct:
+            addDict(new_dct, getNext(s), dct[s])
+        dct = new_dct
+    return sum(dct[s] for s in dct)
+
+if __name__ == '__main__':
+    time_start = time()
+    print(p191())
+    print("Time: {0:.3f}".format(time()-time_start))
+
