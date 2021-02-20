@@ -1,6 +1,6 @@
 CC = g++
 CFLAGS = -O
-TARGETS = p650
+TARGETS = p357
 OBJECTS = cmathfuncs.o
 
 all: $(TARGETS)
