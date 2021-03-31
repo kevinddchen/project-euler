@@ -2,7 +2,7 @@
 
 import os
 
-for i in xrange(230, 300):
+for i in range(0, 10):
     if os.path.isfile("p{}.py".format(i)):
         filename = "p{}.py".format(i)
         language = "Python"
@@ -12,7 +12,6 @@ for i in xrange(230, 300):
     else:
         continue
 
-    print " === Problem {} - {} === ".format(i, language)
+    print(" === Problem {} - {} === ".format(i, language))
     os.system("./{}".format(filename))
-    print
 

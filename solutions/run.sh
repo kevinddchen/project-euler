@@ -1,8 +1,7 @@
 #!/bin/bash
 
-## Run a p__.cxx file using the command,
+## To run p123.cxx, use the command:
 ## bash run.sh 123
-## to run Problem 123.
 
 if [ -a p$1.cxx ]; then
 
