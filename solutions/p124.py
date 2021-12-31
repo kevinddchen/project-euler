@@ -8,13 +8,13 @@ Brute force prime factorization.
 """
 
 from time import time
-from mathfuncs import primeFactorize
+from mathfuncs import prime_factorize
 
 def p124():
-    L = []
-    for x in xrange(1, 100001):
+    L = [(1, 1)]
+    for x in range(2, 100001):
         P = 1
-        for f, i in primeFactorize(x):
+        for f, _ in prime_factorize(x):
             P *= f
         L.append( (P, x) )
     L.sort()

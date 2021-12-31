@@ -12,18 +12,18 @@ primordial, and the answer should be a multiple of it.
 """
 
 from time import time
-from mathfuncs import isPrime
+from mathfuncs import is_prime
 
-def primeGen():
+def prime_gen():
     yield 2
     y = 3
     while True:
-        if isPrime(y):
+        if is_prime(y):
             yield y
         y += 2
 
 def p243():
-    G = primeGen()
+    G = prime_gen()
 
     ## get primordial just below ratio
     d, tot = 1, 1

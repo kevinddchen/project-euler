@@ -11,24 +11,25 @@ pentagonal number, then we are done.
 """
 
 from time import time
-from mathfuncs import primeFactorize
+from mathfuncs import prime_factorize
 
 def pent(n):
     """Returns the nth pentagon number."""
-    return n*(3*n-1)/2
+    return n*(3*n-1) // 2
 
-def checkPent(p):
+def is_pent(p):
     """Checks if p is a pentagon number."""
-    n = int(((1+24*p)**0.5+1)/6)
+    n = round(((1+24*p)**.5+1)/6)
     return pent(n) == p
 
 def divisors(x): 
+    ## also used in Problem 622
     divs = [1] 
-    for f, i in primeFactorize(x):  
+    for f, i in prime_factorize(x):  
         new_divs = [] 
         for d in divs: 
             prod = 1 
-            for j in xrange(i): 
+            for _ in range(i): 
                 prod *= f 
                 new_divs.append(d*prod) 
         divs.extend(new_divs) 
@@ -41,14 +42,14 @@ def p44():
         p2 = 2*pent(i)
         d_list = sorted(divisors(p2), reverse=True)
         for d in d_list:
-            k = p2/d
+            k = p2 // d
             n6 = d - 3*k + 1
             if n6 <= 0:
                 break
             if n6 % 6 == 0:
-                n = n6/6
-                if checkPent( pent(n) + pent(n+k) ):
-                    return p2/2
+                n = n6 // 6
+                if is_pent( pent(n) + pent(n+k) ):
+                    return p2 // 2
 
 if __name__ == '__main__':
     time_start = time()

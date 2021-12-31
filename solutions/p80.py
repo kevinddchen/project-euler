@@ -9,19 +9,20 @@ square root (error < 1e-110). Then, use long division to get the digits.
 """
 
 from time import time
+from math import isqrt
 
-def genSqrt(p):
+def gen_sqrt(p):
     """ Rational approximation from Newton's method. """
-    a, b = int(p**0.5), 1
+    a, b = isqrt(p), 1
     while True:
         yield a, b
         a, b = a*a + p*b*b, 2*a*b
 
 def error(p, a, b):
     """ Gives error between p and (a/b)^2. """
-    return abs((a*a - p*b*b)/(1.*b*b))
+    return abs(a*a - p*b*b)/(1.*b*b)
 
-def longDivision(a, b):
+def long_division(a, b):
     """ Iterates through decimal digits from long division. """
     while True:
         c = a // b
@@ -32,18 +33,18 @@ def longDivision(a, b):
 def p80():
     S = 0
     ERROR_THRESHOLD = 1e-110
-    for i in xrange(2, 100):
+    for i in range(2, 100):
         ## if square, skip 
-        if int(i**0.5)**2 == i:
+        if isqrt(i)**2 == i:
             continue
         ## generate good decimal approximation of sqrt(i)
-        G = genSqrt(i)
+        G = gen_sqrt(i)
         a, b = next(G)
         while error(i, a, b) > ERROR_THRESHOLD:
             a, b = next(G)
         ## long division to get digits
-        H = longDivision(a, b)
-        for j in xrange(100):
+        H = long_division(a, b)
+        for j in range(100):
             S += next(H)
     return S
 

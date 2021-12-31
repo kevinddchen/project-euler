@@ -2,18 +2,18 @@
 #ANSWER 2944730
 
 from time import time
-from mathfuncs import primeSieve
+from mathfuncs import prime_sieve
 
 def recurse(primes, limit, prod=1, i=0):
     C = 1
-    for j in xrange(i, len(primes)):
+    for j in range(i, len(primes)):
         if prod*primes[j] > limit:
             break
         C += recurse(primes, limit, prod*primes[j], j)
     return C
 
 def p204():
-    primes = [p for p in primeSieve(100)]
+    primes = [p for p in prime_sieve(100)]
     return recurse(primes, 10**9)
 
 if __name__ == '__main__':

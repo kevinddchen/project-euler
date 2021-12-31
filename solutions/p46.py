@@ -9,13 +9,13 @@ subtract the squares from it first, then check that the difference is prime.
 """
 
 from time import time
-from mathfuncs import isPrime
+from mathfuncs import is_prime
 
 def check(x):
     """Checks if condition holds. Vacuously true for 1"""
     y = 1
     while 2*y*y < x:
-        if isPrime(x - 2*y*y):
+        if is_prime(x - 2*y*y):
             return True
         y += 1
     return False
@@ -24,7 +24,7 @@ def p46():
     x = 1
     while True:
         x += 2
-        if isPrime(x):
+        if is_prime(x):
             continue
         if not check(x):
             return x

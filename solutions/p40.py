@@ -7,7 +7,7 @@ def p40():
     P = 1
     digit_count = 0
     x = 0
-    for n in xrange(7):
+    for n in range(7):
         while digit_count < 10**n:
             x += 1
             digit_count += len(str(x))

@@ -8,13 +8,11 @@ We can use the exact same methods in problem 76 to solve this one.
 """
 
 from time import time
-import sys
-sys.dont_write_bytecode = True
-import p76
+from p76 import partition
 
 def p78():
     n = 100
-    while p76.partition(n)%1000000 != 0:
+    while partition(n)%1000000 != 0:
         n += 1
     return n
 

@@ -4,34 +4,29 @@
 """
 
 Make a recursive function that counts the number of ways to partition a number
-using primes uner a certain maximum prime. Made faster with memoization.
+using primes under a certain maximum prime. 
 
 """
 
 from time import time
-from mathfuncs import isPrime
+from mathfuncs import is_prime
 
-def primeGen():
+def prime_gen():
     yield 2
     x = 3
     while True:
-        if isPrime(x):
+        if is_prime(x):
             yield x
         x += 2
 
-part_dict = {}
 def partition_prime(n, p_max):
-    if (n, p_max) in part_dict:
-        return part_dict[(n, p_max)]
     if n == 0:
         return 1
-
     S = 0
-    for p in primeGen():
+    for p in prime_gen():
         if p > p_max or p > n:
             break
         S += partition_prime(n-p, p)
-    part_dict[(n, p_max)] = S
     return S
 
 def p77():

@@ -8,15 +8,19 @@ See solution explanations.
 """
 
 from time import time
-from mathfuncs import gcd
+from math import isqrt, gcd
 
 def p9():
-    ## Euler's formula for generating Pythagorean triples.
-    ## a+b+c = 2m(m+n) = 1000, so stop m at sqrt(500)
-    for m in xrange(2, int(500**0.5)):
-        ## m, n opposite parity
-        n_1 = 1 if m%2==0 else 2
-        for n in xrange(n_1, m, 2):
+    ## Euclid's formula for generating Pythagorean triples.
+    ## a+b+c = 2km(m+n) = 1000, so stop m at sqrt(500).
+    for m in range(2, isqrt(500)+1):
+        ## m, n must have opposite parity
+        if m%2 == 0:
+            n_start = 1
+        else:
+            n_start = 2
+        
+        for n in range(n_start, m, 2):
             if gcd(m, n) == 1:
                 a = m*m - n*n
                 b = 2*m*n

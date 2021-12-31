@@ -5,11 +5,10 @@
 
 See solution explanations.
 
-Used by Problem 78
-
 """
 
 from time import time
+from functools import cache
 
 def pent(n):
     return n*(3*n-1)//2
@@ -22,22 +21,17 @@ def alternating():
         yield -i
         i += 1
 
-part_dict = {}
+@cache
 def partition(n):
-    """ Used by Problem 78. """
-    if n in part_dict:
-        return part_dict[n]
-    elif n == 0:
+    ## also used in Problem 78
+    if n == 0:
         return 1
-
     S = 0
     for k in alternating():
         g_k = pent(k)
         if g_k > n:
             break
         S += partition(n - g_k)*(-1 if k%2==0 else 1)
-
-    part_dict[n] = S
     return S
 
 def p76():

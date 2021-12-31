@@ -5,14 +5,14 @@ from time import time
 
 def increasing(x):
     s = str(x)
-    for i in xrange(len(s)-1):
+    for i in range(len(s)-1):
         if s[i+1] < s[i]:
             return False
     return True
 
 def decreasing(x):
     s = str(x)
-    for i in xrange(len(s)-1):
+    for i in range(len(s)-1):
         if s[i+1] > s[i]:
             return False
     return True

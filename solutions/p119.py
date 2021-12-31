@@ -31,7 +31,7 @@ def p119():
         L.append( (n*base, base, exp+1, False) )
         if first:
             n_0, base_0, exp_0, = (base+1)**2, base+1, 2
-            while len(str(n_0)) < int(ceil(base_0/9.)):
+            while len(str(n_0)) < ceil(base_0/9.):
                 exp_0 += 1
                 n_0 *= base_0
             L.append( (n_0, base_0, exp_0, True) )

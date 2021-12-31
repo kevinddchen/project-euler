@@ -3,7 +3,7 @@
 
 from time import time
 
-def isLychrel(x):
+def is_lychrel(x):
     x += int(str(x)[::-1])
     t = 1
     while t < 50:
@@ -14,7 +14,7 @@ def isLychrel(x):
     return True
 
 def p55():
-    return sum(1 for x in xrange(10000) if isLychrel(x))
+    return sum(1 for x in range(10000) if is_lychrel(x))
 
 if __name__ == '__main__':
     time_start = time()

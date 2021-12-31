@@ -10,12 +10,11 @@ See solution explanations.
 from time import time
 
 def p45():
-    x, y = 6*165-1, 4*143-1 
-    while True:
+    x, y = 1, 1
+    for _ in range(9):
         x, y = 2*x + 3*y, x + 2*y
-        if x%6 == 5 and y%4 == 3:
-            n = (y+1)/4
-            return n*(2*n-1)
+    n = (y+1) // 4
+    return n*(2*n-1)
 
 
 if __name__ == '__main__':

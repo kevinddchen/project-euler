@@ -10,19 +10,19 @@ explicitly, a = -p*10^(-k) mod q.
 """
 
 from time import time
-from mathfuncs import primeSieve, modularInverse
+from mathfuncs import prime_sieve
 
 def p134():
     total = 0
     LIMIT = 1000000
 
     p = 0
-    for q in primeSieve(LIMIT+100): ## small buffer
+    for q in prime_sieve(LIMIT+100): ## small buffer
         if p > LIMIT:
             break
         if q > 5:
             k = len(str(p))     ## num of digits in p
-            a = (q-p)*modularInverse(10, q)**k % q
+            a = (q-p)*pow(10, -1, q)**k % q
             total += a*10**k + p
         p = q
     return total

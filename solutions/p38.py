@@ -17,14 +17,14 @@ def check(x):
         i += 1
     if len(string) != 9:
         return False
-    for d in xrange(1, 10):
+    for d in range(1, 10):
         if str(d) not in string:
             return False
     return int(string)
 
 def p38():
     ## maximum 4 digit numbers as n > 1
-    return max(check(x) for x in xrange(1, 10000))
+    return max(check(x) for x in range(1, 10000))
 
 if __name__ == '__main__':
     time_start = time()

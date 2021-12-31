@@ -2,13 +2,13 @@
 #ANSWER 104743
 
 from time import time
-from mathfuncs import isPrime
+from mathfuncs import is_prime
 
 def p7():
     n, i = 1, 1
     while i < 10001: 
         n += 2
-        if isPrime(n):
+        if is_prime(n):
             i += 1
     return n
 

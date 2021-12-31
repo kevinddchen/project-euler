@@ -9,13 +9,14 @@ quite straightforward to count them all.
 """
 
 from time import time
-from mathfuncs import isPrime
+from math import isqrt
+from mathfuncs import is_prime
 
-def primeGen(maxim):
+def prime_gen(maxim):
     yield 2
     x = 3
     while x <= maxim:
-        if isPrime(x):
+        if is_prime(x):
             yield x
         x += 2
 
@@ -24,9 +25,9 @@ def power_triple(a, b, c):
 
 def p87():
     TARGET = 50000000
-    max_c = int((TARGET - 2**3 - 2**4)**0.5)
-    primes = list(primeGen(max_c))
-    sum_set = set([])
+    max_c = isqrt(TARGET - 2**3 - 2**4)
+    primes = list(prime_gen(max_c))
+    sum_set = set()
 
     for c in primes:
         for b in primes:

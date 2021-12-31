@@ -13,14 +13,17 @@ def p94():
     LIMIT = 10**9
     S = 0
 
-    x, y = 4, 2
+    x, y = 2, 1
     while True:
         x, y = 2*x+3*y, x+2*y
-        i = 1 if x%3==2 else -1
-        a = (x+i)//3
-        if 3*a+i > LIMIT:
+        if x%3==2:
+            delta = 0 
+        else:
+            delta = 1
+        p = 2*(x + 2*delta - 1)
+        if p > LIMIT:
             break
-        S += 3*a + i
+        S += p
     return S
 
 if __name__ == '__main__':

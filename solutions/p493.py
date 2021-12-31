@@ -27,8 +27,7 @@ and the expected value is
 """
 
 from time import time
-from mathfuncs import choose
-from math import factorial
+from math import factorial, comb
 
 def ordered_partitions(size, parts, limit):
 
@@ -65,15 +64,15 @@ def count_color(n_colors):
     for part in ordered_partitions(20, n_colors, 10):
         product = permutations(part)
         for x in part:
-            product *= choose(10, x)
+            product *= comb(10, x)
         count += product
     return count
 
 def p493():
     weighted_count = 0      ## value of demonimator for expected value
     for n_colors in range(2, 8):
-        weighted_count += count_color(n_colors) * choose(7, n_colors) * n_colors
-    total = choose(70, 20)  ## value of numerator for expected value
+        weighted_count += count_color(n_colors) * comb(7, n_colors) * n_colors
+    total = comb(70, 20)  ## value of numerator for expected value
     return "{0:.9f}".format(weighted_count*1./total)
 
 if __name__ == '__main__':

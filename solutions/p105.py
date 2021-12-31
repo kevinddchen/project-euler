@@ -3,19 +3,19 @@
 
 """
 
-Brute force. Not really any choice.
+Brute force. Not really any other choice.
 
 """
 
 from time import time
 
-def noEqualSums(lst, s=0, changes=0):
+def no_equal_sums(lst, s=0, changes=0):
     """ Checks that every linear combination of lst using coefficients in [1,
     -1, 0] doesnt equal to zero (except trivial case). Satisfies (i)."""
     if len(lst) == 0:
         return (changes == 0 or s != 0)
     for x in [1, -1, 0]:
-        if not noEqualSums(lst[1:], s+lst[0]*x, changes+abs(x)):
+        if not no_equal_sums(lst[1:], s+lst[0]*x, changes+abs(x)):
             return False
     return True
 
@@ -34,7 +34,7 @@ def p105():
     s = 0
     for raw_set in allSets:
         lst = sorted([int(x) for x in raw_set.split(',')])
-        if order(lst) and noEqualSums(lst): 
+        if order(lst) and no_equal_sums(lst): 
             s += sum(lst)
     return s
 

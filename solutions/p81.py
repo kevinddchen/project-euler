@@ -19,7 +19,7 @@ def p81():
 
     ## find least-sum path
     dim = len(M)
-    for x in xrange(1, 2*dim):
+    for x in range(1, 2*dim):
         i = x
         j = 0
         while i >= 0 and j < dim:

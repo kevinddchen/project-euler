@@ -19,16 +19,16 @@ def p82():
 
     ## find least-sum path
     dim = len(M)
-    for j in xrange(1, dim):
+    for j in range(1, dim):
         update = []
-        for i in xrange(dim):
+        for i in range(dim):
             lst = []
-            for i_seek in xrange(dim):
+            for i_seek in range(dim):
                 x = M[i_seek][j-1]
                 if i_seek < i:
-                    x += sum(M[h][j] for h in xrange(i_seek, i))
+                    x += sum(M[h][j] for h in range(i_seek, i))
                 else:
-                    x += sum(M[h][j] for h in xrange(i+1, i_seek+1))
+                    x += sum(M[h][j] for h in range(i+1, i_seek+1))
                 lst.append(x)
             update.append(min(lst))
         for i, x in enumerate(update):

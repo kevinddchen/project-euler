@@ -11,12 +11,11 @@ from time import time
 from math import factorial
 
 def generator(digits_left, initial, curr_sum):
-    global factorial_list
     if digits_left == 0:
         if curr_sum == initial and initial not in [0, 1, 2]:
             yield initial
     else:
-        for i in xrange(10):
+        for i in range(10):
             f = factorial(i) if not (i==0 and initial==0) else 0
             for x in generator(digits_left-1, initial*10+i, curr_sum+f):
                 yield x

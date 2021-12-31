@@ -12,7 +12,7 @@ from time import time
 def p138():
     x, y = 2, 1
     S = 0
-    for i in xrange(12):
+    for _ in range(12):
         x, y = 9*x+20*y, 4*x+9*y
         S += y
     return S

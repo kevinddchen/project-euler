@@ -3,7 +3,7 @@
 
 """
 
-Start from the bottom and work upwards.
+See solution explanations.
 
 """
 
@@ -26,8 +26,8 @@ m=[[75],
 [ 4,62,98,27,23, 9,70,98,73,93,38,53,60, 4,23]]
 
 def p18():
-    for i in xrange(len(m)-2, -1, -1):
-        for j in xrange(len(m[i])):
+    for i in range(len(m)-2, -1, -1):
+        for j in range(len(m[i])):
             m[i][j] += max(m[i+1][j], m[i+1][j+1])
     return m[0][0]
 

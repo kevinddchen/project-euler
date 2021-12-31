@@ -10,7 +10,7 @@ of digits, permutations of those digits, permutations of the symbols (+, -, *,
 """
 
 from time import time
-from itertools import *
+from itertools import permutations, combinations, combinations_with_replacement
 
 add = lambda x, y: x+y
 sub = lambda x, y: x-y
@@ -39,8 +39,8 @@ def p93():
                             ## last operation
                             d = perform_op(d, 0, symbols[order[2]])[0]
                             ## if d is integer, save
-                            if d == int(d) and d > 0:
-                                numbers.append(int(d))
+                            if d == round(d) and d > 0:
+                                numbers.append(round(d))
                         except ZeroDivisionError:
                             ## if divide by zero
                             pass

@@ -12,15 +12,15 @@ to be correct. The key is 'god' and the encrypted text is John 1:1-14
 
 from time import time
 
-def keyGen():
+def key_gen():
     """Generate all 3-letter lowercase keys."""
     i = ord('a')
-    for a in xrange(26):
-        for b in xrange(26):
-            for c in xrange(26):
+    for a in range(26):
+        for b in range(26):
+            for c in range(26):
                 yield (i+a, i+b, i+c)
 
-def XORdecode(encrypted, password):
+def xor_decode(encrypted, password):
     """Decode message using the password by XOR."""
     s = ''
     length = len(password)
@@ -35,8 +35,8 @@ def p59():
         raw = [int(x) for x in fl.read().split(',')]
 
     maxim = (0, (), '')
-    for key in keyGen(): 
-        string = XORdecode(raw, key)
+    for key in key_gen(): 
+        string = xor_decode(raw, key)
         the_count = string.count('the')
         if the_count > maxim[0]:
             maxim = (the_count, key, string)

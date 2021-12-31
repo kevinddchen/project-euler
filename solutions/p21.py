@@ -2,20 +2,23 @@
 #ANSWER 31626
 
 from time import time
-from mathfuncs import primeFactorize
+from math import prod
+from mathfuncs import prime_factorize
 
-def sumDivisors(x):
-    prod = 1
-    for p, i in primeFactorize(x):
-        prod *= (p**(i+1)-1)/(p-1)
-    return prod
+def sum_proper_divisors(x):
+    ## return sum of proper divisors
+    ## also used in Problem 23 and 95
+    if x == 1:
+        return 0
+    return prod((p**(i+1)-1) // (p-1) for p, i in prime_factorize(x)) - x
+
 
 
 def p21():
     S = 0
-    for start in xrange(2,10000):
-        end = sumDivisors(start)-start
-        if sumDivisors(end)-end == start and start!=end: 
+    for start in range(2, 10000):
+        end = sum_proper_divisors(start)
+        if sum_proper_divisors(end) == start and start != end: 
             S += start
     return S
 

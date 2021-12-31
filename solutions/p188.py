@@ -8,11 +8,11 @@ See solution explanations.
 """
 
 from time import time
-from mathfuncs import primeFactorize
+from mathfuncs import prime_factorize
 
 def totient(x):
-    for f, i in primeFactorize(x):
-        x = (x/f)*(f-1)
+    for f, _ in prime_factorize(x):
+        x = (x//f)*(f-1)
     return x
 
 def p188():

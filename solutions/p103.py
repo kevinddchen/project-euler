@@ -17,7 +17,7 @@ from time import time
 def subsets(lst, i=0, temp=[]):
     """ Generates all subsets of lst."""
     yield temp
-    for j in xrange(i, len(lst)):
+    for j in range(i, len(lst)):
         temp.append(lst[j])
         for x in subsets(lst, j+1, temp):
             yield x
@@ -31,7 +31,7 @@ def generate_possible(limit, n, temp=[]):
 
     elif len(temp) == 0:
         i = 1
-        while i*n + n*(n-1)/2 <= limit:
+        while i*n + n*(n-1)//2 <= limit:
             temp.append(i)
             for x in generate_possible(limit, n, temp):
                 yield x
@@ -41,7 +41,7 @@ def generate_possible(limit, n, temp=[]):
     else:
         remain = n - len(temp)
         i = temp[-1]+1
-        while sum(temp) + i*remain + remain*(remain-1)/2 <= limit:
+        while sum(temp) + i*remain + remain*(remain-1)//2 <= limit:
             try:
                 ## enforce property ii
                 if len(temp) >= 2:

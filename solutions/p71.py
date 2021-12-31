@@ -3,30 +3,29 @@
 
 """
 
-For a given q, the largest p such that p/q < 3/7 is given by p = (3q-1)/7. This
-is because p/q < 3/7 implies 7p <= 3q-1.
+For a given q, the largest p such that p/q < 3/7 is given by p =
+floor((3q-1)/7). This is because p/q < 3/7 implies 7p <= 3q-1.
 
-Then we iterate through q in decreasing order. We can also let a lower bound
-for q, relative to the previously found minimum. If we define a distance from
-3/7 as d(p/q) = 3/7 - p/q = (3q - 7p)/(7q) > 1/(7q), then d(p'/q') < d(p/q) 
-implies 1/(7q') < (3q - 7p)/(7q) or q' > q/(3q - 7p).
+We iterate through q in decreasing order to a lower bound that depends on the
+current closest fraction. Note that p/q <= 3/7 - 1/7q. This means that if p'/q'
+is the current closest fraction, then it is guaranteed to be closer for all q
+where 3/7 - p'/q' <= 1/7q.
 
 """
 
 from time import time
-from mathfuncs import gcd
+from math import gcd
 
 def p71():
-    prev = (2, 5)
-    for q in xrange(1000000, 0, -1):
-        ## stop
+    prev = (2, 5)       ## (p, q)
+    for q in range(1000000, 0, -1):
         if q*(3*prev[1] - 7*prev[0]) <= prev[1]:
             break
-        p = int((q*3-1.)/7)     ## p/q just under 3/7
+        p = (q*3-1) // 7    ## p/q just under 3/7
         if p*prev[1] > prev[0]*q:
             prev = (p, q)
 
-    return prev[0] / gcd(prev[0], prev[1])
+    return prev[0] // gcd(prev[0], prev[1])
 
 if __name__ == '__main__':
     time_start = time()

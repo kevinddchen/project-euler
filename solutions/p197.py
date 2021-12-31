@@ -3,9 +3,7 @@
 
 """
 
-Here we want to find the stable fixed-points of the given map. We can do this by
-iterating until the function oscillates between the stable values. Turns out
-there are two values, which we take the sum of.
+See solution explanations.
 
 """
 
@@ -16,7 +14,7 @@ def f(x):
 
 def p197():
     u = -1
-    for i in xrange(1000):
+    for _ in range(1000):
         u = f(u)
     return '{0:.9f}'.format(u+f(u))
 

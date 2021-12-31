@@ -17,7 +17,7 @@ def generator(digits_left, initial, curr_sum):
         if curr_sum == initial and initial not in [0, 1]:
             yield initial
     else:
-        for i in xrange(10):
+        for i in range(10):
             for x in generator(digits_left-1, initial*10+i, curr_sum+i**5):
                 yield x
 

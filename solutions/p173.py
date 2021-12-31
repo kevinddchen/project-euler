@@ -13,8 +13,8 @@ from time import time
 def p173():
     LIMIT = 10**6
     C = 0
-    for x in xrange(3, LIMIT/4+2):
-        for y in xrange(1, (x+1)//2):
+    for x in range(3, LIMIT//4+2):
+        for y in range(1, (x+1)//2):
             if 4*y*(x-y) > LIMIT:
                 break
             C += 1

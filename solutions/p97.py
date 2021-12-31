@@ -11,7 +11,7 @@ from time import time
 
 def p97():
     x = 1
-    for n in xrange(7830457):
+    for _ in range(7830457):
         x *= 2
         x %= 10**10
     x = x*28433+1

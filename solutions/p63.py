@@ -11,7 +11,7 @@ from time import time
 
 def p63():
     C = 0
-    for a in xrange(1, 10):
+    for a in range(1, 10):
         b = 1
         while len(str(a**b)) == b:
             b += 1

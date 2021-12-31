@@ -10,7 +10,7 @@ Find the first pattern that satisifes the conditions in the problem.
 
 from time import time
 from itertools import product
-from mathfuncs import primeSieve
+from mathfuncs import prime_sieve
 
 def replace(tup, x, y):
     L = []
@@ -22,7 +22,7 @@ def replace(tup, x, y):
 def test_pattern(pattern, sieve, allowance):
     err = 0
     start = 1 if pattern[0]=='*' else 0
-    for d in xrange(start, 10):
+    for d in range(start, 10):
         q = int(''.join(replace(pattern, '*', str(d))))
         if not sieve[q]:
             err += 1
@@ -30,42 +30,30 @@ def test_pattern(pattern, sieve, allowance):
             return False
     return True
 
-def p51x():
+def p51():
     digits = 2
     while True:
         ## generate primes up to 10^digits
-        sieve_ref = [None]
-        sieve = primeSieve(10**digits, sieve_ref)
-        for p in sieve: pass
+        sieve = []
+        prime_generator = prime_sieve(10**digits, sieve)
+        for _ in prime_generator: 
+            pass
 
         ## generate patterns
         for pattern in product("0123456789*", repeat=digits):
             if pattern[0]=='0' or '*' not in pattern:
                 continue
-            if test_pattern(pattern, sieve_ref[0], 10-8):
+            if test_pattern(pattern, sieve, 10-8):
                 ## pattern found, print first prime
                 start = 1 if pattern[0]=='*' else 0
-                for d in xrange(start, 10):
+                for d in range(start, 10):
                     q = int(''.join(replace(pattern, '*', str(d))))
-                    if sieve_ref[0][q]:
+                    if sieve[q]:
                         return q
         digits += 1
 
-
-    
-
-def p51():
-    x = 1 
-    y = check(x)
-    while y == False:
-        x += 2
-        while not isPrime(x):
-            x += 2
-        y = check(x)
-    return y
-
 if __name__ == '__main__':
     time_start = time()
-    print(p51x())
+    print(p51())
     print("Time: {0:.3f}".format(time()-time_start))
 

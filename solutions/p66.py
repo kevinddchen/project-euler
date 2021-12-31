@@ -12,12 +12,11 @@ eventually find a solution to Pell's equation for that D.
 """
 
 from time import time
-import sys
-sys.dont_write_bytecode = True
-import p64
+from math import isqrt
+from p64 import continued_fraction_of_sqrt
 
-def minimalPell(D):
-    G = p64.generateSqrtContFrac(D) 
+def minimal_pell(D):
+    G = continued_fraction_of_sqrt(D) 
     a_0 = next(G)
     a_1 = next(G)
     p = (a_0*a_1+1, a_0)
@@ -37,10 +36,10 @@ def minimalPell(D):
 
 def p66():
     M = (9, 5)
-    for D in xrange(2, 1001):
-        if D == int(D**0.5)**2:     ## D is perfect square
+    for D in range(2, 1001):
+        if D == isqrt(D)**2:     ## D is perfect square
             continue
-        x, y = minimalPell(D)
+        x, _ = minimal_pell(D)
         if x > M[0]:
             M = (x, D)
     return M[1]

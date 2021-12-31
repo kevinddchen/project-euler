@@ -39,7 +39,7 @@ def fib_first(n):
 
 def pandigital(string):
     """ Checks if a string has all digits 1-9. """
-    for i in xrange(1, 10):
+    for i in range(1, 10):
         if str(i) not in string:
             return False
     return True

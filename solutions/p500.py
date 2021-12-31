@@ -8,7 +8,6 @@ See solution explanations
 """
 
 from time import time
-from mathfuncs import isPrime
 
 def prime_generator(iterable):
     """ Generates primes into iterable. """
@@ -50,10 +49,9 @@ def p500():
     PrimeGenerator = prime_generator(p_list)
     for i in range(500500):
         next(PrimeGenerator)
-    return
 
     ## Shave off larger primes in favor of adding powers on smaller primes
-    p_powers = [1 for i in range(len(p_list))]
+    p_powers = [1 for _ in range(len(p_list))]
     while True:
         p_large = p_list[-1]
         x, index = get_minimum(p_list, p_powers)
@@ -67,7 +65,7 @@ def p500():
     ## Multiply to get number in mod 500500507
     x = 1
     for i, p in enumerate(p_list):
-        for j in range(p_powers[i]):
+        for _ in range(p_powers[i]):
             x = (x*p) % 500500507
 
     return x

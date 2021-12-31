@@ -10,24 +10,24 @@ is {8256, 5625, 2512, 1281, 8128, 2882} with polygonal types {3, 4, 7, 8, 6, 5}.
 
 from time import time
 
-def polygonGen(s):
+def polygon_gen(s):
     """Generates polygonal numbers of s-sides"""
     n = 1
     while True:
-        yield n*(n-1)*(s-2)/2 + n 
+        yield n*(n-1)*(s-2) // 2 + n 
         n += 1
 
-def findChain(first, head, used, answer, poly_dicts):
+def find_chain(first, head, used, answer, poly_dicts):
     """Recursive depth-first search for cycle"""
     n = 0
-    for s in xrange(len(poly_dicts)):
+    for s in range(len(poly_dicts)):
         if used[s]: continue
         n += 1
         if head in poly_dicts[s]:
             used[s] = True 
             for tail in poly_dicts[s][head]:
                 answer.append(head*100+tail)
-                if findChain(first, tail, used, answer, poly_dicts):
+                if find_chain(first, tail, used, answer, poly_dicts):
                     return True
                 answer.pop()
             used[s] = False
@@ -38,9 +38,9 @@ def findChain(first, head, used, answer, poly_dicts):
 def p61():
     ## generate all 4-digit polygonal numbers. And put into dictionary.
     poly_dicts = []
-    for s in xrange(6):
+    for s in range(6):
         dct = {}
-        for x in polygonGen(s+3):
+        for x in polygon_gen(s+3):
             if x < 1000: continue
             if x >= 10000: break
             if x%100 > 10:
@@ -49,13 +49,13 @@ def p61():
         poly_dicts.append(dct)
 
     ## search to find a cycle
-    used = [False for s in poly_dicts]
+    used = [False for _ in poly_dicts]
     used[0] = True
     answer = []
     for head in poly_dicts[0]:
         for tail in poly_dicts[0][head]:
             answer.append(head*100+tail)
-            if findChain(head, tail, used, answer, poly_dicts):
+            if find_chain(head, tail, used, answer, poly_dicts):
                 return sum(answer)
             answer.pop()
 

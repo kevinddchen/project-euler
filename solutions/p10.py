@@ -2,10 +2,10 @@
 #ANSWER 142913828922
 
 from time import time
-from mathfuncs import primeSieve
+from mathfuncs import prime_sieve
 
 def p10():
-    return sum(x for x in primeSieve(2000000))
+    return sum(n for n in prime_sieve(2000000))
 
 if __name__ == '__main__':
     time_start = time()

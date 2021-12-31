@@ -8,9 +8,9 @@ See solution explanations.
 """
 
 from time import time
-from mathfuncs import primeSieve
+from mathfuncs import prime_sieve
 
-def choose_greatestPower(m, n, p):
+def choose_greatest_power(m, n, p):
     """ Gives greatest integer c for prime p such that p^c divides choose(m, n)."""
 
     a = max(m-n, n)
@@ -32,8 +32,8 @@ def choose_greatestPower(m, n, p):
 def p231():
     m, n = 2*10**7, 5*10**6
     s = 0
-    for p in primeSieve(m):
-        s += choose_greatestPower(m, n, p)*p
+    for p in prime_sieve(m):
+        s += choose_greatest_power(m, n, p)*p
     return s
 
 if __name__ == '__main__':

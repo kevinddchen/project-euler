@@ -11,17 +11,17 @@ differences need to be calculated.
 """
 
 from time import time
-from mathfuncs import isPrime
+from mathfuncs import is_prime
 
 def p128():
     C = 2   ## includes 1 and 2 from the inner rings
     k = 2
     while True:
-        if isPrime(6*k-1) and isPrime(6*k+1) and isPrime(6*(2*k+1)-1):
+        if is_prime(6*k-1) and is_prime(6*k+1) and is_prime(6*(2*k+1)-1):
             C += 1  ## top
             if C == 2000:
                 return 3*k*(k-1)+2
-        if isPrime(6*k-1) and isPrime(6*k+5) and isPrime(6*(2*k-1)-1):
+        if is_prime(6*k-1) and is_prime(6*k+5) and is_prime(6*(2*k-1)-1):
             C += 1  ## top-right
             if C == 2000:
                 return 3*(k+1)*k+1

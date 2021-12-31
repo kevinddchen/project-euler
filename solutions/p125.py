@@ -2,12 +2,13 @@
 #ANSWER 2906969179
 
 from time import time
+from math import isqrt
 
 LIMIT = 10**8
 
-def isPalindrome(n): 
+def is_palindrome(n): 
     n = str(n)
-    for i in xrange(len(n)//2):
+    for i in range(len(n)//2):
         if n[i] != n[-i-1]:
             return False
     return True
@@ -15,13 +16,13 @@ def isPalindrome(n):
 def p125():
     LIMIT = 10**8
     L = set()
-    for a in xrange(1, int(LIMIT**0.5)):
+    for a in range(1, isqrt(LIMIT)+1):
         S = a*a
-        for b in xrange(a+1, int(LIMIT**0.5)):
+        for b in range(a+1, isqrt(LIMIT)+1):
             S += b*b
             if S >= LIMIT:
                 break
-            if isPalindrome(S):
+            if is_palindrome(S):
                 L.add(S)
     return sum(L)
 

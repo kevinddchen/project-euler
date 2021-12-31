@@ -1,5 +1,5 @@
 #!/usr/bin/python
-#ANSWER
+#ANSWER 1111981904675169
 
 """
 
@@ -41,7 +41,7 @@ def min_poss(poss):
                 best = x
     return best
 
-def FindMultiple(N):
+def find_multiple(N, MultTable):
 
     MultList = MultTable[N%10]      ## take multiplications for last digit
     poss = []
@@ -61,23 +61,22 @@ def FindMultiple(N):
         best = min_poss(poss)
     return best
 
-## Initialize Multiplication Table
-MultTable = [ [] for i in xrange(10) ]
-for i in xrange(10):
-    MultTable[i] = [ [] for j in xrange(10) ]
-
-for i in xrange(10):
-    for j in xrange(10):
-        last_digit = (i*j)%10
-        MultTable[i][last_digit].append(j)
-        MultTable[i][last_digit-1].append(j)
-        MultTable[i][last_digit-2].append(j)
-
-
 def p303():
+    ## Initialize Multiplication Table
+    MultTable = [ [] for _ in range(10) ]
+    for i in range(10):
+        MultTable[i] = [ [] for _ in range(10) ]
+
+    for i in range(10):
+        for j in range(10):
+            last_digit = (i*j)%10
+            MultTable[i][last_digit].append(j)
+            MultTable[i][last_digit-1].append(j)
+            MultTable[i][last_digit-2].append(j)
+
     S = 0
-    for N in xrange(1, 10000-1):
-        S += FindMultiple(N)
+    for N in range(1, 10000-1):
+        S += find_multiple(N, MultTable)
     return S + 1111333355557778 + 1
 
 

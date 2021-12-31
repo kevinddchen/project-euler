@@ -5,29 +5,28 @@
 
 See solution explanations.
 
-Used by Problem 66
-
 """
 
 from time import time
+from math import isqrt
 
-def generateSqrtContFrac(n):
-    m, d, a = 0, 1, int(n**0.5)
-    yield a
+def continued_fraction_of_sqrt(n):
+    ## also used in Problem 66
+    m, d = 0, 1
     while True:
-        m = d*a-m
-        d = (n-m*m)/d
-        a = int((n**0.5 + m)/d)
+        a = int((n**.5 + m)/d)
         yield a
+        m = d*a-m
+        d = (n-m*m) // d
 
 def p64():
     C = 0
-    for n in xrange(10001):
-        a_0 = int(n**0.5)
+    for n in range(10001):
+        a_0 = isqrt(n)
         if n == a_0*a_0:        ## n is a perfect square
             continue
 
-        for i, a in enumerate(generateSqrtContFrac(n)):
+        for i, a in enumerate(continued_fraction_of_sqrt(n)):
             if a == 2*a_0:
                 break
 

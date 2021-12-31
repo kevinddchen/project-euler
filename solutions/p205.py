@@ -10,7 +10,7 @@ The possibilities for rolling 9 four-sided dice is given by the generating funct
 
 from time import time
 
-def multPoly(p_1, p_2):
+def mult_poly(p_1, p_2):
     """ Multiply two polynomials, in dictionary form. """
     p = {}
     for x in p_1:
@@ -20,19 +20,19 @@ def multPoly(p_1, p_2):
     return p
 
 def p205():
-    die6 = {i:1 for i in xrange(1, 7)}
+    die6 = {i:1 for i in range(1, 7)}
     colin = die6 
-    for i in xrange(5):
-        colin = multPoly(colin, die6)
+    for _ in range(5):
+        colin = mult_poly(colin, die6)
 
-    die4 = {i:1 for i in xrange(1, 5)}
+    die4 = {i:1 for i in range(1, 5)}
     peter = die4
-    for i in xrange(8):
-        peter = multPoly(peter, die4)
+    for _ in range(8):
+        peter = mult_poly(peter, die4)
 
     C = 0
     for N in peter:
-        for M in xrange(6, N):
+        for M in range(6, N):
             C += colin[M]*peter[N]
     return round(C*1./(4**9 * 6**6), 7)
 

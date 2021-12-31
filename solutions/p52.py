@@ -27,7 +27,7 @@ def p52():
             continue
 
         ## check multiples are permutations
-        for i in xrange(2, 7):
+        for i in range(2, 7):
             if digit_set != set(str(i*x)): 
                 break
             if i == 6:

@@ -8,23 +8,20 @@ See solution explanations.
 """
 
 from time import time
-from mathfuncs import primeFactorize
+from math import prod
+from mathfuncs import prime_factorize
 
-def triangle_gen():
-    """Generates triangle numbers. """
-    x, i = 1, 1
-    while True:
-        yield x
-        i += 1
-        x += i
+def num_divisors(n):
+    return prod(i+1 for _, i in prime_factorize(n))
 
 def p12():
-    for tri in triangle_gen():
-        n_divisors = 1
-        for f, i in primeFactorize(tri):
-            n_divisors *= i+1
-        if n_divisors > 500:
-            return tri
+    ## generate triangle numbers
+    x, i = 3, 2
+    while True:
+        if num_divisors(x) > 500:
+            return x
+        i += 1
+        x += i
 
 if __name__ == '__main__':
     time_start = time()

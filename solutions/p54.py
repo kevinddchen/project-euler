@@ -28,8 +28,8 @@ from time import time
 
 def score(hand):
     values = sorted([value(card) for card in hand], reverse=True)
-    flush_bool = findFlush(hand)
-    straight_bool, straight_point = findStraight(values)
+    flush_bool = find_flush(hand)
+    straight_bool, straight_point = find_straight(values)
     decomp_dct = decompose(values)
     
     if flush_bool and straight_bool:        ## straight
@@ -62,14 +62,14 @@ def value(card):
     if v == 'T': return 10
     return int(v)
 
-def findFlush(hand):
+def find_flush(hand):
     """hand --> True/False"""
     for card in hand:
         if suit(card) != suit(hand[0]):
             return False
     return True
 
-def findStraight(values):
+def find_straight(values):
     """values --> True/False, leading value"""
     ## Special case A2345:
     if values == [14, 5, 4, 3, 2]:

@@ -11,13 +11,13 @@ matching squares to the pattern and see if you get a square.
 from time import time
 from math import ceil
 
-def getWords():
+def get_words():
     """Get words from text file into list."""
     with open('files/words.txt', 'r') as fl:
         lst = fl.read().strip('"').split('","')
     return lst
 
-def getAnagrams(words):
+def get_anagrams(words):
     """Goes through list of words and iterates through anagrams."""
     for i, w in enumerate(words):
         for v in words[i+1:]:
@@ -25,13 +25,13 @@ def getAnagrams(words):
             if sorted(list(w)) == sorted(list(v)):
                 yield w, v
 
-def genSquares(d):
+def gen_squares(d):
     """Generate a list of squares with d digits."""
-    init = int(ceil(10**((d-1)/2.)))
-    fin = int(ceil(10**(d/2.)))
+    init = ceil(10**((d-1)/2.))
+    fin = ceil(10**(d/2.))
     return [x*x for x in range(init, fin)]
 
-def fitPattern(word_a, word_b, square):
+def fit_pattern(word_a, word_b, square):
     """Using word_a and square, create the number based off the pattern of
     word_b as string. If violates anagram rules, returns empty string."""
     square = str(square)
@@ -48,11 +48,11 @@ def fitPattern(word_a, word_b, square):
 
 def p98():
     maxim = 0
-    words = getWords()
-    for word_a, word_b in getAnagrams(words):
-        squares = genSquares(len(word_a))
+    words = get_words()
+    for word_a, word_b in get_anagrams(words):
+        squares = gen_squares(len(word_a))
         for sq in squares:
-            new_sq = fitPattern(word_a, word_b, sq)
+            new_sq = fit_pattern(word_a, word_b, sq)
             if new_sq != '' and int(new_sq) in squares:
                 maxim = max(maxim, sq, int(new_sq))
     return maxim

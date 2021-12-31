@@ -11,7 +11,7 @@ This method is guaranteed to work with non-repeating digits.
 
 from time import time
 
-def popLongestList(d):
+def pop_longest_list(d):
     x = max([(len(d[x]), x) for x in d])[1]
     del d[x]
     return x
@@ -32,7 +32,7 @@ def p79():
     ## Figure out well-ordering
     s = ''
     while len(dct) > 0:
-        s += str(popLongestList(dct))
+        s += str(pop_longest_list(dct))
     return s
 
 if __name__ == '__main__':

@@ -10,21 +10,22 @@ so the units digit of x must be a 3 or 7.
 """
 
 from time import time
+from math import isqrt
 
-def fitPattern(x):
-    for i in xrange(9, 0, -1):
+def fit_pattern(x):
+    for i in range(9, 0, -1):
         if x%10 != i:
             return False
         x //= 100
     return True
 
 def p206():
-    n = int(10203040506070809**0.5)
+    n = isqrt(10203040506070809)
     n -= n%10   ## remove first digit, which is 3 or 7
     while True:
-        if fitPattern((n+3)**2):
+        if fit_pattern((n+3)**2):
             return (n+3)*10
-        if fitPattern((n+7)**2):
+        if fit_pattern((n+7)**2):
             return (n+7)*10
         n += 10
 

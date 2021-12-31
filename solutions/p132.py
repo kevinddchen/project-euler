@@ -8,22 +8,14 @@ See solution explanations.
 """
 
 from time import time
-from mathfuncs import isPrime, gcd
-
-def generatePrimes():
-    yield 2
-    x = 3
-    while True:
-        if isPrime(x):
-            yield x
-        x += 2
+from mathfuncs import is_prime
 
 def p132():
     C, S = 0, 0
     p = 5
     while C < 40:
         p += 2
-        if not isPrime(p):
+        if not is_prime(p):
             continue
         if pow(10, pow(10, 9, p-1), p) == 1:
             C += 1

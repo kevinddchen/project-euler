@@ -9,12 +9,12 @@ digits or just the units digits.
 """
 
 from time import time
-from mathfuncs import gcd
+from math import gcd
 
 def p33():
     ans = [1, 1]
-    for num in xrange(10, 100):
-        for den in xrange(num+1, 100):
+    for num in range(10, 100):
+        for den in range(num+1, 100):
             x_0, x_1 = num // 10, num % 10 
             y_0, y_1 = den // 10, den % 10
             if x_0 == x_1:  ## ignore trivial

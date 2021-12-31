@@ -20,14 +20,14 @@ check that all elements are prime. Each set is guaranteed to be unique.
 """
 
 from time import time
-from mathfuncs import isPrime
+from mathfuncs import is_prime
 
 def recurse(lst=[], n=1):
 
     # evaluate criteria
     crit = n + len(lst) - 10
     if crit > 0:
-        n_primes = sum(1 for x in lst if isPrime(int(x)))
+        n_primes = sum(1 for x in lst if (x > 1 and is_prime(x)))
         if n_primes < crit:
             return 0
     
@@ -39,14 +39,15 @@ def recurse(lst=[], n=1):
     S = 0
     for i, x in enumerate(lst):
         j = 0
-        while j <= len(x):
-            new_x = x[:j] + str(n) + x[j:]
+        x_str = str(x)
+        while j <= len(x_str):
+            new_x = int(x_str[:j] + str(n) + x_str[j:])
             lst[i] = new_x
             S += recurse(lst, n+1)
             j += 1
         lst[i] = x
 
-    lst.append(str(n))
+    lst.append(n)
     S += recurse(lst, n+1)
     lst.pop()
     return S

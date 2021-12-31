@@ -9,13 +9,7 @@ you already traversed and using an efficient method of finding sum of divisors.
 """
 
 from time import time
-from mathfuncs import primeFactorize
-
-def sumDivisors(x):
-    prod = 1
-    for p, i in primeFactorize(x):
-        prod *= (p**(i+1) - 1)/(p-1)
-    return prod
+from p21 import sum_proper_divisors
 
 def p95():
     LIMIT = 10**6
@@ -23,14 +17,14 @@ def p95():
     completed[1] = True
 
     maxim = (0, None)
-    for x in xrange(1, LIMIT):
+    for x in range(1, LIMIT):
         if completed[x]: 
             continue
         L = [] 
         while True:
             L.append(x)
             completed[x] = True
-            x = sumDivisors(x) - x 
+            x = sum_proper_divisors(x)
             ## stop if exceeds limit or counted already
             if x >= LIMIT or completed[x]:
                 ## if chain created

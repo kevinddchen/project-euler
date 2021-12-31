@@ -29,19 +29,19 @@ def p11():
     dim = len(matrix)
 
     ## check all across and down
-    for a in xrange(dim):
-        for b in xrange(dim-3):
+    for a in range(dim):
+        for b in range(dim-3):
             hor, vert = 1, 1
-            for i in xrange(4):
+            for i in range(4):
                 hor *= matrix[a][b+i]
                 vert *= matrix[b+i][a]
             maxim = max(maxim, hor, vert)
 
     ## check all diagonals
-    for a in xrange(dim-3):
-        for b in xrange(dim-3):
+    for a in range(dim-3):
+        for b in range(dim-3):
             fwd, bwd = 1, 1
-            for i in xrange(4):
+            for i in range(4):
                 fwd *= matrix[a+i][b+3-i]
                 bwd *= matrix[a+i][b+i]
             maxim = max(fwd, bwd, maxim)

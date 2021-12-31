@@ -10,8 +10,7 @@ See solution explanations.
 from time import time
 
 def p6():
-    ## brute force
-    return sum(x for x in xrange(101))**2 - sum(x*x for x in xrange(101))
+    return sum(x for x in range(101))**2 - sum(x*x for x in range(101))
 
 if __name__ == '__main__':
     time_start = time()

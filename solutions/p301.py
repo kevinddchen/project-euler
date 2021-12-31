@@ -11,7 +11,7 @@ from time import time
 
 def p301():
     a, b = 2, 3
-    for i in xrange(28):
+    for _ in range(28):
         a, b = b, a+b
     return b
 

@@ -15,9 +15,9 @@ def p121():
 
     ## generate Stirling numbers (unsigned, of the first kind)
     L = [1]
-    for n in xrange(N_TURNS+1):
+    for n in range(N_TURNS+1):
         next_L = [0]
-        for k, x in enumerate(L):
+        for k in range(len(L)):
             if k == 0:
                 continue
             next_L.append(n*L[k] + L[k-1])
@@ -25,7 +25,7 @@ def p121():
         L = next_L
 
     W = sum(L[N_TURNS//2+2:])
-    return int(sum(L)*1./W)
+    return sum(L) // W
 
 if __name__ == '__main__':
     time_start = time()

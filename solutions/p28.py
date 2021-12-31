@@ -10,7 +10,7 @@ See solution explanations.
 from time import time
 
 def p28():
-    return sum(4*x*x - 6*x + 6 for x in xrange(3, 1002, 2)) + 1
+    return sum(4*x*x - 6*x + 6 for x in range(3, 1002, 2)) + 1
 
 if __name__ == '__main__':
     time_start = time()

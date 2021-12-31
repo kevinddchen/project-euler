@@ -7,10 +7,11 @@ See solution explanation.
 
 """
 
-from math import *
 from time import time
+from math import sqrt, asin, pi
 
-xn = lambda n: (n + 1 - sqrt(2*n)) / (n*n + 1)
+def xn(n):
+    return (n + 1 - sqrt(2*n)) / (n*n + 1)
 
 def area(n):
     x = xn(n)

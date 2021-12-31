@@ -10,6 +10,7 @@ See solution explanations.
 from time import time
 
 def A(n):
+    ## also used in Problem 130
     k = 1
     R_k = 1
     while R_k != 0:

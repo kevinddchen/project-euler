@@ -10,10 +10,10 @@ to (3d-x)(d+x) = n. Therefore for each n we find divisors and solve for d and x.
 
 from time import time
 
-def divisorSieve(LIMIT):
-    sieve = [[1] for i in xrange(LIMIT)]
-    for x in xrange(2, LIMIT):
-        for y in xrange(x, LIMIT, x):
+def divisor_sieve(LIMIT):
+    sieve = [[1] for _ in range(LIMIT)]
+    for x in range(2, LIMIT):
+        for y in range(x, LIMIT, x):
             sieve[y].append(x)
     for i, d_list in enumerate(sieve):
         if i > 0:
@@ -22,9 +22,9 @@ def divisorSieve(LIMIT):
 def count_solutions(n, d_list):
     count = 0
     for a in d_list:
-        b = n/a
+        b = n//a
         if a >= b and (a+b)%4 == 0:
-            d = (a+b)/4
+            d = (a+b)//4
 
             if a==b:
                 count += 1
@@ -35,7 +35,7 @@ def count_solutions(n, d_list):
     return count
 
 def p135():
-    return sum(1 for n, L in divisorSieve(1000000) if count_solutions(n, L) == 10)
+    return sum(1 for n, L in divisor_sieve(1000000) if count_solutions(n, L) == 10)
 
 if __name__ == '__main__':
     time_start = time()

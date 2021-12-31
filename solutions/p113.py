@@ -8,10 +8,10 @@ See solution explanations.
 """
 
 from time import time
-from mathfuncs import choose
+from math import comb
 
 def p113():
-    return choose(109, 9) + choose(110, 10) - 1002
+    return comb(109, 9) + comb(110, 10) - 1002
 
 if __name__ == '__main__':
     time_start = time()

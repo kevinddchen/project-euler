@@ -8,12 +8,10 @@ See solution explanations.
 """
 
 from time import time
-import sys
-sys.dont_write_bytecode = True
-import p69
+from p69 import totient_sieve
 
 def p72():
-    return sum(tot for n, tot in p69.totientSieve(1000000))
+    return sum(tot for _, tot in totient_sieve(1000000))
 
 if __name__ == '__main__':
     time_start = time()

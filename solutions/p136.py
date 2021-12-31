@@ -13,7 +13,7 @@ from time import time
 def p136():
     size = 50000000
     ## keep track of n's
-    arr = [0 for i in range(size)]
+    arr = [0 for _ in range(size)]
 
     for y in range(1, size):
         a = y//4+1

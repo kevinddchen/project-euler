@@ -38,7 +38,7 @@ def next_job(prob_space):
 
 def p151():
     prob_space = {(0, 0, 1, 1, 1, 1): 1.}
-    for i in range(14):
+    for _ in range(14):
         prob_space = next_job(prob_space)
     norm = float(sum(prob_space.values()))
     prob = sum(event[0]*num for event, num in prob_space.items()) / norm

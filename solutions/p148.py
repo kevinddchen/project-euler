@@ -12,7 +12,7 @@ from time import time
 def p148():
     
     ## triangle numbers T_n
-    Tn = [n*(n+1)/2 for n in range(7)]
+    Tn = [n*(n+1)//2 for n in range(7)]
     ## factorization of 10^9 in base 7, starting from 7^0 digit
     arr = [6, 1, 6, 0, 0, 6, 1, 3, 5, 3, 3]
 

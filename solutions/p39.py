@@ -2,16 +2,21 @@
 #ANSWER 840
 
 from time import time
-from mathfuncs import gcd
+from math import isqrt, gcd
 
 def p39():
-    ## Euler's formula for generating Pythagorean triples
-    ## a+b+c = 2m(m+n) <= 1000, so stop m at sqrt(5000)
-    ans = [0]*1001
-    for m in xrange(2, int(500**0.5)):
+    ## similar to Problem 9.
+    ## Euclid's formula for generating Pythagorean triples
+    ## a+b+c = 2km(m+n) <= 1000, so stop m at sqrt(5000)
+    ans = [0 for _ in range(1001)]
+    for m in range(2, isqrt(500)+1):
         ## m, n opposite parity
-        n_1 = 1 if m%2==0 else 2
-        for n in xrange(n_1, m, 2):
+        if m%2 == 0:
+            n_start = 1
+        else:
+            n_start = 2
+        
+        for n in range(n_start, m, 2):
             if gcd(m, n) == 1:
                 p = 2*m*(m+n)
                 while p <= 1000:

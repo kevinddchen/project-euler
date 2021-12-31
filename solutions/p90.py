@@ -20,16 +20,16 @@ def check_dice(d1, d2):
 
 def p90():
     count = 0
-    for d1 in combinations(xrange(10), 6):
+    for d1 in combinations(range(10), 6):
         if 9 in d1:
             d1 += (6,)
-        for d2 in combinations(xrange(10), 6):
+        for d2 in combinations(range(10), 6):
             if 9 in d2:
                 d2 += (6,)
             if check_dice(d1, d2):
                 count += 1
 
-    return count/2     ## divide by 2 for doublecounting
+    return count//2     ## divide by 2 for doublecounting
 
 if __name__ == '__main__':
     time_start = time()

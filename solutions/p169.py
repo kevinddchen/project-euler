@@ -8,27 +8,20 @@ See solution explanations.
 """
 
 from time import time
+from functools import cache
 
-def minusOne(s):
-    """ Subtract one from a binary string. """
-    i = 1
-    while s[-i] == '0':
-        i += 1
-    return s[:-i] + ('' if i==len(s) else '0') + '1'*(i-1)
-
-def f(s, mem_dict):
+@cache
+def f(n):
     """ As defined in the problem. """
-    if s in mem_dict:
-        return mem_dict[s]
-    if s[-1] == '0':
-        mem_dict[s] = f(s[:-1], mem_dict) + f(minusOne(s[:-1]), mem_dict)
+    if n == 0:
+        return 1
+    elif n % 2 == 0:
+        return f(n // 2) + f(n // 2 - 1)
     else:
-        mem_dict[s] = f(s[:-1], mem_dict)
-    return mem_dict[s]
+        return f(n // 2)
 
 def p169():
-    mem_dict = {'0':1, '':1}
-    return f(bin(10**25)[2:], mem_dict)
+    return f(10**25)
 
 if __name__ == '__main__':
     time_start = time()

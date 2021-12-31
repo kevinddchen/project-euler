@@ -23,7 +23,7 @@ def p83():
     dim = len(M)
     ## distance matrix
     ## 0 denotes unknown distance
-    D = [[0]*dim for i in xrange(dim)]
+    D = [[0]*dim for i in range(dim)]
     D[0][0] = M[0][0]   ## seed to start
 
     ## store new nodes 

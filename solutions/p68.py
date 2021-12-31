@@ -14,7 +14,7 @@ the first valid magic 5-gon is already maximal and is the answer.
 from time import time
 from itertools import permutations
 
-def generate5Gons():
+def generate_5_gons():
     """generate all 5-gon rings in decreasing string order"""
     for start in range(6, 0, -1):
         for a in permutations(range(10, start, -1), 4):
@@ -25,11 +25,11 @@ def generate5Gons():
                 yield a, b
 
 def p68():
-    for a, b in generate5Gons():
+    for a, b in generate_5_gons():
         # a, b are outer, inner rings, in clockwise order.
         sets = []
         t = True
-        for i in xrange(5):
+        for i in range(5):
             sets.append((a[i], b[i], b[(i+1)%5]))
             if sum(sets[i])!=sum(sets[0]):
                 t = False

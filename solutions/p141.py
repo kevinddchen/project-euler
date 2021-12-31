@@ -3,18 +3,16 @@
 
 """
 
-n = dq + r where r < d. WLOG we can assume that d < n < q.
-Then as r, d, q are part of a geometric sequence with ratio a/b,
-d = (a/b)r and q = (a^2/b^2)r.
-Thus n = (a^3/b^3)r^2 + r. But n is an integer and gcd(a, b) = 1, so r
-is a multiple of b^2, and we can replace r -> b^2 * r. 
-Thus n = br(a^3 * r + b). Then we iterate through a then b then r, testing
-if n is a perfect square.
+n = dq + r where r < d. WLOG we can assume that d < n < q. Then as r, d, q are
+part of a geometric sequence with ratio a/b, d = (a/b)r and q = (a^2/b^2)r. Thus
+n = (a^3/b^3)r^2 + r. But n is an integer and gcd(a, b) = 1, so r is a multiple
+of b^2, and we can replace r -> b^2 * r. Thus n = br(a^3 * r + b). Then we
+iterate through a then b then r, testing if n is a perfect square.
 
 """
 
 from time import time
-from mathfuncs import gcd
+from math import gcd, isqrt
 
 def p141():
     LIMIT = 10**12
@@ -22,7 +20,7 @@ def p141():
 
     a = 2
     while a**3 < LIMIT:
-        for b in xrange(1, a):
+        for b in range(1, a):
             if b*(a**3 + b) > LIMIT:
                 break
             if gcd(a, b) == 1:
@@ -31,7 +29,7 @@ def p141():
                     n = b*r*(r*a**3 + b)
                     if n > LIMIT:
                         break
-                    if n == int(n**0.5)**2:
+                    if n == isqrt(n)**2:
                         S += n
                     r += 1
         a += 1

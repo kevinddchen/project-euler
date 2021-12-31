@@ -10,10 +10,11 @@ two pairs have the same midpoints, check that y+z and y-z are squares.
 """
 
 from time import time
+from math import isqrt
 
 def is_square(n):
     """ Returns True if n is a perfect square. """
-    return n == (int(n**0.5)**2)
+    return n == isqrt(n)**2
 
 def p142():
     target = 1e99
@@ -23,7 +24,7 @@ def p142():
     while a*a < target:
         parity = 2 - (a % 2)
         for b in range(parity, a, 2):       # b*b = x-y
-            mid = (a*a + b*b)/2             # mid = x
+            mid = (a*a + b*b) // 2             # mid = x
 
             if mid in mid_dict:
 

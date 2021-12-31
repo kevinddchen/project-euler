@@ -17,7 +17,7 @@ B_LIST = [(0, 0, 0, 0)]
 
 def rotate(x, y, d):
     """ Rotate vector (x, y) through (d*pi/2) radians clockwise. """
-    for i in xrange(d):
+    for _ in range(d):
         x, y = y, -x
     return x, y
 
@@ -61,7 +61,7 @@ def p220():
     steps = 10**12
 
     ## initialize a and b branches
-    for i in xrange(size):
+    for i in range(size):
         for lst, string in [(A_LIST, A_STRING), (B_LIST, B_STRING)]:
             x, y, d, n = 0, 0, 0, 0
             for char in string:

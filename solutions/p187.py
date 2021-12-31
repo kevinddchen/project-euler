@@ -8,19 +8,29 @@ Solved using a prime sieve.
 """
 
 from time import time
-from mathfuncs import primeSieve
+from mathfuncs import prime_sieve
+
+def binary_search(x, lst):
+    '''Find a slice i where x should be inserted into lst, which has been sorted
+    in increasing order. If lst contains x, returns the largest slice.'''
+    a, b = 0, len(lst)
+    while a != b:
+        mid = (a + b) // 2
+        if lst[mid] > x:
+            b = mid
+        else:
+            a = mid+1
+    return a
 
 def p187():
     LIMIT = 10**8
     p_list = []
-    j = 1
     C = 0
-    for i, p in enumerate(primeSieve(LIMIT/2)):
+    for p in prime_sieve(LIMIT//2):
         if p*p < LIMIT:
             p_list.append(p)
-        while p*p_list[-j] > LIMIT:
-            j += 1
-        C += i-j+2
+        j = binary_search(LIMIT//p, p_list) # number of primes p' <= p such that p' * p <= LIMIT
+        C += j
     return C
 
 if __name__ == '__main__':

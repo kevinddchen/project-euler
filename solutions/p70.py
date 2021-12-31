@@ -20,13 +20,13 @@ This prevents us from searching all primes up to 10^7.
 """
 
 from time import time
-from mathfuncs import isPrime
+from mathfuncs import is_prime
 
-def primeGen():
+def prime_gen():
     yield 2
     y = 3
     while True:
-        if isPrime(y):
+        if is_prime(y):
             yield y
         y += 2
 
@@ -34,7 +34,7 @@ def p70():
     LIMIT = 10**7
     M = (87109, 79180)
     p_lst = []
-    for p in primeGen():
+    for p in prime_gen():
         for q in p_lst:
             n, tot = p*q, (p-1)*(q-1)
             if n > LIMIT:

@@ -35,13 +35,13 @@ def foo(lst, target_n, target_tot, index=0, n=0, tot=0, L=[]):
             yield x
 
 def p491():
-    digits = range(10)*2
+    digits = list(range(10))*2
     count = 0
 
     for x in [23, 34, 45, 56, 67]:
         for L in foo(digits, 10, x):
             count += 10 - L.count(0)
-    return count * (2*3*4*5*6*7*8*9*10)**2 / (2**10) / 10
+    return count * (2*3*4*5*6*7*8*9*10)**2 // (2**10) // 10
 
 if __name__ == '__main__':
     time_start = time()

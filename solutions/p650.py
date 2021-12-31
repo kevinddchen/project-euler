@@ -8,99 +8,54 @@ We use the fact that
     B(n) = B(n-1) * n^n / n!
 
 So we recursively keep track of the prime factorization of B(n), which can
-compute the sum of divisors efficiently. We do need to worry about overflow
-when multiplying two large numbers (a * b) % N, which is handled by the 'mult'
-routine.
-
-The program runs in ~8 mins, but a speedup can be achieved using C++.
+compute the sum of divisors efficiently. routine.
 
 """
 
 from time import time
-import numpy as np
-
-
-def gen_sieve(N):
-    """ Produce sieve giving 1 if prime, else a prime factor. """
-    sieve = np.ones(N+1, dtype=int)
-    sieve[0] = 0
-    sieve[1] = 0
-    for i in xrange(2, N+1):
-        if i <= np.sqrt(N) and sieve[i] == 1:
-            n = i*i
-            while n <= N:
-                sieve[n] = i
-                n = n+i
-    return sieve
-
-def gen_sieve_map(sieve):
-    """ Given sieve, L[i] is the ith prime, and M is the inverse map. """
-    M = np.zeros(len(sieve), dtype=int)
-    L = np.empty(len(sieve), dtype=int)
-    i = 0
-    for p, isPrime in enumerate(sieve):
-        if isPrime == 1:
-            M[p] = i
-            L[i] = p
-            i = i+1
-
-    return M, L[:i], i
-
-def gen_factors(x, sieve):
-    """ Generate prime factors of x. """
-    while sieve[x] != 1:
-        yield sieve[x]
-        x = x/sieve[x]
-    yield x
-
-def mult(a, b, P):
-    """ Return (a * b) % P. """
-    res = 0
-    while b > 0:
-        if (b % 2) == 1:
-            res = (res + a) % P
-        a = (a * 2) % P
-        b = b // 2
-    return res
+from mathfuncs import prime_factorize, prime_sieve
 
 
 def p650():
 
-    N = 20000
-    P = 1000000007
+    N = 20_000
+    M = 1_000_000_007
     S = 1
 
-    sieve = gen_sieve(N)
-    p_map, p_invmap, p_num = gen_sieve_map(sieve)
+    primes = [p for p in prime_sieve(N)]
+    n_primes = len(primes)
 
-    # Calculate (p-1) % P for all primes 
-    inverses = np.empty(p_num, dtype=int)
-    for p_i in xrange(p_num):
-        p = int(p_invmap[p_i])
-        inverses[p_i] = pow(p-1, P-2, P)
+    ## store look-up table of indices for each prime
+    prime_i = {}
+    for i, p in enumerate(primes):
+        prime_i[p] = i
+    
+    ## inverse of p-1 mod M
+    inverses = [pow(p-1, -1, M) for p in primes]
 
     # curr_f keeps track of prime factorization of B(n)
     # sub_f keeps track of prime factorization of n!
-    curr_f = np.zeros(p_num, dtype=int)
-    sub_f = np.zeros(p_num, dtype=int)
+    curr_f = [0 for _ in range(n_primes)]
+    sub_f = [0 for _ in range(n_primes)]
 
-    for n in xrange(2, N+1):
+    for n in range(2, N+1):
 
-        curr_f = curr_f - sub_f
+        for p, a in prime_factorize(n):
+            p_i = prime_i[p]
+            curr_f[p_i] += a*n
+            sub_f[p_i] += a
 
-        for p in gen_factors(n, sieve):
-            p_i = p_map[p]
-            curr_f[p_i] = curr_f[p_i] + (n-1)
-            sub_f[p_i] = sub_f[p_i] + 1
+        for i in range(n_primes):
+            curr_f[i] -= sub_f[i]
 
-        d = 1
-        for p_i, e in enumerate(curr_f):
-            p = int(p_invmap[p_i])
-            if e != 0:
-                a = pow(p, int(e+1), P)-1
-                d = mult(d, mult(a, int(inverses[p_i]), P), P)
+        d_sum = 1
+        for p_i, a in enumerate(curr_f):
+            p = primes[p_i]
+            if a != 0:
+                d_sum *= pow(p, int(a+1), M)-1
+                d_sum = (d_sum * inverses[p_i]) % M
 
-        S = (S + d) % P
+        S = (S + d_sum) % M
 
     return S
 

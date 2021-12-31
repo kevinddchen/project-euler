@@ -62,7 +62,7 @@ def l(x):
         return len('onethousand')
     
 def p17():
-    return sum(l(y) for y in xrange(1,1001))
+    return sum(l(y) for y in range(1,1001))
 
 if __name__ == '__main__':
     time_start = time()

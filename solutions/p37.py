@@ -2,12 +2,13 @@
 #ANSWER 748317
 
 from time import time
-from mathfuncs import isPrime
+from mathfuncs import is_prime
 
 def check_trunc(x):
     x_l, x_r = str(x)[1:], str(x)[:-1]
     while len(x_l) > 0:
-        if not isPrime(int(x_l)) or not isPrime(int(x_r)): 
+        int_l, int_r = int(x_l), int(x_r)
+        if int_l < 2 or int_r < 2 or not is_prime(int_l) or not is_prime(int_r): 
             return False
         x_l, x_r = x_l[1:], x_r[:-1]
     return True
@@ -17,7 +18,7 @@ def p37():
     S = 0
     x = 11
     while count < 11:
-        if isPrime(x) and check_trunc(x):
+        if is_prime(x) and check_trunc(x):
             count += 1
             S += x
         x += 2

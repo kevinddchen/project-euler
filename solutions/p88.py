@@ -14,24 +14,18 @@ and knowing when to stop incrementing and search the next branch over.
 """
 
 from time import time
-
-def product(iterable):
-    """Returns total product of iterable, similar to sum()."""
-    p = 1
-    for x in iterable:
-        p *= x
-    return p
+from math import prod
 
 def recurse(i, prev_list, k_dict):
     """Recursive tree-search for i non-unity elements.""" 
-    N = product(prev_list)
+    N = prod(prev_list)
     S = sum(prev_list)
-## have i integers
+    ## have i integers
     if len(prev_list) == i:
         k = N - S + len(prev_list)
         if k not in k_dict: k_dict[k] = N
         elif k_dict[k] > N: k_dict[k] = N
-## need more integers
+    ## need more integers
     else:
         i_r = i - len(prev_list)     ## remaining i
         if len(prev_list) == 0: x = 2

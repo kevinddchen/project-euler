@@ -9,9 +9,9 @@ run up and check that it is prime.
 """
 
 from time import time
-from mathfuncs import primeSieve
+from mathfuncs import prime_sieve
 
-def genNextPrimes(p, sieve):
+def gen_next_primes(p, sieve):
     p += 1
     while p < len(sieve):
         if sieve[p]:
@@ -19,21 +19,22 @@ def genNextPrimes(p, sieve):
         p += 1
 
 def p50():
-    sieve_ref = [None]
-    sieve = primeSieve(1000000, sieve_ref)
-    for p in sieve: pass
+    sieve = []
+    prime_generator = prime_sieve(1000000, sieve)
+    for _ in prime_generator: 
+        pass
 
     M = (0, 0)
-    for p, isprime in enumerate(sieve_ref[0]):
+    for p, isprime in enumerate(sieve):
         if isprime:
             S = p
             length = 1
-            for q in genNextPrimes(p, sieve_ref[0]):
+            for q in gen_next_primes(p, sieve):
                 S += q
                 length += 1 
-                if S > 1000000:
+                if S >= 1000000:
                     break
-                if sieve_ref[0][S] and length>M[0]:
+                if sieve[S] and length>M[0]:
                     M = (length, S)
     return M[1]
 

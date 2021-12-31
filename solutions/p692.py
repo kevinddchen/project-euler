@@ -27,8 +27,8 @@ def p692():
     N = 80
     F = fib_gen()
     a, b = 1, -1    # a = G(F1) and b = G(F0)
-    for n in xrange(N-1):
-        a, b = a + b + F.next(), a
+    for _ in range(N-1):
+        a, b = a + b + next(F), a
 
     return a
 

@@ -11,7 +11,7 @@ increment n and repeat.
 
 from time import time
 
-def cubeGen(d):
+def cube_gen(d):
     """generate cubes with specified digits"""
     n = int(10**((d-1)/3.))
     while True:
@@ -25,7 +25,7 @@ def p62():
     d = 1
     while True:
         ## create lists of tuples containing (ordered digits, original cube)
-        L = [(int(''.join(sorted(str(c)))), c) for c in cubeGen(d)]
+        L = [(int(''.join(sorted(str(c)))), c) for c in cube_gen(d)]
         L.sort()
         ## search for consecutive identical ordered digits
         i, j = 0, 0

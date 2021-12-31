@@ -10,35 +10,7 @@ divisors d of 60.
 """
 
 from time import time
-
-def factorize(x):
-    """ Prime factorize. Returns list of tuples (prime, exponent). """
-    L = []
-    p = 2
-    while p*p <= x:
-        i = 0
-        while x%p == 0:
-            x = x/p
-            i = i+1
-        if i > 0:
-            L.append( (p, i) )
-        p = p+1
-    if x > 1:
-        L.append( (x, 1) )
-    return L
-
-
-
-def gen_divisors(f, prod=1, layer=0):
-    """ Generate divisors, given prime factorization. """ 
-    if layer == len(f):
-        yield prod
-    else:
-        p, n = f[layer]
-        for i in xrange(n+1):
-            for d in gen_divisors(f, prod, layer+1):
-                yield d
-            prod = prod*p
+from p44 import divisors
 
 def check(d, bad):
     for b in bad:
@@ -46,16 +18,14 @@ def check(d, bad):
             return False
     return True
 
-
 def p622():
 
-    divisors = [2, 3, 4, 5, 6, 10, 12, 15, 20, 30]
-    bad = [pow(2, d) - 1 for d in divisors]
+    divisors_of_60 = [2, 3, 4, 5, 6, 10, 12, 15, 20, 30]
+    bad = [pow(2, d) - 1 for d in divisors_of_60]
     S = 0
 
     N = pow(2, 60) - 1
-    f = factorize(N)
-    for d in gen_divisors(f):
+    for d in divisors(N):
         if check(d, bad):
             S = S + (d+1)
     return S

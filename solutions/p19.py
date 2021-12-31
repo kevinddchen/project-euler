@@ -1,22 +1,23 @@
 #!/usr/bin/python
 #ANSWER 171
 
-from time import time
-
 """
 
 See solution explanations.
 
 """
 
+from time import time
+
 def p19():
+    ## use John Conway's Doomsday algorithm
     count = 0
     ## for each month, first day that is a doomsday
     doomsday_table = [3, 7, 7, 4, 2, 6, 4, 1, 5, 3, 7, 5]
-    for y in xrange(1901, 2001):
+    for y in range(1901, 2001):
         doomsday = (2 + y + y//4 - y//100 + y//400)%7
         leap = True if y%400==0 or (y%4==0 and y%100!=0) else False
-        for m in xrange(0, 12):
+        for m in range(0, 12):
             d = doomsday_table[m]
             if (m==0 or m==1) and leap:
                 d += 1

@@ -9,7 +9,7 @@ resursively with increasing number of digits.
 """
 
 from time import time
-from mathfuncs import isPrime
+from mathfuncs import is_prime
 
 def get_next_generation(RTHN_list):
 
@@ -29,15 +29,15 @@ def p387():
     N_DIGITS = 14
     SUM = 0
     RTHN_list = list(range(1, 10))
-    for count in range(N_DIGITS-2):
+    for _ in range(N_DIGITS-2):
         RTHN_list = get_next_generation(RTHN_list)
         for RTHN in RTHN_list:
             ## check is a strong Harshad number
             digit_sum = sum(int(c) for c in str(RTHN))
-            if isPrime(RTHN//digit_sum):
+            if is_prime(RTHN//digit_sum):
                 ## find SRTH primes
                 for prime_candidate in [RTHN*10+i for i in [1, 3, 7, 9]]:
-                    if isPrime(prime_candidate):
+                    if is_prime(prime_candidate):
                         SUM += prime_candidate
     return SUM
 

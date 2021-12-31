@@ -32,7 +32,7 @@ def p122():
 
         ## fill zeros if possible
         zeros = 0
-        for i in xrange(LIMIT-1, 1, -1):
+        for i in range(LIMIT-1, 1, -1):
             if mem[i] == 0:
                 if mem[i-1] != 0:
                     mem[i] = mem[i-1]+1

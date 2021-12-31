@@ -5,42 +5,37 @@
 
 See solution explanations.
 
+The program runs in ~2 mins.
+
 """
 
 from time import time
 
+def func(n):
+    return 2*n*n - 1
+
+def filter_multiples(sieve, t, n):
+    '''Divide out t from indices t-n, t+n, 2*t-n, 2*t+n, ...'''
+    a, b = t-n, t+n
+    while a < len(sieve):
+        while sieve[a] % t == 0:
+            sieve[a] //= t
+        a, b = b, a+t
+
 def p216():
-    size = 50000000
-    truth_arr = [True for n in xrange(size)]
-    divisor_arr = [2*n*n - 1 for n in xrange(size)]
-    truth_arr[0] = False
-    truth_arr[1] = False
+    LIMIT = 50_000_000
+    sieve = [func(n) for n in range(LIMIT+1)]
+    C = 0
+    
+    for n, t in enumerate(sieve):
+        if n <= 1 or t == 1:        ## t(n) has no new factors
+            continue
+        if t == func(n):            ## t(n) is prime
+            C += 1
+        ## filter out factors from sieve
+        filter_multiples(sieve, t, n)
 
-    for n in xrange(2, size):
-        tn = divisor_arr[n]      ## t(n)
-        if tn != 1:
-
-            m = n + tn                  ## t(n + k*t(n)) is divisible by t(n)
-            while m < size:
-                truth_arr[m] = False
-                new_tn = divisor_arr[m]
-                while new_tn % tn == 0:
-                    new_tn /= tn
-                divisor_arr[m] = new_tn
-                m += tn
-
-            m = (n//tn + 1)*tn - n      ## t(-n + k*t(n)) is divisible by t(n)
-            while m < size:
-                truth_arr[m] = False
-                new_tn = divisor_arr[m]
-                while new_tn % tn == 0:
-                    new_tn /= tn
-                divisor_arr[m] = new_tn
-                m += tn
-   
-    return sum(truth_arr) 
-
-
+    return C
 
 if __name__ == '__main__':
     time_start = time()
