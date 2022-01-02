@@ -1,10 +1,16 @@
 # project-euler
 
-These are my solutions to Project Euler problems. 
+These are my solutions to [Project Euler](https://projecteuler.net/) problems. 
 Please do not blindly copy numerical answers.
 
-Many `.py` files run on Python 2.7, as they were written many years ago.
-
-The `.cxx` files can be compiled and executed using [run.sh](solutions/run.sh) or the Makefile.
+To run any solution, use 
+```
+./run.sh ###
+```
+where `###` is replaced by an integer.
+If the solution is written in C++, this will compile and run the code.
+If the solution is written in Python, this will run the code using the command `python p###.py`.
+Note that `python` must point to Python 3.
+The only eternal package used is numpy, although only rarely for matrix manipulations.
 
 [EulerSolutions.pdf](EulerSolutions.pdf)  contains write-ups for problems that are can be solved by hand or are interesting.
