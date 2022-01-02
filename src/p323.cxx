@@ -1,10 +1,6 @@
-// p323.cxx
-#include <stdio.h>
-#include <iostream>
-#include <math.h>
-#include <time.h>
-#include "cmathfuncs.h"
-using namespace std;
+#include <cstdio>
+#include <ctime>
+#include <cmath>
 
 
 /*
@@ -26,15 +22,15 @@ ANSWER 6.3551758451
 */ 
 
 
-double p323() {
-
+double p323() 
+{
     double cum, prev_cum, prob;
     double exp_val = 0;
 
     prev_cum = 0;
 
-    for (int N=1; true; N++) { 
-
+    for (int N=1; true; N++) 
+    { 
         cum = pow(1 - pow(2, -N), 32);
         prob = cum - prev_cum;
 
@@ -43,16 +39,13 @@ double p323() {
 
         exp_val += N * prob;
         prev_cum = cum;
-
     }
-
     return exp_val;
-
 }
 
-    
 
-int main() {
+int main() 
+{
     clock_t t;
     t = clock();
     printf("%.10f\n", p323());

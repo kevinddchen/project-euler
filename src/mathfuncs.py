@@ -53,18 +53,18 @@ def prime_factorize(x):
         yield x, 1 # remainder of x is prime
 
 
-def extended_gcd(a, b):
-    '''Returns a tuple (s, t, d) containing the Bezout coefficients and gcd,
-    i.e. a*s + b*t = d. '''
-    s, old_s = 0, 1
-    t, old_t = 1, 0
-    r, old_r = b, a
-    while r != 0:
-        q = old_r // r
-        old_r, r = r, old_r - q*r
-        old_s, s = s, old_s - q*s
-        old_t, t = t, old_t - q*t
-    return (old_s, old_t, old_r)
+# def extended_gcd(a, b):
+#     '''Returns a tuple (s, t, r) containing the Bezout coefficients and gcd,
+#     i.e. a*s + b*t = r. '''
+#     s, old_s = 0, 1
+#     t, old_t = 1, 0
+#     r, old_r = b, a
+#     while r != 0:
+#         q = old_r // r
+#         old_r, r = r, old_r - q*r
+#         old_s, s = s, old_s - q*s
+#         old_t, t = t, old_t - q*t
+#     return (old_s, old_t, old_r)
 
 ## sum of proper divisors: p21
 ## iterate through divisors: p44

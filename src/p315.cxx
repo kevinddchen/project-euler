@@ -1,11 +1,6 @@
-// p315.cxx
-#include <stdio.h>
-#include <iostream>
-#include <vector>
-#include <math.h>
-#include <time.h>
-#include "cmathfuncs.h"
-using namespace std;
+#include <cstdio>
+#include <ctime>
+#include "mathfuncs.h"
 
 
 /*
@@ -17,12 +12,13 @@ ANSWER 13625242
 */
 
 
-long digitalRoot(long x) {
-
+int digital_root(int x) 
+{
     if (x < 10)
         return 0;
-    long root = 0;
-    while (x != 0) {
+    int root = 0;
+    while (x != 0) 
+    {
         root += x%10;
         x /= 10;
     }
@@ -30,29 +26,28 @@ long digitalRoot(long x) {
 }
 
 
-
-bool ** clock(long n, bool digits [11][7]) {
-
+bool ** clock(int n, bool digits[11][7]) 
+{
     bool ** clock = new bool * [8];
-    for (int i=0; i<8; i++) {
-
+    for (int i=0; i<8; i++) 
+    {
         if (n == 0)
             clock[i] = digits[10];
         else
             clock[i] = digits[n%10];
         n /= 10;
-
     }
     return clock;
 }
 
 
-
-int countOn(bool ** clock1, bool ** clock2) {
-
+int count_on(bool ** clock1, bool ** clock2) 
+{
     int c = 0;
-    for (int i=0; i<8; i++) {
-        for (int j=0; j<7; j++) {
+    for (int i=0; i<8; i++) 
+    {
+        for (int j=0; j<7; j++) 
+        {
             if (clock1[i][j] and clock2[i][j])
                 c++;
         }
@@ -61,11 +56,10 @@ int countOn(bool ** clock1, bool ** clock2) {
 }
 
 
-
-long p315() {
-
-    // construct digits
-    bool digits [11][7] = {
+long p315() 
+{
+    // for each digit, which lights are on
+    bool digits[11][7] = {
         {1, 1, 1, 0, 1, 1, 1},
         {0, 0, 1, 0, 0, 1, 0},
         {1, 0, 1, 1, 1, 0, 1},
@@ -76,36 +70,34 @@ long p315() {
         {1, 1, 1, 0, 0, 1, 0},
         {1, 1, 1, 1, 1, 1, 1},
         {1, 1, 1, 1, 0, 1, 1},
-        {0, 0, 0, 0, 0, 0, 0}   };
+        {0, 0, 0, 0, 0, 0, 0}   
+    };
 
     // count transitions
     long c = 0;
-    bool * sieve = primeSieve(20000000);
-    for (long i=10000000; i<20000000; i++) {
-
+    bool * sieve = prime_sieve(20000000);
+    for (int i=10000000; i<20000000; i++) 
+    {
         if (!sieve[i])
             continue;
 
         bool ** A = clock(i, digits);
-        long j = digitalRoot(i);
+        int j = digital_root(i);
 
-        while (j > 0) {
-
+        while (j > 0) 
+        {
             bool ** B = clock(j, digits);
-            c += 2 * countOn(A, B);
+            c += 2 * count_on(A, B);
             A = B;
-            j = digitalRoot(j);
-
+            j = digital_root(j);
         }
     }
-
     return c;
-
 }
 
 
-
-int main() {
+int main() 
+{
     clock_t t;
     t = clock();
     printf("%ld\n", p315());

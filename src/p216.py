@@ -5,7 +5,7 @@
 
 See solution explanations.
 
-The program runs in ~2 mins.
+Runs in ~2 mins.
 
 """
 
