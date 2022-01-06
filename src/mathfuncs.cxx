@@ -103,15 +103,18 @@ template long modular_inverse<long>(long, long);
 template int modular_inverse<int>(int, int);
 
 
-int powmod(int a, int b, int m) 
+template <typename T>
+int modular_power(int a, T b, int m) 
 {
-    long result = 1, base = a % m, mod = m;
+    long result(1), base(a%m);
     while (b > 0) 
     {
         if (b & 1)  // if (b % 2) == 1
-            result = (result * base) % mod;
-        base = (base * base) % mod;
+            result = (result * base) % m;
+        base = (base * base) % m;
         b >>= 1;
     }
     return (int) result;
 }
+template int modular_power<int>(int, int, int);
+template int modular_power<long>(int, long, int);

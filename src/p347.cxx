@@ -2,7 +2,6 @@
 #include <ctime>
 #include <algorithm>
 #include "mathfuncs.h"
-#include <iostream>
 
 
 /*

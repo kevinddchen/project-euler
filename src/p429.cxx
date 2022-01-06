@@ -22,7 +22,8 @@ ANSWER 98792821
 /* Count the number of times p divides into N!. */
 int count_factors(int N, int p)
 {
-    long result = 0, x = p;
+    int result = 0;
+    long x = p;         // long to prevent overflow
     while (x <= N)
     {
         result += N/x;
@@ -40,13 +41,13 @@ int p429() {
     bool * sieve = prime_sieve(N);
 
     int a;
-    long result = 1;
+    long result = 1;    // long to prevent overflow
     for (int p=2; p<N; p++)
     {
         if (sieve[p])
         {
             a = count_factors(N, p);
-            result = (result * powmod(p, 2*a, M) + result) % M;
+            result = (result * modular_power(p, 2*a, M) + result) % M;
         }
     }
     return result;
