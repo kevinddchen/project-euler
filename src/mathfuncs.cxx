@@ -76,23 +76,6 @@ template std::vector<std::array<int, 2>> prime_factorize<int>(int x);
 
 
 template <typename T>
-T gcd(T a, T b) 
-{
-    // Euclidean algorithm
-    T m;
-    while (b != 0) 
-    {
-        m = a%b;
-        a = b;
-        b = m;
-    }
-    return a;
-}
-template long gcd<long>(long, long);
-template int gcd<int>(int, int);
-
-
-template <typename T>
 T modular_inverse(T a, T m) 
 {
     // use Extended Euclidean algorithm to solve a*s + m*t = 1. Then s is the inverse.

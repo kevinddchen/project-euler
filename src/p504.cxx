@@ -1,7 +1,7 @@
 #include <cstdio>
 #include <ctime>
 #include <cmath>
-#include "mathfuncs.h"
+#include <numeric>
 
 
 /*
@@ -36,7 +36,7 @@ long p504()
     {
         G[i] = new int [size+1];
         for (int j=1; j<=size; j++)
-            G[i][j] = gcd(i, j);
+            G[i][j] = std::gcd(i, j);
     }
 
     // iterate through all quadrilaterals

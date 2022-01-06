@@ -13,9 +13,6 @@ bool * prime_sieve(int size);
 a) tuples. p's are given in ascending order. If x <= 1, returns empty vector. */
 template <typename T> std::vector<std::array<T, 2>> prime_factorize(T x);
 
-/* Greatest common divisor. */
-template <typename T> T gcd(T a, T b);
-
 /* Multiplicative inverse of a mod m, as a positive integer. If a and m are not
 coprime, returns 0 instead. */
 template <typename T> T modular_inverse(T a, T m);
