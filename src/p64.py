@@ -3,7 +3,15 @@
 
 """
 
-See solution explanations.
+The continued fraction expansion for an irrational square root sqrt(n) is a
+repeating non-terminating sequence [a_0; a_1, a_2, ..., a_p = a_1]. The
+coeffcients a_n can be calculated using the recurrence relation,
+
+	m_0 = 0,                m_{n+1} = d_n * a_n - m_n,
+    d_0 = 1,                d_{n+1} = (n - m_{n+1}^2) / (d_n),
+    a_0 = floor(sqrt(n)),   a_{n+1} = floor( (sqrt(n) + m_{n+1}) / d_{n+1} ).
+
+Then once a_n = 2a_0, one period has passed.
 
 """
 

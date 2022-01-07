@@ -3,7 +3,11 @@
 
 """
 
-See solution explanations.
+A useful programming technique in dynamical programming is memoization. In a
+process where we anticipate that a function would be called multiple times with
+the same input, it is often more efficient to remember a table of input-output
+values, which we should consult first. In Python, this can be easily done using
+the @cache decorator.
 
 """
 

@@ -3,7 +3,11 @@
 
 """
 
-See solution explanations
+Given an integer and its prime factorization, n = p1^a1 * p2^a2 * ... * pk^ak,
+the number of divisors of n is (a_1 + 1)(a_2 + 1)...(a_k+1). So a number with
+2^{500500} divisors is 2 * 3 * ... * p_{500500}. However, this is not the
+smallest number, as we can replace p_{500500} with 2^2. We repeat this,
+replacing the largest primes in the product with powers of smaller primes.
 
 """
 

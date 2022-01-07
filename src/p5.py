@@ -3,7 +3,10 @@
 
 """
 
-See solution explanations.
+Can be solved by hand. See PDF for explanation.
+
+Below, we prime factorize all integers <= 20, and keep track of the prime
+factors needed.
 
 """
 

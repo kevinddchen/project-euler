@@ -3,7 +3,10 @@
 
 """
 
-See solution explanations.
+There is a fast way to count the divisors of an integer. Given an integer and
+its prime factorization, n = p1^a1 * p2^a2 * ... * pk^ak, the number of ways we
+can multiply the primes together gives the number of divisors. Thus the number
+of divisors of n is (a_1 + 1)(a_2 + 1)...(a_k+1). 
 
 """
 

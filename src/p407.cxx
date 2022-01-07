@@ -9,7 +9,14 @@
 
 /*
 
-See solution explanations.
+Given an integer and its prime factorization, n = p1^a1 * p2^a2 * ... * pk^ak,
+the Chinese Remainder Theorem defines a ring isomorphism,
+
+	Z_n = Z_{p1^a1} + Z_{p2^a2} + ... + Z_{pk^ak}
+
+The only idempotents in Z_{p^a} for any prime p are 0 and 1. Therefore, Z_n has
+2^k idempotents corresponding to every possible selection of 0 or 1 in each
+Z_{pi^ai}.
 
 ANSWER 39782849136421
 

@@ -3,7 +3,14 @@
 
 """
 
-See solution explanations.
+The optimum polynomial OP(k, n) is the polynomial P interpolated on the points n
+= 1, 2, \dotsc, k such that P(n) = u_n. We can find P by Lagrange interpolation.
+Given a set of points {x_1, x_2, ... , x_k} and values {u_1, u_2, ... , u_k}, we
+find polynomials P_i such that P_i(x_j) = delta_{ij}. An explicit formula is:
+
+	P_i(x) = [prod_{j \neq i} (x - x_j)] / [prod_{j \neq i} (x_i - x_j)]
+
+Then our interpolation is simply P(x) = sum_{i=1}^k u_i P_i(x).
 
 """
 

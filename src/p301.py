@@ -3,7 +3,7 @@
 
 """
 
-See solution explanations
+Can be solved by hand. See PDF for explanation.
 
 """
 

@@ -1,5 +1,5 @@
 #!/usr/bin/python
-#ANSWER 16695334890
+#ANSWER 2406376.3623
 
 """
 
@@ -9,11 +9,11 @@ Can be solved by hand. See PDF for explanation.
 
 from time import time
 
-def p43():
-    return (14+41)*10**8 + 30952867*2 + (1406+1460+4106+4160)*10**6 + 357289*4
+def p389():
+    var = 2464129395./1024
+    return "{:.4f}".format(var)
 
 if __name__ == '__main__':
     time_start = time()
-    print(p43())
+    print(p389())
     print("Time: {0:.3f}".format(time()-time_start))
-

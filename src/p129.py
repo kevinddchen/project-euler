@@ -3,7 +3,12 @@
 
 """
 
-See solution explanations.
+We can generate R(k) mod n by the recurrence relation R(k+1) = 10R(k) + 1 (mod
+n) with initial value R(1) = 1. Because n and 10 are coprime, the recurrence
+relation creates a cycle. Since 10*0 + 1 = 1 = R(1), so there exists a k
+> 0 such that R(k) = 0 (mod n). A(n) denotes the the smallest such k.
+Additionally, since the cycle must have length <= n, so we have A(n) <= n.
+Therefore, for this problem we can start finding A(n) from n=10^6. 
 
 """
 

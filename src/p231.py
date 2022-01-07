@@ -3,7 +3,9 @@
 
 """
 
-See solution explanations.
+Kummer's theorem on binomial coefficients states that given integers n >= m
+>= 0 and a prime p that the maximum integer k such that p^k divides (n choose m)
+is equal to the number of carries when m is added to n-m in base p.
 
 """
 

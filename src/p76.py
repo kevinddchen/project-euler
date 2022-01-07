@@ -3,7 +3,8 @@
 
 """
 
-See solution explanations.
+This problem is asking for the integer partition of 100. This can be calculated
+recursively using the pentagonal number theorem.
 
 """
 

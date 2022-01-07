@@ -3,7 +3,15 @@
 
 """
 
-See solution explanations.
+We are finding 1777^^1855 = 1777^{1777^^1854} (mod 10^8)$. The generalized
+Fermat's little theorem says that a^{phi(n)} = 1 (mod n) for any coprime a and
+n, where phi(n) is the totient function. Since 1777 is prime, so
+1777^{1777^^1854} = 1777^{a_1} (mod 10^8)$ for some integer a_1 = 1777^^1854
+(mod phi(10^8)). We can repeat this process by taking successive totients,
+defining a sequence a_1, a_2, ... Eventually we will reach a totient phi^k(10^8)
+= 2. As 1777 is odd, any power of 1777 is odd so a_k = 1. We can then work
+backwards using the recursive formula a_i = 1777^{a_{i+1}} (mod phi^i(10^8))
+until we find a_0, which is the answer.
 
 """
 

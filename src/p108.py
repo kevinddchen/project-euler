@@ -3,7 +3,13 @@
 
 """
 
-See solution explanations.
+n < x, y so let x = n+a and y = n+b. Then with some algebra we can show that 
+
+    1/n = 1/(n+a) + 1/(n+b)  -->  n^2 = ab 
+
+Therefore the number of solutions is the number of ways to represent n^2 as the
+product of two numbers, or half its number of divisors. This is fast to
+calculate, as mentioned in Problem 12.
 
 """
 

@@ -3,7 +3,16 @@
 
 """
 
-See solution explanations.
+Here we present a new method for generating Pythagorean triples. Given a
+primitive triple (a, b, c), we can generate three different primitive triples
+using the following linear transformations,
+
+	\mqty( -1 & 2 & 2 \\ -2 & 1 & 2 \\ -2 & 2 & 3 ) \mqty( a \\ b \\ c ),
+	\mqty( 1 & 2 & 2 \\ 2 & 1 & 2 \\ 2 & 2 & 3 )    \mqty( a \\ b \\ c ), 
+	\mqty( 1 & -2 & 2 \\ 2 & -1 & 2 \\ 2 & -2 & 3 ) \mqty( a \\ b \\ c ).
+
+Using an initial seed (3, 4, 5) every primitive triple can be generated using
+this method.
 
 """
 

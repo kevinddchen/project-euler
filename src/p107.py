@@ -3,7 +3,9 @@
 
 """
 
-See solution explanations.
+This can be solved using Kruskal's algorithm. We start with a graph with no
+edges and add edges one-by-one in increasing order of weight, skipping those
+that do not combine two trees, until the graph is connected.
 
 """
 

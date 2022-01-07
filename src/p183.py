@@ -3,7 +3,11 @@
 
 """
 
-See solution explanations.
+For a given N, we want to maximize (N/k)^k. We can do this by differentiating
+with respect to k to get (N/k)^k[\ln(N/k) - 1], so the maximum is when k = N/e.
+But this is not an integer, so we test the integers above and below for the
+larger value of (N/k)^k. Once we know our k, if k/gcd(k, N) contains prime
+factors other than 2 or 5, then the decimal does not terminate.
 
 """
 

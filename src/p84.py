@@ -3,7 +3,8 @@
 
 """
 
-See solution explanations.
+We can model the monopoly board as a Markov chain. Then multiply the matrix over
+and over on any vector to get the steady state.
 
 """
 

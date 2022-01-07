@@ -3,7 +3,7 @@
 
 """
 
-From Problem 110, it was observed that in performing the calculation,
+From Problem 108, it was observed that in performing the calculation,
 
     (2a_1 + 1)*(2a_2 + 1)*...*(2a_k + 1)
 

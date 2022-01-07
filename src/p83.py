@@ -3,7 +3,10 @@
 
 """
 
-See solution explanations.
+This can be solved by an implementation of Dijkstra's algorithm. We traverse
+through the graph by keeping track of nodes we have visited and the minimum
+distance to that node, always advancing a step from the node with smallest
+distance.
 
 """
 

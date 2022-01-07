@@ -13,4 +13,4 @@ If the solution is written in Python, this will run the code using the command `
 Note that `python` must point to Python 3.
 The only eternal package used is numpy, although only rarely for matrix manipulations.
 
-[EulerSolutions.pdf](EulerSolutions.pdf)  contains write-ups for problems that are can be solved by hand or are interesting.
+[EulerSolutions.pdf](EulerSolutions.pdf)  contains write-ups for problems that can be solved by hand.

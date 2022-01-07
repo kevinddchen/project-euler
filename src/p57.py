@@ -3,7 +3,13 @@
 
 """
 
-See solution explanations.
+Given a continued fraction expansion [a_0; a_1, a_2, ...], the convergents can
+be calculated by the recurrence relation,
+
+	p_{-1} = 1,     p_0 = a_0,      p_n = a_n p_{n-1} + p_{n-2},
+    q_{-1} = 0,     q_0 = 1,        q_n = a_n q_{n-1} + q_{n-2}.
+
+Then the fraction p_n/q_n gives the nth convergent.
 
 """
 

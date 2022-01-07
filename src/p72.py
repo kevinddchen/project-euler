@@ -3,7 +3,9 @@
 
 """
 
-See solution explanations.
+The number of reduced fractions with denominator d is precisely the totatives of
+d. Therefore the answer is the sum of phi(n) for n = 2 to 10^6, where phi is the
+totient function.
 
 """
 

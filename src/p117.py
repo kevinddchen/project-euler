@@ -1,6 +1,12 @@
 #!/usr/bin/python
 #ANSWER 100808458960497
 
+"""
+
+Can be solved by hand. See PDF for explanation.
+
+"""
+
 from time import time
 
 def p117():

@@ -3,9 +3,9 @@
 
 """
 
-See solution explanations.
+Can be solved by hand. See PDF for explanation.
 
-Here we use a sieve to generate totient values.
+Below, we use a sieve to generate totient values.
 
 """
 
