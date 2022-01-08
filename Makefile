@@ -2,10 +2,10 @@ CC = g++
 CFLAGS = -Wall --std=c++17
 SRC = ./src
 BIN = ./bin
-TARGETS = $(patsubst $(SRC)/%,%,$(wildcard $(SRC)/p*.cxx))
 OBJECTS = mathfuncs.o
 
-TAR=$(addprefix $(BIN)/,$(TARGETS))
+# automatically recognize binaries corresponding to `.cxx` source files
+TAR=$(patsubst $(SRC)/%.cxx,$(BIN)/%,$(wildcard $(SRC)/p*.cxx))
 OBJ=$(addprefix $(BIN)/,$(OBJECTS))
 
 all : $(TAR)
