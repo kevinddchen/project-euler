@@ -68,6 +68,7 @@ def prime_factorize(x):
 
 ## sum of proper divisors: p21
 ## iterate through divisors: p44
+## totient sieve: p69
 ## integer partition: p76 
 ## totient: p188
 ## binary search: p187
