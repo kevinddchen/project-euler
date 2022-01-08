@@ -5,7 +5,7 @@
 
 /*
 
-Using calculus, we can show that the maximal values are x_j = 2j/(m+1).
+Can be solved by hand. See PDF for explanation.
 
 ANSWER 371048281
 

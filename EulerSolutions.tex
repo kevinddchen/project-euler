@@ -523,6 +523,48 @@ Add this up for $3 \leq n \leq 16$ to get the solution,
 \end{align*}
 
 
+\subsection*{190 -- Maximising a weighted product}
+We can solve for the $x_j$ that maximizes the weighted product using calculus of variations with Lagrange multipliers.
+Let us define a functional $J$, which we wish to extremize, and calculate its partial derivatives:
+\begin{align*}
+	J &= x_1 x_2^2 \cdots x_m^m + \lambda(x_1 + x_2 + \cdots + x_m - m) \\
+	\pdv{J}{x_j} &= j \frac{x_1 x_2^2 \cdots x_m^m}{x_j} + \lambda \\
+	\pdv{J}{\lambda} &= 	x_1 + x_2 + \cdots + x_m - m
+\end{align*}
+Setting the partial derivatives to zero, we can solve for the parameters,
+\begin{align*}
+	\lambda = -\frac{m+1}{2} x_1 x_2^2 \cdots x_m^m ~, \qquad x_j = \frac{2j}{m+1}
+\end{align*}
+This implies that at the extremum,
+\begin{align*}
+	P_m = x_1 x_2^2 \cdots x_m^m = \prod_{j=1}^m \qty( \frac{2j}{m+1} )^j
+\end{align*}
+This product can be evaluated relatively easily for each $m \leq 15$.
+
+
+\subsection*{207 -- Integer partition equations}
+We can solve the equation to yield
+\begin{align*}
+	2^t = \frac{1 + \sqrt{1+4k}}{2}
+\end{align*}
+We have an integer partition whenever $1+4k$ equals an odd square, say $1 + 4k = (2j+1)^2$ for $j = 1, 2, \dotsc$.
+The integer partition is perfect whenever $j+1$ is a power of 2.
+Therefore, the proportion of integer partitions that are perfect with $j \leq J$ is given by
+\begin{align*}
+	\tilde P(J) = \frac{ \lfloor \log_2 (J+1) \rfloor }{J}
+\end{align*}
+By trial and error, we can test that $\tilde P(2^{17} - 2) > 1/12345$ but $\tilde P(2^{18} - 2) < 1/12345$.
+This means that the first value of $J$ such that $\tilde P(J) < 1/12345$ occurs in the range $J \in [2^{17}-1, 2^{18} - 2]$.
+Since $\lfloor \log_2 (J+1) \rfloor = 17$ on this range, we can easily solve for the value of $J$:
+\begin{align*}
+	\frac{17}{J} < \frac{1}{12345} \qquad \implies\qquad J = 17 \cdot 12345 + 1
+\end{align*}
+Converting this into an appropriate value for $m$, as described in the problem,
+\begin{align*}
+	m = \frac{(2J + 1)^2 - 1}{4} = J(J+1) = \boxed{(17 \cdot 12345 + 1)(17 \cdot 12345 + 2)}
+\end{align*}
+
+
 \subsection*{301 -- Nim} 
 Given $k$ piles with $a_k$ stones, if $a_1 \oplus a_2 \oplus \dotsb \oplus a_k = 0$ then we have a losing game, where $\oplus$ denotes the bit-wise XOR operation on the binary representation. 
 For 3 piles, $a_1 \oplus a_2 \oplus a_3 = 0 \iff a_1 \oplus a_2 = a_3$. 
