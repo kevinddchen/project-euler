@@ -1,7 +1,8 @@
-#!/usr/bin/python
-#ANSWER 5437849
+#include <cstdio>
+#include <ctime>
 
-"""
+
+/*
 
 We can use a sieve method to generate all primes. This relies on two claims: 
 
@@ -30,40 +31,53 @@ the same procedure to find more composites. For instance, t(9) = 7 * 23 is
 composite and 23 has not been encountered before. Then all n = 23-9, 23+9, 46-9,
 46+9, ... correspond to composite t(n). 
 
-Runs in ~2 mins.
+ANSWER 5437849
 
-"""
+*/
 
-from time import time
 
-def func(n):
-    return 2*n*n - 1
+/* Divide out t=sieve[n] from indices t-n, t+n, 2t-n, 2t+n, ... */
+void filter_multiples(long * sieve, int limit, long n)
+{
+    long a = sieve[n]-n, b = sieve[n]+n, temp;
+    while (a <= limit)
+    {
+        while (sieve[a] % sieve[n] == 0)
+            sieve[a] /= sieve[n];
+        temp = a+sieve[n];
+        a = b;
+        b = temp;
+    }
+}
 
-def filter_multiples(sieve, t, n):
-    '''Divide out t from indices t-n, t+n, 2*t-n, 2*t+n, ...'''
-    a, b = t-n, t+n
-    while a < len(sieve):
-        while sieve[a] % t == 0:
-            sieve[a] //= t
-        a, b = b, a+t
 
-def p216():
-    LIMIT = 50_000_000
-    sieve = [func(n) for n in range(LIMIT+1)]
-    C = 0
+long p216() 
+{
+    const int limit = 50'000'000;
+
+    // initialize sieve
+    long * sieve = new long[limit+1];
+    for (long n=0; n<=limit; n++)
+        sieve[n] = 2*n*n - 1;
     
-    for n, t in enumerate(sieve):
-        if n <= 1 or t == 1:        ## t(n) has no new factors
-            continue
-        if t == func(n):            ## t(n) is prime
-            C += 1
-        ## filter out factors from sieve
-        filter_multiples(sieve, t, n)
+    long C = 0;
+    for (long n=2; n<=limit; n++)
+    {
+        if (sieve[n] == 1)          // t(n) has no new factors
+            continue;
+        if (sieve[n] == 2*n*n-1)    // t(n) is prime
+            C++;
+        filter_multiples(sieve, limit, n);
+    }
+    return C;
+}
 
-    return C
 
-if __name__ == '__main__':
-    time_start = time()
-    print(p216())
-    print("Time: {0:.3f}".format(time()-time_start))
-
+int main() 
+{
+    clock_t t;
+    t = clock();
+    printf("%ld\n", p216());
+    t = clock()-t;
+    printf("Time: %.3f\n", ((float) t)/CLOCKS_PER_SEC);
+}
