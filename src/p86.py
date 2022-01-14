@@ -1,5 +1,5 @@
 #!/usr/bin/python
-#ANSWER 2772
+#ANSWER 1818
 
 """
 
