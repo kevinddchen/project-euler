@@ -76,28 +76,45 @@ template std::vector<std::array<int, 2>> prime_factorize<int>(int x);
 
 
 template <typename T>
+void extended_gcd(T a, T b, T &s, T &t, T &r)
+{
+    s = 1;
+    t = 0;
+    r = a;
+    T new_s = 0, new_t = 1, new_r = b;
+    T q, temp;
+    while (new_r != 0)
+    {
+        q = r / new_r;
+
+        temp = r;
+        r = new_r;
+        new_r = temp - q * new_r;
+
+        temp = s;
+        s = new_s;
+        new_s = temp - q * new_s;
+
+        temp = t;
+        t = new_t;
+        new_t = temp - q * new_t;
+    }
+}
+template void extended_gcd<int>(int, int, int&, int&, int&);
+template void extended_gcd<long>(long, long, long&, long&, long&);
+
+
+template <typename T>
 T modular_inverse(T a, T m) 
 {
     // use Extended Euclidean algorithm to solve a*s + m*t = 1. Then s is the inverse.
-    T s(0), old_s(1), r(m), old_r(a);
-    T q, temp;
-    while (r != 0)
-    {
-        q = old_r / r;
-
-        temp = old_s;
-        old_s = s;
-        s = temp - q*s;
-
-        temp = old_r;
-        old_r = r;
-        r = temp - q*r;
-    }
-    if (old_r > 1)
+    T s, t, r;
+    extended_gcd(a, m, s, t, r);
+    if (r > 1)
         return 0;
-    if (old_s < 0)
-        old_s += m;
-    return old_s;
+    if (s < 0)
+        s += m;
+    return s;
 }
 template long modular_inverse<long>(long, long);
 template int modular_inverse<int>(int, int);
