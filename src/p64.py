@@ -19,7 +19,7 @@ from time import time
 from math import isqrt
 
 def continued_fraction_of_sqrt(n):
-    ## also used in Problem 66
+    ## also used in Problem 66 and 192
     m, d = 0, 1
     while True:
         a = int((n**.5 + m)/d)
