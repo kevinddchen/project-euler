@@ -10,14 +10,14 @@ explicitly, a = -p*10^(-k) mod q.
 """
 
 from time import time
-from mathfuncs import prime_sieve
+from mathfuncs import PrimeSieve
 
 def p134():
     total = 0
     LIMIT = 1000000
 
     p = 0
-    for q in prime_sieve(LIMIT+100): ## small buffer
+    for q in PrimeSieve(LIMIT+100): ## small buffer
         if p > LIMIT:
             break
         if q > 5:

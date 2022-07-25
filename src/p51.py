@@ -10,7 +10,7 @@ Find the first pattern that satisifes the conditions in the problem.
 
 from time import time
 from itertools import product
-from mathfuncs import prime_sieve
+from mathfuncs import PrimeSieve
 
 def replace(tup, x, y):
     L = []
@@ -34,21 +34,20 @@ def p51():
     digits = 2
     while True:
         ## generate primes up to 10^digits
-        sieve = []
-        prime_generator = prime_sieve(10**digits, sieve)
-        for _ in prime_generator: 
+        ps = PrimeSieve(10**digits)
+        for _ in ps: 
             pass
 
         ## generate patterns
         for pattern in product("0123456789*", repeat=digits):
             if pattern[0]=='0' or '*' not in pattern:
                 continue
-            if test_pattern(pattern, sieve, 10-8):
+            if test_pattern(pattern, ps.sieve, 10-8):
                 ## pattern found, print first prime
                 start = 1 if pattern[0]=='*' else 0
                 for d in range(start, 10):
                     q = int(''.join(replace(pattern, '*', str(d))))
-                    if sieve[q]:
+                    if ps.sieve[q]:
                         return q
         digits += 1
 

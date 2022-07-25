@@ -13,7 +13,7 @@ compute the sum of divisors efficiently. routine.
 """
 
 from time import time
-from mathfuncs import prime_factorize, prime_sieve
+from mathfuncs import PrimeSieve, prime_factorize
 
 
 def p650():
@@ -22,7 +22,7 @@ def p650():
     M = 1_000_000_007
     S = 1
 
-    primes = [p for p in prime_sieve(N)]
+    primes = [p for p in PrimeSieve(N)]
     n_primes = len(primes)
 
     ## store look-up table of indices for each prime

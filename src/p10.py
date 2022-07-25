@@ -13,10 +13,10 @@ to sqrt(N), we generate all primes less than or equal to N.
 """
 
 from time import time
-from mathfuncs import prime_sieve
+from mathfuncs import PrimeSieve
 
 def p10():
-    return sum(n for n in prime_sieve(2000000))
+    return sum(n for n in PrimeSieve(2000000))
 
 if __name__ == '__main__':
     time_start = time()

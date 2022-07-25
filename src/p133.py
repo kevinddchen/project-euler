@@ -10,7 +10,7 @@ For for each p, we iterate through n until the gcd does not change.
 
 from time import time
 from math import gcd
-from mathfuncs import prime_sieve, prime_factorize
+from mathfuncs import PrimeSieve, prime_factorize
 
 def totient(x):
     for f, _ in prime_factorize(x):
@@ -28,7 +28,7 @@ def possible(p):
     return False
 
 def p133():
-    return sum(p for p in prime_sieve(100000) if p<7 or not possible(p))
+    return sum(p for p in PrimeSieve(100000) if p<7 or not possible(p))
 
 if __name__ == '__main__':
     time_start = time()

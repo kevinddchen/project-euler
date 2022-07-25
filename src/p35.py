@@ -2,7 +2,7 @@
 #ANSWER 55
 
 from time import time
-from mathfuncs import prime_sieve
+from mathfuncs import PrimeSieve
 
 def circular(n, sieve):
     """Returns True if n is a circular prime."""
@@ -13,12 +13,11 @@ def circular(n, sieve):
     return True
 
 def p35():
-    sieve = []
-    prime_generator = prime_sieve(1000000, sieve)
-    for _ in prime_generator:
+    ps = PrimeSieve(1000000)
+    for _ in ps:
         pass
 
-    return sum(1 for p, isprime in enumerate(sieve) if isprime and circular(p, sieve))
+    return sum(1 for p, isprime in enumerate(ps.sieve) if isprime and circular(p, ps.sieve))
 
 if __name__ == '__main__':
     time_start = time()

@@ -10,7 +10,7 @@ is equal to the number of carries when m is added to n-m in base p.
 """
 
 from time import time
-from mathfuncs import prime_sieve
+from mathfuncs import PrimeSieve
 
 def choose_greatest_power(m, n, p):
     """ Gives greatest integer c for prime p such that p^c divides choose(m, n)."""
@@ -34,7 +34,7 @@ def choose_greatest_power(m, n, p):
 def p231():
     m, n = 2*10**7, 5*10**6
     s = 0
-    for p in prime_sieve(m):
+    for p in PrimeSieve(m):
         s += choose_greatest_power(m, n, p)*p
     return s
 

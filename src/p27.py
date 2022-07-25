@@ -9,7 +9,7 @@ a >= 1-b
 """
 
 from time import time
-from mathfuncs import is_prime, prime_sieve
+from mathfuncs import PrimeSieve, is_prime
 
 def quadratic_chain(a, b):
     """Returns maximum n where n^2 + a*n + b returns prime numbers."""
@@ -23,7 +23,7 @@ def p27():
     maxim = (0, 0)
 
     ## b must be positive and prime.
-    for b in prime_sieve(1000):
+    for b in PrimeSieve(1000):
         ## a >= 1-b
         for a in range(1-b, 1000):
             test = (quadratic_chain(a, b), a*b)

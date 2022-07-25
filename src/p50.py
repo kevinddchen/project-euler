@@ -9,7 +9,7 @@ run up and check that it is prime.
 """
 
 from time import time
-from mathfuncs import prime_sieve
+from mathfuncs import PrimeSieve
 
 def gen_next_primes(p, sieve):
     p += 1
@@ -19,22 +19,21 @@ def gen_next_primes(p, sieve):
         p += 1
 
 def p50():
-    sieve = []
-    prime_generator = prime_sieve(1000000, sieve)
-    for _ in prime_generator: 
+    ps = PrimeSieve(1000000)
+    for _ in ps: 
         pass
 
     M = (0, 0)
-    for p, isprime in enumerate(sieve):
+    for p, isprime in enumerate(ps.sieve):
         if isprime:
             S = p
             length = 1
-            for q in gen_next_primes(p, sieve):
+            for q in gen_next_primes(p, ps.sieve):
                 S += q
                 length += 1 
                 if S >= 1000000:
                     break
-                if sieve[S] and length>M[0]:
+                if ps.sieve[S] and length>M[0]:
                     M = (length, S)
     return M[1]
 
