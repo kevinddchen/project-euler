@@ -7,6 +7,7 @@ numerical value, then constructed the minimal roman numeral.
 
 """
 
+from pathlib import Path
 from time import time
 
 v_dict = {"I": 1, "V": 5, "X": 10, "L": 50, "C": 100, "D": 500, "M": 1000}
@@ -52,11 +53,10 @@ def construct(value):
 
 def p89():
     saved_letters = 0
-    with open("files/roman.txt", "r") as f:
-        for line in f.readlines():
-            raw_roman = line.strip("\n")
-            new_roman = construct(deconstruct(raw_roman))
-            saved_letters += len(raw_roman) - len(new_roman)
+    fl = Path(__file__).parent / "../files/roman.txt"
+    for raw_roman in fl.read_text().splitlines():
+        new_roman = construct(deconstruct(raw_roman))
+        saved_letters += len(raw_roman) - len(new_roman)
 
     return saved_letters
 

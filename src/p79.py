@@ -8,6 +8,7 @@ This method is guaranteed to work with non-repeating digits.
 
 """
 
+from pathlib import Path
 from time import time
 
 
@@ -20,15 +21,15 @@ def pop_longest_list(d):
 def p79():
     # Create graph
     dct = {}
-    with open("files/keylog.txt", "r") as fl:
-        for line in fl.readlines():
-            a, b, c = [int(x) for x in line.strip("\n")]
-            for x in a, b, c:
-                if x not in dct:
-                    dct[x] = set()
-            dct[a].add(b)
-            dct[a].add(c)
-            dct[b].add(c)
+    fl = Path(__file__).parent / "../files/keylog.txt"
+    for line in fl.read_text().splitlines():
+        a, b, c = [int(x) for x in line.strip("\n")]
+        for x in a, b, c:
+            if x not in dct:
+                dct[x] = set()
+        dct[a].add(b)
+        dct[a].add(c)
+        dct[b].add(c)
 
     # Figure out well-ordering
     s = ""

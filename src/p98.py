@@ -8,13 +8,14 @@ matching squares to the pattern and see if you get a square.
 """
 
 from math import ceil
+from pathlib import Path
 from time import time
 
 
 def get_words():
     """Get words from text file into list."""
-    with open("files/words.txt", "r") as fl:
-        lst = fl.read().strip('"').split('","')
+    fl = Path(__file__).parent / "../files/words.txt"
+    lst = fl.read_text().strip('"').split('","')
     return lst
 
 

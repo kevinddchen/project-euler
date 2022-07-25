@@ -23,6 +23,7 @@ Straight Flush:     9   | Single | -      | -      | -      | -      |
 
 """
 
+from pathlib import Path
 from time import time
 
 
@@ -104,12 +105,12 @@ def decompose(values):
 
 def p54():
     count = 0
-    with open("files/poker.txt", "r") as fl:
-        for line in fl.readlines():
-            line = line.strip("\n\r").split(" ")
-            hand1, hand2 = line[:5], line[5:]
-            if score(hand1) > score(hand2):
-                count += 1
+    fl = Path(__file__).parent / "../files/poker.txt"
+    for line in fl.read_text().splitlines():
+        line = line.strip().split(" ")
+        hand1, hand2 = line[:5], line[5:]
+        if score(hand1) > score(hand2):
+            count += 1
     return count
 
 

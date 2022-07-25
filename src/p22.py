@@ -1,5 +1,6 @@
 # ANSWER 871198282
 
+from pathlib import Path
 from time import time
 
 
@@ -9,8 +10,8 @@ def score(name):
 
 
 def p22():
-    with open("files/names.txt", "r") as fl:
-        lst = [x.strip('"') for x in fl.read().split(",")]
+    fl = Path(__file__).parent / "../files/names.txt"
+    lst = [x.strip('"') for x in fl.read_text().split(",")]
     return sum(score(name) * (i + 1) for i, name in enumerate(sorted(lst)))
 
 

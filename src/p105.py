@@ -6,6 +6,7 @@ Brute force. Not really any other choice.
 
 """
 
+from pathlib import Path
 from time import time
 
 
@@ -30,8 +31,8 @@ def order(lst):
 
 
 def p105():
-    with open("files/sets.txt", "r") as fl:
-        allSets = fl.read().split("\n")
+    fl = Path(__file__).parent / "../files/sets.txt"
+    allSets = fl.read_text().splitlines()
 
     s = 0
     for raw_set in allSets:

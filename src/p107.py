@@ -8,6 +8,7 @@ that do not combine two trees, until the graph is connected.
 
 """
 
+from pathlib import Path
 from time import time
 
 
@@ -20,11 +21,11 @@ def merge_trees(forest, t1, t2):
 def p107():
     # get edges and store in list
     edges = []
-    with open("files/network.txt", "r") as fl:
-        for i, line in enumerate(fl.readlines()):
-            for j, x in enumerate(line[:-1].split(",")):
-                if j > i and x != "-":
-                    edges.append((int(x), i, j))
+    fl = Path(__file__).parent / "../files/network.txt"
+    for i, line in enumerate(fl.read_text().splitlines()):
+        for j, x in enumerate(line.split(",")):
+            if j > i and x != "-":
+                edges.append((int(x), i, j))
     forest = list(range(i + 1))
     initial_weight = sum(e[0] for e in edges)
 

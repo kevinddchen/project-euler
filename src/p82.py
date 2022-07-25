@@ -7,15 +7,16 @@ with the lowest sum to reach that cell.
 
 """
 
+from pathlib import Path
 from time import time
 
 
 def p82():
     # get matrix
     M = []
-    with open("files/matrix.txt", "r") as fl:
-        for line in fl.readlines():
-            M.append([int(x) for x in line.strip("\n").split(",")])
+    fl = Path(__file__).parent / "../files/matrix.txt"
+    for line in fl.read_text().splitlines():
+        M.append([int(x) for x in line.split(",")])
 
     # find least-sum path
     dim = len(M)

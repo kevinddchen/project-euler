@@ -1,5 +1,6 @@
 # ANSWER 162
 
+from pathlib import Path
 from time import time
 
 
@@ -14,8 +15,8 @@ def is_triangle(x):
 
 
 def p42():
-    with open("files/words.txt", "r") as fl:
-        lst = fl.read().split(",")
+    fl = Path(__file__).parent / "../files/words.txt"
+    lst = fl.read_text().split(",")
     lst = [convert_to_int(word) for word in lst]
     return sum(1 for x in lst if is_triangle(x))
 

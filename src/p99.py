@@ -8,17 +8,18 @@ function, it preserves order, i.e. x<y implies log(x)<log(y).
 """
 
 from math import log
+from pathlib import Path
 from time import time
 
 
 def p99():
     maxim = (0, 0)
-    with open("files/base_exp.txt") as fl:
-        for i, line in enumerate(fl):
-            base, exp = line.strip("\n").split(",")
-            log_value = int(exp) * log(int(base))
-            if log_value > maxim[0]:
-                maxim = (log_value, i + 1)
+    fl = Path(__file__).parent / "../files/base_exp.txt"
+    for i, line in enumerate(fl.read_text().splitlines()):
+        base, exp = line.split(",")
+        log_value = int(exp) * log(int(base))
+        if log_value > maxim[0]:
+            maxim = (log_value, i + 1)
     return maxim[1]
 
 

@@ -2,6 +2,7 @@
 
 import heapq
 from functools import cached_property
+from pathlib import Path
 from time import time
 
 import numpy as np
@@ -235,7 +236,7 @@ def _get_major(major_idx, mode):
             yield (i, j)
 
 
-def read_puzzles(filename="files/sudoku.txt"):
+def read_puzzles(filename=Path(__file__).parent / "../files/sudoku.txt"):
     with open(filename) as f:
         while f.readline():  # simultaneously checks for EOF and removes header
             arr = []
