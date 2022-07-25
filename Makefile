@@ -19,5 +19,5 @@ $(BIN)/% : $(SRC)/%.cxx $(OBJ)
 
 .PHONY : all clean
 
-clean : 
+clean :
 	rm -f $(OBJ) $(TAR)

@@ -1,16 +1,17 @@
 # project-euler
 
-These are my solutions to [Project Euler](https://projecteuler.net/) problems. 
+These are my solutions to [Project Euler](https://projecteuler.net/) problems.
 Please do not blindly copy numerical answers.
 
-To run any solution, use 
+To run any solution, use
+
+```bash
+./run.sh $NUM
 ```
-./run.sh ###
-```
-where `###` is replaced by an integer.
+
+where `$NUM` is the problem number you want to run.
 If the solution is written in C++, this will compile and run the code.
-If the solution is written in Python, this will run the code using the command `python p###.py`.
-Note that `python` must point to Python 3.
-The only external package used is numpy, although only rarely for matrix manipulations.
+If the solution is written in Python, this will run the code using the command `python -m src.p$NUM`.
+Note that we use Python >= 3.9.
 
 [EulerSolutions.pdf](EulerSolutions.pdf)  contains write-ups for problems that can be solved by hand.
