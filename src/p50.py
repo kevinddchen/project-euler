@@ -1,5 +1,4 @@
-#!/usr/bin/python
-#ANSWER 997651
+# ANSWER 997651
 
 """
 
@@ -9,7 +8,9 @@ run up and check that it is prime.
 """
 
 from time import time
+
 from mathfuncs import PrimeSieve
+
 
 def gen_next_primes(p, sieve):
     p += 1
@@ -18,9 +19,10 @@ def gen_next_primes(p, sieve):
             yield p
         p += 1
 
+
 def p50():
     ps = PrimeSieve(1000000)
-    for _ in ps: 
+    for _ in ps:
         pass
 
     M = (0, 0)
@@ -30,15 +32,15 @@ def p50():
             length = 1
             for q in gen_next_primes(p, ps.sieve):
                 S += q
-                length += 1 
+                length += 1
                 if S >= 1000000:
                     break
-                if ps.sieve[S] and length>M[0]:
+                if ps.sieve[S] and length > M[0]:
                     M = (length, S)
     return M[1]
 
-if __name__ == '__main__':
+
+if __name__ == "__main__":
     time_start = time()
     print(p50())
-    print("Time: {0:.3f}".format(time()-time_start))
-
+    print("Time: {0:.3f}".format(time() - time_start))

@@ -1,5 +1,4 @@
-#!/usr/bin/python
-#ANSWER 26033
+# ANSWER 26033
 
 """
 
@@ -14,19 +13,23 @@ The five primes are 8389, 6733, 5701, 5197, and 13.
 """
 
 from time import time
+
 from mathfuncs import PrimeSieve
 
 SIZE = 5
 
-def add_pair(conn_dicts, p, q):
-    if q in conn_dicts[0]: conn_dicts[0][q].append( (p,) )
-    else: conn_dicts[0][q] = [ (p,) ]
 
-    ## check for complete graphs.
-    for i in range(SIZE-2):
+def add_pair(conn_dicts, p, q):
+    if q in conn_dicts[0]:
+        conn_dicts[0][q].append((p,))
+    else:
+        conn_dicts[0][q] = [(p,)]
+
+    # check for complete graphs.
+    for i in range(SIZE - 2):
         if p in conn_dicts[i]:
             for tup in conn_dicts[i][p]:
-                
+
                 all_in = True
                 for a in tup:
                     if (a,) not in conn_dicts[0][q]:
@@ -34,40 +37,45 @@ def add_pair(conn_dicts, p, q):
                         break
 
                 if all_in:
-                    if q in conn_dicts[i+1]: conn_dicts[i+1][q].append( (p,)+tup )
-                    else: conn_dicts[i+1][q] = [ (p,)+tup ]
+                    if q in conn_dicts[i + 1]:
+                        conn_dicts[i + 1][q].append((p,) + tup)
+                    else:
+                        conn_dicts[i + 1][q] = [(p,) + tup]
+
 
 def p60():
-    conn_dicts = [{} for i in range(SIZE-1)]
+    conn_dicts = [{} for i in range(SIZE - 1)]
     d = 2
     while True:
         ps = PrimeSieve(10**d)
-        for _ in ps: 
+        for _ in ps:
             pass
 
-        ## generate prime pairs p, q with d total digits
+        # generate prime pairs p, q with d total digits
         for p, p_prime in enumerate(ps.sieve):
-            if p==2 or not p_prime: continue
-            p_d = len(str(p)) 
-            if p_d * 2 > d: continue
-            for q in range( max(10**(d-p_d-1)+1, p+2), 10**(d-p_d), 2):
+            if p == 2 or not p_prime:
+                continue
+            p_d = len(str(p))
+            if p_d * 2 > d:
+                continue
+            for q in range(max(10 ** (d - p_d - 1) + 1, p + 2), 10 ** (d - p_d), 2):
 
-                ## if concatenates, add pair to dictionary
-                if ps.sieve[q] and ps.sieve[int(str(p)+str(q))] and ps.sieve[int(str(q)+str(p))]:
+                # if concatenates, add pair to dictionary
+                if ps.sieve[q] and ps.sieve[int(str(p) + str(q))] and ps.sieve[int(str(q) + str(p))]:
                     add_pair(conn_dicts, p, q)
 
         if len(conn_dicts[-1]) != 0:
             M = 10**d
             for p in conn_dicts[-1]:
                 for tup in conn_dicts[-1][p]:
-                    if p+sum(tup) < M:
-                        M = p+sum(tup)
+                    if p + sum(tup) < M:
+                        M = p + sum(tup)
             return M
 
         d += 1
 
-if __name__ == '__main__':
+
+if __name__ == "__main__":
     time_start = time()
     print(p60())
-    print("Time: {0:.3f}".format(time()-time_start))
-
+    print("Time: {0:.3f}".format(time() - time_start))

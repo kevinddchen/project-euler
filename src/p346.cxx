@@ -13,7 +13,7 @@ ANSWER 336108797689259276
 */
 
 
-long p346() 
+long p346()
 {
     const long limit = 1000000000000;
     long sum = 1;
@@ -21,14 +21,14 @@ long p346()
     std::set<long> S;
     std::set<long>::iterator it;
 
-    for (long i=2; i*i<limit; i++) 
+    for (long i=2; i*i<limit; i++)
     {
         long x = (i + 1)*i + 1;
-        while (x < limit) 
+        while (x < limit)
         {
             it = S.find(x);
             if (it == S.end())      // if x has not been encountered yet
-            {    
+            {
                 sum += x;
                 S.insert(x);
             }
@@ -39,7 +39,7 @@ long p346()
 }
 
 
-int main() 
+int main()
 {
     clock_t t;
     t = clock();

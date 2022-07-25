@@ -1,5 +1,4 @@
-#!/usr/bin/python
-#ANSWER 161667
+# ANSWER 161667
 
 """
 
@@ -9,8 +8,9 @@ of unique perimeters.
 
 """
 
+from math import gcd, isqrt
 from time import time
-from math import isqrt, gcd
+
 
 def p75():
 
@@ -19,28 +19,28 @@ def p75():
     good = set()
     bad = set()
 
-    for m in range(2, isqrt(MAX_L//2)+1):
-        ## m, n must have opposite parity
-        if m%2 == 0:
+    for m in range(2, isqrt(MAX_L // 2) + 1):
+        # m, n must have opposite parity
+        if m % 2 == 0:
             n_start = 1
         else:
             n_start = 2
-        
+
         for n in range(n_start, m, 2):
             if gcd(m, n) == 1:
-                L = 2*m*(m+n)
+                L = 2 * m * (m + n)
                 while L <= MAX_L:
                     if L in good:
                         good.remove(L)
                         bad.add(L)
                     elif L not in bad:
                         good.add(L)
-                    L += 2*m*(m+n)
+                    L += 2 * m * (m + n)
 
     return len(good)
 
-if __name__ == '__main__':
+
+if __name__ == "__main__":
     time_start = time()
     print(p75())
-    print("Time: {0:.3f}".format(time()-time_start))
-
+    print("Time: {0:.3f}".format(time() - time_start))

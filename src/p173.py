@@ -1,5 +1,4 @@
-#!/usr/bin/python
-#ANSWER 1572729
+# ANSWER 1572729
 
 """
 
@@ -10,18 +9,19 @@ tiles used is x^2 - (x-2y)^2 = 4y(x-y).
 
 from time import time
 
+
 def p173():
     LIMIT = 10**6
     C = 0
-    for x in range(3, LIMIT//4+2):
-        for y in range(1, (x+1)//2):
-            if 4*y*(x-y) > LIMIT:
+    for x in range(3, LIMIT // 4 + 2):
+        for y in range(1, (x + 1) // 2):
+            if 4 * y * (x - y) > LIMIT:
                 break
             C += 1
     return C
 
-if __name__ == '__main__':
+
+if __name__ == "__main__":
     time_start = time()
     print(p173())
-    print("Time: {0:.3f}".format(time()-time_start))
-
+    print("Time: {0:.3f}".format(time() - time_start))

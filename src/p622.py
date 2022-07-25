@@ -1,5 +1,4 @@
-#!/usr/bin/python
-#ANSWER 3010983666182123972
+# ANSWER 3010983666182123972
 
 """
 
@@ -10,13 +9,16 @@ divisors d of 60.
 """
 
 from time import time
+
 from p44 import divisors
+
 
 def check(d, bad):
     for b in bad:
-        if b%d == 0:
+        if b % d == 0:
             return False
     return True
+
 
 def p622():
 
@@ -27,13 +29,11 @@ def p622():
     N = pow(2, 60) - 1
     for d in divisors(N):
         if check(d, bad):
-            S = S + (d+1)
+            S = S + (d + 1)
     return S
 
-if __name__ == '__main__':
+
+if __name__ == "__main__":
     time_start = time()
     print(p622())
-    print("Time: {0:.3f}".format(time()-time_start))
-
-
-
+    print("Time: {0:.3f}".format(time() - time_start))

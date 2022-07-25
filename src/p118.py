@@ -1,12 +1,11 @@
-#!/usr/bin/python
-#ANSWER 44680
+# ANSWER 44680
 
 """
 
 To solve this problem, every single concatenation was reached using a
 depth-first tree search. Starting with an empty set, the digits 1-9 were
-added by 1) inserting into an existing element, left to right, then 2) 
-appending to the end. To reduce the number of searches, a criteria was 
+added by 1) inserting into an existing element, left to right, then 2)
+appending to the end. To reduce the number of searches, a criteria was
 evaluated at each node to determine if it is possible to have every number
 in the list be prime, given the number of digits remaining.
 
@@ -20,7 +19,9 @@ check that all elements are prime. Each set is guaranteed to be unique.
 """
 
 from time import time
+
 from mathfuncs import is_prime
+
 
 def recurse(lst=[], n=1):
 
@@ -30,7 +31,7 @@ def recurse(lst=[], n=1):
         n_primes = sum(1 for x in lst if (x > 1 and is_prime(x)))
         if n_primes < crit:
             return 0
-    
+
     # hit bottom of tree
     if n == 10:
         return 1
@@ -43,20 +44,21 @@ def recurse(lst=[], n=1):
         while j <= len(x_str):
             new_x = int(x_str[:j] + str(n) + x_str[j:])
             lst[i] = new_x
-            S += recurse(lst, n+1)
+            S += recurse(lst, n + 1)
             j += 1
         lst[i] = x
 
     lst.append(n)
-    S += recurse(lst, n+1)
+    S += recurse(lst, n + 1)
     lst.pop()
     return S
+
 
 def p118():
     return recurse()
 
-if __name__ == '__main__':
+
+if __name__ == "__main__":
     time_start = time()
     print(p118())
-    print("Time: {0:.3f}".format(time()-time_start)) 
-
+    print("Time: {0:.3f}".format(time() - time_start))

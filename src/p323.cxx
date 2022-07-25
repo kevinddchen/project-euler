@@ -19,18 +19,18 @@ Then we simply calculate the expected value.
 
 ANSWER 6.3551758451
 
-*/ 
+*/
 
 
-double p323() 
+double p323()
 {
     double cum, prev_cum, prob;
     double exp_val = 0;
 
     prev_cum = 0;
 
-    for (int N=1; true; N++) 
-    { 
+    for (int N=1; true; N++)
+    {
         cum = pow(1 - pow(2, -N), 32);
         prob = cum - prev_cum;
 
@@ -44,7 +44,7 @@ double p323()
 }
 
 
-int main() 
+int main()
 {
     clock_t t;
     t = clock();

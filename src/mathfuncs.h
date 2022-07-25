@@ -6,7 +6,7 @@
 /* Returns true if x is prime (and > 1). */
 template <typename T> bool is_prime(T x);
 
-/* Creates prime sieve, i.e. array where nth entry is true when n is prime 
+/* Creates prime sieve, i.e. array where nth entry is true when n is prime
 (and > 1). */
 bool * prime_sieve(int size);
 

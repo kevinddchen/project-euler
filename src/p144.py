@@ -1,5 +1,4 @@
-#!/usr/bin/python
-#ANSWER 354
+# ANSWER 354
 
 """
 
@@ -14,32 +13,35 @@ solution. This gives the next point of reflection, C.
 """
 
 from time import time
+
 import numpy as np
 
+
 def normal_at(A):
-    ## return a vector normal to the ellipse at A.
-    return np.array([4*A[0], A[1]])
+    # return a vector normal to the ellipse at A.
+    return np.array([4 * A[0], A[1]])
+
 
 def next_point(A, B):
     v = B - A
     n = normal_at(B)
     v_par = n * v.dot(n) / n.dot(n)
     w = v - 2 * v_par
-    t = 2 * v.dot(n)/(4*w[0]**2 + w[1]**2)
+    t = 2 * v.dot(n) / (4 * w[0] ** 2 + w[1] ** 2)
     return B + t * w
+
 
 def p144():
     A = np.array([0, 10.1])
     B = np.array([1.4, -9.6])
     count = 0
-    while not(-0.01 < B[0] and B[0] < 0.01 and B[1] > 0):
+    while not (-0.01 < B[0] and B[0] < 0.01 and B[1] > 0):
         A, B = B, next_point(A, B)
         count += 1
     return count
 
-if __name__ == '__main__':
+
+if __name__ == "__main__":
     time_start = time()
     print(p144())
-    print("Time: {0:.3f}".format(time()-time_start))
-
-
+    print("Time: {0:.3f}".format(time() - time_start))

@@ -12,7 +12,7 @@ the following equation for p(i, j; T):
     p(i, j; T) =  (1/2)(1/2^T) p(i - 2^(T-1), j; T) + (1/2)(1/2^T) p(i - 2^(T-1), j-1; T)
                 + (1/2)(1 - 1/2^T) p(i, j-1; T) + (1/2)(1 - 1/2^T) p(i, j; T)
 
-We can rearrange this into a single equation for p(i, j; T). Then if we let 
+We can rearrange this into a single equation for p(i, j; T). Then if we let
 p(i, j) denote the probability of P2 winning if T is always optimally chosen, we
 simply just take the maximum over all values of T.
 
@@ -82,7 +82,7 @@ struct Probs
 };
 
 
-double p232() 
+double p232()
 {
     const int size = 100;
     Probs P(size);
@@ -97,7 +97,7 @@ double p232()
 }
 
 
-int main() 
+int main()
 {
     clock_t t;
     t = clock();

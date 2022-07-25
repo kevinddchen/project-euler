@@ -39,9 +39,9 @@ long count_multiples(long a, long n)
 }
 
 
-long p202() 
+long p202()
 {
-    
+
     const long bounces = 12017639147;
     long n = (bounces + 3)/2;
 
@@ -74,7 +74,7 @@ long p202()
 }
 
 
-int main() 
+int main()
 {
     clock_t t;
     t = clock();

@@ -41,7 +41,7 @@ void inv_d(long (&affine)[3])
 }
 
 
-long p277() 
+long p277()
 {
     const char seq[] = "UDDDUdddDDUDDddDdDddDDUDDdUUDd";
     const long target = 1'000'000'000'000'000;
@@ -80,7 +80,7 @@ long p277()
 }
 
 
-int main() 
+int main()
 {
     clock_t t;
     t = clock();

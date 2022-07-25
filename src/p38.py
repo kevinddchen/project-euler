@@ -1,7 +1,7 @@
-#!/usr/bin/python
-#ANSWER 932718654
+# ANSWER 932718654
 
 from time import time
+
 
 def check(x):
     """
@@ -10,10 +10,10 @@ def check(x):
     multiples of a number. Returns the final string if it can, else returns 0.
 
     """
-    string = ''
+    string = ""
     i = 1
     while len(string) < 9:
-        string += str(x*i)
+        string += str(x * i)
         i += 1
     if len(string) != 9:
         return False
@@ -22,11 +22,13 @@ def check(x):
             return False
     return int(string)
 
+
 def p38():
-    ## maximum 4 digit numbers as n > 1
+    # maximum 4 digit numbers as n > 1
     return max(check(x) for x in range(1, 10000))
 
-if __name__ == '__main__':
+
+if __name__ == "__main__":
     time_start = time()
     print(p38())
-    print("Time: {0:.3f}".format(time()-time_start))
+    print("Time: {0:.3f}".format(time() - time_start))

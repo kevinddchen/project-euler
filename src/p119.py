@@ -1,5 +1,4 @@
-#!/usr/bin/python
-#ANSWER 248155780267521
+# ANSWER 248155780267521
 
 """
 
@@ -17,8 +16,9 @@ least ceil(b/9) digits. For example:
 
 """
 
-from time import time
 from math import ceil
+from time import time
+
 
 def p119():
     L = [(2, 2, 2, True)]
@@ -27,16 +27,20 @@ def p119():
         L.sort()
         n, base, exp, first = L.pop(0)
 
-        ## generate next numbers
-        L.append( (n*base, base, exp+1, False) )
+        # generate next numbers
+        L.append((n * base, base, exp + 1, False))
         if first:
-            n_0, base_0, exp_0, = (base+1)**2, base+1, 2
-            while len(str(n_0)) < ceil(base_0/9.):
+            n_0, base_0, exp_0, = (
+                (base + 1) ** 2,
+                base + 1,
+                2,
+            )
+            while len(str(n_0)) < ceil(base_0 / 9.0):
                 exp_0 += 1
                 n_0 *= base_0
-            L.append( (n_0, base_0, exp_0, True) )
+            L.append((n_0, base_0, exp_0, True))
 
-        ## check
+        # check
         if n < 10:
             continue
         if sum(int(c) for c in str(n)) == base:
@@ -44,8 +48,8 @@ def p119():
 
     return n
 
-if __name__ == '__main__':
+
+if __name__ == "__main__":
     time_start = time()
     print(p119())
-    print("Time: {0:.3f}".format(time()-time_start))
-
+    print("Time: {0:.3f}".format(time() - time_start))

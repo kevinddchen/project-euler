@@ -47,7 +47,7 @@ long p719()
 }
 
 
-int main() 
+int main()
 {
     clock_t t;
     t = clock();

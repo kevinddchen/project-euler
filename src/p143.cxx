@@ -28,7 +28,7 @@ bool is_square(long x)
 }
 
 
-long p143() 
+long p143()
 {
     const int limit = 120'000;
 
@@ -44,7 +44,7 @@ long p143()
         {
             if (p+q >= limit)
                 break;
-            if (is_square(p*p + q*q + p*q)) 
+            if (is_square(p*p + q*q + p*q))
                 temp.push_back(q);
         }
         p_partners.push_back(temp);
@@ -65,7 +65,7 @@ long p143()
                 auto q_partners = p_partners[*q_iter];
                 // if r is a partner of q
                 if (std::find(q_partners.begin(), q_partners.end(), *r_iter) != q_partners.end())
-                    hits[p + *q_iter + *r_iter] = true;       
+                    hits[p + *q_iter + *r_iter] = true;
             }
         }
     }
@@ -82,7 +82,7 @@ long p143()
 }
 
 
-int main() 
+int main()
 {
     clock_t t;
     t = clock();

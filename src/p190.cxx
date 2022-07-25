@@ -23,7 +23,7 @@ int P(int m)
 }
 
 
-long p190() 
+long p190()
 {
     long S = 0;
     for (int m=2; m<=15; m++)
@@ -32,7 +32,7 @@ long p190()
 }
 
 
-int main() 
+int main()
 {
     clock_t t;
     t = clock();

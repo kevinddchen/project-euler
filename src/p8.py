@@ -1,8 +1,7 @@
-#!/usr/bin/python
-#ANSWER 23514624000
+# ANSWER 23514624000
 
-from time import time 
 from math import prod
+from time import time
 
 x = "7316717653133062491922511967442657474235534919493496983520312774506326239\
 578318016984801869478851843858615607891129494954595017379583319528532088055111\
@@ -18,11 +17,12 @@ x = "7316717653133062491922511967442657474235534919493496983520312774506326239\
 801561660979191338754992005240636899125607176060588611646710940507754100225698\
 315520005593572972571636269561882670428252483600823257530420752963450"
 
-def p8():
-    return max(prod(int(n) for n in x[i:i+13]) for i in range(len(x)-12))
 
-if __name__ == '__main__':
+def p8():
+    return max(prod(int(n) for n in x[i : i + 13]) for i in range(len(x) - 12))
+
+
+if __name__ == "__main__":
     time_start = time()
     print(p8())
-    print("Time: {0:.3f}".format(time()-time_start))
-
+    print("Time: {0:.3f}".format(time() - time_start))

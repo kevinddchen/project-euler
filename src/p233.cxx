@@ -12,9 +12,9 @@ For any integers a, b such that N^2 = a^2 + b^2, we can check that the integers
     x = (N - (a-b)) / 2 ,       y = (N - (a+b)) / 2
 
 give a point (x, y) on the circle. Therefore, f(N) = r_2(N^2), where r_2 is the
-sum of squares function. If the prime factorization is 
+sum of squares function. If the prime factorization is
 
-    N = 2^g p1^j1 p2^j2 ... q1^k1 q2^k2 ... 
+    N = 2^g p1^j1 p2^j2 ... q1^k1 q2^k2 ...
 
 where p_i and q_i are primes of the form
 
@@ -38,7 +38,7 @@ ANSWER 271204031455541309
 */
 
 
-/* Return all integers <= N whose prime factorizations only include elements of `primes`. */ 
+/* Return all integers <= N whose prime factorizations only include elements of `primes`. */
 std::vector<int> generate_restricted_integers(std::vector<int> primes, int N)
 {
     std::vector<int> out{1};
@@ -56,7 +56,7 @@ std::vector<int> generate_restricted_integers(std::vector<int> primes, int N)
             {
                 if (n*power_of_p > N)    // `out` is sorted
                     break;
-                temp.push_back(n*power_of_p);  
+                temp.push_back(n*power_of_p);
             }
             power_of_p *= p;
         }
@@ -74,10 +74,10 @@ void recurse(
     const long limit,           // limit = 10^11
     std::vector<int> &powers,   // powers of p's we are considering
     std::vector<int> &prev_p,   // previous p's
-    long prev_prod,             // product of previous p's 
+    long prev_prod,             // product of previous p's
     int k,                      // current index of p
-    std::vector<int> &p_primes, 
-    std::vector<int> &q_numbers, 
+    std::vector<int> &p_primes,
+    std::vector<int> &q_numbers,
     long * partial_sums)
 {
     for (long p : p_primes)
@@ -106,7 +106,7 @@ void recurse(
 }
 
 
-long p233() 
+long p233()
 {
     const long limit = 100'000'000'000;
 
@@ -154,7 +154,7 @@ long p233()
 }
 
 
-int main() 
+int main()
 {
     clock_t t;
     t = clock();

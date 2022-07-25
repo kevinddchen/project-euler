@@ -1,5 +1,4 @@
-#!/usr/bin/python
-#ANSWER 194505988824000
+# ANSWER 194505988824000
 
 """
 
@@ -19,32 +18,34 @@ zeros, but this is the outline of the code.
 
 from time import time
 
+
 def foo(lst, target_n, target_tot, index=0, n=0, tot=0, L=[]):
 
-    """ Iterates through the number of ways to pick [target_n] elements
-    from [lst] which sum up to [target_tot]. """
+    """Iterates through the number of ways to pick [target_n] elements
+    from [lst] which sum up to [target_tot]."""
 
     if tot == target_tot and n == target_n:
         yield L
     elif (index < len(lst)) and (tot <= target_tot) and (n < target_n):
         L.append(lst[index])
-        for x in foo(lst, target_n, target_tot, index+1, n+1, tot+lst[index], L):
+        for x in foo(lst, target_n, target_tot, index + 1, n + 1, tot + lst[index], L):
             yield x
         L.pop()
-        for x in foo(lst, target_n, target_tot, index+1, n, tot, L):
+        for x in foo(lst, target_n, target_tot, index + 1, n, tot, L):
             yield x
 
+
 def p491():
-    digits = list(range(10))*2
+    digits = list(range(10)) * 2
     count = 0
 
     for x in [23, 34, 45, 56, 67]:
         for L in foo(digits, 10, x):
             count += 10 - L.count(0)
-    return count * (2*3*4*5*6*7*8*9*10)**2 // (2**10) // 10
+    return count * (2 * 3 * 4 * 5 * 6 * 7 * 8 * 9 * 10) ** 2 // (2**10) // 10
 
-if __name__ == '__main__':
+
+if __name__ == "__main__":
     time_start = time()
     print(p491())
-    print("Time: {0:.3f}".format(time()-time_start))
-
+    print("Time: {0:.3f}".format(time() - time_start))

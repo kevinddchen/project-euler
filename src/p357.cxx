@@ -13,7 +13,7 @@ ANSWER 1739023853137
 */
 
 
-bool prime_generating(long x, long * div_arr, bool * sieve) 
+bool prime_generating(long x, long * div_arr, bool * sieve)
 {
     div_arr[0] = 1;
     int divs = 1;
@@ -21,17 +21,17 @@ bool prime_generating(long x, long * div_arr, bool * sieve)
         return false;
 
     for (long int p=2; p*p <= x; p++)   // find prime factors
-    {  
-        if (sieve[p] and x%p==0) 
+    {
+        if (sieve[p] and x%p==0)
         {
             if (x%(p*p)==0)             // x must be square-free
                 return false;
-            
+
             int add = 0;
-            for (int i=0; i < divs; i++) 
+            for (int i=0; i < divs; i++)
             {
                 long int d = p*div_arr[i];
-                if (d*d < x) 
+                if (d*d < x)
                 {
                     if (!sieve[d + x/d])
                         return false;
@@ -46,7 +46,7 @@ bool prime_generating(long x, long * div_arr, bool * sieve)
 }
 
 
-long p357() 
+long p357()
 {
     const int size = 100000000;
     bool * sieve = prime_sieve(size+2);
@@ -55,7 +55,7 @@ long p357()
     long S = 0;
     long div_arr[100];
 
-    for (long i=1; i<=size; i++) 
+    for (long i=1; i<=size; i++)
     {
         if (prime_generating(i, div_arr, sieve))
             S += i;
@@ -64,7 +64,7 @@ long p357()
 }
 
 
-int main() 
+int main()
 {
     clock_t t;
     t = clock();
@@ -72,5 +72,3 @@ int main()
     t = clock()-t;
     printf("Time: %.3f\n", ((float) t)/CLOCKS_PER_SEC);
 }
-
-

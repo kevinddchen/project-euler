@@ -1,5 +1,4 @@
-#!/usr/bin/python
-#ANSWER 1097343
+# ANSWER 1097343
 
 """
 
@@ -8,9 +7,11 @@ quite straightforward to count them all.
 
 """
 
-from time import time
 from math import isqrt
+from time import time
+
 from mathfuncs import is_prime
+
 
 def prime_gen(maxim):
     yield 2
@@ -20,8 +21,10 @@ def prime_gen(maxim):
             yield x
         x += 2
 
-def power_triple(a, b, c): 
+
+def power_triple(a, b, c):
     return a**2 + b**3 + c**4
+
 
 def p87():
     TARGET = 50000000
@@ -41,8 +44,9 @@ def p87():
                     break
 
     return len(sum_set)
-            
-if __name__ == '__main__':
+
+
+if __name__ == "__main__":
     time_start = time()
     print(p87())
-    print("Time: {0:.3f}".format(time()-time_start))
+    print("Time: {0:.3f}".format(time() - time_start))

@@ -1,5 +1,4 @@
-#!/usr/bin/python
-#ANSWER 7526965179680
+# ANSWER 7526965179680
 
 """
 
@@ -10,13 +9,15 @@ is equal to the number of carries when m is added to n-m in base p.
 """
 
 from time import time
+
 from mathfuncs import PrimeSieve
 
-def choose_greatest_power(m, n, p):
-    """ Gives greatest integer c for prime p such that p^c divides choose(m, n)."""
 
-    a = max(m-n, n)
-    b = min(m-n, n)
+def choose_greatest_power(m, n, p):
+    """Gives greatest integer c for prime p such that p^c divides choose(m, n)."""
+
+    a = max(m - n, n)
+    b = min(m - n, n)
     carries = 0
     i = 0
     prev = 0
@@ -31,15 +32,16 @@ def choose_greatest_power(m, n, p):
         i += 1
     return carries
 
+
 def p231():
-    m, n = 2*10**7, 5*10**6
+    m, n = 2 * 10**7, 5 * 10**6
     s = 0
     for p in PrimeSieve(m):
-        s += choose_greatest_power(m, n, p)*p
+        s += choose_greatest_power(m, n, p) * p
     return s
 
-if __name__ == '__main__':
+
+if __name__ == "__main__":
     time_start = time()
     print(p231())
-    print("Time: {0:.3f}".format(time()-time_start))
-
+    print("Time: {0:.3f}".format(time() - time_start))

@@ -1,5 +1,4 @@
-#!/usr/bin/python
-#ANSWER 20313839404245
+# ANSWER 20313839404245
 
 """
 
@@ -14,24 +13,26 @@ As it turns out, the guess is actually the optimal set.
 
 from time import time
 
+
 def subsets(lst, i=0, temp=[]):
-    """ Generates all subsets of lst."""
+    """Generates all subsets of lst."""
     yield temp
     for j in range(i, len(lst)):
         temp.append(lst[j])
-        for x in subsets(lst, j+1, temp):
+        for x in subsets(lst, j + 1, temp):
             yield x
         temp.pop()
 
+
 def generate_possible(limit, n, temp=[]):
-    """ Generates special sum sets with sums less than or equal to the limit. """
+    """Generates special sum sets with sums less than or equal to the limit."""
 
     if len(temp) == n:
         yield temp
 
     elif len(temp) == 0:
         i = 1
-        while i*n + n*(n-1)//2 <= limit:
+        while i * n + n * (n - 1) // 2 <= limit:
             temp.append(i)
             for x in generate_possible(limit, n, temp):
                 yield x
@@ -40,22 +41,22 @@ def generate_possible(limit, n, temp=[]):
 
     else:
         remain = n - len(temp)
-        i = temp[-1]+1
-        while sum(temp) + i*remain + remain*(remain-1)//2 <= limit:
+        i = temp[-1] + 1
+        while sum(temp) + i * remain + remain * (remain - 1) // 2 <= limit:
             try:
-                ## enforce property ii
+                # enforce property ii
                 if len(temp) >= 2:
-                    j = len(temp)//2 + 1
-                    k = (len(temp)+1)//2 + 1
+                    j = len(temp) // 2 + 1
+                    k = (len(temp) + 1) // 2 + 1
                     if i >= sum(temp[:j]) - sum(temp[k:]):
                         raise Exception
-                ## enforce property i
+                # enforce property i
                 for s in [s[:] for s in subsets(temp)]:
                     if sum(s) == i:
                         raise Exception
                     other = [x for x in temp if x not in s]
                     for t in [t[:] for t in subsets(other)]:
-                        if sum(s)+i == sum(t):
+                        if sum(s) + i == sum(t):
                             raise Exception
 
                 temp.append(i)
@@ -66,12 +67,13 @@ def generate_possible(limit, n, temp=[]):
                 pass
             finally:
                 i += 1
-   
+
+
 def p103():
     optimal_6 = [11, 18, 19, 20, 22, 25]
-    ## apply algorithm to create guess 
-    middle = optimal_6[len(optimal_6)//2]
-    guess_7 = [middle] + [x+middle for x in optimal_6]
+    # apply algorithm to create guess
+    middle = optimal_6[len(optimal_6) // 2]
+    guess_7 = [middle] + [x + middle for x in optimal_6]
 
     minim = (sum(guess_7), guess_7)
     for x in generate_possible(sum(guess_7), 7):
@@ -79,9 +81,10 @@ def p103():
             minim = (sum(x), x)
 
     optimal_7 = minim[1]
-    return ''.join(str(x) for x in optimal_7)
+    return "".join(str(x) for x in optimal_7)
 
-if __name__ == '__main__':
+
+if __name__ == "__main__":
     time_start = time()
     print(p103())
-    print("Time: {0:.3f}".format(time()-time_start))
+    print("Time: {0:.3f}".format(time() - time_start))

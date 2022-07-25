@@ -5,7 +5,7 @@
 
 /*
 
-Note that s(n) can be calculated from its prime factorization. If 
+Note that s(n) can be calculated from its prime factorization. If
 n = p1^a1 * p2^a2 * ... * pk^ak, then
 
     s(n) = MAX{ s(p1^a1), s(p2^a2), ... , s(pk^ak) }
@@ -30,11 +30,11 @@ int count_divisions(int x, int d)
 }
 
 
-long p549() 
+long p549()
 {
     const int size = 100'000'000;
     long C = 0;
-    
+
     int * s = new int[size+1]();    // array to store s[n]
 
     for (int p=2; p<=size; p++)
@@ -48,7 +48,7 @@ long p549()
 
         int s_n = p;
         int a_to_add = 1;           // used for calculating s(p_power)
-        long p_power = p;    
+        long p_power = p;
         while (p_power <= size)     // iterate through powers of p
         {
             // calculate s(p_power)
@@ -73,7 +73,7 @@ long p549()
     return C;
 }
 
-int main() 
+int main()
 {
     clock_t t;
     t = clock();

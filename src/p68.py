@@ -1,5 +1,4 @@
-#!/usr/bin/python
-#ANSWER 6531031914842725
+# ANSWER 6531031914842725
 
 """
 
@@ -11,18 +10,20 @@ the first valid magic 5-gon is already maximal and is the answer.
 
 """
 
-from time import time
 from itertools import permutations
+from time import time
+
 
 def generate_5_gons():
     """generate all 5-gon rings in decreasing string order"""
     for start in range(6, 0, -1):
         for a in permutations(range(10, start, -1), 4):
-            if 10 not in a:     ## we are looking for 16-digit strings
+            if 10 not in a:  # we are looking for 16-digit strings
                 continue
             a = (start,) + a
             for b in permutations([x for x in range(9, 0, -1) if x not in a]):
                 yield a, b
+
 
 def p68():
     for a, b in generate_5_gons():
@@ -30,21 +31,21 @@ def p68():
         sets = []
         t = True
         for i in range(5):
-            sets.append((a[i], b[i], b[(i+1)%5]))
-            if sum(sets[i])!=sum(sets[0]):
+            sets.append((a[i], b[i], b[(i + 1) % 5]))
+            if sum(sets[i]) != sum(sets[0]):
                 t = False
                 break
 
-        ## t tracks if we have a magic 5-gon. If True, we have answer
+        # t tracks if we have a magic 5-gon. If True, we have answer
         if t:
-            string = ''
+            string = ""
             for s in sets:
                 for x in s:
                     string += str(x)
             return string
 
-if __name__ == '__main__':
+
+if __name__ == "__main__":
     time_start = time()
     print(p68())
-    print("Time: {0:.3f}".format(time()-time_start))
-
+    print("Time: {0:.3f}".format(time() - time_start))

@@ -1,5 +1,4 @@
-#!/usr/bin/python
-#ANSWER 1517926517777556
+# ANSWER 1517926517777556
 
 """
 
@@ -24,18 +23,15 @@ def p700():
     while b != 1:
 
         d = a // b
-        r = (b * (d+1)) - a
+        r = (b * (d + 1)) - a
 
-        a, b = a - d*b, r
+        a, b = a - d * b, r
         S = S + b
 
     return S
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     time_start = time()
     print(p700())
-    print("Time: {0:.3f}".format(time()-time_start))
-
-
-
+    print("Time: {0:.3f}".format(time() - time_start))

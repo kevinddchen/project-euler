@@ -1,5 +1,4 @@
-#!/usr/bin/python
-#ANSWER 428570
+# ANSWER 428570
 
 """
 
@@ -13,23 +12,23 @@ where 3/7 - p'/q' <= 1/7q.
 
 """
 
-from time import time
 from math import gcd
+from time import time
+
 
 def p71():
-    prev = (2, 5)       ## (p, q)
+    prev = (2, 5)  # (p, q)
     for q in range(1000000, 0, -1):
-        if q*(3*prev[1] - 7*prev[0]) <= prev[1]:
+        if q * (3 * prev[1] - 7 * prev[0]) <= prev[1]:
             break
-        p = (q*3-1) // 7    ## p/q just under 3/7
-        if p*prev[1] > prev[0]*q:
+        p = (q * 3 - 1) // 7  # p/q just under 3/7
+        if p * prev[1] > prev[0] * q:
             prev = (p, q)
 
     return prev[0] // gcd(prev[0], prev[1])
 
-if __name__ == '__main__':
+
+if __name__ == "__main__":
     time_start = time()
     print(p71())
-    print("Time: {0:.3f}".format(time()-time_start))
-
-
+    print("Time: {0:.3f}".format(time() - time_start))

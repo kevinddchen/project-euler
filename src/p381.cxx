@@ -15,16 +15,16 @@ ANSWER 139602943319822
 */
 
 
-long p381() 
+long p381()
 {
     const int size = 100000000;
     bool * sieve = prime_sieve(size);
 
     long S = 0;
     long n;
-    for (long i=2; i<size; i++) 
+    for (long i=2; i<size; i++)
     {
-        if (sieve[i]) 
+        if (sieve[i])
         {
             n = (-3*modular_inverse(8L, i))%i;
             if (n < 0)
@@ -36,7 +36,7 @@ long p381()
 }
 
 
-int main() 
+int main()
 {
     clock_t t;
     t = clock();
@@ -44,5 +44,3 @@ int main()
     t = clock()-t;
     printf("Time: %.3f\n", ((float) t)/CLOCKS_PER_SEC);
 }
-
-

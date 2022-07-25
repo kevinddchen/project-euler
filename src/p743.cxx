@@ -25,7 +25,7 @@ ANSWER 259158998
 */
 
 
-long p743() 
+long p743()
 {
     const int M = 1'000'000'007;
     const int k = 100'000'000;      // window size
@@ -36,7 +36,7 @@ long p743()
 
     // multiply by 2^(-2j)
     int power_of_2 = modular_power(modular_inverse(4, M), j, M);
-    
+
     for (int p=1; p<=k/2; p++)
     {
         term = (term * power_of_2) % M;
@@ -51,7 +51,7 @@ long p743()
 }
 
 
-int main() 
+int main()
 {
     clock_t t;
     t = clock();

@@ -7,7 +7,7 @@
 Each hidden point a taxicab distance n away from the center corresponds to a
 pair of integers (a, b) where a+b = n and gcd(a, b) =/= 1. Thus we are summing
 up, for each n, the number of a < n that share a non-trivial divisor with n.
-This is given precisely by n - phi(n) - 1, where phi is the totient function. 
+This is given precisely by n - phi(n) - 1, where phi is the totient function.
 
 ANSWER 11762187201804552
 
@@ -35,7 +35,7 @@ int * totient_sieve(int size)
 }
 
 
-long p351() 
+long p351()
 {
     const int size = 100'000'000;
     long S = size-1;
@@ -43,12 +43,12 @@ long p351()
     int * sieve = totient_sieve(size+1);
     for (int i=2; i<=size; i++)
         S += i - sieve[i] - 1;
-    
+
     return S*6;
 }
 
 
-int main() 
+int main()
 {
     clock_t t;
     t = clock();

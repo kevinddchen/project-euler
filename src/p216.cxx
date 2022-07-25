@@ -4,14 +4,14 @@
 
 /*
 
-We can use a sieve method to generate all primes. This relies on two claims: 
+We can use a sieve method to generate all primes. This relies on two claims:
 
  1. If d is a non-trivial (i.e. d =/= 1) divisor of t(n) = 2n^2 - 1, then
     (a) d does not divide n, n+1, or n-1. Equivalently, for no integer k will
         n + kd be 0 or +/- 1.
     (b) d divides t(+/- n + k d) for all integer k.
 
-(Proof) For (a), note that d cannot divide 1 and t(n) = 2(n +/- 1)^2 -/+ 4(n +/-1) + 1. 
+(Proof) For (a), note that d cannot divide 1 and t(n) = 2(n +/- 1)^2 -/+ 4(n +/-1) + 1.
 For (b), note that t(+/- n + k d) = t(n) +/- 4 n k d + 2 k^2 d^2.
 
  2. Let d be the smallest non-trivial divisor of t(n) = 2n^2 - 1. If d =/= t(n)
@@ -19,7 +19,7 @@ For (b), note that t(+/- n + k d) = t(n) +/- 4 n k d + 2 k^2 d^2.
 
 (Proof) First, we prove that d < 2n. Since d is the smallest non-trivial
 divisor of t(n) but d =/= t(n), we necessarily have d^2 <= t(n).
-    d^2 <= t(n) = 2n^2 - 1 < 2n^2  -->  d < sqrt(2) n < 2 n 
+    d^2 <= t(n) = 2n^2 - 1 < 2n^2  -->  d < sqrt(2) n < 2 n
 This implies |n - d| < n. From Claim 1a, we also have 2 <= |n - d|. From Claim
 1b, d divides t(|n-d|).
 
@@ -29,7 +29,7 @@ So t(3) and t(4) are prime and t(5) is composite. For each composite we
 encounter, if it contains a factor that we have not encountered before, we apply
 the same procedure to find more composites. For instance, t(9) = 7 * 23 is
 composite and 23 has not been encountered before. Then all n = 23-9, 23+9, 46-9,
-46+9, ... correspond to composite t(n). 
+46+9, ... correspond to composite t(n).
 
 ANSWER 5437849
 
@@ -51,7 +51,7 @@ void filter_multiples(long * sieve, int limit, long n)
 }
 
 
-long p216() 
+long p216()
 {
     const int limit = 50'000'000;
 
@@ -59,7 +59,7 @@ long p216()
     long * sieve = new long[limit+1];
     for (long n=0; n<=limit; n++)
         sieve[n] = 2*n*n - 1;
-    
+
     long C = 0;
     for (long n=2; n<=limit; n++)
     {
@@ -73,7 +73,7 @@ long p216()
 }
 
 
-int main() 
+int main()
 {
     clock_t t;
     t = clock();

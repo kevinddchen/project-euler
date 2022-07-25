@@ -53,7 +53,7 @@ int find_root(int j, int * parents)
 }
 
 
-long p186() 
+long p186()
 {
     const int size = 1'000'000;
     const int threshold = .99 * size;
@@ -91,7 +91,7 @@ long p186()
 }
 
 
-int main() 
+int main()
 {
     clock_t t;
     t = clock();

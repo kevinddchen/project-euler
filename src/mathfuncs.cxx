@@ -4,7 +4,7 @@
 
 
 template <typename T>
-bool is_prime(T x) 
+bool is_prime(T x)
 {
     if (x < 2)
         return false;
@@ -23,21 +23,21 @@ template bool is_prime<long>(long);
 template bool is_prime<int>(int);
 
 
-bool * prime_sieve(int size) 
+bool * prime_sieve(int size)
 {
     bool * sieve = new bool[size];
 
     // initialize values
     sieve[0] = sieve[1] = false;
-    for (int i=2; i<size; i++) 
+    for (int i=2; i<size; i++)
         sieve[i] = true;
 
     // sieve
-    for (int i=2; i*i<size; i++) 
+    for (int i=2; i*i<size; i++)
     {
-        if (sieve[i]) 
+        if (sieve[i])
         {
-            for (int j=i*i; j<size; j+=i) 
+            for (int j=i*i; j<size; j+=i)
                 sieve[j] = false;
         }
     }
@@ -46,27 +46,27 @@ bool * prime_sieve(int size)
 
 
 template <typename T>
-std::vector<std::array<T, 2>> prime_factorize(T x) 
+std::vector<std::array<T, 2>> prime_factorize(T x)
 {
     std::vector<std::array<T, 2>> facts;
     T a;
-    for (T i=2; i*i<=x; i++) 
+    for (T i=2; i*i<=x; i++)
     {
         a = 0;  // power of prime factor
-        while (x%i == 0) 
+        while (x%i == 0)
         {
             x /= i;
             a++;
         }
         if (a != 0)
         {
-            std::array<T, 2> arr = {i, a};     
+            std::array<T, 2> arr = {i, a};
             facts.push_back(arr);
         }
     }
     if (x > 1)  // remaining part may be a prime factor
     {
-        std::array<T, 2> arr = {x, 1};     
+        std::array<T, 2> arr = {x, 1};
         facts.push_back(arr);
     }
     return facts;
@@ -105,7 +105,7 @@ template void extended_gcd<long>(long, long, long&, long&, long&);
 
 
 template <typename T>
-T modular_inverse(T a, T m) 
+T modular_inverse(T a, T m)
 {
     // use Extended Euclidean algorithm to solve a*s + m*t = 1. Then s is the inverse.
     T s, t, r;
@@ -121,10 +121,10 @@ template int modular_inverse<int>(int, int);
 
 
 template <typename T>
-int modular_power(int a, T b, int m) 
+int modular_power(int a, T b, int m)
 {
     long result(1), base(a%m);
-    while (b > 0) 
+    while (b > 0)
     {
         if (b & 1)  // if (b % 2) == 1
             result = (result * base) % m;

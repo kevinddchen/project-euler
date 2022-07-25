@@ -1,5 +1,4 @@
-#!/usr/bin/python
-#ANSWER: 892371480
+# ANSWER: 892371480
 
 """
 
@@ -12,7 +11,9 @@ primordial, and the answer should be a multiple of it.
 """
 
 from time import time
+
 from mathfuncs import is_prime
+
 
 def prime_gen():
     yield 2
@@ -22,25 +23,26 @@ def prime_gen():
             yield y
         y += 2
 
+
 def p243():
     G = prime_gen()
 
-    ## get primordial just below ratio
+    # get primordial just below ratio
     d, tot = 1, 1
     p = next(G)
-    while tot*(p-1)*94744 >= (d*p-1)*15499:
+    while tot * (p - 1) * 94744 >= (d * p - 1) * 15499:
         d *= p
-        tot *= p-1 
+        tot *= p - 1
         p = next(G)
 
-    ## find smallest d, which is a multiple of the primordial found above
+    # find smallest d, which is a multiple of the primordial found above
     n = 1
-    while tot*n*94744 >= (d*n-1)*15499:
+    while tot * n * 94744 >= (d * n - 1) * 15499:
         n += 1
-    return n*d
+    return n * d
 
-if __name__ == '__main__':
-   time_start = time()
-   print(p243())
-   print("Time: {0:.3f}".format(time()-time_start))
 
+if __name__ == "__main__":
+    time_start = time()
+    print(p243())
+    print("Time: {0:.3f}".format(time() - time_start))

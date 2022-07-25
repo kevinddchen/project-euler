@@ -1,10 +1,9 @@
-#!/usr/bin/python
-#ANSWER: 173
+# ANSWER: 173
 
 """
 
 We claim that n is a perfect cube. Assume for a contradiction that n = x * y^3
-where x =/= 1 and is cubefree. As n^3 + n^2 p = n^2(n+p) is a perfect cube, so 
+where x =/= 1 and is cubefree. As n^3 + n^2 p = n^2(n+p) is a perfect cube, so
 x | n+p. But x|n, so x|p and x=p as p is prime. But then n^2(n+p) = 2 p^3 y^6
 which is not a perfect cube. Therefore n is a perfect cube, which implies that
 n+p is a perfect cube as well. Therefore p is the difference of two perfect
@@ -15,13 +14,15 @@ cubes and test for primality.
 """
 
 from time import time
+
 from mathfuncs import is_prime
 
+
 def p131():
-    return sum(1 for k in range(2, 578) if is_prime(3*k*(k-1)+1))
+    return sum(1 for k in range(2, 578) if is_prime(3 * k * (k - 1) + 1))
 
-if __name__ == '__main__':
+
+if __name__ == "__main__":
     time_start = time()
-    print(p131()) 
-    print("Time: {0:.3f}".format(time()-time_start))
-
+    print(p131())
+    print("Time: {0:.3f}".format(time() - time_start))

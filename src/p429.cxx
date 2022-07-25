@@ -54,7 +54,7 @@ int p429() {
 }
 
 
-int main() 
+int main()
 {
     clock_t t;
     t = clock();

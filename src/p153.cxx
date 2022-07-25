@@ -5,7 +5,7 @@
 
 /*
 
-Forgetting about Gaussian integers, the sum of the divisors of n for all 
+Forgetting about Gaussian integers, the sum of the divisors of n for all
 1 <= n <= N is given by
 
     sum_{n=1}^{N} n * floor(N/n)
@@ -19,7 +19,7 @@ ANSWER 17971254122360635
 */
 
 
-long p153() 
+long p153()
 {
     const int limit = 100'000'000;
     long * sieve = new long[limit+1];
@@ -55,7 +55,7 @@ long p153()
 }
 
 
-int main() 
+int main()
 {
     clock_t t;
     t = clock();

@@ -14,7 +14,7 @@ All capacitances are created by two operations:
 If C can be obtained with n unit capacitors, then 1/C can also be obtained with
 n unit capacitors. Thus, the set of capacitances that can be obtained with n
 unit capacitors can be obtained by taking n `+` operations and arbitrarily many
-reciprocals. We keep track of the capacitances inductively for n=1, 2, 3, ... 
+reciprocals. We keep track of the capacitances inductively for n=1, 2, 3, ...
 
 ANSWER 3857447
 
@@ -68,7 +68,7 @@ struct std::hash<Fraction>
 };
 
 
-long p155() 
+long p155()
 {
     const int limit = 18;
     std::unordered_set<Fraction> set;   // hash map to check if a capacitance has been encountered yet
@@ -91,7 +91,7 @@ long p155()
                 {
                     auto f = f1 + f2;
                     if (set.find(f) == set.end()) // if capacitance not encountered yet
-                    {   
+                    {
                         // add f to list
                         f.reduce();
                         list[n-1].push_back(f);
@@ -110,7 +110,7 @@ long p155()
 }
 
 
-int main() 
+int main()
 {
     clock_t t;
     t = clock();

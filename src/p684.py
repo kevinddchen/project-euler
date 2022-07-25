@@ -1,5 +1,4 @@
-#!/usr/bin/python
-#ANSWER 922058210
+# ANSWER 922058210
 
 """
 
@@ -18,17 +17,19 @@ up calculation of exponents (the number 1000000007 given is a prime).
 
 from time import time
 
+
 def next_fib(f1, f2):
-    f = list(map( lambda x, y: x+y, f1, f2 ))
+    f = list(map(lambda x, y: x + y, f1, f2))
     if f[1] >= 9:
         f[1] = f[1] - 9
         f[0] = f[0] + 1
     return f2, f
 
+
 def S(n, m, P):
-    exp = n % (P-1)
-    return (6 + (m*(m+3))//2) * pow(10, exp, P) - (9*n+m) - 6
-    
+    exp = n % (P - 1)
+    return (6 + (m * (m + 3)) // 2) * pow(10, exp, P) - (9 * n + m) - 6
+
 
 def p684():
 
@@ -43,10 +44,8 @@ def p684():
 
     return tot
 
-if __name__ == '__main__':
+
+if __name__ == "__main__":
     time_start = time()
     print(p684())
-    print("Time: {0:.3f}".format(time()-time_start))
-
-
-
+    print("Time: {0:.3f}".format(time() - time_start))

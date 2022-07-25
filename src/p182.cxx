@@ -11,7 +11,7 @@ is equivalent to solving
 
     a^e = a (mod p)     and     b^e = b (mod q)
 
-where m = a (mod p) and m = b (mod q). 
+where m = a (mod p) and m = b (mod q).
 
 We claim that the number of solutions to a^(e-1) = 1 (mod p) is equal to
 gcd(e-1, p-1). Proof: since Z_p is cyclic, let g be a generator. Then a = g^n
@@ -25,7 +25,7 @@ The set { g^k, g^(2k), ... , g^((d-1)*k) } is the set of all solutions.
 This implies that the number of solutions to a^e = a (mod p) is gcd(e-1, p-1)+1,
 adding one to account for the solution a = 0.
 
-Therefore, the number of solutions to m^e = m (mod pq) is equal to 
+Therefore, the number of solutions to m^e = m (mod pq) is equal to
 
     (gcd(e-1, p-1) + 1) * (gcd(e-1, q-1) + 1)
 
@@ -66,7 +66,7 @@ void filter(bool * sieve, int size, std::vector<std::array<int, 2>> pf)
 }
 
 
-long p182() 
+long p182()
 {
     const int p = 1009;
     const int q = 3643;
@@ -86,19 +86,19 @@ long p182()
     // sieve
     filter(sieve, phi, p_factors);
     filter(sieve, phi, q_factors);
-    
+
     long S = 0;
     for (int i=3; i<phi; i+=2)
     {
         if (sieve[i] && sieve[i-1])
             S += i;
     }
-       
+
     return S;
 }
 
 
-int main() 
+int main()
 {
     clock_t t;
     t = clock();

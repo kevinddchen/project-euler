@@ -1,5 +1,4 @@
-#!/usr/bin/python
-#ANSWER 21035
+# ANSWER 21035
 
 """
 
@@ -10,7 +9,9 @@ finding the smallest odd n such that n*p_n > 5e9
 """
 
 from time import time
+
 from mathfuncs import is_prime
+
 
 def p123():
     p, n = 3, 2
@@ -18,11 +19,11 @@ def p123():
         p += 2
         if is_prime(p):
             n += 1
-            if n%2==1 and n*p > 5e9:
+            if n % 2 == 1 and n * p > 5e9:
                 return n
 
-if __name__ == '__main__':
+
+if __name__ == "__main__":
     time_start = time()
     print(p123())
-    print("Time: {0:.3f}".format(time()-time_start))
-
+    print("Time: {0:.3f}".format(time() - time_start))

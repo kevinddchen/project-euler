@@ -1,5 +1,4 @@
-#!/usr/bin/python
-#ANSWER 193060223
+# ANSWER 193060223
 
 """
 
@@ -13,33 +12,32 @@ and taking the logarithm,
 
 Just subtract off the integer part to get rid of n, and then just compare with
 the values log(1.23)/log(10) and log(1.24)/log(10) to see if the first three
-digts are '123'.  
+digts are '123'.
 
 """
 
-from time import time
 from math import log
+from time import time
+
 
 def p686():
 
-    CONS = log(2)/log(10)
-    LOWER = log(1.23)/log(10)
-    UPPER = log(1.24)/log(10)
+    CONS = log(2) / log(10)
+    LOWER = log(1.23) / log(10)
+    UPPER = log(1.24) / log(10)
 
     count = 0
     x = 0
     j = 0
     while count < 678910:
-        x = (x+CONS) % 1
-        j = j+1
+        x = (x + CONS) % 1
+        j = j + 1
         if (LOWER < x) and (x < UPPER):
             count = count + 1
     return j
 
-if __name__ == '__main__':
+
+if __name__ == "__main__":
     time_start = time()
     print(p686())
-    print("Time: {0:.3f}".format(time()-time_start))
-
-
-
+    print("Time: {0:.3f}".format(time() - time_start))

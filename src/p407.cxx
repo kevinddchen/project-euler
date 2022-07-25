@@ -23,7 +23,7 @@ ANSWER 39782849136421
 */
 
 
-/* Computes sieve where nth entry is 
+/* Computes sieve where nth entry is
   - if n is composite: smallest prime factor of n.
   - if n is prime: 0.
 */
@@ -31,11 +31,11 @@ short * smallest_prime_factor(int N)
 {
     // create sieve
     short * sieve = new short[N]();
-    for (short i=2; i*i<N; i++) 
+    for (short i=2; i*i<N; i++)
     {
-        if (sieve[i] == 0) 
+        if (sieve[i] == 0)
         {
-            for (int j=i*i; j<N; j+=i) 
+            for (int j=i*i; j<N; j+=i)
             {
                 if (sieve[j] == 0)
                     sieve[j] = i;
@@ -47,16 +47,16 @@ short * smallest_prime_factor(int N)
 
 
 /* Calculate prime factorization, with speed up from `smallest_prime_factors`. */
-std::vector<std::array<int, 2>> prime_factorize(int x, short * sieve) 
+std::vector<std::array<int, 2>> prime_factorize(int x, short * sieve)
 {
     std::vector<std::array<int, 2>> facts;
     short p;
     int a;
-    while (sieve[x] >= 2) 
+    while (sieve[x] >= 2)
     {
         p = sieve[x];
         a = 0;
-        while (sieve[x] == p or x == p) 
+        while (sieve[x] == p or x == p)
         {
             x /= p;
             a++;
@@ -73,7 +73,7 @@ std::vector<std::array<int, 2>> prime_factorize(int x, short * sieve)
 }
 
 
-int max_idem(int * arr, int size, int N, int i=0, int running_sum=0) 
+int max_idem(int * arr, int size, int N, int i=0, int running_sum=0)
 {
     /* Recursively find largest idempotent. */
 
@@ -81,29 +81,29 @@ int max_idem(int * arr, int size, int N, int i=0, int running_sum=0)
         return running_sum % N;
 
     return std::max(
-        max_idem(arr, size, N, i+1, running_sum), 
-        max_idem(arr, size, N, i+1, running_sum+arr[i]) 
+        max_idem(arr, size, N, i+1, running_sum),
+        max_idem(arr, size, N, i+1, running_sum+arr[i])
     );
 }
 
 
-long p407() 
+long p407()
 {
     const int size = 10'000'000;
     long sum_idem = 0;
 
     short * sieve = smallest_prime_factor(size+1);
 
-    for (int n=2; n<=size; n++) 
+    for (int n=2; n<=size; n++)
     {
         // prime factorize
         std::vector<std::array<int, 2>> factors = prime_factorize(n, sieve);
-    
+
         // find base idempotents
         int num_idems = factors.size();
         int m, b, a;
         int * idems = new int [num_idems];
-        for (int i=0; i<num_idems; i++) 
+        for (int i=0; i<num_idems; i++)
         {
             m = pow(factors[i][0], factors[i][1]);
             b = n / m;
@@ -117,7 +117,7 @@ long p407()
 }
 
 
-int main() 
+int main()
 {
     clock_t t;
     t = clock();
