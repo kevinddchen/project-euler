@@ -2,7 +2,7 @@
 
 from time import time
 
-from mathfuncs import PrimeSieve
+from .mathfuncs import PrimeSieve
 
 
 def circular(n, sieve):

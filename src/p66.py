@@ -13,7 +13,7 @@ eventually find a solution to Pell's equation for that D.
 from math import isqrt
 from time import time
 
-from p64 import continued_fraction_of_sqrt
+from .p64 import continued_fraction_of_sqrt
 
 
 def minimal_pell(D):

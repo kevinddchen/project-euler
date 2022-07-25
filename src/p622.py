@@ -10,7 +10,7 @@ divisors d of 60.
 
 from time import time
 
-from p44 import divisors
+from .p44 import divisors
 
 
 def check(d, bad):

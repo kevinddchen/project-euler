@@ -8,7 +8,7 @@ Solved using a prime sieve.
 
 from time import time
 
-from mathfuncs import PrimeSieve
+from .mathfuncs import PrimeSieve
 
 
 def binary_search(x, lst):

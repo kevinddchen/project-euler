@@ -13,7 +13,7 @@ to sqrt(N), we generate all primes less than or equal to N.
 
 from time import time
 
-from mathfuncs import PrimeSieve
+from .mathfuncs import PrimeSieve
 
 
 def p10():

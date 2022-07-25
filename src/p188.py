@@ -16,7 +16,7 @@ until we find a_0, which is the answer.
 
 from time import time
 
-from mathfuncs import prime_factorize
+from .mathfuncs import prime_factorize
 
 
 def totient(x):

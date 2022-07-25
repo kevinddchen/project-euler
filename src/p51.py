@@ -10,7 +10,7 @@ Find the first pattern that satisifes the conditions in the problem.
 from itertools import product
 from time import time
 
-from mathfuncs import PrimeSieve
+from .mathfuncs import PrimeSieve
 
 
 def replace(tup, x, y):

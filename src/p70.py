@@ -20,7 +20,7 @@ This prevents us from searching all primes up to 10^7.
 
 from time import time
 
-from mathfuncs import is_prime
+from .mathfuncs import is_prime
 
 
 def prime_gen():

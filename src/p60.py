@@ -14,7 +14,7 @@ The five primes are 8389, 6733, 5701, 5197, and 13.
 
 from time import time
 
-from mathfuncs import PrimeSieve
+from .mathfuncs import PrimeSieve
 
 SIZE = 5
 

@@ -9,7 +9,7 @@ corners are n^2 - i(n-1) for i = 0, 1, 2, 3.
 
 from time import time
 
-from mathfuncs import is_prime
+from .mathfuncs import is_prime
 
 
 def p58():

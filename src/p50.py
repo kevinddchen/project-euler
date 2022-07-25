@@ -9,7 +9,7 @@ run up and check that it is prime.
 
 from time import time
 
-from mathfuncs import PrimeSieve
+from .mathfuncs import PrimeSieve
 
 
 def gen_next_primes(p, sieve):

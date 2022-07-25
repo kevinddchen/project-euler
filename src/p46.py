@@ -9,7 +9,7 @@ subtract the squares from it first, then check that the difference is prime.
 
 from time import time
 
-from mathfuncs import is_prime
+from .mathfuncs import is_prime
 
 
 def check(x):

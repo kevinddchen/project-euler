@@ -11,7 +11,7 @@ differences need to be calculated.
 
 from time import time
 
-from mathfuncs import is_prime
+from .mathfuncs import is_prime
 
 
 def p128():

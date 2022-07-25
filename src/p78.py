@@ -8,7 +8,7 @@ We can use the exact same methods in problem 76 to solve this one.
 
 from time import time
 
-from p76 import partition
+from .p76 import partition
 
 
 def p78():

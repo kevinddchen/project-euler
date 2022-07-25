@@ -9,7 +9,7 @@ a >= 1-b
 
 from time import time
 
-from mathfuncs import PrimeSieve, is_prime
+from .mathfuncs import PrimeSieve, is_prime
 
 
 def quadratic_chain(a, b):

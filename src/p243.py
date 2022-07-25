@@ -12,7 +12,7 @@ primordial, and the answer should be a multiple of it.
 
 from time import time
 
-from mathfuncs import is_prime
+from .mathfuncs import is_prime
 
 
 def prime_gen():

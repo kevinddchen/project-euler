@@ -12,7 +12,7 @@ factors needed.
 from math import prod
 from time import time
 
-from mathfuncs import prime_factorize
+from .mathfuncs import prime_factorize
 
 
 def p5():

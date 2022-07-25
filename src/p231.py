@@ -10,7 +10,7 @@ is equal to the number of carries when m is added to n-m in base p.
 
 from time import time
 
-from mathfuncs import PrimeSieve
+from .mathfuncs import PrimeSieve
 
 
 def choose_greatest_power(m, n, p):

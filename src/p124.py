@@ -8,7 +8,7 @@ Brute force prime factorization.
 
 from time import time
 
-from mathfuncs import prime_factorize
+from .mathfuncs import prime_factorize
 
 
 def p124():

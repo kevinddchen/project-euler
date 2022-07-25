@@ -10,7 +10,7 @@ totient function.
 
 from time import time
 
-from p69 import totient_sieve
+from .p69 import totient_sieve
 
 
 def p72():

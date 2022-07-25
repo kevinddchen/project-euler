@@ -15,7 +15,7 @@ cubes and test for primality.
 
 from time import time
 
-from mathfuncs import is_prime
+from .mathfuncs import is_prime
 
 
 def p131():

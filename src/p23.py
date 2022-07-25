@@ -2,7 +2,7 @@
 
 from time import time
 
-from p21 import sum_proper_divisors
+from .p21 import sum_proper_divisors
 
 
 def p23():

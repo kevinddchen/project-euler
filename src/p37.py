@@ -2,7 +2,7 @@
 
 from time import time
 
-from mathfuncs import is_prime
+from .mathfuncs import is_prime
 
 
 def check_trunc(x):

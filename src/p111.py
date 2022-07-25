@@ -3,7 +3,7 @@
 from itertools import combinations, product
 from time import time
 
-from mathfuncs import is_prime
+from .mathfuncs import is_prime
 
 
 def matchPattern(pattern, d, DIGITS):

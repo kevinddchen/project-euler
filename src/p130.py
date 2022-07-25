@@ -2,8 +2,8 @@
 
 from time import time
 
-from mathfuncs import is_prime
-from p129 import A
+from .mathfuncs import is_prime
+from .p129 import A
 
 
 def p130():

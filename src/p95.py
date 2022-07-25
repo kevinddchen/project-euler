@@ -9,7 +9,7 @@ you already traversed and using an efficient method of finding sum of divisors.
 
 from time import time
 
-from p21 import sum_proper_divisors
+from .p21 import sum_proper_divisors
 
 
 def p95():

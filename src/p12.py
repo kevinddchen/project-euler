@@ -12,7 +12,7 @@ of divisors of n is (a_1 + 1)(a_2 + 1)...(a_k+1).
 from math import prod
 from time import time
 
-from mathfuncs import prime_factorize
+from .mathfuncs import prime_factorize
 
 
 def num_divisors(n):
