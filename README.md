@@ -14,4 +14,4 @@ If the solution is written in C++, this will compile and run the code.
 If the solution is written in Python, this will run the code using the command `python -m src.p$NUM`.
 Note that we use Python >= 3.9.
 
-[EulerSolutions.pdf](EulerSolutions.pdf)  contains write-ups for problems that can be solved by hand.
+[EulerSolutions.pdf](docs/EulerSolutions.pdf) contains write-ups for problems that can be solved by hand.
