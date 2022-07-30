@@ -5,7 +5,7 @@
 Descartes' Theorem allows you to find the radius of the kissing circle, given
 the radii of three mutually tangent circles. With this theorem, we can generate
 all the circles that form the "fractal" (which is called an Apollonian gasket).
-It is crucial to memoize the results of the area calculations.
+We memoize the results of the area calculations, but this is not necessary.
 
 """
 
