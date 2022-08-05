@@ -1,8 +1,8 @@
 #include <cstdio>
 #include <ctime>
 #include <cstring>
-#include "mathfuncs.h"
 
+#include "mathfuncs.h"
 
 /*
 
@@ -17,40 +17,36 @@ ANSWER 1125977393124310
 
 */
 
-
 void inv_D(long (&affine)[3])
 {
     affine[0] *= 3;
     affine[1] *= 3;
 }
 
-
 void inv_U(long (&affine)[3])
 {
     affine[0] *= 3;
-    affine[1] = 3*affine[1] - 2*affine[2];
+    affine[1] = 3 * affine[1] - 2 * affine[2];
     affine[2] *= 4;
 }
-
 
 void inv_d(long (&affine)[3])
 {
     affine[0] *= 3;
-    affine[1] = 3*affine[1] + affine[2];
+    affine[1] = 3 * affine[1] + affine[2];
     affine[2] *= 2;
 }
-
 
 long p277()
 {
     const char seq[] = "UDDDUdddDDUDDddDdDddDDUDDdUUDd";
     const long target = 1'000'000'000'000'000;
 
-    long affine[3] = {1, 0, 1};     // output is n
+    long affine[3] = {1, 0, 1}; // output is n
 
     // go through characters in reverse order and apply inverse maps
     int length = std::strlen(seq);
-    for (int i=length-1; i>=0; i--)
+    for (int i = length - 1; i >= 0; i--)
     {
         if (seq[i] == 'D')
             inv_D(affine);
@@ -79,12 +75,11 @@ long p277()
     return affine[0] * k + r;
 }
 
-
 int main()
 {
     clock_t t;
     t = clock();
     printf("%ld\n", p277());
-    t = clock()-t;
-    printf("Time: %.3f\n", ((float) t)/CLOCKS_PER_SEC);
+    t = clock() - t;
+    printf("Time: %.3f\n", ((float)t) / CLOCKS_PER_SEC);
 }

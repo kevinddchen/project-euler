@@ -6,13 +6,12 @@
 #include <array>
 #include "mathfuncs.h"
 
-
 /*
 
 Given an integer and its prime factorization, n = p1^a1 * p2^a2 * ... * pk^ak,
 the Chinese Remainder Theorem defines a ring isomorphism,
 
-	Z_n = Z_{p1^a1} + Z_{p2^a2} + ... + Z_{pk^ak}
+    Z_n = Z_{p1^a1} + Z_{p2^a2} + ... + Z_{pk^ak}
 
 The only idempotents in Z_{p^a} for any prime p are 0 and 1. Therefore, Z_n has
 2^k idempotents corresponding to every possible selection of 0 or 1 in each
@@ -22,20 +21,19 @@ ANSWER 39782849136421
 
 */
 
-
 /* Computes sieve where nth entry is
   - if n is composite: smallest prime factor of n.
   - if n is prime: 0.
 */
-short * smallest_prime_factor(int N)
+short *smallest_prime_factor(int N)
 {
     // create sieve
-    short * sieve = new short[N]();
-    for (short i=2; i*i<N; i++)
+    short *sieve = new short[N]();
+    for (short i = 2; i * i < N; i++)
     {
         if (sieve[i] == 0)
         {
-            for (int j=i*i; j<N; j+=i)
+            for (int j = i * i; j < N; j += i)
             {
                 if (sieve[j] == 0)
                     sieve[j] = i;
@@ -45,9 +43,8 @@ short * smallest_prime_factor(int N)
     return sieve;
 }
 
-
 /* Calculate prime factorization, with speed up from `smallest_prime_factors`. */
-std::vector<std::array<int, 2>> prime_factorize(int x, short * sieve)
+std::vector<std::array<int, 2>> prime_factorize(int x, short *sieve)
 {
     std::vector<std::array<int, 2>> facts;
     short p;
@@ -72,8 +69,7 @@ std::vector<std::array<int, 2>> prime_factorize(int x, short * sieve)
     return facts;
 }
 
-
-int max_idem(int * arr, int size, int N, int i=0, int running_sum=0)
+int max_idem(int *arr, int size, int N, int i = 0, int running_sum = 0)
 {
     /* Recursively find largest idempotent. */
 
@@ -81,20 +77,18 @@ int max_idem(int * arr, int size, int N, int i=0, int running_sum=0)
         return running_sum % N;
 
     return std::max(
-        max_idem(arr, size, N, i+1, running_sum),
-        max_idem(arr, size, N, i+1, running_sum+arr[i])
-    );
+        max_idem(arr, size, N, i + 1, running_sum),
+        max_idem(arr, size, N, i + 1, running_sum + arr[i]));
 }
-
 
 long p407()
 {
     const int size = 10'000'000;
     long sum_idem = 0;
 
-    short * sieve = smallest_prime_factor(size+1);
+    short *sieve = smallest_prime_factor(size + 1);
 
-    for (int n=2; n<=size; n++)
+    for (int n = 2; n <= size; n++)
     {
         // prime factorize
         std::vector<std::array<int, 2>> factors = prime_factorize(n, sieve);
@@ -102,8 +96,8 @@ long p407()
         // find base idempotents
         int num_idems = factors.size();
         int m, b, a;
-        int * idems = new int [num_idems];
-        for (int i=0; i<num_idems; i++)
+        int *idems = new int[num_idems];
+        for (int i = 0; i < num_idems; i++)
         {
             m = pow(factors[i][0], factors[i][1]);
             b = n / m;
@@ -116,12 +110,11 @@ long p407()
     return sum_idem;
 }
 
-
 int main()
 {
     clock_t t;
     t = clock();
     printf("%ld\n", p407());
-    t = clock()-t;
-    printf("Time: %.3f\n", ((float) t)/CLOCKS_PER_SEC);
+    t = clock() - t;
+    printf("Time: %.3f\n", ((float)t) / CLOCKS_PER_SEC);
 }

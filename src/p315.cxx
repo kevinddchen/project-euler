@@ -1,7 +1,7 @@
 #include <cstdio>
 #include <ctime>
-#include "mathfuncs.h"
 
+#include "mathfuncs.h"
 
 /*
 
@@ -11,7 +11,6 @@ ANSWER 13625242
 
 */
 
-
 int digital_root(int x)
 {
     if (x < 10)
@@ -19,34 +18,32 @@ int digital_root(int x)
     int root = 0;
     while (x != 0)
     {
-        root += x%10;
+        root += x % 10;
         x /= 10;
     }
     return root;
 }
 
-
-bool ** clock(int n, bool digits[11][7])
+bool **clock(int n, bool digits[11][7])
 {
-    bool ** clock = new bool * [8];
-    for (int i=0; i<8; i++)
+    bool **clock = new bool *[8];
+    for (int i = 0; i < 8; i++)
     {
         if (n == 0)
             clock[i] = digits[10];
         else
-            clock[i] = digits[n%10];
+            clock[i] = digits[n % 10];
         n /= 10;
     }
     return clock;
 }
 
-
-int count_on(bool ** clock1, bool ** clock2)
+int count_on(bool **clock1, bool **clock2)
 {
     int c = 0;
-    for (int i=0; i<8; i++)
+    for (int i = 0; i < 8; i++)
     {
-        for (int j=0; j<7; j++)
+        for (int j = 0; j < 7; j++)
         {
             if (clock1[i][j] and clock2[i][j])
                 c++;
@@ -54,7 +51,6 @@ int count_on(bool ** clock1, bool ** clock2)
     }
     return c;
 }
-
 
 long p315()
 {
@@ -70,23 +66,22 @@ long p315()
         {1, 1, 1, 0, 0, 1, 0},
         {1, 1, 1, 1, 1, 1, 1},
         {1, 1, 1, 1, 0, 1, 1},
-        {0, 0, 0, 0, 0, 0, 0}
-    };
+        {0, 0, 0, 0, 0, 0, 0}};
 
     // count transitions
     long c = 0;
-    bool * sieve = prime_sieve(20000000);
-    for (int i=10000000; i<20000000; i++)
+    bool *sieve = prime_sieve(20000000);
+    for (int i = 10000000; i < 20000000; i++)
     {
         if (!sieve[i])
             continue;
 
-        bool ** A = clock(i, digits);
+        bool **A = clock(i, digits);
         int j = digital_root(i);
 
         while (j > 0)
         {
-            bool ** B = clock(j, digits);
+            bool **B = clock(j, digits);
             c += 2 * count_on(A, B);
             A = B;
             j = digital_root(j);
@@ -95,12 +90,11 @@ long p315()
     return c;
 }
 
-
 int main()
 {
     clock_t t;
     t = clock();
     printf("%ld\n", p315());
-    t = clock()-t;
-    printf("Time: %.3f\n", ((float) t)/CLOCKS_PER_SEC);
+    t = clock() - t;
+    printf("Time: %.3f\n", ((float)t) / CLOCKS_PER_SEC);
 }

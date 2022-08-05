@@ -4,7 +4,6 @@
 #include <vector>
 #include <algorithm>
 
-
 /*
 
 For a Torricelli triangle, we can use the law of cosines to show that
@@ -20,13 +19,11 @@ ANSWER 30758397
 
 */
 
-
 bool is_square(long x)
 {
     long y = sqrt(x);
-    return (x == y*y);
+    return (x == y * y);
 }
-
 
 long p143()
 {
@@ -36,15 +33,15 @@ long p143()
     // (1) 1 <= q < p
     // (2) p + q < 120'000
     // (3) p^2 + q^2 + p*q = k^2 for integer k
-    std::vector<std::vector<int>> p_partners {{}};
-    for (long p=1; p<limit; p++)
+    std::vector<std::vector<int>> p_partners{{}};
+    for (long p = 1; p < limit; p++)
     {
         std::vector<int> temp;
-        for (long q=1; q<p; q++)
+        for (long q = 1; q < p; q++)
         {
-            if (p+q >= limit)
+            if (p + q >= limit)
                 break;
-            if (is_square(p*p + q*q + p*q))
+            if (is_square(p * p + q * q + p * q))
                 temp.push_back(q);
         }
         p_partners.push_back(temp);
@@ -52,13 +49,13 @@ long p143()
     // (the steps above take ~30 sec)
 
     // try to find r < q from partners of p
-    bool * hits = new bool[limit+1];
-    for (int p=1; p<limit; p++)
+    bool *hits = new bool[limit + 1];
+    for (int p = 1; p < limit; p++)
     {
         auto partners = p_partners[p];
-        for (auto r_iter=partners.begin(); r_iter!=partners.end(); r_iter++)
+        for (auto r_iter = partners.begin(); r_iter != partners.end(); r_iter++)
         {
-            for (auto q_iter=r_iter+1; q_iter!=partners.end(); q_iter++)
+            for (auto q_iter = r_iter + 1; q_iter != partners.end(); q_iter++)
             {
                 if (p + *q_iter + *r_iter > limit)
                     break;
@@ -72,7 +69,7 @@ long p143()
 
     // add up all hits
     long S = 0;
-    for (int i=0; i<=limit; i++)
+    for (int i = 0; i <= limit; i++)
     {
         if (hits[i])
             S += i;
@@ -81,12 +78,11 @@ long p143()
     return S;
 }
 
-
 int main()
 {
     clock_t t;
     t = clock();
     printf("%ld\n", p143());
-    t = clock()-t;
-    printf("Time: %.3f\n", ((float) t)/CLOCKS_PER_SEC);
+    t = clock() - t;
+    printf("Time: %.3f\n", ((float)t) / CLOCKS_PER_SEC);
 }

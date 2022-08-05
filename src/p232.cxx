@@ -1,7 +1,6 @@
 #include <cstdio>
 #include <ctime>
 
-
 /*
 
 If P2 has i pts left, P1 has j pts left, and P2 is first to move, let p(i, j; T)
@@ -24,12 +23,11 @@ ANSWER 0.83648556
 
 */
 
-
 /* Return ceil(log2(n)) for positive integers n. */
 int ceillog2(int n)
 {
     n--;
-    int i=0;
+    int i = 0;
     while (n > 0)
     {
         n >>= 1;
@@ -38,21 +36,20 @@ int ceillog2(int n)
     return i;
 }
 
-
 // class to store probabilities
 struct Probs
 {
     const int size;
-    double ** table;
+    double **table;
 
     Probs(int n) : size(n)
     {
         // initialize 2d array storing probabilities
-        table = new double * [n];
-        for (int i=0; i<n; i++)
+        table = new double *[n];
+        for (int i = 0; i < n; i++)
         {
             table[i] = new double[n];
-            for (int j=0; j<n; j++)
+            for (int j = 0; j < n; j++)
                 table[i][j] = -1;
         }
     }
@@ -64,44 +61,42 @@ struct Probs
             return 1;
         else if (j == 0)
             return 0;
-        else if (table[i-1][j-1] >= 0)   // get(i, j) = table[i-1][j-1] if value is already computed
-            return table[i-1][j-1];
+        else if (table[i - 1][j - 1] >= 0) // get(i, j) = table[i-1][j-1] if value is already computed
+            return table[i - 1][j - 1];
         // compute new probability
-        double max = 0;                 // tracks highest probability
+        double max = 0; // tracks highest probability
         int T_max = ceillog2(i) + 1;
-        int power_of_two = 1;           // tracks 2^(T-1)
-        for (int T=1; T<=T_max; T++, power_of_two*=2)
+        int power_of_two = 1; // tracks 2^(T-1)
+        for (int T = 1; T <= T_max; T++, power_of_two *= 2)
         {
-            double p = (get(i-power_of_two, j) + get(i-power_of_two, j-1) + (2*power_of_two - 1) * get(i, j-1)) / (2*power_of_two + 1);
+            double p = (get(i - power_of_two, j) + get(i - power_of_two, j - 1) + (2 * power_of_two - 1) * get(i, j - 1)) / (2 * power_of_two + 1);
             if (p > max)
                 max = p;
         }
-        table[i-1][j-1] = max;
+        table[i - 1][j - 1] = max;
         return max;
     }
 };
-
 
 double p232()
 {
     const int size = 100;
     Probs P(size);
     // to avoid stack overflow, generate entire table of needed values
-    for (int i=1; i<=size; i++)
+    for (int i = 1; i <= size; i++)
     {
-        for (int j=1; j<=size; j++)
-            (void) P.get(i, j);
+        for (int j = 1; j <= size; j++)
+            (void)P.get(i, j);
     }
     // manually do P1's first move
-    return (P.get(size, size) + P.get(size, size-1)) / 2;
+    return (P.get(size, size) + P.get(size, size - 1)) / 2;
 }
-
 
 int main()
 {
     clock_t t;
     t = clock();
     printf("%.8f\n", p232());
-    t = clock()-t;
-    printf("Time: %.3f\n", ((float) t)/CLOCKS_PER_SEC);
+    t = clock() - t;
+    printf("Time: %.3f\n", ((float)t) / CLOCKS_PER_SEC);
 }

@@ -2,7 +2,6 @@
 #include <ctime>
 #include <cmath>
 
-
 /*
 
 At index N, the probability that x_N will be all 1's is,
@@ -21,7 +20,6 @@ ANSWER 6.3551758451
 
 */
 
-
 double p323()
 {
     double cum, prev_cum, prob;
@@ -29,7 +27,7 @@ double p323()
 
     prev_cum = 0;
 
-    for (int N=1; true; N++)
+    for (int N = 1; true; N++)
     {
         cum = pow(1 - pow(2, -N), 32);
         prob = cum - prev_cum;
@@ -43,12 +41,11 @@ double p323()
     return exp_val;
 }
 
-
 int main()
 {
     clock_t t;
     t = clock();
     printf("%.10f\n", p323());
-    t = clock()-t;
-    printf("Time: %.3f\n", ((float) t)/CLOCKS_PER_SEC);
+    t = clock() - t;
+    printf("Time: %.3f\n", ((float)t) / CLOCKS_PER_SEC);
 }

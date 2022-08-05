@@ -2,7 +2,6 @@
 #include <ctime>
 #include "mathfuncs.h"
 
-
 /*
 
 From the prime factorization N = p1^a1 * p2^a2 * ... * pk^ak, the unitary
@@ -18,47 +17,45 @@ ANSWER 98792821
 
 */
 
-
 /* Count the number of times p divides into N!. */
 int count_factors(int N, int p)
 {
     int result = 0;
-    long x = p;         // long to prevent overflow
+    long x = p; // long to prevent overflow
     while (x <= N)
     {
-        result += N/x;
+        result += N / x;
         x *= p;
     }
     return result;
 }
 
-
-int p429() {
+int p429()
+{
 
     const int N = 100'000'000;
     const int M = 1'000'000'009;
 
-    bool * sieve = prime_sieve(N);
+    bool *sieve = prime_sieve(N);
 
     int a;
-    long result = 1;    // long to prevent overflow
-    for (int p=2; p<N; p++)
+    long result = 1; // long to prevent overflow
+    for (int p = 2; p < N; p++)
     {
         if (sieve[p])
         {
             a = count_factors(N, p);
-            result = (result * modular_power(p, 2*a, M) + result) % M;
+            result = (result * modular_power(p, 2 * a, M) + result) % M;
         }
     }
     return result;
 }
-
 
 int main()
 {
     clock_t t;
     t = clock();
     printf("%d\n", p429());
-    t = clock()-t;
-    printf("Time: %.3f\n", ((float) t)/CLOCKS_PER_SEC);
+    t = clock() - t;
+    printf("Time: %.3f\n", ((float)t) / CLOCKS_PER_SEC);
 }

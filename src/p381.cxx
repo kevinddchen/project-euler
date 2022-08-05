@@ -2,7 +2,6 @@
 #include <ctime>
 #include "mathfuncs.h"
 
-
 /*
 
 Wilson's Theorem states that for prime p, we have (p-1)! = -1 (mod p). Thus we
@@ -14,19 +13,18 @@ ANSWER 139602943319822
 
 */
 
-
 long p381()
 {
     const int size = 100000000;
-    bool * sieve = prime_sieve(size);
+    bool *sieve = prime_sieve(size);
 
     long S = 0;
     long n;
-    for (long i=2; i<size; i++)
+    for (long i = 2; i < size; i++)
     {
         if (sieve[i])
         {
-            n = (-3*modular_inverse(8L, i))%i;
+            n = (-3 * modular_inverse(8L, i)) % i;
             if (n < 0)
                 n += i;
             S += n;
@@ -35,12 +33,11 @@ long p381()
     return S;
 }
 
-
 int main()
 {
     clock_t t;
     t = clock();
     printf("%ld\n", p381());
-    t = clock()-t;
-    printf("Time: %.3f\n", ((float) t)/CLOCKS_PER_SEC);
+    t = clock() - t;
+    printf("Time: %.3f\n", ((float)t) / CLOCKS_PER_SEC);
 }

@@ -1,7 +1,4 @@
-#include <vector>
-#include <array>
 #include "mathfuncs.h"
-
 
 template <typename T>
 bool is_prime(T x)
@@ -10,11 +7,11 @@ bool is_prime(T x)
         return false;
     else if (x == 2)
         return true;
-    else if (x & 1)  // if (x % 2) == 1
+    else if (x & 1) // if (x % 2) == 1
         return false;
-    for (T y=3; y*y<=x; y+=2)
+    for (T y = 3; y * y <= x; y += 2)
     {
-        if (x%y == 0)
+        if (x % y == 0)
             return false;
     }
     return true;
@@ -22,38 +19,36 @@ bool is_prime(T x)
 template bool is_prime<long>(long);
 template bool is_prime<int>(int);
 
-
-bool * prime_sieve(int size)
+bool *prime_sieve(int size)
 {
-    bool * sieve = new bool[size];
+    bool *sieve = new bool[size];
 
     // initialize values
     sieve[0] = sieve[1] = false;
-    for (int i=2; i<size; i++)
+    for (int i = 2; i < size; i++)
         sieve[i] = true;
 
     // sieve
-    for (int i=2; i*i<size; i++)
+    for (int i = 2; i * i < size; i++)
     {
         if (sieve[i])
         {
-            for (int j=i*i; j<size; j+=i)
+            for (int j = i * i; j < size; j += i)
                 sieve[j] = false;
         }
     }
     return sieve;
 }
 
-
 template <typename T>
 std::vector<std::array<T, 2>> prime_factorize(T x)
 {
     std::vector<std::array<T, 2>> facts;
     T a;
-    for (T i=2; i*i<=x; i++)
+    for (T i = 2; i * i <= x; i++)
     {
-        a = 0;  // power of prime factor
-        while (x%i == 0)
+        a = 0; // power of prime factor
+        while (x % i == 0)
         {
             x /= i;
             a++;
@@ -64,7 +59,7 @@ std::vector<std::array<T, 2>> prime_factorize(T x)
             facts.push_back(arr);
         }
     }
-    if (x > 1)  // remaining part may be a prime factor
+    if (x > 1) // remaining part may be a prime factor
     {
         std::array<T, 2> arr = {x, 1};
         facts.push_back(arr);
@@ -73,7 +68,6 @@ std::vector<std::array<T, 2>> prime_factorize(T x)
 }
 template std::vector<std::array<long, 2>> prime_factorize<long>(long x);
 template std::vector<std::array<int, 2>> prime_factorize<int>(int x);
-
 
 template <typename T>
 void extended_gcd(T a, T b, T &s, T &t, T &r)
@@ -100,9 +94,8 @@ void extended_gcd(T a, T b, T &s, T &t, T &r)
         new_t = temp - q * new_t;
     }
 }
-template void extended_gcd<int>(int, int, int&, int&, int&);
-template void extended_gcd<long>(long, long, long&, long&, long&);
-
+template void extended_gcd<int>(int, int, int &, int &, int &);
+template void extended_gcd<long>(long, long, long &, long &, long &);
 
 template <typename T>
 T modular_inverse(T a, T m)
@@ -119,19 +112,18 @@ T modular_inverse(T a, T m)
 template long modular_inverse<long>(long, long);
 template int modular_inverse<int>(int, int);
 
-
 template <typename T>
 int modular_power(int a, T b, int m)
 {
-    long result(1), base(a%m);
+    long result(1), base(a % m);
     while (b > 0)
     {
-        if (b & 1)  // if (b % 2) == 1
+        if (b & 1) // if (b % 2) == 1
             result = (result * base) % m;
         base = (base * base) % m;
         b >>= 1;
     }
-    return (int) result;
+    return (int)result;
 }
 template int modular_power<int>(int, int, int);
 template int modular_power<long>(int, long, int);

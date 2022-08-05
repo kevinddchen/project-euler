@@ -1,6 +1,6 @@
 #include <cstdio>
 #include <ctime>
-#include "mathfuncs.h"
+#include <cmath>
 
 /*
 
@@ -36,19 +36,17 @@ ANSWER 4921370551019052
 // const long LIMIT = 1'000'000;
 const long LIMIT = 10'000'000'000'000'000;
 
-
 inline long quad_form(long x, long y)
 {
-    return x*x + x*y + 41*y*y;
+    return x * x + x * y + 41 * y * y;
 }
-
 
 long p804()
 {
 
     // STEP 1: find boundaries of region A
-    const long x_bound = floor(sqrt(LIMIT));  // at y=0
-    const long y_bound = floor(sqrt(LIMIT / 41.0));  // at x=0
+    const long x_bound = floor(sqrt(LIMIT));        // at y=0
+    const long y_bound = floor(sqrt(LIMIT / 41.0)); // at x=0
 
     // STEP 2: count points in region A
     long count_a = 0;
@@ -92,15 +90,13 @@ long p804()
     // STEP 5: add up all points
     // *4 for each region, *2 for each boundary
     return 4 * (count_a + count_b) + 2 * (x_bound + 2 * y_bound + n_bound);
-
 }
-
 
 int main()
 {
     clock_t t;
     t = clock();
     printf("%ld\n", p804());
-    t = clock()-t;
-    printf("Time: %.3f\n", ((float) t)/CLOCKS_PER_SEC);
+    t = clock() - t;
+    printf("Time: %.3f\n", ((float)t) / CLOCKS_PER_SEC);
 }
