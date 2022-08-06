@@ -1,30 +1,44 @@
 #!/bin/bash
 set -e
 
-#
-# Usage:
-# To run Problem 123, use the command `./run.sh 123`
-#
+show_help () {
+    echo
+    echo "Run Project Euler solutions"
+    echo "==========================="
+    echo 
+    echo "To run a problem:     ./$(basename $0) 123"
+    echo "To run tests:         ./$(basename $0) tests"
+    echo
+}
+
+if [[ -z "$1" ]]; then
+    show_help
+    exit 1
+fi
 
 DIR=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
 cd $DIR
 
 SRC=src
 BIN=bin
-NAME=p$1
+NUM=$1
 
-if [ -a $SRC/$NAME.cxx ]
-then
+if [[ $1 = "tests" ]]; then
 
-    make $BIN/$NAME
-    echo "Running c++ solution..."
-    $BIN/$NAME
+    echo "Running tests..."
+    make $BIN/test_mathfuncs
+    $BIN/test_mathfuncs
 
-elif [ -a $SRC/$NAME.py ]
-then
+elif [[ -a $SRC/p$NUM.cxx ]]; then
 
-    echo "Running python solution..."
-    python -m $SRC.$NAME
+    make $BIN/p$NUM
+    echo "Running c++ solution #${NUM}..."
+    $BIN/p$NUM
+
+elif [[ -a $SRC/p$NUM.py ]]; then
+
+    echo "Running python solution #${NUM}..."
+    python -m $SRC.p$NUM
 
 else
 
