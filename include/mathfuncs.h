@@ -2,15 +2,15 @@
 
 #include <vector>
 
+#include <cassert>
+
 /**
- * Given an integer n > 1, returns true if n is prime. 
+ * Given an integer n > 1, returns true if n is prime.
  */
 bool is_prime(long n)
 {
-    if (n < 2)
-    {
-        return false;
-    }
+    assert(n > 1);
+
     if (n == 2)
     {
         return true;
@@ -29,22 +29,17 @@ bool is_prime(long n)
     }
 
     return true;
-
 }
 
 /**
- * Create a prime sieve, i.e. boolean array where nth entry is true when n is
- * prime (for n > 1).
+ * Creates a prime sieve, i.e. a boolean array where the nth entry, for n > 1,
+ * is true when n is prime. (The n = 0 and n = 1 entries are undefined).
  */
 std::vector<bool> prime_sieve(uint32_t size)
 {
     std::vector<bool> sieve(size);
 
     // initialize values
-    for (int i = 0; i < size && i < 2; i++)
-    {
-        sieve[i] = false;
-    }
     for (int i = 2; i < size; i++)
     {
         sieve[i] = true;
@@ -79,10 +74,11 @@ struct PrimePower
 /**
  * Prime factorize a positive integer, i.e. if n = p1^a1 * p2^a2 * ... * pk^ak
  * then return the list of {p, a} pairs. The p's are given in ascending order.
- * If n = 1, returns the empty vector. 
+ * If n = 1, returns the empty vector.
  */
 std::vector<PrimePower> prime_factorize(long n)
 {
+    assert(n > 0);
     std::vector<PrimePower> facts;
 
     for (long base = 2; base * base <= n; base++)
@@ -95,12 +91,12 @@ std::vector<PrimePower> prime_factorize(long n)
         }
         if (exp != 0)
         {
-            facts.push_back({ base, exp });
+            facts.push_back({base, exp});
         }
     }
 
     // remaining part may be a prime factor
-    if (n > 1)  
+    if (n > 1)
     {
         facts.push_back({n, 1});
     }
@@ -109,11 +105,14 @@ std::vector<PrimePower> prime_factorize(long n)
 }
 
 /**
- * Given two integers a and b, compute the Bezout coefficients and gcd which
- * solve the equation: a*s + b*t = r. 
+ * Given two positive integers, a and b, computes the gcd, r, and Bezout
+ * coefficients, s and t, which solve the equation: a*s + b*t = r. Uses the
+ * Extended Euclidean algorithm.
  */
 void extended_gcd(long a, long b, long &s, long &t, long &r)
 {
+    assert(a > 0 && b > 0);
+
     s = 1;
     t = 0;
     r = a;
@@ -138,12 +137,15 @@ void extended_gcd(long a, long b, long &s, long &t, long &r)
     }
 }
 
-/** 
- * Compute the multiplicative inverse of a mod m, as a positive integer. If a
- * and m are not coprime, returns 0 instead. 
+/**
+ * Computes the multiplicative inverse of a mod m, as a positive integer. Uses
+ * the Extended Euclidean algorithm to compute the inverse. We must have a > 0
+ * and m > 1. If a and m are not coprime, returns 0 instead.
  */
 long modular_inverse(long a, long m)
 {
+    assert(a > 0 && m > 1);
+
     // use `extended_gcd` to solve a*s + m*t = 1. Then s is the inverse.
     long s, t, r;
     extended_gcd(a, m, s, t, r);
@@ -160,15 +162,18 @@ long modular_inverse(long a, long m)
     return s;
 }
 
-/** 
- * Compute a^b mod m.
+/**
+ * Computes a^b mod m, where a and b are non-negative integers and m > 1.
+ * (0^0 = 1 in this implementation.)
  */
 long modular_power(long a, long b, long m)
 {
+    assert(a >= 0 && b >= 0 && m > 1);
+
     long result = 1, base = a % m;
     while (b > 0)
     {
-        if (b & 1)  // if (b % 2) == 1
+        if (b & 1) // if (b % 2) == 1
         {
             result = (result * base) % m;
         }
