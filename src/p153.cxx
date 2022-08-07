@@ -1,6 +1,7 @@
-#include <cstdio>
-#include <ctime>
+#include "common.h"
+
 #include <numeric>
+#include <vector>
 
 /*
 
@@ -20,7 +21,7 @@ ANSWER 17971254122360635
 long p153()
 {
     const int limit = 100'000'000;
-    long *sieve = new long[limit + 1];
+    std::vector<long> sieve(limit + 1);
 
     // initialize sieve
     for (int i = 0; i <= limit; i++)
@@ -35,28 +36,26 @@ long p153()
         {
             if (std::gcd(a, b) == 1)
             {
-                int norm = a * a + b * b;
+                const int norm = a * a + b * b;
                 for (int k = 1; k * norm <= limit; k++)
+                {
                     sieve[k * norm] += (a == b ? 2 * a : 2 * (a + b)) * k;
+                }
             }
         }
     }
 
     // do sum over divisors with new sieve values
-    long S = 0;
+    long sum = 0;
     for (int i = 1; i <= limit; i++)
     {
-        S += sieve[i] * (limit / i);
+        sum += sieve[i] * (limit / i);
     }
 
-    return S;
+    return sum;
 }
 
 int main()
 {
-    clock_t t;
-    t = clock();
-    printf("%ld\n", p153());
-    t = clock() - t;
-    printf("Time: %.3f\n", ((float)t) / CLOCKS_PER_SEC);
+    TIMED(printf("%ld\n", p153()));
 }

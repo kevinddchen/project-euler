@@ -1,8 +1,9 @@
-#include <cstdio>
-#include <ctime>
-#include <cmath>
-#include <vector>
+#include "common.h"
+
 #include <algorithm>
+#include <vector>
+
+#include <cmath>
 
 /*
 
@@ -40,16 +41,20 @@ long p143()
         for (long q = 1; q < p; q++)
         {
             if (p + q >= limit)
+            {
                 break;
+            }
             if (is_square(p * p + q * q + p * q))
+            {
                 temp.push_back(q);
+            }
         }
         p_partners.push_back(temp);
     }
     // (the steps above take ~30 sec)
 
     // try to find r < q from partners of p
-    bool *hits = new bool[limit + 1];
+    std::vector<bool> hits(limit + 1, false);
     for (int p = 1; p < limit; p++)
     {
         auto partners = p_partners[p];
@@ -58,31 +63,33 @@ long p143()
             for (auto q_iter = r_iter + 1; q_iter != partners.end(); q_iter++)
             {
                 if (p + *q_iter + *r_iter > limit)
+                {
                     break;
+                }
                 auto q_partners = p_partners[*q_iter];
                 // if r is a partner of q
                 if (std::find(q_partners.begin(), q_partners.end(), *r_iter) != q_partners.end())
+                {
                     hits[p + *q_iter + *r_iter] = true;
+                }
             }
         }
     }
 
     // add up all hits
-    long S = 0;
+    long sum = 0;
     for (int i = 0; i <= limit; i++)
     {
         if (hits[i])
-            S += i;
+        {
+            sum += i;
+        }
     }
 
-    return S;
+    return sum;
 }
 
 int main()
 {
-    clock_t t;
-    t = clock();
-    printf("%ld\n", p143());
-    t = clock() - t;
-    printf("Time: %.3f\n", ((float)t) / CLOCKS_PER_SEC);
+    TIMED(printf("%ld\n", p143()));
 }
