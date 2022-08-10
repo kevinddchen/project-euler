@@ -1,5 +1,5 @@
-#include <cstdio>
-#include <ctime>
+#include "common.h"
+
 #include <cmath>
 
 /*
@@ -22,17 +22,13 @@ int P(int m)
 
 long p190()
 {
-    long S = 0;
+    long sum = 0;
     for (int m = 2; m <= 15; m++)
-        S += P(m);
-    return S;
+        sum += P(m);
+    return sum;
 }
 
 int main()
 {
-    clock_t t;
-    t = clock();
-    printf("%ld\n", p190());
-    t = clock() - t;
-    printf("Time: %.3f\n", ((float)t) / CLOCKS_PER_SEC);
+    TIMED(printf("%ld\n", p190()));
 }

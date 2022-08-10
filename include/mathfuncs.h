@@ -185,3 +185,27 @@ long modular_power(long a, long b, long m)
     }
     return result;
 }
+
+/**
+ * Lagged Fibonacci Generator. Used in various problems.
+ */
+struct LaggedFibGen
+{
+    int buffer[55];
+    int jmod55; // j = k-1
+
+    LaggedFibGen()
+    {
+        for (int j = 0; j < 55; j++)
+            buffer[j] = (100003L - 200003L * (j + 1) + 300007L * (j + 1) * (j + 1) * (j + 1)) % 1000000;
+        jmod55 = 0;
+    }
+
+    int next()
+    {
+        const int return_val = buffer[jmod55];
+        buffer[jmod55] = (buffer[jmod55] + buffer[(jmod55 + 31) % 55]) % 1000000;
+        jmod55 = (jmod55 + 1) % 55;
+        return return_val;
+    }
+};

@@ -47,9 +47,7 @@ struct Fraction
 
     inline Fraction operator+(const Fraction &other) const
     {
-        Fraction out = {numer * other.denom + denom * other.numer, denom * other.denom};
-        out.reduce();
-        return out;
+        return (Fraction){numer * other.denom + denom * other.numer, denom * other.denom};
     }
 };
 

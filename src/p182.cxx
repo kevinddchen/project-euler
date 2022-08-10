@@ -1,6 +1,7 @@
 #include "common.h"
 #include "mathfuncs.h"
 
+#include <array>
 #include <vector>
 
 /*
@@ -38,21 +39,24 @@ ANSWER 399788195976
 
 */
 
-void filter(bool *sieve, int size, std::vector<std::array<int, 2>> pf)
+template <size_t size>
+void filter(
+    const std::vector<PrimePower> &pf,
+    std::array<bool, size> &sieve)
 {
     // Sieve out prime factors. If prime factor is 2, skip if power is =1,
     // otherwise sieve out multiples of 4.
-    for (auto p : pf)
+    for (const auto &pp : pf)
     {
         int multiple;
-        if (p[0] == 2)
+        if (pp.base == 2)
         {
-            if (p[1] == 1) // power = 1
+            if (pp.exp == 1) // power = 1
                 continue;
             multiple = 4; // else power >= 2
         }
         else
-            multiple = p[0];
+            multiple = pp.base;
 
         long k = multiple;
         while (k < size)
@@ -70,35 +74,31 @@ long p182()
     const int phi = (p - 1) * (q - 1);
 
     // prime factorize p-1 and q-1
-    auto p_factors = prime_factorize(p - 1);
-    auto q_factors = prime_factorize(q - 1);
+    const auto p_factors = prime_factorize(p - 1);
+    const auto q_factors = prime_factorize(q - 1);
 
     // since p, q are odd, sieve to find e such that
     // odd e: true when gcd(e, p-1) = gcd(e, q-1) = 1
     // even e: true when gcd(e, p-1) = gcd(e, q-1) = 2
-    vector<bool> sieve = new bool[phi];
-    // initialize sieve
-    for (int i = 0; i < phi; i++)
-        sieve[i] = true;
+    std::array<bool, phi> sieve;
+    sieve.fill(true);
     // sieve
-    filter(sieve, phi, p_factors);
-    filter(sieve, phi, q_factors);
+    filter<phi>(p_factors, sieve);
+    filter<phi>(q_factors, sieve);
 
-    long S = 0;
+    long sum = 0;
     for (int i = 3; i < phi; i += 2)
     {
         if (sieve[i] && sieve[i - 1])
-            S += i;
+        {
+            sum += i;
+        }
     }
 
-    return S;
+    return sum;
 }
 
 int main()
 {
-    clock_t t;
-    t = clock();
-    printf("%ld\n", p182());
-    t = clock() - t;
-    printf("Time: %.3f\n", ((float)t) / CLOCKS_PER_SEC);
+    TIMED(printf("%ld\n", p182()));
 }
