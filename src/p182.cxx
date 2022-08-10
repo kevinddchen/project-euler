@@ -1,8 +1,7 @@
-#include <cstdio>
-#include <ctime>
-#include <vector>
-
+#include "common.h"
 #include "mathfuncs.h"
+
+#include <vector>
 
 /*
 
@@ -77,7 +76,7 @@ long p182()
     // since p, q are odd, sieve to find e such that
     // odd e: true when gcd(e, p-1) = gcd(e, q-1) = 1
     // even e: true when gcd(e, p-1) = gcd(e, q-1) = 2
-    bool *sieve = new bool[phi];
+    vector<bool> sieve = new bool[phi];
     // initialize sieve
     for (int i = 0; i < phi; i++)
         sieve[i] = true;

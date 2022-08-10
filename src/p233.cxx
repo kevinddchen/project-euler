@@ -1,9 +1,11 @@
+#include "mathfuncs.h"
+
 #include <cstdio>
 #include <ctime>
 #include <algorithm>
 #include <vector>
 
-#include "mathfuncs.h"
+
 
 /*
 

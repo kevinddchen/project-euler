@@ -34,7 +34,8 @@ long p143()
     // (1) 1 <= q < p
     // (2) p + q < 120'000
     // (3) p^2 + q^2 + p*q = k^2 for integer k
-    std::vector<std::vector<int>> p_partners{{}};
+    std::vector<std::vector<int>> p_partners(limit);
+    p_partners[0] = {};
     for (long p = 1; p < limit; p++)
     {
         std::vector<int> temp;
@@ -49,7 +50,7 @@ long p143()
                 temp.push_back(q);
             }
         }
-        p_partners.push_back(temp);
+        p_partners[p] = temp;
     }
     // (the steps above take ~30 sec)
 

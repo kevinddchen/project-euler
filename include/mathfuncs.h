@@ -1,5 +1,6 @@
 #pragma once
 
+#include <array>
 #include <vector>
 
 #include <cassert>
@@ -35,9 +36,11 @@ bool is_prime(long n)
  * Creates a prime sieve, i.e. a boolean array where the nth entry, for n > 1,
  * is true when n is prime. (The n = 0 and n = 1 entries are undefined).
  */
-std::vector<bool> prime_sieve(uint32_t size)
+template <size_t size>
+std::array<bool, size> prime_sieve()
 {
-    std::vector<bool> sieve(size);
+    std::array<bool, size> sieve;
+    sieve.fill(false);
 
     // initialize values
     for (int i = 2; i < size; i++)
@@ -138,9 +141,9 @@ void extended_gcd(long a, long b, long &s, long &t, long &r)
 }
 
 /**
- * Computes the multiplicative inverse of a mod m, as a positive integer. Uses
- * the Extended Euclidean algorithm to compute the inverse. We must have a > 0
- * and m > 1. If a and m are not coprime, returns 0 instead.
+ * Computes the multiplicative inverse of a mod m, and returns a positive
+ * integer. Uses the Extended Euclidean algorithm to compute the inverse. We
+ * must have a > 0 and m > 1. If a and m are not coprime, returns 0 instead.
  */
 long modular_inverse(long a, long m)
 {
