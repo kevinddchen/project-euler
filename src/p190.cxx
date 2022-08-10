@@ -24,7 +24,9 @@ long p190()
 {
     long sum = 0;
     for (int m = 2; m <= 15; m++)
+    {
         sum += P(m);
+    }
     return sum;
 }
 

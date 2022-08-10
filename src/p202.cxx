@@ -59,18 +59,26 @@ long p202()
         new_factors[0] = {};
         new_factors[1] = {};
         for (auto odd_o_f : old_factors[0])
+        {
             new_factors[1].push_back(odd_o_f * pp.base);
+        }
         for (auto even_o_f : old_factors[1])
+        {
             new_factors[0].push_back(even_o_f * pp.base);
+        }
         old_factors[0].insert(old_factors[0].end(), new_factors[0].begin(), new_factors[0].end());
         old_factors[1].insert(old_factors[1].end(), new_factors[1].begin(), new_factors[1].end());
     }
 
     long count = 0;
     for (auto even : old_factors[1])
+    {
         count += count_multiples(even, n); // count_multiples(1, n) includes all integers.
+    }
     for (auto odd : old_factors[0])
+    {
         count -= count_multiples(odd, n); // exclude all multiples of a prime factor.
+    }
 
     return count;
 }

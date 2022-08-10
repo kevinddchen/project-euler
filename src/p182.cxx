@@ -52,11 +52,15 @@ void filter(
         if (pp.base == 2)
         {
             if (pp.exp == 1) // power = 1
+            {
                 continue;
+            }
             multiple = 4; // else power >= 2
         }
         else
+        {
             multiple = pp.base;
+        }
 
         long k = multiple;
         while (k < size)

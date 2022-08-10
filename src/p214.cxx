@@ -1,5 +1,6 @@
-#include <cstdio>
-#include <ctime>
+#include "common.h"
+
+#include <array>
 
 /*
 
@@ -12,14 +13,16 @@ ANSWER 1677366278943
 
 long p214()
 {
-    const int size = 40000000;
+    const int size = 40'000'000;
     const int target = 25;
-    long S = 0;
+    long sum = 0;
 
     // initialize array
     int *sieve = new int[size];
     for (int i = 0; i < size; i++)
+    {
         sieve[i] = i;
+    }
 
     // sieve
     int tot;
@@ -31,23 +34,24 @@ long p214()
             tot--;
             // multiply further totients
             for (int j = i; j < size; j += i)
+            {
                 sieve[j] = (sieve[j] / i) * (i - 1);
+            }
             // check chain length
             if (sieve[tot] + 1 == target)
-                S += i;
+            {
+                sum += i;
+            }
         }
         // replace sieve value with chain length
         sieve[i] = sieve[tot] + 1;
     }
 
-    return S;
+    delete[] sieve;
+    return sum;
 }
 
 int main()
 {
-    clock_t t;
-    t = clock();
-    printf("%ld\n", p214());
-    t = clock() - t;
-    printf("Time: %.3f\n", ((float)t) / CLOCKS_PER_SEC);
+    TIMED(printf("%ld\n", p214()));
 }

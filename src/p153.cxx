@@ -1,5 +1,6 @@
 #include "common.h"
 
+#include <memory>
 #include <numeric>
 #include <vector>
 
@@ -21,7 +22,7 @@ ANSWER 17971254122360635
 long p153()
 {
     const int limit = 100'000'000;
-    std::vector<long> sieve(limit + 1);
+    long *sieve = new long[limit+1];
 
     // initialize sieve
     for (int i = 0; i <= limit; i++)
@@ -52,6 +53,7 @@ long p153()
         sum += sieve[i] * (limit / i);
     }
 
+    delete[] sieve;
     return sum;
 }
 
