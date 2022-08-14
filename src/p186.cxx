@@ -53,15 +53,15 @@ long p186()
     long n = 0;
     while (num_nodes[find_root(pm, parents)] < threshold)
     {
-        const int a = gen.next();
-        const int b = gen.next();
+        int a = gen.next();
+        int b = gen.next();
         if (a == b)
         {
             continue;
         }
         n++;
-        const int a_root = find_root(a, parents);
-        const int b_root = find_root(b, parents);
+        int a_root = find_root(a, parents);
+        int b_root = find_root(b, parents);
         // if roots are different, combine trees, rooted at `a_root`
         if (a_root != b_root)
         {

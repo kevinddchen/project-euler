@@ -1,5 +1,5 @@
-#include <cstdio>
-#include <ctime>
+#include "common.h"
+
 #include <cmath>
 
 /*
@@ -33,7 +33,9 @@ double p323()
         prob = cum - prev_cum;
 
         if (prob < 1e-13)
+        {
             break;
+        }
 
         exp_val += N * prob;
         prev_cum = cum;
@@ -43,9 +45,5 @@ double p323()
 
 int main()
 {
-    clock_t t;
-    t = clock();
-    printf("%.10f\n", p323());
-    t = clock() - t;
-    printf("Time: %.3f\n", ((float)t) / CLOCKS_PER_SEC);
+    TIMED(printf("%.10f\n", p323()));
 }

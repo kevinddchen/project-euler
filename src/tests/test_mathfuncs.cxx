@@ -43,8 +43,7 @@ void test_prime_sieve()
 {
     printf("Testing `prime_sieve()`... ");
 
-    auto sieve1 = prime_sieve<9>();
-    assert(sieve1.size() == 9);
+    auto sieve1 = PrimeSieve(9);
     assert(sieve1[2]);
     assert(sieve1[3]);
     assert(!sieve1[4]);
@@ -54,15 +53,14 @@ void test_prime_sieve()
     assert(!sieve1[8]);
 
     // Test using `is_prime`
-    auto sieve2 = prime_sieve<100>();
-    assert(sieve2.size() == 100);
+    auto sieve2 = PrimeSieve(100);
     for (int i = 2; i < 100; i++)
         assert(is_prime(i) == sieve2[i]);
 
     // Test no crash for small sizes
-    (void) prime_sieve<0>();
-    (void) prime_sieve<1>();
-    (void) prime_sieve<2>();
+    (void) PrimeSieve(0);
+    (void) PrimeSieve(1);
+    (void) PrimeSieve(2);
 
     printf("Done!\n");
 }

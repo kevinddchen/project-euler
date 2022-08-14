@@ -36,42 +36,52 @@ bool is_prime(long n)
  * Creates a prime sieve, i.e. a boolean array where the nth entry, for n > 1,
  * is true when n is prime. (The n = 0 and n = 1 entries are undefined).
  */
-template <size_t size>
-std::array<bool, size> prime_sieve()
+struct PrimeSieve
 {
-    std::array<bool, size> sieve;
-    sieve.fill(false);
+    bool *sieve;
 
-    // initialize values
-    for (int i = 2; i < size; i++)
+    PrimeSieve(int size)
     {
-        sieve[i] = true;
-    }
-
-    // sieve
-    for (int i = 2; i * i < size; i++)
-    {
-        if (sieve[i])
+        // initialize sieve
+        sieve = new bool[size];
+        for (int i = 0; i < size; i++)
         {
-            for (int j = i * i; j < size; j += i)
+            sieve[i] = false;
+        }
+
+        // initialize values
+        for (int i = 2; i < size; i++)
+        {
+            sieve[i] = true;
+        }
+
+        // sieve
+        for (int i = 2; i * i < size; i++)
+        {
+            if (sieve[i])
             {
-                sieve[j] = false;
+                for (int j = i * i; j < size; j += i)
+                {
+                    sieve[j] = false;
+                }
             }
         }
     }
 
-    return sieve;
-}
+    ~PrimeSieve()
+    {
+        delete[] sieve;
+    }
+
+    inline bool operator[](int i) const { return sieve[i]; }
+};
 
 struct PrimePower
 {
     long base;
     long exp;
 
-    inline bool operator==(const PrimePower &other) const
-    {
-        return base == other.base && exp == other.exp;
-    }
+    inline bool operator==(const PrimePower &other) const { return base == other.base && exp == other.exp; }
 };
 
 /**
@@ -203,7 +213,7 @@ struct LaggedFibGen
 
     int next()
     {
-        const int return_val = buffer[jmod55];
+        int return_val = buffer[jmod55];
         buffer[jmod55] = (buffer[jmod55] + buffer[(jmod55 + 31) % 55]) % 1000000;
         jmod55 = (jmod55 + 1) % 55;
         return return_val;

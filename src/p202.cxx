@@ -32,7 +32,7 @@ long count_multiples(long a, long n)
     {
         return 0;
     }
-    const int m = (k_max * a + n) % 3;
+    int m = (k_max * a + n) % 3;
     if (m != 0)
     {
         k_max -= a % 3 == m ? 1 : 2;
@@ -47,7 +47,7 @@ long p202()
     const long bounces = 12017639147;
     const long n = (bounces + 3) / 2;
 
-    const auto prime_factors = prime_factorize(n);
+    auto prime_factors = prime_factorize(n);
 
     // old_factors[0] keeps track of odd-length products of distinct prime factors.
     // old_factors[1] "            " even-length "                               ".

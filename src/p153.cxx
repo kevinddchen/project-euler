@@ -1,8 +1,6 @@
 #include "common.h"
 
-#include <memory>
 #include <numeric>
-#include <vector>
 
 /*
 
@@ -22,9 +20,9 @@ ANSWER 17971254122360635
 long p153()
 {
     const int limit = 100'000'000;
-    long *sieve = new long[limit+1];
 
     // initialize sieve
+    long *sieve = new long[limit + 1];
     for (int i = 0; i <= limit; i++)
     {
         sieve[i] = i;
@@ -37,7 +35,7 @@ long p153()
         {
             if (std::gcd(a, b) == 1)
             {
-                const int norm = a * a + b * b;
+                int norm = a * a + b * b;
                 for (int k = 1; k * norm <= limit; k++)
                 {
                     sieve[k * norm] += (a == b ? 2 * a : 2 * (a + b)) * k;

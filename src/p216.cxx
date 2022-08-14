@@ -1,5 +1,4 @@
-#include <cstdio>
-#include <ctime>
+#include "common.h"
 
 /*
 
@@ -41,7 +40,9 @@ void filter_multiples(long *sieve, int limit, long n)
     while (a <= limit)
     {
         while (sieve[a] % sieve[n] == 0)
+        {
             sieve[a] /= sieve[n];
+        }
         temp = a + sieve[n];
         a = b;
         b = temp;
@@ -55,25 +56,29 @@ long p216()
     // initialize sieve
     long *sieve = new long[limit + 1];
     for (long n = 0; n <= limit; n++)
+    {
         sieve[n] = 2 * n * n - 1;
+    }
 
-    long C = 0;
+    long count = 0;
     for (long n = 2; n <= limit; n++)
     {
         if (sieve[n] == 1) // t(n) has no new factors
+        {
             continue;
+        }
         if (sieve[n] == 2 * n * n - 1) // t(n) is prime
-            C++;
+        {
+            count++;
+        }
         filter_multiples(sieve, limit, n);
     }
-    return C;
+
+    delete[] sieve;
+    return count;
 }
 
 int main()
 {
-    clock_t t;
-    t = clock();
-    printf("%ld\n", p216());
-    t = clock() - t;
-    printf("Time: %.3f\n", ((float)t) / CLOCKS_PER_SEC);
+    TIMED(printf("%ld\n", p216()));
 }

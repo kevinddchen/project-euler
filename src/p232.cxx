@@ -1,6 +1,6 @@
-#include <cstdio>
-#include <ctime>
+#include "common.h"
 
+#include <array>
 /*
 
 If P2 has i pts left, P1 has j pts left, and P2 is first to move, let p(i, j; T)
@@ -37,20 +37,17 @@ int ceillog2(int n)
 }
 
 // class to store probabilities
+template <size_t size>
 struct Probs
 {
-    const int size;
-    double **table;
+    std::array<std::array<double, size>, size> table;
 
-    Probs(int n) : size(n)
+    Probs()
     {
         // initialize 2d array storing probabilities
-        table = new double *[n];
-        for (int i = 0; i < n; i++)
+        for (int i = 0; i < size; i++)
         {
-            table[i] = new double[n];
-            for (int j = 0; j < n; j++)
-                table[i][j] = -1;
+            table[i].fill(-1);
         }
     }
 
@@ -58,20 +55,28 @@ struct Probs
     double get(int i, int j)
     {
         if (i <= 0)
+        {
             return 1;
-        else if (j == 0)
+        }
+        if (j == 0)
+        {
             return 0;
-        else if (table[i - 1][j - 1] >= 0) // get(i, j) = table[i-1][j-1] if value is already computed
+        }
+        if (table[i - 1][j - 1] >= 0) // get(i, j) = table[i-1][j-1] if value is already computed
+        {
             return table[i - 1][j - 1];
+        }
         // compute new probability
-        double max = 0; // tracks highest probability
-        int T_max = ceillog2(i) + 1;
+        double max = 0;       // tracks highest probability
         int power_of_two = 1; // tracks 2^(T-1)
+         int T_max = ceillog2(i) + 1;
         for (int T = 1; T <= T_max; T++, power_of_two *= 2)
         {
             double p = (get(i - power_of_two, j) + get(i - power_of_two, j - 1) + (2 * power_of_two - 1) * get(i, j - 1)) / (2 * power_of_two + 1);
             if (p > max)
+            {
                 max = p;
+            }
         }
         table[i - 1][j - 1] = max;
         return max;
@@ -81,12 +86,14 @@ struct Probs
 double p232()
 {
     const int size = 100;
-    Probs P(size);
-    // to avoid stack overflow, generate entire table of needed values
+    Probs<size> P;
+    // generate entire table of needed values
     for (int i = 1; i <= size; i++)
     {
         for (int j = 1; j <= size; j++)
+        {
             (void)P.get(i, j);
+        }
     }
     // manually do P1's first move
     return (P.get(size, size) + P.get(size, size - 1)) / 2;
@@ -94,9 +101,5 @@ double p232()
 
 int main()
 {
-    clock_t t;
-    t = clock();
-    printf("%.8f\n", p232());
-    t = clock() - t;
-    printf("Time: %.3f\n", ((float)t) / CLOCKS_PER_SEC);
+    TIMED(printf("%.8f\n", p232()));
 }

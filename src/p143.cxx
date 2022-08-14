@@ -1,6 +1,7 @@
 #include "common.h"
 
 #include <algorithm>
+#include <array>
 #include <vector>
 
 #include <cmath>
@@ -34,8 +35,9 @@ long p143()
     // (1) 1 <= q < p
     // (2) p + q < 120'000
     // (3) p^2 + q^2 + p*q = k^2 for integer k
-    std::vector<std::vector<int>> p_partners(limit);
+    std::array<std::vector<int>, limit> p_partners;
     p_partners[0] = {};
+
     for (long p = 1; p < limit; p++)
     {
         std::vector<int> temp;
@@ -55,10 +57,15 @@ long p143()
     // (the steps above take ~30 sec)
 
     // try to find r < q from partners of p
-    std::vector<bool> hits(limit + 1, false);
+    std::array<bool, limit+1> hits;
+    for (int i = 0; i <= limit; i++)
+    {
+        hits[i] = false;
+    }
+
     for (int p = 1; p < limit; p++)
     {
-        auto partners = p_partners[p];
+        const auto &partners = p_partners[p];
         for (auto r_iter = partners.begin(); r_iter != partners.end(); r_iter++)
         {
             for (auto q_iter = r_iter + 1; q_iter != partners.end(); q_iter++)
@@ -67,7 +74,7 @@ long p143()
                 {
                     break;
                 }
-                auto q_partners = p_partners[*q_iter];
+                const auto &q_partners = p_partners[*q_iter];
                 // if r is a partner of q
                 if (std::find(q_partners.begin(), q_partners.end(), *r_iter) != q_partners.end())
                 {

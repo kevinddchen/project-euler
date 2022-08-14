@@ -30,20 +30,14 @@ struct Fraction
 
     void reduce()
     {
-        const int d = std::gcd(numer, denom);
+        int d = std::gcd(numer, denom);
         numer /= d;
         denom /= d;
     }
 
-    inline Fraction reciprocal() const
-    {
-        return (Fraction){denom, numer};
-    }
+    inline Fraction reciprocal() const { return (Fraction){denom, numer}; }
 
-    inline bool operator==(const Fraction &other) const
-    {
-        return numer == other.numer && denom == other.denom;
-    }
+    inline bool operator==(const Fraction &other) const { return numer == other.numer && denom == other.denom; }
 
     inline Fraction operator+(const Fraction &other) const
     {
@@ -64,10 +58,11 @@ struct std::hash<Fraction>
 long p155()
 {
     const int limit = 18;
+
     std::unordered_set<Fraction> set;              // hash map to check if a capacitance has been encountered yet
     std::array<std::vector<Fraction>, limit> list; // list of capacitances for each n
 
-    const Fraction one{1, 1};
+    Fraction one{1, 1};
     list[0] = {one};
     set.insert(one);
 
@@ -77,19 +72,19 @@ long p155()
         // sum capacitances for 1 + (n-1), 2 + (n-2), ...
         for (int i = 1; 2 * i <= n; i++)
         {
-            const int j = n - i;
+            int j = n - i;
             for (auto f1 : list[i - 1])
             {
                 for (auto f2 : list[j - 1])
                 {
-                    const auto f = f1 + f2;
+                    auto f = f1 + f2;
                     if (set.find(f) == set.end()) // if capacitance not encountered yet
                     {
                         // add f to list
                         list[n - 1].push_back(f);
                         set.insert(f);
                         // add 1/f to list
-                        const auto f_rec = f.reciprocal();
+                        auto f_rec = f.reciprocal();
                         list[n - 1].push_back(f_rec);
                         set.insert(f_rec);
                     }
