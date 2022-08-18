@@ -3,10 +3,16 @@
 #include <cstdio>
 #include <ctime>
 
-#define TIMED(X)                                             \
+#define TIMED(expr)                                          \
     {                                                        \
         clock_t t = clock();                                 \
-        X;                                                   \
+        expr;                                                \
         t = clock() - t;                                     \
         printf("Time: %.3f\n", ((float)t) / CLOCKS_PER_SEC); \
     }
+
+#ifdef NDEBUG
+#define LOG(...) ((void)0)
+#else
+#define LOG(...) printf(__VA_ARGS__)
+#endif
