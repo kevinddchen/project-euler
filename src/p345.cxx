@@ -2,8 +2,8 @@
 
 #include "common.h"
 
-#include <array>
 #include <algorithm>
+#include <array>
 #include <vector>
 
 /*

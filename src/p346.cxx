@@ -1,5 +1,5 @@
-#include <cstdio>
-#include <ctime>
+#include "common.h"
+
 #include <set>
 
 /*
@@ -13,22 +13,21 @@ ANSWER 336108797689259276
 
 long p346()
 {
-    const long limit = 1000000000000;
+    const long limit = 1'000'000'000'000;
     long sum = 1;
 
-    std::set<long> S;
-    std::set<long>::iterator it;
+    std::set<long> repeats;
 
     for (long i = 2; i * i < limit; i++)
     {
         long x = (i + 1) * i + 1;
         while (x < limit)
         {
-            it = S.find(x);
-            if (it == S.end()) // if x has not been encountered yet
+            auto it = repeats.find(x);
+            if (it == repeats.end()) // if x has not been encountered yet
             {
                 sum += x;
-                S.insert(x);
+                repeats.insert(x);
             }
             x = x * i + 1;
         }
@@ -38,9 +37,5 @@ long p346()
 
 int main()
 {
-    clock_t t;
-    t = clock();
-    printf("%ld\n", p346());
-    t = clock() - t;
-    printf("Time: %.3f\n", ((float)t) / CLOCKS_PER_SEC);
+    TIMED(printf("%ld\n", p346()));
 }

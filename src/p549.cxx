@@ -1,5 +1,4 @@
-#include <cstdio>
-#include <ctime>
+#include "common.h"
 #include "mathfuncs.h"
 
 /*
@@ -30,7 +29,7 @@ int count_divisions(int x, int d)
 long p549()
 {
     const int size = 100'000'000;
-    long C = 0;
+    long sum = 0;
 
     int *s = new int[size + 1](); // array to store s[n]
 
@@ -38,10 +37,10 @@ long p549()
     {
         if (s[p] != 0) // if not prime
         {
-            C += s[p];
+            sum += s[p];
             continue;
         }
-        C += p; // if prime, then s[p] = p
+        sum += p; // if prime, then s[p] = p
 
         int s_n = p;
         int a_to_add = 1; // used for calculating s(p_power)
@@ -61,20 +60,20 @@ long p549()
             for (j = p_power; j <= size; j += p_power)
             {
                 if (s_n > s[j])
+                {
                     s[j] = s_n;
+                }
             }
             // next power of p
             p_power *= p; // (p_power is long to prevent overflow in this step)
         }
     }
-    return C;
+
+    delete[] s;
+    return sum;
 }
 
 int main()
 {
-    clock_t t;
-    t = clock();
-    printf("%ld\n", p549());
-    t = clock() - t;
-    printf("Time: %.3f\n", ((float)t) / CLOCKS_PER_SEC);
+    TIMED(printf("%ld\n", p549()));
 }

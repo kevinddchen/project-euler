@@ -1,6 +1,4 @@
-#include <cstdio>
-#include <ctime>
-
+#include "common.h"
 #include "mathfuncs.h"
 
 /*
@@ -52,9 +50,5 @@ long p743()
 
 int main()
 {
-    clock_t t;
-    t = clock();
-    printf("%ld\n", p743());
-    t = clock() - t;
-    printf("Time: %.3f\n", ((float)t) / CLOCKS_PER_SEC);
+    TIMED(printf("%ld\n", p743()));
 }

@@ -1,5 +1,4 @@
-#include <cstdio>
-#include <ctime>
+#include "common.h"
 #include "mathfuncs.h"
 
 /*
@@ -11,19 +10,23 @@ ANSWER 1739023853137
 
 */
 
-bool prime_generating(long x, long *div_arr, bool *sieve)
+bool prime_generating(long x, long *div_arr, const PrimeSieve &sieve)
 {
     div_arr[0] = 1;
     int divs = 1;
     if (!sieve[x + 1]) // 1 is divisor, so x+1 must be prime
+    {
         return false;
+    }
 
     for (long int p = 2; p * p <= x; p++) // find prime factors
     {
         if (sieve[p] and x % p == 0)
         {
             if (x % (p * p) == 0) // x must be square-free
+            {
                 return false;
+            }
 
             int add = 0;
             for (int i = 0; i < divs; i++)
@@ -32,7 +35,9 @@ bool prime_generating(long x, long *div_arr, bool *sieve)
                 if (d * d < x)
                 {
                     if (!sieve[d + x / d])
+                    {
                         return false;
+                    }
                     div_arr[divs + add] = d;
                     add++;
                 }
@@ -45,26 +50,24 @@ bool prime_generating(long x, long *div_arr, bool *sieve)
 
 long p357()
 {
-    const int size = 100000000;
-    bool *sieve = prime_sieve(size + 2);
+    const int size = 100'000'000;
+    PrimeSieve sieve(size + 2);
 
     // find prime_generating
-    long S = 0;
+    long sum = 0;
     long div_arr[100];
 
     for (long i = 1; i <= size; i++)
     {
         if (prime_generating(i, div_arr, sieve))
-            S += i;
+        {
+            sum += i;
+        }
     }
-    return S;
+    return sum;
 }
 
 int main()
 {
-    clock_t t;
-    t = clock();
-    printf("%ld\n", p357());
-    t = clock() - t;
-    printf("Time: %.3f\n", ((float)t) / CLOCKS_PER_SEC);
+    TIMED(printf("%ld\n", p357()));
 }

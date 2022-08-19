@@ -124,7 +124,8 @@ std::vector<PrimePower> prime_factorize(long n)
  */
 void extended_gcd(long a, long b, long &s, long &t, long &r)
 {
-    assert(a > 0 && b > 0);
+    assert(a > 0);
+    assert(b > 0);
 
     s = 1;
     t = 0;
@@ -157,7 +158,8 @@ void extended_gcd(long a, long b, long &s, long &t, long &r)
  */
 long modular_inverse(long a, long m)
 {
-    assert(a > 0 && m > 1);
+    assert(a > 0);
+    assert(m > 1);
 
     // use `extended_gcd` to solve a*s + m*t = 1. Then s is the inverse.
     long s, t, r;
