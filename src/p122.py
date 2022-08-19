@@ -6,8 +6,6 @@ We generate a tree of all addition chains, and traverse breadth first.
 
 """
 
-from time import time
-
 
 def p122():
     LIMIT = 200
@@ -43,9 +41,3 @@ def p122():
             break
 
     return sum(mem)
-
-
-if __name__ == "__main__":
-    time_start = time()
-    print(p122())
-    print("Time: {0:.3f}".format(time() - time_start))

@@ -15,7 +15,6 @@ Then once a_n = 2a_0, one period has passed.
 """
 
 from math import isqrt
-from time import time
 
 
 def continued_fraction_of_sqrt(n):
@@ -42,9 +41,3 @@ def p64():
         if i % 2 == 1:
             C += 1
     return C
-
-
-if __name__ == "__main__":
-    time_start = time()
-    print(p64())
-    print("Time: {0:.3f}".format(time() - time_start))

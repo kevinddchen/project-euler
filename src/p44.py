@@ -9,8 +9,6 @@ pentagonal number, then we are done.
 
 """
 
-from time import time
-
 from .mathfuncs import prime_factorize
 
 
@@ -54,9 +52,3 @@ def p44():
                 n = n6 // 6
                 if is_pent(pent(n) + pent(n + k)):
                     return p2 // 2
-
-
-if __name__ == "__main__":
-    time_start = time()
-    print(p44())
-    print("Time: {0:.3f}".format(time() - time_start))

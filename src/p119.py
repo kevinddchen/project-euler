@@ -17,7 +17,6 @@ least ceil(b/9) digits. For example:
 """
 
 from math import ceil
-from time import time
 
 
 def p119():
@@ -47,9 +46,3 @@ def p119():
             i += 1
 
     return n
-
-
-if __name__ == "__main__":
-    time_start = time()
-    print(p119())
-    print("Time: {0:.3f}".format(time() - time_start))

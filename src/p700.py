@@ -11,8 +11,6 @@ Let E1 be the first Eulercoin and P be the large prime. The other Eulercoins can
 
 """
 
-from time import time
-
 
 def p700():
 
@@ -29,9 +27,3 @@ def p700():
         S = S + b
 
     return S
-
-
-if __name__ == "__main__":
-    time_start = time()
-    print(p700())
-    print("Time: {0:.3f}".format(time() - time_start))

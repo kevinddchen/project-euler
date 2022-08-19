@@ -11,7 +11,6 @@ iterate through a then b then r, testing if n is a perfect square.
 """
 
 from math import gcd, isqrt
-from time import time
 
 
 def p141():
@@ -34,9 +33,3 @@ def p141():
                     r += 1
         a += 1
     return S
-
-
-if __name__ == "__main__":
-    time_start = time()
-    print(p141())
-    print("Time: {0:.3f}".format(time() - time_start))

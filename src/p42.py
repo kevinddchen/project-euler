@@ -1,7 +1,6 @@
 # ANSWER 162
 
 from pathlib import Path
-from time import time
 
 
 def convert_to_int(word):
@@ -19,9 +18,3 @@ def p42():
     lst = fl.read_text().split(",")
     lst = [convert_to_int(word) for word in lst]
     return sum(1 for x in lst if is_triangle(x))
-
-
-if __name__ == "__main__":
-    time_start = time()
-    print(p42())
-    print("Time: {0:.3f}".format(time() - time_start))

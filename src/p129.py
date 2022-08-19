@@ -11,8 +11,6 @@ Therefore, for this problem we can start finding A(n) from n=10^6.
 
 """
 
-from time import time
-
 
 def A(n):
     # also used in Problem 130
@@ -32,9 +30,3 @@ def p129():
             continue
         if A(n) > 10**6:
             return n
-
-
-if __name__ == "__main__":
-    time_start = time()
-    print(p129())
-    print("Time: {0:.3f}".format(time() - time_start))

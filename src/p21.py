@@ -1,7 +1,6 @@
 # ANSWER 31626
 
 from math import prod
-from time import time
 
 from .mathfuncs import prime_factorize
 
@@ -34,9 +33,3 @@ def p21():
         if sum_proper_divisors(end) == start and start != end:
             S += start
     return S
-
-
-if __name__ == "__main__":
-    time_start = time()
-    print(p21())
-    print("Time: {0:.3f}".format(time() - time_start))

@@ -1,7 +1,6 @@
 # ANSWER 2906969179
 
 from math import isqrt
-from time import time
 
 LIMIT = 10**8
 
@@ -26,9 +25,3 @@ def p125():
             if is_palindrome(S):
                 L.add(S)
     return sum(L)
-
-
-if __name__ == "__main__":
-    time_start = time()
-    print(p125())
-    print("Time: {0:.3f}".format(time() - time_start))

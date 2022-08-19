@@ -30,7 +30,6 @@ integers to test which difference is larger.
 """
 
 from math import isqrt
-from time import time
 
 from .p64 import continued_fraction_of_sqrt
 
@@ -82,9 +81,3 @@ def p192():
         S += k
 
     return S
-
-
-if __name__ == "__main__":
-    time_start = time()
-    print(p192())
-    print("Time: {0:.3f}".format(time() - time_start))

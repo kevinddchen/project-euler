@@ -10,8 +10,6 @@ digits. Then we check it is pandigital.
 
 """
 
-from time import time
-
 
 def fib_last_generator():
     """Generates fibonacci numbers, keeping only last 9 digits."""
@@ -54,9 +52,3 @@ def p104():
         if pandigital(str(last_9)) and pandigital(str(fib_first(i))):
             break
     return i
-
-
-if __name__ == "__main__":
-    time_start = time()
-    print(p104())
-    print("Time: {0:.3f}".format(time() - time_start))

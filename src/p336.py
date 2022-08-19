@@ -11,8 +11,6 @@ are only 362,800 maximix arrangements to go search through.
 
 """
 
-from time import time
-
 
 def reverse(L, a, b):
     """In-place reversal indices a through b of list L."""
@@ -76,9 +74,3 @@ def p336():
     reverse(L, 0, 1)
     recurse(L, 2, N, min_list)
     return number_to_alpha(min_list[2010], N)
-
-
-if __name__ == "__main__":
-    time_start = time()
-    print(p336())
-    print("Time: {0:.3f}".format(time() - time_start))

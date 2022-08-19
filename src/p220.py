@@ -7,8 +7,6 @@ long-division like algorithm to determine the 10**12th step.
 
 """
 
-from time import time
-
 A_STRING = "aRbFR"
 B_STRING = "LFaLb"
 A_LIST = [(0, 0, 0, 0)]
@@ -78,9 +76,3 @@ def p220():
             lst.append((x, y, d, n))
 
     return recurse(0, 0, 0, steps, size, "Fa")
-
-
-if __name__ == "__main__":
-    time_start = time()
-    print(p220())
-    print("Time: {0:.3f}".format(time() - time_start))

@@ -16,7 +16,6 @@ Using this approach, the question now changes to a limit of 8000000.
 """
 
 from math import ceil, log, prod
-from time import time
 
 from .mathfuncs import is_prime
 
@@ -67,9 +66,3 @@ def p110():
         max_factor -= 1
     min_product_recursive([], 1, max_factor, primes)
     return MIN
-
-
-if __name__ == "__main__":
-    time_start = time()
-    print(p110())
-    print("Time: {0:.3f}".format(time() - time_start))

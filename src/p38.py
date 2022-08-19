@@ -1,7 +1,5 @@
 # ANSWER 932718654
 
-from time import time
-
 
 def check(x):
     """
@@ -26,9 +24,3 @@ def check(x):
 def p38():
     # maximum 4 digit numbers as n > 1
     return max(check(x) for x in range(1, 10000))
-
-
-if __name__ == "__main__":
-    time_start = time()
-    print(p38())
-    print("Time: {0:.3f}".format(time() - time_start))

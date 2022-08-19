@@ -6,8 +6,6 @@ See solution explanations.
 
 """
 
-from time import time
-
 
 def continued_fraction_of_e():
     yield 2
@@ -30,9 +28,3 @@ def p65():
         p = (a * p[0] + p[1], p[0])
         q = (a * q[0] + q[1], q[0])
     return sum(int(c) for c in str(p[0]))
-
-
-if __name__ == "__main__":
-    time_start = time()
-    print(p65())
-    print("Time: {0:.3f}".format(time() - time_start))

@@ -7,7 +7,6 @@ Can be solved by hand. See PDF for explanation.
 """
 
 from math import gcd, isqrt
-from time import time
 
 
 def p9():
@@ -27,9 +26,3 @@ def p9():
                 c = m * m + n * n
                 if 1000 % (a + b + c) == 0:
                     return a * b * c * (1000 // (a + b + c)) ** 3
-
-
-if __name__ == "__main__":
-    time_start = time()
-    print(p9())
-    print("Time: {0:.3f}".format(time() - time_start))

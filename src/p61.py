@@ -7,8 +7,6 @@ is {8256, 5625, 2512, 1281, 8128, 2882} with polygonal types {3, 4, 7, 8, 6, 5}.
 
 """
 
-from time import time
-
 
 def polygon_gen(s):
     """Generates polygonal numbers of s-sides"""
@@ -65,9 +63,3 @@ def p61():
             if find_chain(head, tail, used, answer, poly_dicts):
                 return sum(answer)
             answer.pop()
-
-
-if __name__ == "__main__":
-    time_start = time()
-    print(p61())
-    print("Time: {0:.3f}".format(time() - time_start))

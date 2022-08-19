@@ -8,8 +8,6 @@ is equal to the number of carries when m is added to n-m in base p.
 
 """
 
-from time import time
-
 from .mathfuncs import PrimeSieve
 
 
@@ -39,9 +37,3 @@ def p231():
     for p in PrimeSieve(m):
         s += choose_greatest_power(m, n, p) * p
     return s
-
-
-if __name__ == "__main__":
-    time_start = time()
-    print(p231())
-    print("Time: {0:.3f}".format(time() - time_start))

@@ -10,7 +10,6 @@ to be correct. The key is 'god' and the encrypted text is John 1:1-14
 """
 
 from pathlib import Path
-from time import time
 
 
 def key_gen():
@@ -43,9 +42,3 @@ def p59():
             maxim = (the_count, key, string)
 
     return sum(ord(x) for x in maxim[2])
-
-
-if __name__ == "__main__":
-    time_start = time()
-    print(p59())
-    print("Time: {0:.3f}".format(time() - time_start))

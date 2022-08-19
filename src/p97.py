@@ -6,8 +6,6 @@ Just keep track of the last 10 digits
 
 """
 
-from time import time
-
 
 def p97():
     x = 1
@@ -17,9 +15,3 @@ def p97():
     x = x * 28433 + 1
 
     return x % 10**10
-
-
-if __name__ == "__main__":
-    time_start = time()
-    print(p97())
-    print("Time: {0:.3f}".format(time() - time_start))

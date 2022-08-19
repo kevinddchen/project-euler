@@ -7,8 +7,6 @@ The possibilities for rolling 9 four-sided dice is given by the generating funct
 
 """
 
-from time import time
-
 
 def mult_poly(p_1, p_2):
     """Multiply two polynomials, in dictionary form."""
@@ -38,9 +36,3 @@ def p205():
         for M in range(6, N):
             C += colin[M] * peter[N]
     return round(C * 1.0 / (4**9 * 6**6), 7)
-
-
-if __name__ == "__main__":
-    time_start = time()
-    print(p205())
-    print("Time: {0:.3f}".format(time() - time_start))

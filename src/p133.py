@@ -8,7 +8,6 @@ For for each p, we iterate through n until the gcd does not change.
 """
 
 from math import gcd
-from time import time
 
 from .mathfuncs import PrimeSieve, prime_factorize
 
@@ -32,9 +31,3 @@ def possible(p):
 
 def p133():
     return sum(p for p in PrimeSieve(100000) if p < 7 or not possible(p))
-
-
-if __name__ == "__main__":
-    time_start = time()
-    print(p133())
-    print("Time: {0:.3f}".format(time() - time_start))

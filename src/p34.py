@@ -7,7 +7,6 @@ Similar to Problem 30 with the condition n*9! <= 10^(n-1) satisfied by n <= 7.
 """
 
 from math import factorial
-from time import time
 
 
 def generator(digits_left, initial, curr_sum):
@@ -23,9 +22,3 @@ def generator(digits_left, initial, curr_sum):
 
 def p34():
     return sum(x for x in generator(7, 0, 0))
-
-
-if __name__ == "__main__":
-    time_start = time()
-    print(p34())
-    print("Time: {0:.3f}".format(time() - time_start))

@@ -8,8 +8,6 @@ of 1/7, which has the property stated in the question.
 
 """
 
-from time import time
-
 
 def p52():
     x = 0
@@ -32,9 +30,3 @@ def p52():
                 break
             if i == 6:
                 return x
-
-
-if __name__ == "__main__":
-    time_start = time()
-    print(p52())
-    print("Time: {0:.3f}".format(time() - time_start))

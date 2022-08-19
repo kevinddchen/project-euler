@@ -1,7 +1,5 @@
 # ANSWER 4179871
 
-from time import time
-
 from .p21 import sum_proper_divisors
 
 
@@ -20,9 +18,3 @@ def p23():
                 break
     # sum of all numbers under 28124 minus sum of abundants
     return N * (N + 1) // 2 - sum(summable)
-
-
-if __name__ == "__main__":
-    time_start = time()
-    print(p23())
-    print("Time: {0:.3f}".format(time() - time_start))

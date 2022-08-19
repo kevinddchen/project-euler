@@ -13,8 +13,6 @@ Then our interpolation is simply P(x) = sum_{i=1}^k u_i P_i(x).
 
 """
 
-from time import time
-
 
 def neq_prod(i, k, f):
     """Compute the product of f(j) for all 1 <= j <= k and j != i"""
@@ -51,9 +49,3 @@ def p101():
             n += 1
         S += int(inter(n))
     return S
-
-
-if __name__ == "__main__":
-    time_start = time()
-    print(p101())
-    print("Time: {0:.3f}".format(time() - time_start))

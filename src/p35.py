@@ -1,7 +1,5 @@
 # ANSWER 55
 
-from time import time
-
 from .mathfuncs import PrimeSieve
 
 
@@ -20,9 +18,3 @@ def p35():
         pass
 
     return sum(1 for p, isprime in enumerate(ps.sieve) if isprime and circular(p, ps.sieve))
-
-
-if __name__ == "__main__":
-    time_start = time()
-    print(p35())
-    print("Time: {0:.3f}".format(time() - time_start))

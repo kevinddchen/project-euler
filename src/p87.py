@@ -8,7 +8,6 @@ quite straightforward to count them all.
 """
 
 from math import isqrt
-from time import time
 
 from .mathfuncs import is_prime
 
@@ -44,9 +43,3 @@ def p87():
                     break
 
     return len(sum_set)
-
-
-if __name__ == "__main__":
-    time_start = time()
-    print(p87())
-    print("Time: {0:.3f}".format(time() - time_start))

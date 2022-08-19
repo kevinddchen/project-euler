@@ -7,8 +7,6 @@ a >= 1-b
 
 """
 
-from time import time
-
 from .mathfuncs import PrimeSieve, is_prime
 
 
@@ -32,9 +30,3 @@ def p27():
             if test > maxim:
                 maxim = test
     return maxim[1]
-
-
-if __name__ == "__main__":
-    time_start = time()
-    print(p27())
-    print("Time: {0:.3f}".format(time() - time_start))

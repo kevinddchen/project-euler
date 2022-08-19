@@ -12,8 +12,6 @@ calculate, as mentioned in Problem 12.
 
 """
 
-from time import time
-
 from .mathfuncs import prime_factorize
 
 
@@ -28,9 +26,3 @@ def p108():
         if n_unique_sols > 1000:
             return n
         n += 1
-
-
-if __name__ == "__main__":
-    time_start = time()
-    print(p108())
-    print("Time: {0:.3f}".format(time() - time_start))

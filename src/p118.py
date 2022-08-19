@@ -18,8 +18,6 @@ check that all elements are prime. Each set is guaranteed to be unique.
 
 """
 
-from time import time
-
 from .mathfuncs import is_prime
 
 
@@ -56,9 +54,3 @@ def recurse(lst=[], n=1):
 
 def p118():
     return recurse()
-
-
-if __name__ == "__main__":
-    time_start = time()
-    print(p118())
-    print("Time: {0:.3f}".format(time() - time_start))

@@ -3,7 +3,6 @@
 import heapq
 from functools import cached_property
 from pathlib import Path
-from time import time
 
 import numpy as np
 
@@ -255,9 +254,3 @@ def p96():
         puzzle = puzzle.solve()
         S += puzzle._grid[0, 0] * 100 + puzzle._grid[0, 1] * 10 + puzzle._grid[0, 2]
     return S
-
-
-if __name__ == "__main__":
-    time_start = time()
-    print(p96())
-    print("Time: {0:.3f}".format(time() - time_start))

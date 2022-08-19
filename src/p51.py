@@ -8,7 +8,6 @@ Find the first pattern that satisifes the conditions in the problem.
 """
 
 from itertools import product
-from time import time
 
 from .mathfuncs import PrimeSieve
 
@@ -55,9 +54,3 @@ def p51():
                     if ps.sieve[q]:
                         return q
         digits += 1
-
-
-if __name__ == "__main__":
-    time_start = time()
-    print(p51())
-    print("Time: {0:.3f}".format(time() - time_start))

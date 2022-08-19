@@ -13,7 +13,6 @@ and knowing when to stop incrementing and search the next branch over.
 """
 
 from math import prod
-from time import time
 
 
 def recurse(i, prev_list, k_dict):
@@ -52,9 +51,3 @@ def p88():
         n += 1
 
     return sum(set(k_dict[x] for x in k_dict))
-
-
-if __name__ == "__main__":
-    time_start = time()
-    print(p88())
-    print("Time: {0:.3f}".format(time() - time_start))

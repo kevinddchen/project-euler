@@ -10,7 +10,6 @@ distance.
 """
 
 from pathlib import Path
-from time import time
 
 
 def directions(i, j, dim):
@@ -54,9 +53,3 @@ def p83():
         node_list.remove((i, j))
 
     return D[-1][-1]
-
-
-if __name__ == "__main__":
-    time_start = time()
-    print(p83())
-    print("Time: {0:.3f}".format(time() - time_start))

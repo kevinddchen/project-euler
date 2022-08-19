@@ -24,7 +24,6 @@ Straight Flush:     9   | Single | -      | -      | -      | -      |
 """
 
 from pathlib import Path
-from time import time
 
 
 def score(hand):
@@ -112,9 +111,3 @@ def p54():
         if score(hand1) > score(hand2):
             count += 1
     return count
-
-
-if __name__ == "__main__":
-    time_start = time()
-    print(p54())
-    print("Time: {0:.3f}".format(time() - time_start))

@@ -9,7 +9,6 @@ sum_{k=1}^n [a+(k-1)d]r^{k-1} = (a + (d-a)r - (a+nd)r^n +(a+nd-d)r^{n+1}) / (1-r
 """
 
 import decimal
-from time import time
 
 decimal.getcontext().prec = 13
 decimal.getcontext().rounding = decimal.ROUND_HALF_UP
@@ -34,9 +33,3 @@ def p235():
         else:
             r_bounds[0] = r
         prev = r
-
-
-if __name__ == "__main__":
-    time_start = time()
-    print(p235())
-    print("Time: {0:.3f}".format(time() - time_start))

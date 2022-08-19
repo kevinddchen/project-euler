@@ -7,8 +7,6 @@ resursively with increasing number of digits.
 
 """
 
-from time import time
-
 from .mathfuncs import is_prime
 
 
@@ -42,9 +40,3 @@ def p387():
                     if is_prime(prime_candidate):
                         SUM += prime_candidate
     return SUM
-
-
-if __name__ == "__main__":
-    time_start = time()
-    print(p387())
-    print("Time: {0:.3f}".format(time() - time_start))

@@ -6,8 +6,6 @@ Can be solved by hand. See PDF for explanation.
 
 """
 
-from time import time
-
 
 def p139():
     LIMIT = 10**8
@@ -19,9 +17,3 @@ def p139():
         C += LIMIT // (x + y)
 
     return C
-
-
-if __name__ == "__main__":
-    time_start = time()
-    print(p139())
-    print("Time: {0:.3f}".format(time() - time_start))

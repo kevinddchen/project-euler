@@ -6,8 +6,6 @@ Solved using a prime sieve.
 
 """
 
-from time import time
-
 from .mathfuncs import PrimeSieve
 
 
@@ -34,9 +32,3 @@ def p187():
         j = binary_search(LIMIT // p, p_list)  # number of primes p' <= p such that p' * p <= LIMIT
         C += j
     return C
-
-
-if __name__ == "__main__":
-    time_start = time()
-    print(p187())
-    print("Time: {0:.3f}".format(time() - time_start))

@@ -1,7 +1,5 @@
 # ANSWER 748317
 
-from time import time
-
 from .mathfuncs import is_prime
 
 
@@ -25,9 +23,3 @@ def p37():
             S += x
         x += 2
     return S
-
-
-if __name__ == "__main__":
-    time_start = time()
-    print(p37())
-    print("Time: {0:.3f}".format(time() - time_start))

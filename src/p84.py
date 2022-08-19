@@ -7,8 +7,6 @@ and over on any vector to get the steady state.
 
 """
 
-from time import time
-
 import numpy as np
 
 
@@ -74,9 +72,3 @@ def p84():
 
     sorted_i = np.argsort(p)[::-1]
     return "{:02d}{:02d}{:02d}".format(*sorted_i[:3])
-
-
-if __name__ == "__main__":
-    time_start = time()
-    print(p84())
-    print("Time: {0:.3f}".format(time() - time_start))

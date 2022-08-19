@@ -7,8 +7,6 @@ tiles used is x^2 - (x-2y)^2 = 4y(x-y).
 
 """
 
-from time import time
-
 
 def p174():
     LIMIT = 10**6
@@ -28,9 +26,3 @@ def p174():
         if dct[t] <= 10:
             L[dct[t]] += 1
     return sum(L)
-
-
-if __name__ == "__main__":
-    time_start = time()
-    print(p174())
-    print("Time: {0:.3f}".format(time() - time_start))

@@ -9,7 +9,6 @@ of unique perimeters.
 """
 
 from math import gcd, isqrt
-from time import time
 
 
 def p75():
@@ -38,9 +37,3 @@ def p75():
                     L += 2 * m * (m + n)
 
     return len(good)
-
-
-if __name__ == "__main__":
-    time_start = time()
-    print(p75())
-    print("Time: {0:.3f}".format(time() - time_start))

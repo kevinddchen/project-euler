@@ -38,7 +38,7 @@ elif [[ -a $SRC/p$NUM.cxx ]]; then
 elif [[ -a $SRC/p$NUM.py ]]; then
 
     echo "Running python solution #${NUM}..."
-    python -m $SRC.p$NUM
+    python -m $SRC $NUM
 
 else
 

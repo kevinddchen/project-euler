@@ -7,8 +7,6 @@ run up and check that it is prime.
 
 """
 
-from time import time
-
 from .mathfuncs import PrimeSieve
 
 
@@ -38,9 +36,3 @@ def p50():
                 if ps.sieve[S] and length > M[0]:
                     M = (length, S)
     return M[1]
-
-
-if __name__ == "__main__":
-    time_start = time()
-    print(p50())
-    print("Time: {0:.3f}".format(time() - time_start))

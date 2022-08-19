@@ -7,8 +7,6 @@ tiles used is x^2 - (x-2y)^2 = 4y(x-y).
 
 """
 
-from time import time
-
 
 def p173():
     LIMIT = 10**6
@@ -19,9 +17,3 @@ def p173():
                 break
             C += 1
     return C
-
-
-if __name__ == "__main__":
-    time_start = time()
-    print(p173())
-    print("Time: {0:.3f}".format(time() - time_start))

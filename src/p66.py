@@ -11,7 +11,6 @@ eventually find a solution to Pell's equation for that D.
 """
 
 from math import isqrt
-from time import time
 
 from .p64 import continued_fraction_of_sqrt
 
@@ -45,9 +44,3 @@ def p66():
         if x > M[0]:
             M = (x, D)
     return M[1]
-
-
-if __name__ == "__main__":
-    time_start = time()
-    print(p66())
-    print("Time: {0:.3f}".format(time() - time_start))

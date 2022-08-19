@@ -6,8 +6,6 @@ Can be solved by hand. See PDF for explanation.
 
 """
 
-from time import time
-
 
 def num_letters(x):
     """Returns number of letters used in the word."""
@@ -101,9 +99,3 @@ def num_letters(x):
 
 def p17():
     return sum(num_letters(y) for y in range(1, 1001))
-
-
-if __name__ == "__main__":
-    time_start = time()
-    print(p17())
-    print("Time: {0:.3f}".format(time() - time_start))

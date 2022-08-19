@@ -9,7 +9,6 @@ that do not combine two trees, until the graph is connected.
 """
 
 from pathlib import Path
-from time import time
 
 
 def merge_trees(forest, t1, t2):
@@ -40,9 +39,3 @@ def p107():
                 break
 
     return initial_weight - minimal_weight
-
-
-if __name__ == "__main__":
-    time_start = time()
-    print(p107())
-    print("Time: {0:.3f}".format(time() - time_start))

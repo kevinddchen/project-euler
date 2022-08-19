@@ -12,8 +12,6 @@ The five primes are 8389, 6733, 5701, 5197, and 13.
 
 """
 
-from time import time
-
 from .mathfuncs import PrimeSieve
 
 SIZE = 5
@@ -73,9 +71,3 @@ def p60():
             return M
 
         d += 1
-
-
-if __name__ == "__main__":
-    time_start = time()
-    print(p60())
-    print("Time: {0:.3f}".format(time() - time_start))

@@ -14,7 +14,6 @@ The hardest part is keeping track of enough precision, which we do using the
 """
 
 import decimal
-from time import time
 
 decimal.getcontext().prec = 30
 
@@ -41,9 +40,3 @@ def p751():
         print(theta)
 
     return theta.quantize(decimal.Decimal("1e-24"), rounding=decimal.ROUND_DOWN)
-
-
-if __name__ == "__main__":
-    time_start = time()
-    print(p751())
-    print("Time: {0:.3f}".format(time() - time_start))

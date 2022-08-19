@@ -1,7 +1,5 @@
 # ANSWER 906609
 
-from time import time
-
 
 def p4():
     maxproduct = 0
@@ -15,9 +13,3 @@ def p4():
         a -= 1
         b = a
     return maxproduct
-
-
-if __name__ == "__main__":
-    time_start = time()
-    print(p4())
-    print("Time: {0:.3f}".format(time() - time_start))

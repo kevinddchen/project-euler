@@ -6,8 +6,6 @@ Can be solved by hand. See PDF for explanation.
 
 """
 
-from time import time
-
 
 def p100():
     x, y = 1, 1
@@ -20,9 +18,3 @@ def p100():
         if t > 10**12:
             break
     return b
-
-
-if __name__ == "__main__":
-    time_start = time()
-    print(p100())
-    print("Time: {0:.3f}".format(time() - time_start))

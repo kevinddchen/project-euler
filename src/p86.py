@@ -15,8 +15,6 @@ this method.
 
 """
 
-from time import time
-
 
 def possible(a, b):
     """Return number of possible x, y pairs such that x+y = b and a >= x >= y >= 1."""
@@ -61,9 +59,3 @@ def p86():
             triple_bank.remove(triple)
 
     return M
-
-
-if __name__ == "__main__":
-    time_start = time()
-    print(p86())
-    print("Time: {0:.3f}".format(time() - time_start))

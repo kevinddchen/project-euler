@@ -1,7 +1,6 @@
 # ANSWER 402
 
 from math import factorial
-from time import time
 
 # saved values
 fact = [factorial(x) for x in range(10)]
@@ -27,9 +26,3 @@ def chain(x, prev=[]):
 
 def p74():
     return sum(1 for x in range(1, 1000000) if sum(chain(x)) == 60)
-
-
-if __name__ == "__main__":
-    time_start = time()
-    print(p74())
-    print("Time: {0:.3f}".format(time() - time_start))

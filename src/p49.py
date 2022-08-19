@@ -9,7 +9,6 @@ a prime and permutation.
 """
 
 from itertools import permutations
-from time import time
 
 from .mathfuncs import PrimeSieve
 
@@ -37,9 +36,3 @@ def p49():
                     # not first one
                     if p != 1487:
                         return str(p) + str(q) + str(r)
-
-
-if __name__ == "__main__":
-    time_start = time()
-    print(p49())
-    print("Time: {0:.3f}".format(time() - time_start))

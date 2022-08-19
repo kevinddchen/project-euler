@@ -9,7 +9,6 @@ matching squares to the pattern and see if you get a square.
 
 from math import ceil
 from pathlib import Path
-from time import time
 
 
 def get_words():
@@ -60,9 +59,3 @@ def p98():
             if new_sq != "" and int(new_sq) in squares:
                 maxim = max(maxim, sq, int(new_sq))
     return maxim
-
-
-if __name__ == "__main__":
-    time_start = time()
-    print(p98())
-    print("Time: {0:.3f}".format(time() - time_start))

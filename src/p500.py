@@ -10,8 +10,6 @@ replacing the largest primes in the product with powers of smaller primes.
 
 """
 
-from time import time
-
 
 def prime_generator(iterable):
     """Generates primes into iterable."""
@@ -75,9 +73,3 @@ def p500():
             x = (x * p) % 500500507
 
     return x
-
-
-if __name__ == "__main__":
-    time_start = time()
-    print(p500())
-    print("Time: {0:.3f}".format(time() - time_start))

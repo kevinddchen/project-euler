@@ -11,7 +11,6 @@ the @cache decorator.
 """
 
 from functools import cache
-from time import time
 
 
 @cache
@@ -27,9 +26,3 @@ def checkchain(x):
 
 def p14():
     return max((checkchain(x), x) for x in range(1, 1000000))[1]
-
-
-if __name__ == "__main__":
-    time_start = time()
-    print(p14())
-    print("Time: {0:.3f}".format(time() - time_start))

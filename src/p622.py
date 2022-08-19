@@ -8,8 +8,6 @@ divisors d of 60.
 
 """
 
-from time import time
-
 from .p44 import divisors
 
 
@@ -31,9 +29,3 @@ def p622():
         if check(d, bad):
             S = S + (d + 1)
     return S
-
-
-if __name__ == "__main__":
-    time_start = time()
-    print(p622())
-    print("Time: {0:.3f}".format(time() - time_start))

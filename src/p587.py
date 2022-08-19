@@ -20,7 +20,6 @@ We iterate through values of n until the area is small enough.
 """
 
 from math import asin, pi, sqrt
-from time import time
 
 
 def xn(n):
@@ -37,9 +36,3 @@ def p587():
     while area(n) > 0.001:
         n += 1
     return n
-
-
-if __name__ == "__main__":
-    time_start = time()
-    print(p587())
-    print("Time: {0:.3f}".format(time() - time_start))

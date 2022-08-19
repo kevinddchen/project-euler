@@ -1,7 +1,5 @@
 # ANSWER 34029210557338
 
-from time import time
-
 from .mathfuncs import prime_factorize
 
 
@@ -32,9 +30,3 @@ def p203():
             if squarefree:
                 S.add(prod)
     return sum(S)
-
-
-if __name__ == "__main__":
-    time_start = time()
-    print(p203())
-    print("Time: {0:.3f}".format(time() - time_start))

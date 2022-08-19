@@ -8,8 +8,6 @@ increment n and repeat.
 
 """
 
-from time import time
-
 
 def cube_gen(d):
     """generate cubes with specified digits"""
@@ -40,9 +38,3 @@ def p62():
                     return L[i][1]
                 i = j
         d += 1
-
-
-if __name__ == "__main__":
-    time_start = time()
-    print(p62())
-    print("Time: {0:.3f}".format(time() - time_start))

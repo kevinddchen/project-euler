@@ -6,8 +6,6 @@ Can be solved by hand. See PDF for explanation.
 
 """
 
-from time import time
-
 
 def p63():
     C = 0
@@ -17,9 +15,3 @@ def p63():
             b += 1
         C += b - 1
     return C
-
-
-if __name__ == "__main__":
-    time_start = time()
-    print(p63())
-    print("Time: {0:.3f}".format(time() - time_start))

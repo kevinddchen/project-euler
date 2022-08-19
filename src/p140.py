@@ -6,8 +6,6 @@ Can be solved by hand. See PDF for explanation.
 
 """
 
-from time import time
-
 
 def p140():
     x_1, y_1 = 8, 2
@@ -27,9 +25,3 @@ def p140():
                 i += 1
                 S += (x_2 - 7) // 5
     return S
-
-
-if __name__ == "__main__":
-    time_start = time()
-    print(p140())
-    print("Time: {0:.3f}".format(time() - time_start))

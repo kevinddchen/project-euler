@@ -11,8 +11,6 @@ compute the sum of divisors efficiently. routine.
 
 """
 
-from time import time
-
 from .mathfuncs import PrimeSieve, prime_factorize
 
 
@@ -58,9 +56,3 @@ def p650():
         S = (S + d_sum) % M
 
     return S
-
-
-if __name__ == "__main__":
-    time_start = time()
-    print(p650())
-    print("Time: {0:.3f}".format(time() - time_start))

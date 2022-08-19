@@ -9,7 +9,6 @@ so the units digit of x must be a 3 or 7.
 """
 
 from math import isqrt
-from time import time
 
 
 def fit_pattern(x):
@@ -29,9 +28,3 @@ def p206():
         if fit_pattern((n + 7) ** 2):
             return (n + 7) * 10
         n += 10
-
-
-if __name__ == "__main__":
-    time_start = time()
-    print(p206())
-    print("Time: {0:.3f}".format(time() - time_start))
