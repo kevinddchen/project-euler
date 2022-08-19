@@ -1,9 +1,9 @@
-#include <cstdio>
-#include <ctime>
-#include <numeric>
+#include "common.h"
+
 #include <array>
-#include <vector>
+#include <numeric>
 #include <unordered_set>
+#include <vector>
 
 /*
 
@@ -23,49 +23,42 @@ ANSWER 3857447
 // class to handle exact fractions
 struct Fraction
 {
-    int a;
-    int b;
+    int numer;
+    int denom;
+
+    Fraction(int numer, int denom) : numer(numer), denom(denom) { reduce(); };
 
     void reduce()
     {
-        int d = std::gcd(a, b);
-        a /= d;
-        b /= d;
+        int d = std::gcd(numer, denom);
+        numer /= d;
+        denom /= d;
     }
 
-    Fraction reciprocal()
+    inline Fraction reciprocal() const { return (Fraction){denom, numer}; }
+
+    inline bool operator==(const Fraction &other) const { return numer == other.numer && denom == other.denom; }
+
+    inline Fraction operator+(const Fraction &other) const
     {
-        Fraction out{b, a};
-        return out;
+        return (Fraction){numer * other.denom + denom * other.numer, denom * other.denom};
     }
 };
-
-// Fraction equality
-bool operator==(const Fraction &f1, const Fraction &f2)
-{
-    return (f1.a * f2.b == f1.b * f2.a);
-}
-
-// Fraction addition
-Fraction operator+(const Fraction &f1, const Fraction &f2)
-{
-    Fraction out{f1.a * f2.b + f1.b * f2.a, f1.b * f2.b};
-    return out;
-}
 
 // Fraction hash
 template <>
 struct std::hash<Fraction>
 {
-    std::size_t operator()(const Fraction &f) const noexcept
+    inline std::size_t operator()(const Fraction &frac) const
     {
-        return std::hash<float>{}((float)f.a / f.b);
+        return std::hash<float>{}((float)frac.numer / frac.denom);
     }
 };
 
 long p155()
 {
     const int limit = 18;
+
     std::unordered_set<Fraction> set;              // hash map to check if a capacitance has been encountered yet
     std::array<std::vector<Fraction>, limit> list; // list of capacitances for each n
 
@@ -73,7 +66,7 @@ long p155()
     list[0] = {one};
     set.insert(one);
 
-    long S = 1;
+    long sum = 1;
     for (int n = 2; n <= limit; n++)
     {
         // sum capacitances for 1 + (n-1), 2 + (n-2), ...
@@ -88,7 +81,6 @@ long p155()
                     if (set.find(f) == set.end()) // if capacitance not encountered yet
                     {
                         // add f to list
-                        f.reduce();
                         list[n - 1].push_back(f);
                         set.insert(f);
                         // add 1/f to list
@@ -99,16 +91,12 @@ long p155()
                 }
             }
         }
-        S += list[n - 1].size();
+        sum += list[n - 1].size();
     }
-    return S;
+    return sum;
 }
 
 int main()
 {
-    clock_t t;
-    t = clock();
-    printf("%ld\n", p155());
-    t = clock() - t;
-    printf("Time: %.3f\n", ((float)t) / CLOCKS_PER_SEC);
+    TIMED(printf("%ld\n", p155()));
 }

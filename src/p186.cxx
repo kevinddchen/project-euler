@@ -1,5 +1,7 @@
-#include <cstdio>
-#include <ctime>
+#include "common.h"
+#include "mathfuncs.h"
+
+#include <array>
 #include <vector>
 
 /*
@@ -12,28 +14,8 @@ ANSWER 2325629
 
 */
 
-struct LaggedFibGen
-{
-    int buffer[55];
-    int jmod55; // j = k-1
-
-    LaggedFibGen()
-    {
-        for (int j = 0; j < 55; j++)
-            buffer[j] = (100003L - 200003L * (j + 1) + 300007L * (j + 1) * (j + 1) * (j + 1)) % 1000000;
-        jmod55 = 0;
-    }
-
-    int next()
-    {
-        int return_val = buffer[jmod55];
-        buffer[jmod55] = (buffer[jmod55] + buffer[(jmod55 + 31) % 55]) % 1000000;
-        jmod55 = (jmod55 + 1) % 55;
-        return return_val;
-    }
-};
-
-int find_root(int j, int *parents)
+template <size_t size>
+int find_root(int j, std::array<int, size> &parents)
 {
     std::vector<int> nodes;
     // node is root if parent[node] = node
@@ -45,7 +27,10 @@ int find_root(int j, int *parents)
     // j is root
     // collapse tree
     for (int n : nodes)
+    {
         parents[n] = j;
+    }
+
     return j;
 }
 
@@ -57,8 +42,8 @@ long p186()
     LaggedFibGen gen;
 
     // array keeping track of node parents and number of nodes
-    int *parents = new int[size];
-    int *num_nodes = new int[size];
+    std::array<int, size> parents;
+    std::array<int, size> num_nodes;
     for (int j = 0; j < size; j++)
     {
         parents[j] = j;
@@ -71,7 +56,9 @@ long p186()
         int a = gen.next();
         int b = gen.next();
         if (a == b)
+        {
             continue;
+        }
         n++;
         int a_root = find_root(a, parents);
         int b_root = find_root(b, parents);
@@ -88,9 +75,5 @@ long p186()
 
 int main()
 {
-    clock_t t;
-    t = clock();
-    printf("%ld\n", p186());
-    t = clock() - t;
-    printf("Time: %.3f\n", ((float)t) / CLOCKS_PER_SEC);
+    TIMED(printf("%ld\n", p186()));
 }

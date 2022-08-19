@@ -1,8 +1,7 @@
-#include <cstdio>
-#include <ctime>
-#include <cstring>
-
+#include "common.h"
 #include "mathfuncs.h"
+
+#include <cstring>
 
 /*
 
@@ -17,20 +16,20 @@ ANSWER 1125977393124310
 
 */
 
-void inv_D(long (&affine)[3])
+inline void inv_D(long *affine)
 {
     affine[0] *= 3;
     affine[1] *= 3;
 }
 
-void inv_U(long (&affine)[3])
+inline void inv_U(long *affine)
 {
     affine[0] *= 3;
     affine[1] = 3 * affine[1] - 2 * affine[2];
     affine[2] *= 4;
 }
 
-void inv_d(long (&affine)[3])
+inline void inv_d(long *affine)
 {
     affine[0] *= 3;
     affine[1] = 3 * affine[1] + affine[2];
@@ -49,11 +48,17 @@ long p277()
     for (int i = length - 1; i >= 0; i--)
     {
         if (seq[i] == 'D')
+        {
             inv_D(affine);
+        }
         else if (seq[i] == 'U')
+        {
             inv_U(affine);
+        }
         else
+        {
             inv_d(affine);
+        }
     }
     // overall map is (affine[0] * n + affine[1]) / affine[2]  -->  n
 
@@ -77,9 +82,5 @@ long p277()
 
 int main()
 {
-    clock_t t;
-    t = clock();
-    printf("%ld\n", p277());
-    t = clock() - t;
-    printf("Time: %.3f\n", ((float)t) / CLOCKS_PER_SEC);
+    TIMED(printf("%ld\n", p277()));
 }

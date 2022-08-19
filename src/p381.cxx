@@ -1,5 +1,4 @@
-#include <cstdio>
-#include <ctime>
+#include "common.h"
 #include "mathfuncs.h"
 
 /*
@@ -15,29 +14,26 @@ ANSWER 139602943319822
 
 long p381()
 {
-    const int size = 100000000;
-    bool *sieve = prime_sieve(size);
+    const int size = 100'000'000;
+    PrimeSieve sieve(size);
 
-    long S = 0;
-    long n;
+    long sum = 0;
     for (long i = 2; i < size; i++)
     {
         if (sieve[i])
         {
-            n = (-3 * modular_inverse(8L, i)) % i;
+            long n = (-3 * modular_inverse(8, i)) % i;
             if (n < 0)
+            {
                 n += i;
-            S += n;
+            }
+            sum += n;
         }
     }
-    return S;
+    return sum;
 }
 
 int main()
 {
-    clock_t t;
-    t = clock();
-    printf("%ld\n", p381());
-    t = clock() - t;
-    printf("Time: %.3f\n", ((float)t) / CLOCKS_PER_SEC);
+    TIMED(printf("%ld\n", p381()));
 }

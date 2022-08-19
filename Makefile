@@ -1,23 +1,23 @@
 CC = g++
-CFLAGS = -Wall --std=c++17
+CFLAGS = -I./include -Wall -std=c++17
 SRC = ./src
 BIN = ./bin
-OBJECTS = mathfuncs.o
-
 # automatically recognize binaries corresponding to `.cxx` source files
-TAR=$(patsubst $(SRC)/%.cxx,$(BIN)/%,$(wildcard $(SRC)/p*.cxx))
-OBJ=$(addprefix $(BIN)/,$(OBJECTS))
+TARGETS = $(patsubst $(SRC)/%.cxx,$(BIN)/%,$(wildcard $(SRC)/p*.cxx))
+TESTS = $(patsubst $(SRC)/tests/%.cxx,$(BIN)/%,$(wildcard $(SRC)/tests/*.cxx))
 
-all : $(TAR)
+.PHONY: all prepare clean
 
-$(BIN)/mathfuncs.o : $(SRC)/mathfuncs.cxx $(SRC)/mathfuncs.h
+all: $(TARGETS) $(TESTS)
+
+prepare:
 	mkdir -p $(BIN)
-	$(CC) $< -o $@ -c $(CFLAGS)
 
-$(BIN)/% : $(SRC)/%.cxx $(OBJ)
-	$(CC) $< $(OBJ) -o $@ $(CFLAGS)
+$(BIN)/test_mathfuncs: $(SRC)/tests/test_mathfuncs.cxx prepare
+	$(CC) $< -o $@ $(CFLAGS)
 
-.PHONY : all clean
+$(BIN)/%: $(SRC)/%.cxx prepare
+	$(CC) $< -o $@ $(CFLAGS)
 
-clean :
-	rm -f $(OBJ) $(TAR)
+clean:
+	rm -rf $(BIN)

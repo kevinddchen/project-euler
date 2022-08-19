@@ -1,161 +1,239 @@
-#include <cstdio>
-#include <ctime>
-#include <vector>
+#define NDEBUG
+
+#include "common.h"
+
 #include <algorithm>
+#include <array>
+#include <vector>
 
 /*
 
-This is solved using the Hungarian algorithm, as outlined on Wikipedia. Step
-III requires the use of the Hopcroft-Karp algorithm and Konig's theorem to find
-the minimal vertex cover of a bipartite graph.
+This is solved using the Hungarian algorithm, as outlined on Wikipedia:
+    https://en.wikipedia.org/wiki/Hungarian_algorithm#Matrix_interpretation
+Step 3 requires the use of the Hopcroft-Karp algorithm and Konig's theorem to
+find the minimal vertex cover of a bipartite graph.
 
 ANSWER: 13938
 
 */
 
 // Simple tree node.
-class Node
+struct Node
 {
-public:
     Node *parent;
     std::vector<Node *> children;
     int val;
-    bool hasParent;
 
-    // Constructor
-    Node(int x)
+    Node(int x) : parent(nullptr), val(x) {}
+
+    ~Node()
     {
-        val = x;
-        hasParent = false;
+        for (auto child : children)
+        {
+            delete child;
+        }
     }
 
     void add_child(Node *N)
     {
         children.push_back(N);
-        N->hasParent = true;
         N->parent = this;
     }
+
+    inline bool hasParent() const { return parent != nullptr; }
 };
 
-Node *find_aug_path(bool **G, bool **M, bool *mark_row, bool *mark_col, int size)
+/**
+ * Find an augmenting path using breadth-first search.
+ *
+ * G - graph, as adjacency matrix.
+ * M - current matching, as adjacency matrix.
+ * matched_rows/cols - keeps track of free vertices.
+ * root - dummy node to build the BFS graph from.
+ *
+ * Returns last node in an augmenting path, or null pointer if no augmenting
+ * path exists.
+ */
+template <size_t n_row, size_t n_col>
+Node *find_augmenting_path(
+    const std::array<std::array<bool, n_col>, n_row> &G,
+    const std::array<std::array<bool, n_col>, n_row> &M,
+    const std::array<bool, n_row> &matched_rows,
+    const std::array<bool, n_col> &matched_cols,
+    Node *root)
 {
-    /*
 
-    Find augmenting path using breadth-first-search.
-    G - graph represented by connected edges.
-    M - current matching.
-    mark_row/col - keeps track of free vertices.
+    LOG("ENTER find_augmenting_path\n");
 
-    */
-
-    Node *root = new Node(-1);
     std::vector<Node *> row_layer, col_layer;
-    std::vector<Node *>::iterator iter;
 
-    // add free rows to tree
-    for (int i = 0; i < size; i++)
+    // add free rows to first layer
+    for (int i = 0; i < n_row; i++)
     {
-        if (!mark_row[i])
+        if (!matched_rows[i])
         {
-            Node *N = new Node(i);
-            root->add_child(N);
-            row_layer.push_back(N);
-            N->hasParent = false;
+            Node *node = new Node(i);
+            root->children.push_back(node); // `node` is an actual root node, so has no parent
+            row_layer.push_back(node);
         }
     }
 
-    while (row_layer.size() != 0)
+    // breadth-first search
+    while (row_layer.size() > 0)
     {
-        // build unmatched edges to paths
+        // traverse all row -unmatched-> col edges
+        // if col is free, we are done
+        LOG("==row layer==\n");
         col_layer.clear();
-        for (iter = row_layer.begin(); iter != row_layer.end(); iter++)
+        for (Node *row_node : row_layer)
         {
-            int i = (*iter)->val;
-            for (int j = 0; j < size; j++)
+            int i = row_node->val;
+            for (int j = 0; j < n_col; j++)
             {
-                if (G[i][j] and !M[i][j])
+                if (G[i][j] && !M[i][j])
                 {
-                    Node *N = new Node(j);
-                    (*iter)->add_child(N);
-                    col_layer.push_back(N);
+                    LOG("row %d -> col %d\n", i, j);
+                    Node *col_node = new Node(j);
+                    row_node->add_child(col_node);
+
+                    if (!matched_cols[j])
+                    {
+                        LOG("found free col %d\n", j);
+                        LOG("EXIT find_augmenting_path\n");
+                        return col_node;
+                    }
+
+                    col_layer.push_back(col_node);
                 }
             }
         }
 
-        // find free column at end of a path
+        // find a free column in the last layer
+        // else, traverse all col -matched-> row edges
+        LOG("==col layer==\n");
         row_layer.clear();
-        for (iter = col_layer.begin(); iter != col_layer.end(); iter++)
+        for (Node *col_node : col_layer)
         {
-            int j = (*iter)->val;
-            if (!mark_col[j])
-                return *iter;
-
-            // build matched edges to paths
-            for (int i = 0; i < size; i++)
+            int j = col_node->val;
+            for (int i = 0; i < n_row; i++)
             {
-                if (G[i][j] and M[i][j])
+                if (G[i][j] && M[i][j])
                 {
-                    Node *N = new Node(i);
-                    (*iter)->add_child(N);
-                    row_layer.push_back(N);
+                    LOG("col %d -> row %d\n", j, i);
+                    Node *row_node = new Node(i);
+                    col_node->add_child(row_node);
+                    row_layer.push_back(row_node);
                 }
             }
         }
     }
-    return root;
+    LOG("could not find an augmenting path\n");
+    LOG("EXIT find_augmenting_path\n");
+    return nullptr;
 }
 
-void add_path(Node *N, bool **M, bool *mark_row, bool *mark_col, int size)
+/**
+ * Modify the matching using an augmenting path.
+ *
+ * leaf - last node in the path.
+ * M - current matching, as adjacency matrix.
+ * matched_rows/cols - keeps track of free vertices.
+ */
+template <size_t n_row, size_t n_col>
+void add_path(
+    const Node *leaf,
+    std::array<std::array<bool, n_col>, n_row> &M,
+    std::array<bool, n_row> &matched_rows,
+    std::array<bool, n_col> &matched_cols)
 {
-    /* Add augmenting path to our matching M. */
+    // from `leaf`, recursively calling `->parent` gives all vertices in the path
+    const Node *col = leaf;
+    const Node *row;
 
-    int row, col;
-    mark_col[N->val] = true;
+    matched_cols[col->val] = true;
     while (true)
     {
-        col = N->val;
-        N = N->parent;
-        row = N->val;
+        row = col->parent;
+        M[row->val][col->val] = !M[row->val][col->val]; // reverse matching
 
-        M[row][col] = !M[row][col];
-
-        if (!N->hasParent)
+        if (!row->hasParent())
         {
-            mark_row[N->val] = true;
+            matched_rows[row->val] = true;
             break;
         }
 
-        row = N->val;
-        N = N->parent;
-        col = N->val;
-
-        M[row][col] = !M[row][col];
+        col = row->parent;
+        M[row->val][col->val] = !M[row->val][col->val]; // reverse matching
     }
 }
 
-void find_vert_cover(Node *N, bool *mark_row, bool *mark_col, bool par, int size)
+/**
+ * Find a maximum matching, using Hopcroft-Karp algorithm.
+ * https://en.wikipedia.org/wiki/Hopcroft%E2%80%93Karp_algorithm#Algorithm
+ *
+ * G - graph, as adjacency matrix.
+ * M - current matching, as adjacency matrix.
+ * matched_rows/cols - keeps track of free vertices.
+ *
+ * Returns the graph for Konig's theorem: starting at unmatched vertices, and
+ * alternating between unmatched and matched edges.
+ */
+template <size_t n_row, size_t n_col>
+Node *find_maximum_matching(
+    const std::array<std::array<bool, n_col>, n_row> &G,
+    std::array<std::array<bool, n_col>, n_row> &M,
+    std::array<bool, n_row> &matched_rows,
+    std::array<bool, n_col> &matched_cols)
 {
-    /* Given maximum matching, finds minimum vertex covering, by depth-first-search. */
-
-    std::vector<Node *> children = N->children;
-    std::vector<Node *>::iterator iter;
-
-    for (iter = children.begin(); iter != children.end(); iter++)
+    while (true)
     {
-        if (par)
-            mark_row[(*iter)->val] = false;
-        else
-            mark_col[(*iter)->val] = true;
+        Node *root = new Node(-1); // dummy node
+        Node *leaf = find_augmenting_path<n_row, n_col>(G, M, matched_rows, matched_cols, root);
 
-        find_vert_cover(*iter, mark_row, mark_col, !par, size);
+        if (leaf == nullptr) // no augmenting path has been found
+        {
+            return root;
+        }
+
+        add_path<n_row, n_col>(leaf, M, matched_rows, matched_cols);
+
+        delete root;
+    }
+}
+
+/**
+ * Finds minimum vertex covering, using recursion.
+ * https://en.wikipedia.org/wiki/K%C5%91nig%27s_theorem_(graph_theory)#Constructive_proof_without_flow_concepts
+ */
+template <size_t n_row, size_t n_col>
+void find_minimum_vertex_cover(
+    const Node *root,
+    std::array<bool, n_row> &matched_rows,
+    std::array<bool, n_col> &matched_cols,
+    bool parity)
+{
+    std::vector<Node *> children = root->children;
+
+    for (Node *child : children)
+    {
+        if (parity)
+        {
+            matched_rows[child->val] = false;
+        }
+        else
+        {
+            matched_cols[child->val] = true;
+        }
+
+        find_minimum_vertex_cover<n_row, n_col>(child, matched_rows, matched_cols, !parity);
     }
 }
 
 long p345()
 {
-    int const size = 15;
+    const int size = 15;
 
-    int M_orig[15][15] = {
+    int reward[15][15] = {
         {7, 53, 183, 439, 863, 497, 383, 563, 79, 973, 287, 63, 343, 169, 583},
         {627, 343, 773, 959, 943, 767, 473, 103, 699, 303, 957, 703, 583, 639, 913},
         {447, 283, 463, 29, 23, 487, 463, 993, 119, 883, 327, 493, 423, 159, 743},
@@ -172,128 +250,174 @@ long p345()
         {815, 559, 813, 459, 522, 788, 168, 586, 966, 232, 308, 833, 251, 631, 107},
         {813, 883, 451, 509, 615, 77, 281, 613, 459, 205, 380, 274, 302, 35, 805}};
 
-    // copy matrix
-    int **M = new int *[size];
+    // make a copy of the reward matrix but with minus signs, so we solve for
+    // minimum cost instead
+    std::array<std::array<int, size>, size> cost;
+
     for (int i = 0; i < size; i++)
     {
-        M[i] = new int[size];
         for (int j = 0; j < size; j++)
         {
-            M[i][j] = M_orig[i][j];
+            cost[i][j] = -reward[i][j];
         }
     }
 
-    // STEP I: subtract row maximum
+    // STEP 1: subtract row minimum
     for (int i = 0; i < size; i++)
     {
-        int row_max = INT_MIN;
+        int row_min = INT_MAX;
         for (int j = 0; j < size; j++)
-            row_max = std::max(row_max, M[i][j]);
+        {
+            row_min = std::min(row_min, cost[i][j]);
+        }
         for (int j = 0; j < size; j++)
-            M[i][j] -= row_max;
+        {
+            cost[i][j] -= row_min;
+        }
     }
 
-    // STEP II: subtract col maximum
+    // STEP 2: subtract col minimum
     for (int j = 0; j < size; j++)
     {
-        int col_max = INT_MIN;
+        int col_min = INT_MAX;
         for (int i = 0; i < size; i++)
-            col_max = std::max(col_max, M[i][j]);
+        {
+            col_min = std::min(col_min, cost[i][j]);
+        }
         for (int i = 0; i < size; i++)
-            M[i][j] -= col_max;
+        {
+            cost[i][j] -= col_min;
+        }
     }
 
-    bool **graph = new bool *[size];
-    bool **match = new bool *[size];
-    bool *mark_row = new bool[size]();
-    bool *mark_col = new bool[size]();
-
-    for (int i = 0; i < size; i++)
-    {
-        graph[i] = new bool[size]();
-        match[i] = new bool[size]();
-    }
+    std::array<std::array<bool, size>, size> graph;
+    std::array<std::array<bool, size>, size> maximum_matching;
+    std::array<bool, size> matched_rows;
+    std::array<bool, size> matched_cols;
 
     while (true)
     {
+
+        // STEP 3: find a smallest set of rows and/or columns that contains
+        // all zero elements of the cost matrix. Doing this "marks" the rows
+        // and columns. This is done by:
+        //
+        // 1. preparing a bipartite graph between the "row" and "column"
+        //    vertices of the cost matrix
+        // 2. find a maximum matching using the Hopcroft-Karp algorithm
+        // 3. produce the minimum vertex cover using Konig's theorem
+
+        // initialize data structures
         for (int i = 0; i < size; i++)
         {
-            mark_row[i] = false;
-            mark_col[i] = false;
+            matched_rows[i] = false;
+            matched_cols[i] = false;
             for (int j = 0; j < size; j++)
             {
-                graph[i][j] = (M[i][j] == 0) ? 1 : 0;
-                match[i][j] = 0;
+                graph[i][j] = cost[i][j] == 0;
+                maximum_matching[i][j] = false;
             }
         }
 
-        // STEP III: mark all zeros with fewest number of lines
+#ifndef NDEBUG
+        for (int i = 0; i < size; i++)
+        {
+            for (int j = 0; j < size; j++)
+            {
+                LOG("%d ", graph[i][j]);
+            }
+            LOG("\n");
+        }
+#endif
 
         // find maximum matching using the Hopcroft-Karp algorithm.
-        Node *N;
-        while (true)
+        Node *root = find_maximum_matching<size, size>(graph, maximum_matching, matched_rows, matched_cols);
+
+        // if all rows are matched, then we are done
+        bool done = true;
+        for (int i = 0; i < size; i++)
         {
-            N = find_aug_path(graph, match, mark_row, mark_col, size);
-            if (!N->hasParent)
+            if (!matched_rows[i])
+            {
+                done = false;
                 break;
-            add_path(N, match, mark_row, mark_col, size);
+            }
+        }
+        if (done)
+        {
+            break;
         }
 
         // find minimum vertex cover using Konig's theorem.
         for (int i = 0; i < size; i++)
         {
-            mark_row[i] = true;
-            mark_col[i] = false;
+            matched_rows[i] = true;
+            matched_cols[i] = false;
         }
 
-        find_vert_cover(N, mark_row, mark_col, true, size);
+        find_minimum_vertex_cover<size, size>(root, matched_rows, matched_cols, true);
+        delete root;
 
-        // STEP 4: Select unmarked elements, and subtract max
+#ifndef NDEBUG
+        LOG("matched_rows: ");
+        for (auto x : matched_rows)
+        {
+            LOG("%d ", x);
+        }
+        LOG("\nmatched_cols: ");
+        for (auto x : matched_cols)
+        {
+            LOG("%d ", x);
+        }
+        LOG("\n");
+#endif
 
-        int unmark_max = INT_MIN;
+        // STEP 4: Find min of unmarked elements. Subtract this from unmarked
+        // elements, and add to elements with marked row _and_ marked column.
+
+        int unmarked_min = INT_MAX;
         for (int i = 0; i < size; i++)
         {
             for (int j = 0; j < size; j++)
             {
-                if (!mark_row[i] and !mark_col[j])
-                    unmark_max = std::max(unmark_max, M[i][j]);
+                if (!matched_rows[i] and !matched_cols[j])
+                {
+                    unmarked_min = std::min(unmarked_min, cost[i][j]);
+                }
             }
         }
 
-        // no unmarked rows
-        if (unmark_max == INT_MIN)
-            break;
-
         for (int i = 0; i < size; i++)
         {
             for (int j = 0; j < size; j++)
             {
-                if (!mark_row[i])
-                    M[i][j] -= unmark_max;
-                if (mark_col[j])
-                    M[i][j] += unmark_max;
+                if (!matched_rows[i])
+                {
+                    cost[i][j] -= unmarked_min;
+                }
+                if (matched_cols[j])
+                {
+                    cost[i][j] += unmarked_min;
+                }
             }
         }
     }
 
-    // find sum
-    int S = 0;
+    int sum = 0;
     for (int i = 0; i < size; i++)
     {
         for (int j = 0; j < size; j++)
         {
-            if (match[i][j] == 1)
-                S += M_orig[i][j];
+            if (maximum_matching[i][j] == 1)
+            {
+                sum += reward[i][j];
+            }
         }
     }
-    return S;
+    return sum;
 }
 
 int main()
 {
-    clock_t t;
-    t = clock();
-    printf("%ld\n", p345());
-    t = clock() - t;
-    printf("Time: %.3f\n", ((float)t) / CLOCKS_PER_SEC);
+    TIMED(printf("%ld\n", p345()));
 }

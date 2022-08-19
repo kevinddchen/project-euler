@@ -1,5 +1,5 @@
-#include <cstdio>
-#include <ctime>
+#include "common.h"
+
 #include <cmath>
 
 /*
@@ -22,18 +22,18 @@ ANSWER 6.3551758451
 
 double p323()
 {
-    double cum, prev_cum, prob;
     double exp_val = 0;
-
-    prev_cum = 0;
+    double prev_cum = 0;
 
     for (int N = 1; true; N++)
     {
-        cum = pow(1 - pow(2, -N), 32);
-        prob = cum - prev_cum;
+        double cum = pow(1 - pow(2, -N), 32);
+        double prob = cum - prev_cum;
 
         if (prob < 1e-13)
+        {
             break;
+        }
 
         exp_val += N * prob;
         prev_cum = cum;
@@ -43,9 +43,5 @@ double p323()
 
 int main()
 {
-    clock_t t;
-    t = clock();
-    printf("%.10f\n", p323());
-    t = clock() - t;
-    printf("Time: %.3f\n", ((float)t) / CLOCKS_PER_SEC);
+    TIMED(printf("%.10f\n", p323()));
 }

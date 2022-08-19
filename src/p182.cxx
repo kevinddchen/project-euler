@@ -1,8 +1,7 @@
-#include <cstdio>
-#include <ctime>
-#include <vector>
-
+#include "common.h"
 #include "mathfuncs.h"
+
+#include <vector>
 
 /*
 
@@ -39,21 +38,25 @@ ANSWER 399788195976
 
 */
 
-void filter(bool *sieve, int size, std::vector<std::array<int, 2>> pf)
+void filter(const std::vector<PrimePower> &pf, bool *sieve, int size)
 {
     // Sieve out prime factors. If prime factor is 2, skip if power is =1,
     // otherwise sieve out multiples of 4.
-    for (auto p : pf)
+    for (const auto &pp : pf)
     {
         int multiple;
-        if (p[0] == 2)
+        if (pp.base == 2)
         {
-            if (p[1] == 1) // power = 1
+            if (pp.exp == 1) // power = 1
+            {
                 continue;
+            }
             multiple = 4; // else power >= 2
         }
         else
-            multiple = p[0];
+        {
+            multiple = pp.base;
+        }
 
         long k = multiple;
         while (k < size)
@@ -78,28 +81,29 @@ long p182()
     // odd e: true when gcd(e, p-1) = gcd(e, q-1) = 1
     // even e: true when gcd(e, p-1) = gcd(e, q-1) = 2
     bool *sieve = new bool[phi];
-    // initialize sieve
     for (int i = 0; i < phi; i++)
+    {
         sieve[i] = true;
-    // sieve
-    filter(sieve, phi, p_factors);
-    filter(sieve, phi, q_factors);
+    }
 
-    long S = 0;
+    // sieve
+    filter(p_factors, sieve, phi);
+    filter(q_factors, sieve, phi);
+
+    long sum = 0;
     for (int i = 3; i < phi; i += 2)
     {
         if (sieve[i] && sieve[i - 1])
-            S += i;
+        {
+            sum += i;
+        }
     }
 
-    return S;
+    delete[] sieve;
+    return sum;
 }
 
 int main()
 {
-    clock_t t;
-    t = clock();
-    printf("%ld\n", p182());
-    t = clock() - t;
-    printf("Time: %.3f\n", ((float)t) / CLOCKS_PER_SEC);
+    TIMED(printf("%ld\n", p182()));
 }

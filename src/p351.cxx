@@ -1,5 +1,4 @@
-#include <cstdio>
-#include <ctime>
+#include "common.h"
 
 /*
 
@@ -18,7 +17,9 @@ int *totient_sieve(int size)
     int *sieve = new int[size];
     // initialize values
     for (int i = 2; i < size; i++)
+    {
         sieve[i] = i;
+    }
     // sieve
     for (int i = 2; i < size; i++)
     {
@@ -26,7 +27,9 @@ int *totient_sieve(int size)
         {
             sieve[i] -= 1;
             for (int j = 2 * i; j < size; j += i)
+            {
                 sieve[j] = (sieve[j] / i) * (i - 1);
+            }
         }
     }
     return sieve;
@@ -35,20 +38,19 @@ int *totient_sieve(int size)
 long p351()
 {
     const int size = 100'000'000;
-    long S = size - 1;
+    long count = size - 1;
 
     int *sieve = totient_sieve(size + 1);
     for (int i = 2; i <= size; i++)
-        S += i - sieve[i] - 1;
+    {
+        count += i - sieve[i] - 1;
+    }
 
-    return S * 6;
+    delete[] sieve;
+    return count * 6;
 }
 
 int main()
 {
-    clock_t t;
-    t = clock();
-    printf("%ld\n", p351());
-    t = clock() - t;
-    printf("Time: %.3f\n", ((float)t) / CLOCKS_PER_SEC);
+    TIMED(printf("%ld\n", p351()));
 }

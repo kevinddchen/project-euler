@@ -1,7 +1,9 @@
-#include <cstdio>
-#include <ctime>
-#include <cmath>
+#include "common.h"
+
+#include <array>
 #include <numeric>
+
+#include <cmath>
 
 /*
 
@@ -28,12 +30,13 @@ long p504()
     long count = 0;
 
     // generate table of values for gcd
-    int **G = new int *[size + 1];
+    std::array<std::array<int, size + 1>, size + 1> G;
     for (int i = 1; i <= size; i++)
     {
-        G[i] = new int[size + 1];
         for (int j = 1; j <= size; j++)
+        {
             G[i][j] = std::gcd(i, j);
+        }
     }
 
     // iterate through all quadrilaterals
@@ -47,7 +50,9 @@ long p504()
                 {
                     int x = (a * b + b * c + c * d + d * a - G[a][b] - G[b][c] - G[c][d] - G[d][a]) / 2 + 1;
                     if (is_square(x))
+                    {
                         count++;
+                    }
                 }
             }
         }
@@ -57,9 +62,5 @@ long p504()
 
 int main()
 {
-    clock_t t;
-    t = clock();
-    printf("%ld\n", p504());
-    t = clock() - t;
-    printf("Time: %.3f\n", ((float)t) / CLOCKS_PER_SEC);
+    TIMED(printf("%ld\n", p504()));
 }

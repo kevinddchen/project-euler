@@ -1,5 +1,4 @@
-#include <cstdio>
-#include <ctime>
+#include "common.h"
 #include "mathfuncs.h"
 
 /*
@@ -36,7 +35,7 @@ int p429()
     const int N = 100'000'000;
     const int M = 1'000'000'009;
 
-    bool *sieve = prime_sieve(N);
+    PrimeSieve sieve(N);
 
     int a;
     long result = 1; // long to prevent overflow
@@ -53,9 +52,5 @@ int p429()
 
 int main()
 {
-    clock_t t;
-    t = clock();
-    printf("%d\n", p429());
-    t = clock() - t;
-    printf("Time: %.3f\n", ((float)t) / CLOCKS_PER_SEC);
+    TIMED(printf("%d\n", p429()));
 }

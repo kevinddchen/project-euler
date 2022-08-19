@@ -1,5 +1,5 @@
-#include <cstdio>
-#include <ctime>
+#include "common.h"
+
 #include <cmath>
 
 /*
@@ -15,16 +15,22 @@ bool recurse(long target, long digits)
     long x = 0;
     long multiple_of_10 = 1;
     if (target > digits)
+    {
         return false;
-    else if (target == digits)
+    }
+    if (target == digits)
+    {
         return true;
+    }
     while (target >= x)
     {
         x += multiple_of_10 * (digits % 10);
         digits /= 10;
         multiple_of_10 *= 10;
         if (recurse(target - x, digits))
+        {
             return true;
+        }
     }
     return false;
 }
@@ -38,16 +44,14 @@ long p719()
     {
         long S = sqrtS * sqrtS;
         if (recurse(sqrtS, S))
+        {
             T += S;
+        }
     }
     return T;
 }
 
 int main()
 {
-    clock_t t;
-    t = clock();
-    printf("%ld\n", p719());
-    t = clock() - t;
-    printf("Time: %.3f\n", ((float)t) / CLOCKS_PER_SEC);
+    TIMED(printf("%ld\n", p719()));
 }
