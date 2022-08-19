@@ -1,5 +1,3 @@
-#define NDEBUG
-
 #include "common.h"
 
 #include <cmath>
@@ -60,11 +58,11 @@ long p804()
             {
                 x--;
             }
-            LOG("x=%ld, y=%ld\n", x, y);
+            // printf("x=%ld, y=%ld\n", x, y);
             count_a += x;
         }
     }
-    LOG("count_a=%ld\n", count_a);
+    // printf("count_a=%ld\n", count_a);
 
     // STEP 3: find boundaries of region B
     // y_bound is the same as in region A, but in the -y diretion
@@ -83,11 +81,11 @@ long p804()
             {
                 y++;
             }
-            LOG("x=%ld, y=%ld\n", x, y);
+            // printf("x=%ld, y=%ld\n", x, y);
             count_b += -y - 2 * n;
         }
     }
-    LOG("count_b=%ld\n", count_b);
+    // printf("count_b=%ld\n", count_b);
 
     // STEP 5: add up all points
     // *4 for each region, *2 for each boundary

@@ -10,9 +10,3 @@
         t = clock() - t;                                     \
         printf("Time: %.3f\n", ((float)t) / CLOCKS_PER_SEC); \
     }
-
-#ifdef NDEBUG
-#define LOG(...) ((void)0)
-#else
-#define LOG(...) printf(__VA_ARGS__)
-#endif

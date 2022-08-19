@@ -6,17 +6,16 @@ BIN = ./bin
 TARGETS = $(patsubst $(SRC)/%.cxx,$(BIN)/%,$(wildcard $(SRC)/p*.cxx))
 TESTS = $(patsubst $(SRC)/tests/%.cxx,$(BIN)/%,$(wildcard $(SRC)/tests/*.cxx))
 
-.PHONY: all prepare clean
+.PHONY: all clean
 
 all: $(TARGETS) $(TESTS)
 
-prepare:
-	mkdir -p $(BIN)
-
-$(BIN)/test_mathfuncs: $(SRC)/tests/test_mathfuncs.cxx prepare
+$(BIN)/test_mathfuncs: $(SRC)/tests/test_mathfuncs.cxx
+	@mkdir -p $(@D)
 	$(CC) $< -o $@ $(CFLAGS)
 
-$(BIN)/%: $(SRC)/%.cxx prepare
+$(BIN)/%: $(SRC)/%.cxx
+	@mkdir -p $(@D)
 	$(CC) $< -o $@ $(CFLAGS)
 
 clean:

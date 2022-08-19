@@ -1,5 +1,3 @@
-#define NDEBUG
-
 #include "common.h"
 
 #include <algorithm>
@@ -63,7 +61,7 @@ Node *find_augmenting_path(
     Node *root)
 {
 
-    LOG("ENTER find_augmenting_path\n");
+    // printf("ENTER find_augmenting_path\n");
 
     std::vector<Node *> row_layer, col_layer;
 
@@ -83,7 +81,7 @@ Node *find_augmenting_path(
     {
         // traverse all row -unmatched-> col edges
         // if col is free, we are done
-        LOG("==row layer==\n");
+        // printf("==row layer==\n");
         col_layer.clear();
         for (Node *row_node : row_layer)
         {
@@ -92,14 +90,14 @@ Node *find_augmenting_path(
             {
                 if (G[i][j] && !M[i][j])
                 {
-                    LOG("row %d -> col %d\n", i, j);
+                    // printf("row %d -> col %d\n", i, j);
                     Node *col_node = new Node(j);
                     row_node->add_child(col_node);
 
                     if (!matched_cols[j])
                     {
-                        LOG("found free col %d\n", j);
-                        LOG("EXIT find_augmenting_path\n");
+                        // printf("found free col %d\n", j);
+                        // printf("EXIT find_augmenting_path\n");
                         return col_node;
                     }
 
@@ -110,7 +108,7 @@ Node *find_augmenting_path(
 
         // find a free column in the last layer
         // else, traverse all col -matched-> row edges
-        LOG("==col layer==\n");
+        // printf("==col layer==\n");
         row_layer.clear();
         for (Node *col_node : col_layer)
         {
@@ -119,7 +117,7 @@ Node *find_augmenting_path(
             {
                 if (G[i][j] && M[i][j])
                 {
-                    LOG("col %d -> row %d\n", j, i);
+                    // printf("col %d -> row %d\n", j, i);
                     Node *row_node = new Node(i);
                     col_node->add_child(row_node);
                     row_layer.push_back(row_node);
@@ -127,8 +125,8 @@ Node *find_augmenting_path(
             }
         }
     }
-    LOG("could not find an augmenting path\n");
-    LOG("EXIT find_augmenting_path\n");
+    // printf("could not find an augmenting path\n");
+    // printf("EXIT find_augmenting_path\n");
     return nullptr;
 }
 
@@ -319,16 +317,14 @@ long p345()
             }
         }
 
-#ifndef NDEBUG
-        for (int i = 0; i < size; i++)
-        {
-            for (int j = 0; j < size; j++)
-            {
-                LOG("%d ", graph[i][j]);
-            }
-            LOG("\n");
-        }
-#endif
+        // for (int i = 0; i < size; i++)
+        // {
+        //     for (int j = 0; j < size; j++)
+        //     {
+        //         printf("%d ", graph[i][j]);
+        //     }
+        //     printf("\n");
+        // }
 
         // find maximum matching using the Hopcroft-Karp algorithm.
         Node *root = find_maximum_matching<size, size>(graph, maximum_matching, matched_rows, matched_cols);
@@ -358,19 +354,17 @@ long p345()
         find_minimum_vertex_cover<size, size>(root, matched_rows, matched_cols, true);
         delete root;
 
-#ifndef NDEBUG
-        LOG("matched_rows: ");
-        for (auto x : matched_rows)
-        {
-            LOG("%d ", x);
-        }
-        LOG("\nmatched_cols: ");
-        for (auto x : matched_cols)
-        {
-            LOG("%d ", x);
-        }
-        LOG("\n");
-#endif
+        // printf("matched_rows: ");
+        // for (auto x : matched_rows)
+        // {
+        //     printf("%d ", x);
+        // }
+        // printf("\nmatched_cols: ");
+        // for (auto x : matched_cols)
+        // {
+        //     printf("%d ", x);
+        // }
+        // printf("\n");
 
         // STEP 4: Find min of unmarked elements. Subtract this from unmarked
         // elements, and add to elements with marked row _and_ marked column.

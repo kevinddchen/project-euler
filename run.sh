@@ -25,8 +25,8 @@ NUM=$1
 
 if [[ $1 = "tests" ]]; then
 
-    echo "Running tests..."
     make $BIN/test_mathfuncs
+    echo "Running tests..."
     $BIN/test_mathfuncs
 
 elif [[ -a $SRC/p$NUM.cxx ]]; then
