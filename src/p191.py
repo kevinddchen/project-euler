@@ -1,7 +1,5 @@
 # ANSWER 1918080160
 
-from time import time
-
 
 def add_dict(d, L, i):
     """For each element x in L add i to dct[x]."""
@@ -31,9 +29,3 @@ def p191():
             add_dict(new_dct, get_next(s), dct[s])
         dct = new_dct
     return sum(dct[s] for s in dct)
-
-
-if __name__ == "__main__":
-    time_start = time()
-    print(p191())
-    print("Time: {0:.3f}".format(time() - time_start))

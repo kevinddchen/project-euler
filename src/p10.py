@@ -11,16 +11,8 @@ to sqrt(N), we generate all primes less than or equal to N.
 
 """
 
-from time import time
-
 from .mathfuncs import PrimeSieve
 
 
 def p10():
     return sum(n for n in PrimeSieve(2000000))
-
-
-if __name__ == "__main__":
-    time_start = time()
-    print(p10())
-    print("Time: {0:.3f}".format(time() - time_start))

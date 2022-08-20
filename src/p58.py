@@ -7,8 +7,6 @@ corners are n^2 - i(n-1) for i = 0, 1, 2, 3.
 
 """
 
-from time import time
-
 from .mathfuncs import is_prime
 
 
@@ -23,9 +21,3 @@ def p58():
                 n_primes += 1
 
     return n
-
-
-if __name__ == "__main__":
-    time_start = time()
-    print(p58())
-    print("Time: {0:.3f}".format(time() - time_start))

@@ -16,8 +16,6 @@ zeros, but this is the outline of the code.
 
 """
 
-from time import time
-
 
 def foo(lst, target_n, target_tot, index=0, n=0, tot=0, L=[]):
 
@@ -43,9 +41,3 @@ def p491():
         for L in foo(digits, 10, x):
             count += 10 - L.count(0)
     return count * (2 * 3 * 4 * 5 * 6 * 7 * 8 * 9 * 10) ** 2 // (2**10) // 10
-
-
-if __name__ == "__main__":
-    time_start = time()
-    print(p491())
-    print("Time: {0:.3f}".format(time() - time_start))

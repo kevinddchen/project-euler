@@ -6,8 +6,6 @@ Recursive tree search
 
 """
 
-from time import time
-
 coins = [100, 50, 20, 10, 5, 2]
 
 
@@ -23,9 +21,3 @@ def count(v, i):
 
 def p31():
     return count(200, 0) + 1  # +1 for the 2 pound coin
-
-
-if __name__ == "__main__":
-    time_start = time()
-    print(p31())
-    print("Time: {0:.3f}".format(time() - time_start))

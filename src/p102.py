@@ -7,7 +7,6 @@ We check that the cross-products of the points in order have the same sign.
 """
 
 from pathlib import Path
-from time import time
 
 
 def cross(a, b):
@@ -28,9 +27,3 @@ def p102():
         if AB_sign == BC_sign and BC_sign == CA_sign:
             count += 1
     return count
-
-
-if __name__ == "__main__":
-    time_start = time()
-    print(p102())
-    print("Time: {0:.3f}".format(time() - time_start))

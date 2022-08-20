@@ -11,8 +11,6 @@ As it turns out, the guess is actually the optimal set.
 
 """
 
-from time import time
-
 
 def subsets(lst, i=0, temp=[]):
     """Generates all subsets of lst."""
@@ -82,9 +80,3 @@ def p103():
 
     optimal_7 = minim[1]
     return "".join(str(x) for x in optimal_7)
-
-
-if __name__ == "__main__":
-    time_start = time()
-    print(p103())
-    print("Time: {0:.3f}".format(time() - time_start))

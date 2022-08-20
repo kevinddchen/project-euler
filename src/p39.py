@@ -1,7 +1,6 @@
 # ANSWER 840
 
 from math import gcd, isqrt
-from time import time
 
 
 def p39():
@@ -23,9 +22,3 @@ def p39():
                     ans[p] += 1
                     p += 2 * m * (m + n)
     return max((n, i) for i, n in enumerate(ans))[1]
-
-
-if __name__ == "__main__":
-    time_start = time()
-    print(p39())
-    print("Time: {0:.3f}".format(time() - time_start))

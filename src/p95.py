@@ -7,8 +7,6 @@ you already traversed and using an efficient method of finding sum of divisors.
 
 """
 
-from time import time
-
 from .p21 import sum_proper_divisors
 
 
@@ -37,9 +35,3 @@ def p95():
                 break
 
     return min(maxim[1])
-
-
-if __name__ == "__main__":
-    time_start = time()
-    print(p95())
-    print("Time: {0:.3f}".format(time() - time_start))

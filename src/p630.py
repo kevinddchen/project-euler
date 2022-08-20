@@ -16,7 +16,6 @@ of lines with that slope.
 from __future__ import annotations
 
 from math import gcd
-from time import time
 from typing import Container, Iterator, NamedTuple
 
 SIZE = 1000
@@ -125,9 +124,3 @@ def p630() -> int:
         prev_coords.add(coord)
 
     return num_intersections
-
-
-if __name__ == "__main__":
-    time_start = time()
-    print(p630())
-    print("Time: {0:.3f}".format(time() - time_start))

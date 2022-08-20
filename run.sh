@@ -7,7 +7,7 @@ show_help () {
     echo "==========================="
     echo 
     echo "To run a problem:     ./$(basename $0) 123"
-    echo "To run tests:         ./$(basename $0) tests"
+    echo "To run c++ tests:     ./$(basename $0) test"
     echo
 }
 
@@ -23,10 +23,10 @@ SRC=src
 BIN=bin
 NUM=$1
 
-if [[ $1 = "tests" ]]; then
+if [[ $NUM = "test" ]]; then
 
     make $BIN/test_mathfuncs
-    echo "Running tests..."
+    echo "Running c++ tests..."
     $BIN/test_mathfuncs
 
 elif [[ -a $SRC/p$NUM.cxx ]]; then
@@ -38,11 +38,12 @@ elif [[ -a $SRC/p$NUM.cxx ]]; then
 elif [[ -a $SRC/p$NUM.py ]]; then
 
     echo "Running python solution #${NUM}..."
-    python -m $SRC.p$NUM
+    python -m $SRC $NUM
 
 else
 
-    >&2 echo "No solution found."
+    >&2 echo "No solution found for '${NUM}'."
+    show_help
     exit 1
 
 fi

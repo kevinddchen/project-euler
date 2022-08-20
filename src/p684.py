@@ -15,8 +15,6 @@ up calculation of exponents (the number 1000000007 given is a prime).
 
 """
 
-from time import time
-
 
 def next_fib(f1, f2):
     f = list(map(lambda x, y: x + y, f1, f2))
@@ -43,9 +41,3 @@ def p684():
         tot = (tot + S(f2[0], f2[1], P)) % P
 
     return tot
-
-
-if __name__ == "__main__":
-    time_start = time()
-    print(p684())
-    print("Time: {0:.3f}".format(time() - time_start))

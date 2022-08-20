@@ -6,7 +6,7 @@ BIN = ./bin
 TARGETS = $(patsubst $(SRC)/%.cxx,$(BIN)/%,$(wildcard $(SRC)/p*.cxx))
 TESTS = $(patsubst $(SRC)/tests/%.cxx,$(BIN)/%,$(wildcard $(SRC)/tests/*.cxx))
 
-.PHONY: all clean
+.PHONY: all test flake clean
 
 all: $(TARGETS) $(TESTS)
 
@@ -17,6 +17,12 @@ $(BIN)/test_mathfuncs: $(SRC)/tests/test_mathfuncs.cxx
 $(BIN)/%: $(SRC)/%.cxx
 	@mkdir -p $(@D)
 	$(CC) $< -o $@ $(CFLAGS)
+
+test:
+	pytest
+
+flake:
+	flake8 --config=pyproject.toml
 
 clean:
 	rm -rf $(BIN)

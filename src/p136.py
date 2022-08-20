@@ -7,8 +7,6 @@ through all y and a, keeping track of how many times we can form each n.
 
 """
 
-from time import time
-
 
 def p136():
     size = 50000000
@@ -23,9 +21,3 @@ def p136():
             a += 1
             n = y * (4 * a - y)
     return arr.count(1)
-
-
-if __name__ == "__main__":
-    time_start = time()
-    print(p136())
-    print("Time: {0:.3f}".format(time() - time_start))

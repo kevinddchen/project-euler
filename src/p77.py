@@ -7,8 +7,6 @@ using primes under a certain maximum prime.
 
 """
 
-from time import time
-
 from .mathfuncs import is_prime
 
 
@@ -37,9 +35,3 @@ def p77():
     while partition_prime(x, x) < 5000:
         x += 1
     return x
-
-
-if __name__ == "__main__":
-    time_start = time()
-    print(p77())
-    print("Time: {0:.3f}".format(time() - time_start))

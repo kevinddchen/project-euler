@@ -12,7 +12,6 @@ to keep track of all possibilities in a reasonable amount of time.
 """
 
 import heapq
-from time import time
 
 
 def blocks(a, b, c, L):
@@ -49,9 +48,3 @@ def p126():
                 heapq.heappush(h, (blocks(a, b, c + 1, L), a, b, c + 1, L))
 
     return N
-
-
-if __name__ == "__main__":
-    time_start = time()
-    print(p126())
-    print("Time: {0:.3f}".format(time() - time_start))

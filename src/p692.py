@@ -12,8 +12,6 @@ where F_n is the nth Fibonacci number. Note that the big number given is F_80.
 
 """
 
-from time import time
-
 
 def fib_gen():
     """Generates Fibonacci numbers 1, 1, 2, 3, ..."""
@@ -32,9 +30,3 @@ def p692():
         a, b = a + b + next(F), a
 
     return a
-
-
-if __name__ == "__main__":
-    time_start = time()
-    print(p692())
-    print("Time: {0:.3f}".format(time() - time_start))

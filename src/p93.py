@@ -9,7 +9,6 @@ of digits, permutations of those digits, permutations of the symbols (+, -, *,
 """
 
 from itertools import combinations, combinations_with_replacement, permutations
-from time import time
 
 
 def add(x, y):
@@ -64,9 +63,3 @@ def p93():
         maxim = max((n, digit_combo), maxim)
 
     return "".join(str(x) for x in maxim[1])
-
-
-if __name__ == "__main__":
-    time_start = time()
-    print(p93())
-    print("Time: {0:.3f}".format(time() - time_start))

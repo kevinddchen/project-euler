@@ -30,7 +30,6 @@ Two such partitions are {1, 9, 10} and {6, 6, 7}. For {1, 9, 10} we multiply by
 """
 
 from math import comb, factorial
-from time import time
 
 
 def ordered_partitions(size, parts, limit):
@@ -81,9 +80,3 @@ def p493():
         weighted_count += count_color(n_colors) * comb(7, n_colors) * n_colors
     total = comb(70, 20)  # value of numerator for expected value
     return "{0:.9f}".format(weighted_count * 1.0 / total)
-
-
-if __name__ == "__main__":
-    time_start = time()
-    print(p493())
-    print("Time: {0:.3f}".format(time() - time_start))

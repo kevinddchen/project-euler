@@ -12,7 +12,6 @@ We memoize the results of the area calculations, but this is not necessary.
 import logging
 from functools import cache
 from math import pi
-from time import time
 
 LOG = logging.getLogger(__name__)
 
@@ -69,7 +68,7 @@ def get_gasket_area(depth: int, k1: float, k2: float, k3: float) -> float:
     return area
 
 
-def p199() -> float:
+def p199() -> str:
 
     depth = 10
 
@@ -80,11 +79,6 @@ def p199() -> float:
     covered_area = 3 * pi  # the three initial circles
     covered_area += get_gasket_area(depth, 1.0, 1.0, 1.0)
     covered_area += 3 * get_gasket_area(depth, 1.0, 1.0, k0)  # even though k0 < 0, this is ok
-    return round(1.0 - covered_area / total_area, 8)
+    percent = round(1.0 - covered_area / total_area, 8)
 
-
-if __name__ == "__main__":
-    # logging.basicConfig(level=logging.DEBUG)
-    time_start = time()
-    print(f"{p199():.8f}")
-    print("Time: {0:.3f}".format(time() - time_start))
+    return f"{percent:.8f}"

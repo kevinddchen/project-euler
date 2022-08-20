@@ -9,8 +9,6 @@ differences need to be calculated.
 
 """
 
-from time import time
-
 from .mathfuncs import is_prime
 
 
@@ -27,9 +25,3 @@ def p128():
             if C == 2000:
                 return 3 * (k + 1) * k + 1
         k += 1
-
-
-if __name__ == "__main__":
-    time_start = time()
-    print(p128())
-    print("Time: {0:.3f}".format(time() - time_start))

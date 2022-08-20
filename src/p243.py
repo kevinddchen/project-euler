@@ -10,8 +10,6 @@ primordial, and the answer should be a multiple of it.
 
 """
 
-from time import time
-
 from .mathfuncs import is_prime
 
 
@@ -40,9 +38,3 @@ def p243():
     while tot * n * 94744 >= (d * n - 1) * 15499:
         n += 1
     return n * d
-
-
-if __name__ == "__main__":
-    time_start = time()
-    print(p243())
-    print("Time: {0:.3f}".format(time() - time_start))

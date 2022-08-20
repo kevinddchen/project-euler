@@ -9,7 +9,6 @@ function, it preserves order, i.e. x<y implies log(x)<log(y).
 
 from math import log
 from pathlib import Path
-from time import time
 
 
 def p99():
@@ -21,9 +20,3 @@ def p99():
         if log_value > maxim[0]:
             maxim = (log_value, i + 1)
     return maxim[1]
-
-
-if __name__ == "__main__":
-    time_start = time()
-    print(p99())
-    print("Time: {0:.3f}".format(time() - time_start))

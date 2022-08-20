@@ -6,8 +6,6 @@ Can be solved by hand. See PDF for explanation.
 
 """
 
-from time import time
-
 
 def p94():
     LIMIT = 10**9
@@ -25,9 +23,3 @@ def p94():
             break
         S += p
     return S
-
-
-if __name__ == "__main__":
-    time_start = time()
-    print(p94())
-    print("Time: {0:.3f}".format(time() - time_start))

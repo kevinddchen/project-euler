@@ -12,8 +12,6 @@ solution. This gives the next point of reflection, C.
 
 """
 
-from time import time
-
 import numpy as np
 
 
@@ -39,9 +37,3 @@ def p144():
         A, B = B, next_point(A, B)
         count += 1
     return count
-
-
-if __name__ == "__main__":
-    time_start = time()
-    print(p144())
-    print("Time: {0:.3f}".format(time() - time_start))

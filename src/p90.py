@@ -8,7 +8,6 @@ dice combinations.
 """
 
 from itertools import combinations
-from time import time
 
 square_list = [(0, 1), (0, 4), (0, 6), (1, 6), (1, 8), (2, 5), (3, 6), (4, 6)]
 
@@ -32,9 +31,3 @@ def p90():
                 count += 1
 
     return count // 2  # divide by 2 for doublecounting
-
-
-if __name__ == "__main__":
-    time_start = time()
-    print(p90())
-    print("Time: {0:.3f}".format(time() - time_start))

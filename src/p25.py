@@ -6,8 +6,6 @@ Can be solved by hand. See PDF for explanation.
 
 """
 
-from time import time
-
 
 def p25():
     n = 1
@@ -16,9 +14,3 @@ def p25():
         a, b = b, a + b
         n += 1
     return n
-
-
-if __name__ == "__main__":
-    time_start = time()
-    print(p25())
-    print("Time: {0:.3f}".format(time() - time_start))

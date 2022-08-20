@@ -8,8 +8,6 @@ possible rectangles.
 
 """
 
-from time import time
-
 
 def nearest_m(n, t):
     """m for given n with nearest number of rectangles to target."""
@@ -32,9 +30,3 @@ def p85():
         m = nearest_m(n, TARGET)
 
     return minim[1]
-
-
-if __name__ == "__main__":
-    time_start = time()
-    print(p85())
-    print("Time: {0:.3f}".format(time() - time_start))

@@ -1,0 +1,5 @@
+# for running solutions
+numpy
+# for testing and development
+pytest
+flake8

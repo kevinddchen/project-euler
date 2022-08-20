@@ -8,8 +8,6 @@ explicitly, a = -p*10^(-k) mod q.
 
 """
 
-from time import time
-
 from .mathfuncs import PrimeSieve
 
 
@@ -27,9 +25,3 @@ def p134():
             total += a * 10**k + p
         p = q
     return total
-
-
-if __name__ == "__main__":
-    time_start = time()
-    print(p134())
-    print("Time: {0:.3f}".format(time() - time_start))

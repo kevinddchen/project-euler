@@ -6,8 +6,6 @@ Can be solved by hand. See PDF for explanation.
 
 """
 
-from time import time
-
 
 def p137():
     x, y = 1, 1
@@ -17,9 +15,3 @@ def p137():
         if x % 5 == 1:
             i += 1
     return (x - 1) // 5
-
-
-if __name__ == "__main__":
-    time_start = time()
-    print(p137())
-    print("Time: {0:.3f}".format(time() - time_start))

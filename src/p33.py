@@ -8,7 +8,6 @@ digits or just the units digits.
 """
 
 from math import gcd
-from time import time
 
 
 def p33():
@@ -27,9 +26,3 @@ def p33():
                 ans[1] *= y_0
     g = gcd(ans[0], ans[1])
     return ans[1] // g
-
-
-if __name__ == "__main__":
-    time_start = time()
-    print(p33())
-    print("Time: {0:.3f}".format(time() - time_start))

@@ -7,8 +7,6 @@ digits and counting all possibilities until you reach 20 digits.
 
 """
 
-from time import time
-
 
 def add_dict(dct, key, value):
     if key in dct:
@@ -41,9 +39,3 @@ def p164():
     for _ in range(17):
         A = iterate_seeds(A)
     return sum(A.values())
-
-
-if __name__ == "__main__":
-    time_start = time()
-    print(p164())
-    print("Time: {0:.3f}".format(time() - time_start))

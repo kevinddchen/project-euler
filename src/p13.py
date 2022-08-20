@@ -1,7 +1,5 @@
 # ANSWER 5537376230
 
-from time import time
-
 L = [
     37107287533902102798797998220837590246510135740250,
     46376937677490009712648124896970078050417018260538,
@@ -108,9 +106,3 @@ L = [
 
 def p13():
     return str(sum(L))[:10]
-
-
-if __name__ == "__main__":
-    time_start = time()
-    print(p13())
-    print("Time: {0:.3f}".format(time() - time_start))

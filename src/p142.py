@@ -9,7 +9,6 @@ two pairs have the same midpoints, check that y+z and y-z are squares.
 """
 
 from math import isqrt
-from time import time
 
 
 def is_square(n):
@@ -44,9 +43,3 @@ def p142():
         a += 1
 
     return target
-
-
-if __name__ == "__main__":
-    time_start = time()
-    print(p142())
-    print("Time: {0:.3f}".format(time() - time_start))

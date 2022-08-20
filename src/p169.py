@@ -24,7 +24,6 @@ With this, we can recursively find f(n) for all n.
 """
 
 from functools import cache
-from time import time
 
 
 @cache
@@ -40,9 +39,3 @@ def f(n):
 
 def p169():
     return f(10**25)
-
-
-if __name__ == "__main__":
-    time_start = time()
-    print(p169())
-    print("Time: {0:.3f}".format(time() - time_start))

@@ -13,7 +13,6 @@ where 3/7 - p'/q' <= 1/7q.
 """
 
 from math import gcd
-from time import time
 
 
 def p71():
@@ -26,9 +25,3 @@ def p71():
             prev = (p, q)
 
     return prev[0] // gcd(prev[0], prev[1])
-
-
-if __name__ == "__main__":
-    time_start = time()
-    print(p71())
-    print("Time: {0:.3f}".format(time() - time_start))

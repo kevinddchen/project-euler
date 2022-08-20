@@ -18,8 +18,6 @@ numbers up to 9998, and then added manually for 9999 and 10000 (which is just
 
 """
 
-from time import time
-
 
 def only012(x):
     """Returns true if integer x contains only digits 0, 1, 2"""
@@ -81,9 +79,3 @@ def p303():
     for N in range(1, 10000 - 1):
         S += find_multiple(N, MultTable)
     return S + 1111333355557778 + 1
-
-
-if __name__ == "__main__":
-    time_start = time()
-    print(p303())
-    print("Time: {0:.3f}".format(time() - time_start))

@@ -8,7 +8,6 @@ through each cell and replace its value with the lowest sum to reach that cell.
 """
 
 from pathlib import Path
-from time import time
 
 
 def p81():
@@ -35,9 +34,3 @@ def p81():
             j += 1
 
     return M[-1][-1]
-
-
-if __name__ == "__main__":
-    time_start = time()
-    print(p81())
-    print("Time: {0:.3f}".format(time() - time_start))

@@ -8,7 +8,6 @@ square root (error < 1e-110). Then, use long division to get the digits.
 """
 
 from math import isqrt
-from time import time
 
 
 def gen_sqrt(p):
@@ -50,9 +49,3 @@ def p80():
         for j in range(100):
             S += next(H)
     return S
-
-
-if __name__ == "__main__":
-    time_start = time()
-    print(p80())
-    print("Time: {0:.3f}".format(time() - time_start))

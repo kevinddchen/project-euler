@@ -8,10 +8,9 @@ numerical value, then constructed the minimal roman numeral.
 """
 
 from pathlib import Path
-from time import time
 
 v_dict = {"I": 1, "V": 5, "X": 10, "L": 50, "C": 100, "D": 500, "M": 1000}
-r_dict = dict((k, v_dict[k])[::-1] for k in v_dict)
+r_dict = dict((v, k) for k, v in v_dict.items())
 
 
 def deconstruct(roman):
@@ -59,9 +58,3 @@ def p89():
         saved_letters += len(raw_roman) - len(new_roman)
 
     return saved_letters
-
-
-if __name__ == "__main__":
-    time_start = time()
-    print(p89())
-    print("Time: {0:.3f}".format(time() - time_start))

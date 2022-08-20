@@ -7,8 +7,6 @@ subtract the squares from it first, then check that the difference is prime.
 
 """
 
-from time import time
-
 from .mathfuncs import is_prime
 
 
@@ -30,9 +28,3 @@ def p46():
             continue
         if not check(x):
             return x
-
-
-if __name__ == "__main__":
-    time_start = time()
-    print(p46())
-    print("Time: {0:.3f}".format(time() - time_start))

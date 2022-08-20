@@ -13,8 +13,6 @@ i.e. 6 = 6 + 0
 
 """
 
-from time import time
-
 
 def oneDartPossibilities(score):
     """Counts ways one score can be reached by one dart"""
@@ -70,9 +68,3 @@ def p109():
         n = checkout(i)
         count += n
     return count
-
-
-if __name__ == "__main__":
-    time_start = time()
-    print(p109())
-    print("Time: {0:.3f}".format(time() - time_start))

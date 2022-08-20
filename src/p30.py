@@ -9,8 +9,6 @@ and f(x) <= n*9^5, if n*9^5 < 10^(n-1) then f(x) < x. Thus we require n <= 5.
 
 """
 
-from time import time
-
 
 def generator(digits_left, initial, curr_sum):
     if digits_left == 0:
@@ -24,9 +22,3 @@ def generator(digits_left, initial, curr_sum):
 
 def p30():
     return sum(x for x in generator(6, 0, 0))
-
-
-if __name__ == "__main__":
-    time_start = time()
-    print(p30())
-    print("Time: {0:.3f}".format(time() - time_start))

@@ -7,7 +7,6 @@ Brute force. Not really any other choice.
 """
 
 from pathlib import Path
-from time import time
 
 
 def no_equal_sums(lst, s=0, changes=0):
@@ -40,9 +39,3 @@ def p105():
         if order(lst) and no_equal_sums(lst):
             s += sum(lst)
     return s
-
-
-if __name__ == "__main__":
-    time_start = time()
-    print(p105())
-    print("Time: {0:.3f}".format(time() - time_start))

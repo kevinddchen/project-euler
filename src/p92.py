@@ -1,7 +1,6 @@
 # ANSWER 8581146
 
 from functools import cache
-from time import time
 
 
 def sort_digits(x):
@@ -20,9 +19,3 @@ def chain(x):
 
 def p92():
     return sum(1 for x in range(1, 10**7) if chain(sort_digits(x)) == 89)
-
-
-if __name__ == "__main__":
-    time_start = time()
-    print(p92())
-    print("Time: {0:.3f}".format(time() - time_start))

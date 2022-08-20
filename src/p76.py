@@ -8,7 +8,6 @@ recursively using the pentagonal number theorem.
 """
 
 from functools import cache
-from time import time
 
 
 def pent(n):
@@ -40,9 +39,3 @@ def partition(n):
 
 def p76():
     return partition(100)
-
-
-if __name__ == "__main__":
-    time_start = time()
-    print(p76())
-    print("Time: {0:.3f}".format(time() - time_start))

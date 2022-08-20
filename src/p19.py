@@ -8,8 +8,6 @@ Below, we use John Conway's Doomsday algorithm.
 
 """
 
-from time import time
-
 
 def p19():
     # use John Conway's Doomsday algorithm
@@ -26,9 +24,3 @@ def p19():
             if (doomsday - d + 1) % 7 == 0:  # if Sunday
                 count += 1
     return count
-
-
-if __name__ == "__main__":
-    time_start = time()
-    print(p19())
-    print("Time: {0:.3f}".format(time() - time_start))

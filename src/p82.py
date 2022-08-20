@@ -8,7 +8,6 @@ with the lowest sum to reach that cell.
 """
 
 from pathlib import Path
-from time import time
 
 
 def p82():
@@ -36,9 +35,3 @@ def p82():
             M[i][j] += x
 
     return min(row[-1] for row in M)
-
-
-if __name__ == "__main__":
-    time_start = time()
-    print(p82())
-    print("Time: {0:.3f}".format(time() - time_start))

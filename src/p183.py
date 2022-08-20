@@ -11,7 +11,6 @@ factors other than 2 or 5, then the decimal does not terminate.
 """
 
 from math import e, gcd, log
-from time import time
 
 
 def terminating_decimal(N):
@@ -30,9 +29,3 @@ def terminating_decimal(N):
 
 def p183():
     return sum(N * (-1 if terminating_decimal(N) else 1) for N in range(5, 10001))
-
-
-if __name__ == "__main__":
-    time_start = time()
-    print(p183())
-    print("Time: {0:.3f}".format(time() - time_start))

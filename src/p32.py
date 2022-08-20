@@ -1,7 +1,5 @@
 # ANSWER 45228
 
-from time import time
-
 
 def count_digits(a, b, c):
     """Returns total number of digits in a, b, and c."""
@@ -35,9 +33,3 @@ def p32():
         b = a + 1
 
     return sum(s)
-
-
-if __name__ == "__main__":
-    time_start = time()
-    print(p32())
-    print("Time: {0:.3f}".format(time() - time_start))

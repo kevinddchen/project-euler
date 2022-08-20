@@ -1,7 +1,6 @@
 # ANSWER 4075
 
 from math import comb
-from time import time
 
 
 def p53():
@@ -13,9 +12,3 @@ def p53():
             if comb(n, r) > 1000000:
                 C += 1 if r * 2 == n else 2
     return C
-
-
-if __name__ == "__main__":
-    time_start = time()
-    print(p53())
-    print("Time: {0:.3f}".format(time() - time_start))

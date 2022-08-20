@@ -7,7 +7,6 @@ Can be solved by hand. See PDF for explanation.
 """
 
 from math import factorial
-from time import time
 
 
 def p24():
@@ -20,9 +19,3 @@ def p24():
         x %= factorial(i)
         result += digits.pop(coeff) * 10**i
     return result
-
-
-if __name__ == "__main__":
-    time_start = time()
-    print(p24())
-    print("Time: {0:.3f}".format(time() - time_start))

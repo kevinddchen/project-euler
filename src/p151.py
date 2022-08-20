@@ -7,8 +7,6 @@ tree search.
 
 """
 
-from time import time
-
 
 def next_job(prob_space):
     """Iterates the probability space one step down the tree."""
@@ -44,9 +42,3 @@ def p151():
     norm = float(sum(prob_space.values()))
     prob = sum(event[0] * num for event, num in prob_space.items()) / norm
     return "{0:.6f}".format(prob)
-
-
-if __name__ == "__main__":
-    time_start = time()
-    print(p151())
-    print("Time: {0:.3f}".format(time() - time_start))

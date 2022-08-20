@@ -8,8 +8,6 @@ Below, we use a sieve to generate totient values.
 
 """
 
-from time import time
-
 
 def totient_sieve(limit):
     # sieve that generates totient values.
@@ -31,9 +29,3 @@ def p69():
         if n * M[1] > tot * M[0]:
             M = (n, tot)
     return M[0]
-
-
-if __name__ == "__main__":
-    time_start = time()
-    print(p69())
-    print("Time: {0:.3f}".format(time() - time_start))

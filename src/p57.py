@@ -12,8 +12,6 @@ Then the fraction p_n/q_n gives the nth convergent.
 
 """
 
-from time import time
-
 
 def continued_fraction_of_sqrt2():
     yield 1
@@ -35,9 +33,3 @@ def p57():
         p = (a * p[0] + p[1], p[0])
         q = (a * q[0] + q[1], q[0])
     return C
-
-
-if __name__ == "__main__":
-    time_start = time()
-    print(p57())
-    print("Time: {0:.3f}".format(time() - time_start))

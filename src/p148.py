@@ -6,8 +6,6 @@ Can be solved by hand. See PDF for explanation.
 
 """
 
-from time import time
-
 
 def p148():
 
@@ -21,9 +19,3 @@ def p148():
         total = Tn[digit] * (28**power) + (digit + 1) * total
 
     return total
-
-
-if __name__ == "__main__":
-    time_start = time()
-    print(p148())
-    print("Time: {0:.3f}".format(time() - time_start))

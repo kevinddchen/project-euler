@@ -18,8 +18,6 @@ This prevents us from searching all primes up to 10^7.
 
 """
 
-from time import time
-
 from .mathfuncs import is_prime
 
 
@@ -49,9 +47,3 @@ def p70():
                     M = (n, tot)
                     break
         p_lst.insert(0, p)
-
-
-if __name__ == "__main__":
-    time_start = time()
-    print(p70())
-    print("Time: {0:.3f}".format(time() - time_start))

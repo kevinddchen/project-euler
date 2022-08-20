@@ -17,7 +17,6 @@ digts are '123'.
 """
 
 from math import log
-from time import time
 
 
 def p686():
@@ -35,9 +34,3 @@ def p686():
         if (LOWER < x) and (x < UPPER):
             count = count + 1
     return j
-
-
-if __name__ == "__main__":
-    time_start = time()
-    print(p686())
-    print("Time: {0:.3f}".format(time() - time_start))

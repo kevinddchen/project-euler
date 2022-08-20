@@ -1,84 +1,110 @@
-from __future__ import annotations
+from dataclasses import dataclass
+from typing import Iterator
 
-from typing import Iterable
 
-
-def is_prime(x: int) -> bool:
-    """Checks if input is a prime number. Runs in O(sqrt(x)) time.
+def is_prime(n: int, /) -> bool:
+    """
+    Checks if input is a prime number. Runs in O(sqrt(x)) time.
 
     Args:
-        x: Integer greater than or equal to 2.
+        n: Integer greater than 1.
 
     Returns:
-        True if x is prime.
+        True if n is prime.
     """
-    if x == 2:
+    assert n > 1, "n must be greater than 1"
+    if n == 2:
         return True
-    if x % 2 == 0:
+    if n % 2 == 0:
         return False
-    y = 3
-    while y * y <= x:
-        if x % y == 0:
+    a = 3
+    while a * a <= n:
+        if n % a == 0:
             return False
-        y += 2
+        a += 2
     return True
 
 
 class PrimeSieve:
-    """Sieve of Eratosthenes; generates all primes up to (but not including) N.
-    The list of booleans itself can be accessed via the `.sieve` attribute.
+    """
+    Generate all primes up to (but not including) the specified size. This is
+    done by maintaining a prime sieve, i.e. a list of boolean values where the
+    nth entry, for n > 1, is True when n is prime. If you just want the prime
+    sieve, use the `sieve` property.
+
+    Note: 0 and 1 are not considered prime in the sieve.
 
     Args:
-        N: Integer greater than or equal to 2.
+        size: Positive integer.
     """
 
-    def __init__(self, N: int) -> None:
-        self.N = N
-        self.sieve = [True for _ in range(N)]
-        self.sieve[0] = False
-        self.sieve[1] = False
+    def __init__(self, size: int) -> None:
+        self.size = size
+        self._sieve = [True for _ in range(size)]
+        if size > 0:
+            self._sieve[0] = False
+        if size > 1:
+            self._sieve[1] = False
+        self._x = 2  # tracks current prime
 
-    def __iter__(self) -> Iterable[int]:
-        for n, isprime in enumerate(self.sieve):
-            if isprime:
-                for y in range(n * n, self.N, n):  # sieve out all multiples
-                    self.sieve[y] = False
-                yield n
+    def __next__(self) -> int:
+        while self._x < self.size:
+            try:
+                x = self._x
+                if self._sieve[x]:
+                    for y in range(x * x, self.size, x):  # sieve out all multiples
+                        self._sieve[y] = False
+                    return x
+            finally:
+                self._x += 1
+        raise StopIteration
+
+    def __iter__(self) -> Iterator[int]:
+        return self
+
+    @property
+    def sieve(self) -> list[bool]:
+        """Returns the sieve as a list of booleans."""
+        for _ in self:  # Generate all primes
+            pass
+        return self._sieve
 
 
-def prime_factorize(x: int) -> Iterable[tuple[int, int]]:
-    """Find prime factorization of x = p_1^(a_1) * p_2^(a_2) * ... * p_k^(a_k).
-    Returns tuples (p_i, a_i) for each prime p_i in ascending order. Runs in
-    O(sqrt(x)) time.
+@dataclass
+class PrimePower:
+    base: int
+    exp: int
+
+
+def prime_factorize(n: int, /) -> list[PrimePower]:
+    """
+    Prime factorize a positive integer, i.e. if n = p1^a1 * p2^a2 * ... * pk^ak
+    then return the list of {p, a} pairs. The p's are given in ascending order.
+    If n = 1, returns the empty vector. Runs in O(sqrt(n)) time.
 
     Args:
-        x: Integer greater than or equal to 2.
+        n: Positive integer
 
     Return:
-        List of tuples (p_i, a_i).
+        List of {p_i, a_i}.
     """
+    assert n > 0, "n must be positive"
 
-    def divide_out(x: int, p: int) -> tuple[int, int]:
-        """Divide out p from x as many times as possible. In other words, finds
-        the largest value i such that x = y * p^i (where every variable is a
-        positive integer) and returns the tuple (y, i)."""
-        i = 0
-        while x % p == 0:
-            i += 1
-            x //= p
-        return x, i
+    prime_factors: list[PrimePower] = list()
 
-    x, i = divide_out(x, 2)  # divide out multiples of 2
-    if i != 0:
-        yield 2, i
-    y = 3
-    while y * y <= x:
-        x, i = divide_out(x, y)  # divide out multiples of 2
-        if i != 0:
-            yield y, i
-        y += 2
-    if x != 1:
-        yield x, 1  # remainder of x is prime
+    base = 2
+    while base * base <= n:
+        exp = 0
+        while n % base == 0:
+            n //= base
+            exp += 1
+        if exp != 0:
+            prime_factors.append(PrimePower(base=base, exp=exp))
+        base += 1
+    if n > 1:
+        prime_factors.append(PrimePower(base=n, exp=1))  # remainder of x is prime
+
+    return prime_factors
 
 
 # def extended_gcd(a, b):

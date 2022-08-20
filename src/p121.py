@@ -6,8 +6,6 @@ Can be solved by hand. See PDF for explanation.
 
 """
 
-from time import time
-
 
 def p121():
 
@@ -26,9 +24,3 @@ def p121():
 
     W = sum(L[N_TURNS // 2 + 2 :])
     return sum(L) // W
-
-
-if __name__ == "__main__":
-    time_start = time()
-    print(p121())
-    print("Time: {0:.3f}".format(time() - time_start))

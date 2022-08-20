@@ -8,8 +8,6 @@ Start from the bottom and work upwards.
 
 """
 
-from time import time
-
 m = [
     [75],
     [95, 64],
@@ -34,9 +32,3 @@ def p18():
         for j in range(len(m[i])):
             m[i][j] += max(m[i + 1][j], m[i + 1][j + 1])
     return m[0][0]
-
-
-if __name__ == "__main__":
-    time_start = time()
-    print(p18())
-    print("Time: {0:.3f}".format(time() - time_start))

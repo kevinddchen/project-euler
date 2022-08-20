@@ -11,7 +11,6 @@ the first valid magic 5-gon is already maximal and is the answer.
 """
 
 from itertools import permutations
-from time import time
 
 
 def generate_5_gons():
@@ -43,9 +42,3 @@ def p68():
                 for x in s:
                     string += str(x)
             return string
-
-
-if __name__ == "__main__":
-    time_start = time()
-    print(p68())
-    print("Time: {0:.3f}".format(time() - time_start))

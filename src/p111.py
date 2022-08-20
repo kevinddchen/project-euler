@@ -1,7 +1,6 @@
 # ANSWER 612407567715
 
 from itertools import combinations, product
-from time import time
 
 from .mathfuncs import is_prime
 
@@ -30,9 +29,3 @@ def p111():
                 break
         S += sum(prime_list)
     return S
-
-
-if __name__ == "__main__":
-    time_start = time()
-    print(p111())
-    print("Time: {0:.3f}".format(time() - time_start))

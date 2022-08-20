@@ -8,7 +8,6 @@ Find the first pattern that satisifes the conditions in the problem.
 """
 
 from itertools import product
-from time import time
 
 from .mathfuncs import PrimeSieve
 
@@ -39,25 +38,17 @@ def p51():
     digits = 2
     while True:
         # generate primes up to 10^digits
-        ps = PrimeSieve(10**digits)
-        for _ in ps:
-            pass
+        sieve = PrimeSieve(10**digits).sieve
 
         # generate patterns
         for pattern in product("0123456789*", repeat=digits):
             if pattern[0] == "0" or "*" not in pattern:
                 continue
-            if test_pattern(pattern, ps.sieve, 10 - 8):
+            if test_pattern(pattern, sieve, 10 - 8):
                 # pattern found, print first prime
                 start = 1 if pattern[0] == "*" else 0
                 for d in range(start, 10):
                     q = int("".join(replace(pattern, "*", str(d))))
-                    if ps.sieve[q]:
+                    if sieve[q]:
                         return q
         digits += 1
-
-
-if __name__ == "__main__":
-    time_start = time()
-    print(p51())
-    print("Time: {0:.3f}".format(time() - time_start))

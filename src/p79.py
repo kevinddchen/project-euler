@@ -9,7 +9,6 @@ This method is guaranteed to work with non-repeating digits.
 """
 
 from pathlib import Path
-from time import time
 
 
 def pop_longest_list(d):
@@ -36,9 +35,3 @@ def p79():
     while len(dct) > 0:
         s += str(pop_longest_list(dct))
     return s
-
-
-if __name__ == "__main__":
-    time_start = time()
-    print(p79())
-    print("Time: {0:.3f}".format(time() - time_start))
