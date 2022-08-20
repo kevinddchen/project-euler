@@ -10,7 +10,7 @@ numerical value, then constructed the minimal roman numeral.
 from pathlib import Path
 
 v_dict = {"I": 1, "V": 5, "X": 10, "L": 50, "C": 100, "D": 500, "M": 1000}
-r_dict = dict((k, v_dict[k])[::-1] for k in v_dict)
+r_dict = dict((v, k) for k, v in v_dict.items())
 
 
 def deconstruct(roman):
