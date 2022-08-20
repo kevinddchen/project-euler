@@ -23,7 +23,7 @@ SRC=src
 BIN=bin
 NUM=$1
 
-if [[ $1 = "tests" ]]; then
+if [[ $NUM = "tests" ]]; then
 
     make $BIN/test_mathfuncs
     echo "Running tests..."
@@ -42,7 +42,8 @@ elif [[ -a $SRC/p$NUM.py ]]; then
 
 else
 
-    >&2 echo "No solution found."
+    >&2 echo "No solution found for '${NUM}'."
+    show_help
     exit 1
 
 fi
