@@ -38,19 +38,17 @@ def p51():
     digits = 2
     while True:
         # generate primes up to 10^digits
-        ps = PrimeSieve(10**digits)
-        for _ in ps:
-            pass
+        sieve = PrimeSieve(10**digits).sieve
 
         # generate patterns
         for pattern in product("0123456789*", repeat=digits):
             if pattern[0] == "0" or "*" not in pattern:
                 continue
-            if test_pattern(pattern, ps.sieve, 10 - 8):
+            if test_pattern(pattern, sieve, 10 - 8):
                 # pattern found, print first prime
                 start = 1 if pattern[0] == "*" else 0
                 for d in range(start, 10):
                     q = int("".join(replace(pattern, "*", str(d))))
-                    if ps.sieve[q]:
+                    if sieve[q]:
                         return q
         digits += 1

@@ -1,10 +1,11 @@
 from __future__ import annotations
 
-from typing import Iterable
+from typing import Iterable, Iterator
 
 
 def is_prime(x: int) -> bool:
-    """Checks if input is a prime number. Runs in O(sqrt(x)) time.
+    """
+    Checks if input is a prime number. Runs in O(sqrt(x)) time.
 
     Args:
         x: Integer greater than or equal to 2.
@@ -25,25 +26,46 @@ def is_prime(x: int) -> bool:
 
 
 class PrimeSieve:
-    """Sieve of Eratosthenes; generates all primes up to (but not including) N.
-    The list of booleans itself can be accessed via the `.sieve` attribute.
+    """
+    Generate all primes up to (but not including) the specified size. This is
+    done by maintaining a prime sieve, i.e. a list of boolean values where the
+    nth entry, for n > 1, is True when n is prime. If you just want the prime
+    sieve, use the `sieve` property.
 
     Args:
-        N: Integer greater than or equal to 2.
+        size: Positive integer.
     """
 
-    def __init__(self, N: int) -> None:
-        self.N = N
-        self.sieve = [True for _ in range(N)]
-        self.sieve[0] = False
-        self.sieve[1] = False
+    def __init__(self, size: int) -> None:
+        self.size = size
+        self._sieve = [True for _ in range(size)]
+        if size > 1:
+            self._sieve[0] = False
+        if size > 2:
+            self._sieve[1] = False
+        self._x = 2
 
-    def __iter__(self) -> Iterable[int]:
-        for n, isprime in enumerate(self.sieve):
-            if isprime:
-                for y in range(n * n, self.N, n):  # sieve out all multiples
-                    self.sieve[y] = False
-                yield n
+    def __next__(self) -> int:
+        while self._x < self.size:
+            try:
+                x = self._x
+                if self._sieve[x]:
+                    for y in range(x * x, self.size, x):  # sieve out all multiples
+                        self._sieve[y] = False
+                    return x
+            finally:
+                self._x += 1
+        raise StopIteration
+
+    def __iter__(self) -> Iterator[int]:
+        return self
+
+    @property
+    def sieve(self) -> list[bool]:
+        """Returns the sieve as a list of booleans."""
+        for _ in self:  # Generate all primes
+            pass
+        return self._sieve
 
 
 def prime_factorize(x: int) -> Iterable[tuple[int, int]]:

@@ -13,8 +13,5 @@ def circular(n, sieve):
 
 
 def p35():
-    ps = PrimeSieve(1000000)
-    for _ in ps:
-        pass
-
-    return sum(1 for p, isprime in enumerate(ps.sieve) if isprime and circular(p, ps.sieve))
+    sieve = PrimeSieve(1000000).sieve
+    return sum(1 for p, isprime in enumerate(sieve) if isprime and circular(p, sieve))

@@ -18,21 +18,19 @@ def is_permutation(a, b):
 
 
 def p49():
-    ps = PrimeSieve(10000)
-    for _ in ps:
-        pass
+    sieve = PrimeSieve(10000).sieve
 
-    for p, isprime in enumerate(ps.sieve):
+    for p, isprime in enumerate(sieve):
         # search for 4 digit primes
         if p < 1000 or not isprime:
             continue
         # cycle through permutations for prime
         for perm in permutations(str(p)):
             q = int("".join(perm))
-            if q > p and 10000 > q and ps.sieve[q]:
+            if q > p and 10000 > q and sieve[q]:
                 # get next prime in sequence, check is permutation
                 r = q + (q - p)
-                if 10000 > r and ps.sieve[r] and is_permutation(r, p):
+                if 10000 > r and sieve[r] and is_permutation(r, p):
                     # not first one
                     if p != 1487:
                         return str(p) + str(q) + str(r)

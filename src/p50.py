@@ -19,20 +19,18 @@ def gen_next_primes(p, sieve):
 
 
 def p50():
-    ps = PrimeSieve(1000000)
-    for _ in ps:
-        pass
+    sieve = PrimeSieve(1000000).sieve
 
     M = (0, 0)
-    for p, isprime in enumerate(ps.sieve):
+    for p, isprime in enumerate(sieve):
         if isprime:
             S = p
             length = 1
-            for q in gen_next_primes(p, ps.sieve):
+            for q in gen_next_primes(p, sieve):
                 S += q
                 length += 1
                 if S >= 1000000:
                     break
-                if ps.sieve[S] and length > M[0]:
+                if sieve[S] and length > M[0]:
                     M = (length, S)
     return M[1]

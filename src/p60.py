@@ -45,12 +45,10 @@ def p60():
     conn_dicts = [{} for i in range(SIZE - 1)]
     d = 2
     while True:
-        ps = PrimeSieve(10**d)
-        for _ in ps:
-            pass
+        sieve = PrimeSieve(10**d).sieve
 
         # generate prime pairs p, q with d total digits
-        for p, p_prime in enumerate(ps.sieve):
+        for p, p_prime in enumerate(sieve):
             if p == 2 or not p_prime:
                 continue
             p_d = len(str(p))
@@ -59,7 +57,7 @@ def p60():
             for q in range(max(10 ** (d - p_d - 1) + 1, p + 2), 10 ** (d - p_d), 2):
 
                 # if concatenates, add pair to dictionary
-                if ps.sieve[q] and ps.sieve[int(str(p) + str(q))] and ps.sieve[int(str(q) + str(p))]:
+                if sieve[q] and sieve[int(str(p) + str(q))] and sieve[int(str(q) + str(p))]:
                     add_pair(conn_dicts, p, q)
 
         if len(conn_dicts[-1]) != 0:
