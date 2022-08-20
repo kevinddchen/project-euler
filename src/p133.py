@@ -13,8 +13,8 @@ from .mathfuncs import PrimeSieve, prime_factorize
 
 
 def totient(x):
-    for f, _ in prime_factorize(x):
-        x = x * (f - 1) // f
+    for pf in prime_factorize(x):
+        x = x * (pf.base - 1) // pf.base
     return x
 
 

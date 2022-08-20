@@ -23,7 +23,7 @@ def sum_proper_divisors(x):
     # also used in Problem 23 and 95
     if x == 1:
         return 0
-    return prod((p ** (i + 1) - 1) // (p - 1) for p, i in prime_factorize(x)) - x
+    return prod((pf.base ** (pf.exp + 1) - 1) // (pf.base - 1) for pf in prime_factorize(x)) - x
 
 
 def p21():

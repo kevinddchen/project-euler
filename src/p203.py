@@ -17,11 +17,11 @@ def p203():
         facts = {}
         for k in range(1, n // 2 + 1):
             prod = prod * (n + 1 - k) // k
-            for f, i in prime_factorize(n + 1 - k):
-                add_dict(facts, f, i)
+            for pf in prime_factorize(n + 1 - k):
+                add_dict(facts, pf.base, pf.exp)
             if k > 1:
-                for f, i in prime_factorize(k):
-                    add_dict(facts, f, -i)
+                for pf in prime_factorize(k):
+                    add_dict(facts, pf.base, -pf.exp)
             squarefree = True
             for x in facts:
                 if facts[x] > 1:

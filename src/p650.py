@@ -38,10 +38,10 @@ def p650():
 
     for n in range(2, N + 1):
 
-        for p, a in prime_factorize(n):
-            p_i = prime_i[p]
-            curr_f[p_i] += a * n
-            sub_f[p_i] += a
+        for pf in prime_factorize(n):
+            p_i = prime_i[pf.base]
+            curr_f[p_i] += pf.exp * n
+            sub_f[p_i] += pf.exp
 
         for i in range(n_primes):
             curr_f[i] -= sub_f[i]

@@ -26,12 +26,12 @@ def is_pent(p):
 def divisors(x):
     # also used in Problem 622
     divs = [1]
-    for f, i in prime_factorize(x):
+    for pf in prime_factorize(x):
         new_divs = []
         for d in divs:
             prod = 1
-            for _ in range(i):
-                prod *= f
+            for _ in range(pf.exp):
+                prod *= pf.base
                 new_divs.append(d * prod)
         divs.extend(new_divs)
     return divs

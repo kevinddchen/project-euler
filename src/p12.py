@@ -15,7 +15,7 @@ from .mathfuncs import prime_factorize
 
 
 def num_divisors(n):
-    return prod(i + 1 for _, i in prime_factorize(n))
+    return prod(pf.exp + 1 for pf in prime_factorize(n))
 
 
 def p12():

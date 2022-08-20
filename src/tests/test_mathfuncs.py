@@ -2,7 +2,7 @@ import logging
 
 import pytest
 
-from ..mathfuncs import PrimeSieve, is_prime
+from ..mathfuncs import PrimeSieve, is_prime, prime_factorize
 
 LOG = logging.getLogger(__name__)
 
@@ -93,3 +93,36 @@ def test_prime_sieve() -> None:
     ps = PrimeSieve(2)
     assert ps.size == 2
     assert ps.sieve == [False, False]
+
+
+def test_prime_factorize() -> None:
+    factors = prime_factorize(2)
+    assert len(factors) == 1
+    assert factors[0].base == 2 and factors[0].exp == 1
+
+    factors = prime_factorize(12)
+    assert len(factors) == 2
+    assert factors[0].base == 2 and factors[0].exp == 2
+    assert factors[1].base == 3 and factors[1].exp == 1
+
+    factors = prime_factorize(49)
+    assert len(factors) == 1
+    assert factors[0].base == 7 and factors[0].exp == 2
+
+    factors = prime_factorize(60)
+    assert len(factors) == 3
+    assert factors[0].base == 2 and factors[0].exp == 2
+    assert factors[1].base == 3 and factors[1].exp == 1
+    assert factors[2].base == 5 and factors[2].exp == 1
+
+    factors = prime_factorize(1)
+    assert len(factors) == 0
+
+    factors = prime_factorize(2 * 2 * 3 * 5 * 7 * 7 * 17 * 23)
+    assert len(factors) == 6
+    assert factors[0].base == 2 and factors[0].exp == 2
+    assert factors[1].base == 3 and factors[1].exp == 1
+    assert factors[2].base == 5 and factors[2].exp == 1
+    assert factors[3].base == 7 and factors[3].exp == 2
+    assert factors[4].base == 17 and factors[4].exp == 1
+    assert factors[5].base == 23 and factors[5].exp == 1

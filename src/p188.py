@@ -18,8 +18,8 @@ from .mathfuncs import prime_factorize
 
 
 def totient(x):
-    for f, _ in prime_factorize(x):
-        x = (x // f) * (f - 1)
+    for pf in prime_factorize(x):
+        x = (x // pf.base) * (pf.base - 1)
     return x
 
 
