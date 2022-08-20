@@ -1,25 +1,27 @@
 from __future__ import annotations
 
+from dataclasses import dataclass
 from typing import Iterable, Iterator
 
 
-def is_prime(x: int) -> bool:
+def is_prime(n: int) -> bool:
     """
     Checks if input is a prime number. Runs in O(sqrt(x)) time.
 
     Args:
-        x: Integer greater than or equal to 2.
+        n: Integer greater than 1.
 
     Returns:
-        True if x is prime.
+        True if n is prime.
     """
-    if x == 2:
+    assert n > 1
+    if n == 2:
         return True
-    if x % 2 == 0:
+    if n % 2 == 0:
         return False
     y = 3
-    while y * y <= x:
-        if x % y == 0:
+    while y * y <= n:
+        if n % y == 0:
             return False
         y += 2
     return True
@@ -32,6 +34,8 @@ class PrimeSieve:
     nth entry, for n > 1, is True when n is prime. If you just want the prime
     sieve, use the `sieve` property.
 
+    Note: 0 and 1 are not considered prime in the sieve.
+
     Args:
         size: Positive integer.
     """
@@ -39,9 +43,9 @@ class PrimeSieve:
     def __init__(self, size: int) -> None:
         self.size = size
         self._sieve = [True for _ in range(size)]
-        if size > 1:
+        if size > 0:
             self._sieve[0] = False
-        if size > 2:
+        if size > 1:
             self._sieve[1] = False
         self._x = 2
 
@@ -68,10 +72,17 @@ class PrimeSieve:
         return self._sieve
 
 
+@dataclass
+class PrimePower:
+    base: int
+    exp: int
+
+
 def prime_factorize(x: int) -> Iterable[tuple[int, int]]:
-    """Find prime factorization of x = p_1^(a_1) * p_2^(a_2) * ... * p_k^(a_k).
-    Returns tuples (p_i, a_i) for each prime p_i in ascending order. Runs in
-    O(sqrt(x)) time.
+    """
+    Prime factorize a positive integer, i.e. if n = p1^a1 * p2^a2 * ... * pk^ak
+    then return the list of {p, a} pairs. The p's are given in ascending order.
+    If n = 1, returns the empty vector. Runs in O(sqrt(x)) time.
 
     Args:
         x: Integer greater than or equal to 2.

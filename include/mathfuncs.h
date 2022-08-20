@@ -34,22 +34,21 @@ bool is_prime(long n)
 
 /**
  * Creates a prime sieve, i.e. a boolean array where the nth entry, for n > 1,
- * is true when n is prime. (The n = 0 and n = 1 entries are undefined).
+ * is true when n is prime. 0 and 1 are not considered prime in the sieve.
  */
 struct PrimeSieve
 {
+    size_t _size;
     bool *sieve;
 
-    PrimeSieve(int size)
+    PrimeSieve(size_t size) : _size(size)
     {
         // initialize sieve
         sieve = new bool[size];
-        for (int i = 0; i < size; i++)
+        for (int i = 0; i < 2 && i < size; i++)
         {
             sieve[i] = false;
         }
-
-        // initialize values
         for (int i = 2; i < size; i++)
         {
             sieve[i] = true;
@@ -73,7 +72,9 @@ struct PrimeSieve
         delete[] sieve;
     }
 
-    inline bool operator[](int i) const { return sieve[i]; }
+    inline size_t size() const { return _size; }
+
+    inline bool operator[](size_t i) const { return sieve[i]; }
 };
 
 struct PrimePower

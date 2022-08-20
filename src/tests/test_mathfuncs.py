@@ -51,6 +51,8 @@ def test_prime_sieve() -> None:
     # Test sieve
     sieve = ps.sieve
     assert len(sieve) == 9
+    assert not sieve[0]
+    assert not sieve[1]
     assert sieve[2]
     assert sieve[3]
     assert not sieve[4]
@@ -69,15 +71,25 @@ def test_prime_sieve() -> None:
     for x in ps:
         assert is_prime(x)
     sieve = ps.sieve
+    assert not sieve[0]
+    assert not sieve[1]
     for i in range(2, 100):
         assert is_prime(i) == sieve[i]
 
     # Test getting sieve directly
     sieve = PrimeSieve(100).sieve
+    assert not sieve[0]
+    assert not sieve[1]
     for i in range(2, 100):
         assert is_prime(i) == sieve[i]
 
     # Test no crash for small sizes
-    PrimeSieve(0).sieve
-    PrimeSieve(1).sieve
-    PrimeSieve(2).sieve
+    ps = PrimeSieve(0)
+    assert ps.size == 0
+    assert ps.sieve == []
+    ps = PrimeSieve(1)
+    assert ps.size == 1
+    assert ps.sieve == [False]
+    ps = PrimeSieve(2)
+    assert ps.size == 2
+    assert ps.sieve == [False, False]
