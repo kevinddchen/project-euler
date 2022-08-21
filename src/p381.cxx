@@ -15,7 +15,7 @@ ANSWER 139602943319822
 long p381()
 {
     const int size = 100'000'000;
-    PrimeSieve sieve(size);
+    auto sieve = prime_sieve(size);
 
     long sum = 0;
     for (long i = 2; i < size; i++)

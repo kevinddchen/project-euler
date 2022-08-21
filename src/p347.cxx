@@ -36,7 +36,7 @@ long p347()
     const int N = 10'000'000;
 
     // get primes
-    PrimeSieve sieve(N / 2);
+    auto sieve = prime_sieve(N / 2);
     std::vector<int> primes;
     for (int i = 0; i < N / 2; i++)
     {

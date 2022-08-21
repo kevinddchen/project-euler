@@ -1,6 +1,7 @@
 #pragma once
 
 #include <array>
+#include <memory>
 #include <vector>
 
 #include <cassert>
@@ -36,45 +37,27 @@ bool is_prime(long n)
  * Creates a prime sieve, i.e. a boolean array where the nth entry, for n > 1,
  * is true when n is prime. 0 and 1 are not considered prime in the sieve.
  */
-struct PrimeSieve
+std::unique_ptr<bool[]> prime_sieve(size_t size)
 {
-    size_t _size;
-    bool *sieve;
-
-    PrimeSieve(size_t size) : _size(size)
+    // initialize sieve
+    auto sieve = std::make_unique<bool[]>(size);
+    for (int i = 2; i < size; i++)
     {
-        // initialize sieve
-        sieve = new bool[size];
-        for (int i = 0; i < 2 && i < size; i++)
-        {
-            sieve[i] = false;
-        }
-        for (int i = 2; i < size; i++)
-        {
-            sieve[i] = true;
-        }
+        sieve[i] = true;
+    }
 
-        // sieve
-        for (int i = 2; i * i < size; i++)
+    // sieve
+    for (int i = 2; i * i < size; i++)
+    {
+        if (sieve[i])
         {
-            if (sieve[i])
+            for (int j = i * i; j < size; j += i)
             {
-                for (int j = i * i; j < size; j += i)
-                {
-                    sieve[j] = false;
-                }
+                sieve[j] = false;
             }
         }
     }
-
-    ~PrimeSieve()
-    {
-        delete[] sieve;
-    }
-
-    inline size_t size() const { return _size; }
-
-    inline bool operator[](size_t i) const { return sieve[i]; }
+    return sieve;
 };
 
 struct PrimePower

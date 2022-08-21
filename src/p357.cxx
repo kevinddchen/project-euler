@@ -10,7 +10,7 @@ ANSWER 1739023853137
 
 */
 
-bool prime_generating(long x, long *div_arr, const PrimeSieve &sieve)
+bool prime_generating(long x, long *div_arr, bool *sieve)
 {
     div_arr[0] = 1;
     int divs = 1;
@@ -51,7 +51,7 @@ bool prime_generating(long x, long *div_arr, const PrimeSieve &sieve)
 long p357()
 {
     const int size = 100'000'000;
-    PrimeSieve sieve(size + 2);
+    auto sieve = prime_sieve(size + 2);
 
     // find prime_generating
     long sum = 0;
@@ -59,7 +59,7 @@ long p357()
 
     for (long i = 1; i <= size; i++)
     {
-        if (prime_generating(i, div_arr, sieve))
+        if (prime_generating(i, div_arr, sieve.get()))
         {
             sum += i;
         }

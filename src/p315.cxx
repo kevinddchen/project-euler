@@ -81,7 +81,7 @@ long p315()
     // count transitions
     long count = 0;
 
-    PrimeSieve sieve(limit);
+    auto sieve = prime_sieve(limit);
     for (int i = limit / 2; i < limit; i++)
     {
         if (!sieve[i])

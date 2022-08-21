@@ -117,7 +117,7 @@ long p233()
 
     // generate all primes needed
     const int sieve_size = 1 + limit / (5 * 5 * 5 * 13 * 13);
-    PrimeSieve sieve(sieve_size);
+    auto sieve = prime_sieve(sieve_size);
 
     // sort primes into {p : p=1 mod 4} and {q : q=2 or q=3 mod 4}
     std::vector<int> p_primes;
