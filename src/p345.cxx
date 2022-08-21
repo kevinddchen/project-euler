@@ -2,6 +2,7 @@
 
 #include <algorithm>
 #include <array>
+#include <memory>
 #include <vector>
 
 /*
@@ -18,27 +19,28 @@ ANSWER: 13938
 // Simple tree node.
 struct Node
 {
-    Node *parent;
-    std::vector<Node *> children;
     int val;
+    Node *parent;
+    std::vector<std::unique_ptr<Node>> _children;
 
-    Node(int x) : parent(nullptr), val(x) {}
+    Node(int x) : val(x), parent(nullptr) {}
 
-    ~Node()
+    /* Transfers ownership of node to the parent. */
+    void add_child(std::unique_ptr<Node> N)
     {
-        for (auto child : children)
-        {
-            delete child;
-        }
-    }
-
-    void add_child(Node *N)
-    {
-        children.push_back(N);
         N->parent = this;
+        _children.push_back(std::move(N));
     }
 
-    inline bool hasParent() const { return parent != nullptr; }
+    std::vector<Node *> get_children() const
+    {
+        std::vector<Node *> children;
+        for (const auto &child : _children)
+            children.push_back(child.get());
+        return children;
+    }
+
+    inline bool has_parent() const { return parent != nullptr; }
 };
 
 /**
@@ -70,9 +72,11 @@ Node *find_augmenting_path(
     {
         if (!matched_rows[i])
         {
-            Node *node = new Node(i);
-            root->children.push_back(node); // `node` is an actual root node, so has no parent
-            row_layer.push_back(node);
+            auto node = std::make_unique<Node>(i);
+            auto node_ptr = node.get();
+            root->add_child(std::move(node));
+            node_ptr->parent = nullptr; // `node` is an actual root node, so has no parent
+            row_layer.push_back(node_ptr);
         }
     }
 
@@ -91,17 +95,19 @@ Node *find_augmenting_path(
                 if (G[i][j] && !M[i][j])
                 {
                     // printf("row %d -> col %d\n", i, j);
-                    Node *col_node = new Node(j);
-                    row_node->add_child(col_node);
+                    auto col_node = std::make_unique<Node>(j);
+                    auto col_node_ptr = col_node.get();
+                    row_node->add_child(std::move(col_node));
 
                     if (!matched_cols[j])
                     {
                         // printf("found free col %d\n", j);
                         // printf("EXIT find_augmenting_path\n");
-                        return col_node;
+                        return col_node_ptr;
                     }
 
-                    col_layer.push_back(col_node);
+                    col_layer.push_back(col_node_ptr);
+
                 }
             }
         }
@@ -118,9 +124,10 @@ Node *find_augmenting_path(
                 if (G[i][j] && M[i][j])
                 {
                     // printf("col %d -> row %d\n", j, i);
-                    Node *row_node = new Node(i);
-                    col_node->add_child(row_node);
-                    row_layer.push_back(row_node);
+                    auto row_node = std::make_unique<Node>(i);
+                    auto row_node_ptr = row_node.get();
+                    col_node->add_child(std::move(row_node));
+                    row_layer.push_back(row_node_ptr);
                 }
             }
         }
@@ -154,7 +161,7 @@ void add_path(
         row = col->parent;
         M[row->val][col->val] = !M[row->val][col->val]; // reverse matching
 
-        if (!row->hasParent())
+        if (!row->has_parent())
         {
             matched_rows[row->val] = true;
             break;
@@ -177,7 +184,7 @@ void add_path(
  * alternating between unmatched and matched edges.
  */
 template <size_t n_row, size_t n_col>
-Node *find_maximum_matching(
+std::unique_ptr<Node> find_maximum_matching(
     const std::array<std::array<bool, n_col>, n_row> &G,
     std::array<std::array<bool, n_col>, n_row> &M,
     std::array<bool, n_row> &matched_rows,
@@ -185,8 +192,8 @@ Node *find_maximum_matching(
 {
     while (true)
     {
-        Node *root = new Node(-1); // dummy node
-        Node *leaf = find_augmenting_path<n_row, n_col>(G, M, matched_rows, matched_cols, root);
+        auto root = std::make_unique<Node>(-1); // dummy node
+        Node *leaf = find_augmenting_path<n_row, n_col>(G, M, matched_rows, matched_cols, root.get());
 
         if (leaf == nullptr) // no augmenting path has been found
         {
@@ -194,8 +201,6 @@ Node *find_maximum_matching(
         }
 
         add_path<n_row, n_col>(leaf, M, matched_rows, matched_cols);
-
-        delete root;
     }
 }
 
@@ -210,9 +215,9 @@ void find_minimum_vertex_cover(
     std::array<bool, n_col> &matched_cols,
     bool parity)
 {
-    std::vector<Node *> children = root->children;
+    std::vector<Node *> children = root->get_children();
 
-    for (Node *child : children)
+    for (auto child : children)
     {
         if (parity)
         {
@@ -231,7 +236,7 @@ long p345()
 {
     const int size = 15;
 
-    int reward[15][15] = {
+    const int reward[15][15] = {
         {7, 53, 183, 439, 863, 497, 383, 563, 79, 973, 287, 63, 343, 169, 583},
         {627, 343, 773, 959, 943, 767, 473, 103, 699, 303, 957, 703, 583, 639, 913},
         {447, 283, 463, 29, 23, 487, 463, 993, 119, 883, 327, 493, 423, 159, 743},
@@ -327,7 +332,7 @@ long p345()
         // }
 
         // find maximum matching using the Hopcroft-Karp algorithm.
-        Node *root = find_maximum_matching<size, size>(graph, maximum_matching, matched_rows, matched_cols);
+        auto root = find_maximum_matching<size, size>(graph, maximum_matching, matched_rows, matched_cols);
 
         // if all rows are matched, then we are done
         bool done = true;
@@ -351,8 +356,7 @@ long p345()
             matched_cols[i] = false;
         }
 
-        find_minimum_vertex_cover<size, size>(root, matched_rows, matched_cols, true);
-        delete root;
+        find_minimum_vertex_cover<size, size>(root.get(), matched_rows, matched_cols, true);
 
         // printf("matched_rows: ");
         // for (auto x : matched_rows)

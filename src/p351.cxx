@@ -1,5 +1,7 @@
 #include "common.h"
 
+#include <memory>
+
 /*
 
 Each hidden point a taxicab distance n away from the center corresponds to a
@@ -12,9 +14,9 @@ ANSWER 11762187201804552
 */
 
 /* Taken from p69. */
-int *totient_sieve(int size)
+std::unique_ptr<int[]> totient_sieve(int size)
 {
-    int *sieve = new int[size];
+    auto sieve = std::make_unique<int[]>(size);
     // initialize values
     for (int i = 2; i < size; i++)
     {
@@ -40,13 +42,12 @@ long p351()
     const int size = 100'000'000;
     long count = size - 1;
 
-    int *sieve = totient_sieve(size + 1);
+    auto sieve = totient_sieve(size + 1);
     for (int i = 2; i <= size; i++)
     {
         count += i - sieve[i] - 1;
     }
 
-    delete[] sieve;
     return count * 6;
 }
 

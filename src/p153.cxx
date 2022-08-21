@@ -1,5 +1,6 @@
 #include "common.h"
 
+#include <memory>
 #include <numeric>
 
 /*
@@ -22,7 +23,7 @@ long p153()
     const int limit = 100'000'000;
 
     // initialize sieve
-    long *sieve = new long[limit + 1];
+    auto sieve = std::make_unique<long[]>(limit + 1);
     for (int i = 0; i <= limit; i++)
     {
         sieve[i] = i;
@@ -51,7 +52,6 @@ long p153()
         sum += sieve[i] * (limit / i);
     }
 
-    delete[] sieve;
     return sum;
 }
 

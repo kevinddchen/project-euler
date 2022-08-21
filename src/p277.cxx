@@ -44,7 +44,7 @@ long p277()
     long affine[3] = {1, 0, 1}; // output is n
 
     // go through characters in reverse order and apply inverse maps
-    int length = std::strlen(seq);
+    const int length = std::strlen(seq);
     for (int i = length - 1; i >= 0; i--)
     {
         if (seq[i] == 'D')

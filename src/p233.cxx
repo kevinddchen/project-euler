@@ -3,6 +3,7 @@
 
 #include <algorithm>
 #include <array>
+#include <memory>
 #include <vector>
 
 /*
@@ -139,7 +140,7 @@ long p233()
 
     // calculate partial sums of `q_numbers`
     const int q_numbers_size = q_numbers.size();
-    long *partial_sums = new long[q_numbers_size];
+    auto partial_sums = std::make_unique<long[]>(q_numbers_size);
     long ps = 0;
     for (int i = 0; i < q_numbers_size; i++)
     {
@@ -151,15 +152,14 @@ long p233()
     std::vector<int> powers, prev_p = {0, 0};
     // iterate through all p1^3 * p2^2 * p3
     powers = {3, 2, 1};
-    recurse(sum, limit, powers, prev_p, 1, 0, p_primes, q_numbers, partial_sums);
+    recurse(sum, limit, powers, prev_p, 1, 0, p_primes, q_numbers, partial_sums.get());
     // iterate through all p1^7 * p2^3
     powers = {7, 3};
-    recurse(sum, limit, powers, prev_p, 1, 0, p_primes, q_numbers, partial_sums);
+    recurse(sum, limit, powers, prev_p, 1, 0, p_primes, q_numbers, partial_sums.get());
     // iterate through all p1^10 * p2^2
     powers = {10, 2};
-    recurse(sum, limit, powers, prev_p, 1, 0, p_primes, q_numbers, partial_sums);
+    recurse(sum, limit, powers, prev_p, 1, 0, p_primes, q_numbers, partial_sums.get());
 
-    delete[] partial_sums;
     return sum;
 }
 

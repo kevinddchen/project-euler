@@ -9,6 +9,29 @@ ANSWER 13625242
 
 */
 
+template <size_t n_digits>
+struct Clock
+{
+    int n;
+    std::array<int, n_digits> digit_states;
+
+    Clock(int n) : n(n)
+    {
+        for (int i = 0; i < n_digits; i++)
+        {
+            if (n == 0)
+            {
+                digit_states[i] = 10;
+            }
+            else
+            {
+                digit_states[i] = n % 10;
+            }
+            n /= 10;
+        }
+    }
+};
+
 int digital_root(int x)
 {
     if (x < 10)
@@ -24,32 +47,17 @@ int digital_root(int x)
     return root;
 }
 
-bool **clock(int n, bool light_segments[11][7], int n_digits)
-{
-    bool **clock = new bool *[n_digits];
-    for (int i = 0; i < n_digits; i++)
-    {
-        if (n == 0)
-        {
-            clock[i] = light_segments[10];
-        }
-        else
-        {
-            clock[i] = light_segments[n % 10];
-        }
-        n /= 10;
-    }
-    return clock;
-}
-
-int count_on(bool **clock1, bool **clock2, int n_digits)
+template <size_t n_digits>
+int count_on(const Clock<n_digits> &clock1, const Clock<n_digits> &clock2, const bool light_segments[11][7])
 {
     int count = 0;
     for (int i = 0; i < n_digits; i++)
     {
-        for (int j = 0; j < 7; j++)
+        const auto &states1 = light_segments[clock1.digit_states[i]];
+        const auto &states2 = light_segments[clock2.digit_states[i]];
+        for (int segm = 0; segm < 7; segm++)
         {
-            if (clock1[i][j] and clock2[i][j])
+            if (states1[segm] && states2[segm])
             {
                 count++;
             }
@@ -64,7 +72,7 @@ long p315()
     const int n_digits = 8;
 
     // for each digit, which lights are on
-    bool light_segments[11][7] = {
+    const bool light_segments[11][7] = {
         {1, 1, 1, 0, 1, 1, 1}, // 0
         {0, 0, 1, 0, 0, 1, 0}, // 1
         {1, 0, 1, 1, 1, 0, 1}, // 2
@@ -89,18 +97,16 @@ long p315()
             continue;
         }
 
-        bool **A = clock(i, light_segments, n_digits);
+        Clock<n_digits> A(i);
         int j = digital_root(i);
 
         while (j > 0)
         {
-            bool **B = clock(j, light_segments, n_digits);
-            count += 2 * count_on(A, B, n_digits);
-            delete[] A;
+            Clock<n_digits> B(j);
+            count += 2 * count_on<n_digits>(A, B, light_segments);
             A = B;
             j = digital_root(j);
         }
-        delete[] A;
     }
     return count;
 }

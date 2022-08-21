@@ -1,5 +1,7 @@
 #include "common.h"
 
+#include <memory>
+
 /*
 
 We can use a sieve method to generate all primes. This relies on two claims:
@@ -54,7 +56,7 @@ long p216()
     const int limit = 50'000'000;
 
     // initialize sieve
-    long *sieve = new long[limit + 1];
+    auto sieve = std::make_unique<long[]>(limit + 1);
     for (long n = 0; n <= limit; n++)
     {
         sieve[n] = 2 * n * n - 1;
@@ -71,10 +73,9 @@ long p216()
         {
             count++;
         }
-        filter_multiples(sieve, limit, n);
+        filter_multiples(sieve.get(), limit, n);
     }
 
-    delete[] sieve;
     return count;
 }
 

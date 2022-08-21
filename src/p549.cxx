@@ -1,6 +1,8 @@
 #include "common.h"
 #include "mathfuncs.h"
 
+#include <memory>
+
 /*
 
 Note that s(n) can be calculated from its prime factorization. If
@@ -31,7 +33,7 @@ long p549()
     const int size = 100'000'000;
     long sum = 0;
 
-    int *s = new int[size + 1](); // array to store s[n]
+    auto s = std::make_unique<int[]>(size + 1); // array to store s[n]
 
     for (int p = 2; p <= size; p++)
     {
@@ -69,7 +71,6 @@ long p549()
         }
     }
 
-    delete[] s;
     return sum;
 }
 

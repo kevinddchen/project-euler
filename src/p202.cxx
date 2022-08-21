@@ -47,7 +47,7 @@ long p202()
     const long bounces = 12017639147;
     const long n = (bounces + 3) / 2;
 
-    auto prime_factors = prime_factorize(n);
+    const auto prime_factors = prime_factorize(n);
 
     // old_factors[0] keeps track of odd-length products of distinct prime factors.
     // old_factors[1] "            " even-length "                               ".

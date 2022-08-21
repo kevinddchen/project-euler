@@ -32,10 +32,6 @@ ANSWER 4921370551019052
 
 */
 
-// const long LIMIT = 1'000;
-// const long LIMIT = 1'000'000;
-const long LIMIT = 10'000'000'000'000'000;
-
 inline long quad_form(long x, long y)
 {
     return x * x + x * y + 41 * y * y;
@@ -43,6 +39,9 @@ inline long quad_form(long x, long y)
 
 long p804()
 {
+    // const long LIMIT = 1'000;
+    // const long LIMIT = 1'000'000;
+    const long LIMIT = 10'000'000'000'000'000;
 
     // STEP 1: find boundaries of region A
     const long x_bound = floor(sqrt(LIMIT));        // at y=0

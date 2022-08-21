@@ -1,6 +1,7 @@
 #include "common.h"
 
 #include <array>
+
 /*
 
 If P2 has i pts left, P1 has j pts left, and P2 is first to move, let p(i, j; T)
@@ -86,6 +87,7 @@ struct Probs
 double p232()
 {
     const int size = 100;
+
     Probs<size> P;
     // generate entire table of needed values
     for (int i = 1; i <= size; i++)

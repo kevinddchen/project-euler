@@ -36,11 +36,9 @@ long p143()
     // (2) p + q < 120'000
     // (3) p^2 + q^2 + p*q = k^2 for integer k
     std::array<std::vector<int>, limit> p_partners;
-    p_partners[0] = {};
 
     for (long p = 1; p < limit; p++)
     {
-        std::vector<int> temp;
         for (long q = 1; q < p; q++)
         {
             if (p + q >= limit)
@@ -49,19 +47,14 @@ long p143()
             }
             if (is_square(p * p + q * q + p * q))
             {
-                temp.push_back(q);
+                p_partners[p].push_back(q);
             }
         }
-        p_partners[p] = temp;
     }
     // (the steps above take ~30 sec)
 
     // try to find r < q from partners of p
-    std::array<bool, limit+1> hits;
-    for (int i = 0; i <= limit; i++)
-    {
-        hits[i] = false;
-    }
+    std::array<bool, limit + 1> hits{};
 
     for (int p = 1; p < limit; p++)
     {

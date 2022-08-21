@@ -1,6 +1,7 @@
 #include "common.h"
 
 #include <array>
+#include <memory>
 
 /*
 
@@ -18,7 +19,7 @@ long p214()
     long sum = 0;
 
     // initialize array
-    int *sieve = new int[size];
+    auto sieve = std::make_unique<int[]>(size);
     for (int i = 0; i < size; i++)
     {
         sieve[i] = i;
@@ -47,7 +48,6 @@ long p214()
         sieve[i] = sieve[tot] + 1;
     }
 
-    delete[] sieve;
     return sum;
 }
 

@@ -3,6 +3,7 @@
 
 #include <algorithm>
 #include <array>
+#include <memory>
 #include <vector>
 
 #include <cmath>
@@ -26,10 +27,10 @@ ANSWER 39782849136421
  * - if n is composite: smallest prime factor of n.
  * - if n is prime: 0.
  */
-short *smallest_prime_factor(int N)
+std::unique_ptr<short[]> smallest_prime_factor(int N)
 {
     // create sieve
-    short *sieve = new short[N]();
+    auto sieve = std::make_unique<short[]>(N);
     for (short i = 2; i * i < N; i++)
     {
         if (sieve[i] == 0)
@@ -92,17 +93,17 @@ long p407()
     const int size = 10'000'000;
     long sum_idem = 0;
 
-    short *sieve = smallest_prime_factor(size + 1);
+    auto sieve = smallest_prime_factor(size + 1);
 
     for (int n = 2; n <= size; n++)
     {
         // prime factorize
-        std::vector<PrimePower> factors = prime_factorize(n, sieve);
+        std::vector<PrimePower> factors = prime_factorize(n, sieve.get());
 
         // find base idempotents
         int num_idems = factors.size();
         int m, b, a;
-        int *idems = new int[num_idems];
+        auto idems = std::make_unique<int[]>(num_idems);
         for (int i = 0; i < num_idems; i++)
         {
             m = pow(factors[i].base, factors[i].exp);
@@ -111,10 +112,9 @@ long p407()
             idems[i] = a;
         }
         // find largest idempotent
-        sum_idem += max_idem(idems, num_idems, n);
+        sum_idem += max_idem(idems.get(), num_idems, n);
     }
 
-    delete[] sieve;
     return sum_idem;
 }
 

@@ -1,6 +1,8 @@
 #include "common.h"
 #include "mathfuncs.h"
 
+#include <array>
+#include <memory>
 #include <vector>
 
 /*
@@ -74,21 +76,21 @@ long p182()
     const int phi = (p - 1) * (q - 1);
 
     // prime factorize p-1 and q-1
-    auto p_factors = prime_factorize(p - 1);
-    auto q_factors = prime_factorize(q - 1);
+    const auto p_factors = prime_factorize(p - 1);
+    const auto q_factors = prime_factorize(q - 1);
 
     // since p, q are odd, sieve to find e such that
     // odd e: true when gcd(e, p-1) = gcd(e, q-1) = 1
     // even e: true when gcd(e, p-1) = gcd(e, q-1) = 2
-    bool *sieve = new bool[phi];
+    auto sieve = std::make_unique<bool[]>(phi);
     for (int i = 0; i < phi; i++)
     {
         sieve[i] = true;
     }
 
     // sieve
-    filter(p_factors, sieve, phi);
-    filter(q_factors, sieve, phi);
+    filter(p_factors, sieve.get(), phi);
+    filter(q_factors, sieve.get(), phi);
 
     long sum = 0;
     for (int i = 3; i < phi; i += 2)
@@ -99,7 +101,6 @@ long p182()
         }
     }
 
-    delete[] sieve;
     return sum;
 }
 
