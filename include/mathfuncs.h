@@ -5,6 +5,7 @@
 #include <vector>
 
 #include <cassert>
+#include <cmath>
 
 /**
  * Given an integer n > 1, returns true if n is prime.
@@ -180,6 +181,15 @@ long modular_power(long a, long b, long m)
         b >>= 1;
     }
     return result;
+}
+
+/**
+ * Round a float to a certain number of decimal places
+ */
+inline double round(double arg, uint32_t n_decimals)
+{
+    const double x = pow(10.0, static_cast<double>(n_decimals));
+    return round(arg * x) / x;
 }
 
 /**

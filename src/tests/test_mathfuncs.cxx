@@ -5,6 +5,14 @@
 #include <cassert>
 #include <cstdio>
 
+/**
+ * Tests equality between two floats, up to specified numerical tolerance.
+ */
+bool is_equal(double a, double b, double eps = 1e-15)
+{
+    return abs(a - b) < eps;
+}
+
 void test_is_prime()
 {
     printf("Testing `is_prime()`... ");
@@ -165,6 +173,20 @@ void test_modular_power()
     printf("Done!\n");
 }
 
+void test_round()
+{
+    printf("Testing `round()`... ");
+
+    assert(is_equal(round(0.90909, 0), 1.0));
+    assert(is_equal(round(0.90909, 1), 0.9));
+    assert(is_equal(round(0.90909, 2), 0.91));
+    assert(is_equal(round(0.90909, 3), 0.909));
+    assert(is_equal(round(0.90909, 4), 0.9091));
+    assert(is_equal(round(0.90909, 5), 0.90909));
+
+    printf("Done!\n");
+}
+
 int main()
 {
     test_is_prime();
@@ -173,6 +195,7 @@ int main()
     test_extended_gcd();
     test_modular_inverse();
     test_modular_power();
+    test_round();
 
     return 0;
 }

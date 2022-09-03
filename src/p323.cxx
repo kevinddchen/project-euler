@@ -1,4 +1,5 @@
 #include "common.h"
+#include "mathfuncs.h"
 
 #include <cmath>
 
@@ -43,5 +44,5 @@ double p323()
 
 int main()
 {
-    TIMED(printf("%.10f\n", p323()));
+    TIMED(printf("%.10f\n", round(p323(), 10)));
 }

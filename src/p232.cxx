@@ -1,4 +1,5 @@
 #include "common.h"
+#include "mathfuncs.h"
 
 #include <array>
 
@@ -103,5 +104,5 @@ double p232()
 
 int main()
 {
-    TIMED(printf("%.8f\n", p232()));
+    TIMED(printf("%.8f\n", round(p232(), 8)));
 }
