@@ -18,11 +18,11 @@ $(BIN)/%: $(SRC)/%.cxx
 	@mkdir -p $(@D)
 	$(CC) $< -o $@ $(CFLAGS)
 
-test:
+tests:
 	pytest
 
 flake:
-	flake8 --config=pyproject.toml
+	flake8
 
 clean:
 	rm -rf $(BIN)

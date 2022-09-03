@@ -7,7 +7,7 @@ show_help () {
     echo "==========================="
     echo 
     echo "To run a problem:     ./$(basename $0) 123"
-    echo "To run c++ tests:     ./$(basename $0) test"
+    echo "To run C++ tests:     ./$(basename $0) tests"
     echo
 }
 
@@ -23,7 +23,7 @@ SRC=src
 BIN=bin
 NUM=$1
 
-if [[ $NUM = "test" ]]; then
+if [[ $NUM = "tests" ]]; then
 
     make $BIN/test_mathfuncs
     echo "Running c++ tests..."

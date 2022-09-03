@@ -14,7 +14,8 @@ To run any solution, use
 where `$NUM` is the problem number.
 If the solution is written in C++, this will compile and run the code.
 If the solution is written in Python, this will run the code using the command `python -m src $NUM`.
-Note that we use Python >= 3.9.
+Note that we use Python version >= 3.9.
+The dependencies are listed in [requirements.in](requirements.in).
 
 [EulerSolutions.pdf](docs/EulerSolutions.pdf) contains write-ups for problems that can be solved by hand.
 
@@ -29,7 +30,7 @@ To run C++ tests,
 
 To run Python tests,
 ```bash
-make test
+make tests
 ```
 
 To run Python flake8

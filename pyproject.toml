@@ -1,14 +1,8 @@
-[flake8]
-max-line-length = 120
-extend-exclude = """
-    bin,
-    docs,
-    files
-"""
-extend-ignore = """
-    E203
-"""
-
 [tool.black]
 line-length = 120
-include = 'src/.*\.pyi?$'
+target-version = ['py39']
+include = '\.pyi?$'
+
+[tool.isort]
+line_length = 120
+profile = "black"

@@ -1,6 +1,6 @@
 from argparse import ArgumentParser
 from importlib import import_module
-from time import time
+from time import monotonic_ns
 from typing import Any, Callable
 
 
@@ -23,11 +23,12 @@ def main() -> None:
     func = get_problem_function(args.num)
 
     # run with timing
-    t_start = time()
+    t_start = monotonic_ns()
     print(func())
-    t_end = time()
+    t_end = monotonic_ns()
+    t_diff = (t_end - t_start) / 1_000_000_000
 
-    print(f"Time: {t_end - t_start:.3f}")
+    print(f"Time: {t_diff:.3f} sec")
 
 
 if __name__ == "__main__":
