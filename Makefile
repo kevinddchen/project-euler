@@ -6,7 +6,7 @@ BIN = ./bin
 TARGETS = $(patsubst $(SRC)/%.cxx,$(BIN)/%,$(wildcard $(SRC)/p*.cxx))
 TESTS = $(patsubst $(SRC)/tests/%.cxx,$(BIN)/%,$(wildcard $(SRC)/tests/*.cxx))
 
-.PHONY: all test flake clean
+.PHONY: all tests flake clean
 
 all: $(TARGETS) $(TESTS)
 
