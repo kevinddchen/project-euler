@@ -20,27 +20,22 @@ long p214()
 
     // initialize array
     auto sieve = std::make_unique<int[]>(size);
-    for (int i = 0; i < size; i++)
-    {
+    for (int i = 0; i < size; i++) {
         sieve[i] = i;
     }
 
     // sieve
     int tot;
-    for (int i = 2; i < size; i++)
-    {
+    for (int i = 2; i < size; i++) {
         tot = sieve[i];
-        if (i == tot)
-        { // is prime
+        if (i == tot) {  // is prime
             tot--;
             // multiply further totients
-            for (int j = i; j < size; j += i)
-            {
+            for (int j = i; j < size; j += i) {
                 sieve[j] = (sieve[j] / i) * (i - 1);
             }
             // check chain length
-            if (sieve[tot] + 1 == target)
-            {
+            if (sieve[tot] + 1 == target) {
                 sum += i;
             }
         }

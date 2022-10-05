@@ -10,32 +10,28 @@ ANSWER 1739023853137
 
 */
 
-bool prime_generating(long x, long *div_arr, bool *sieve)
+bool prime_generating(long x, long* div_arr, bool* sieve)
 {
     div_arr[0] = 1;
     int divs = 1;
-    if (!sieve[x + 1]) // 1 is divisor, so x+1 must be prime
+    if (!sieve[x + 1])  // 1 is divisor, so x+1 must be prime
     {
         return false;
     }
 
-    for (long int p = 2; p * p <= x; p++) // find prime factors
+    for (long int p = 2; p * p <= x; p++)  // find prime factors
     {
-        if (sieve[p] and x % p == 0)
-        {
-            if (x % (p * p) == 0) // x must be square-free
+        if (sieve[p] and x % p == 0) {
+            if (x % (p * p) == 0)  // x must be square-free
             {
                 return false;
             }
 
             int add = 0;
-            for (int i = 0; i < divs; i++)
-            {
+            for (int i = 0; i < divs; i++) {
                 long int d = p * div_arr[i];
-                if (d * d < x)
-                {
-                    if (!sieve[d + x / d])
-                    {
+                if (d * d < x) {
+                    if (!sieve[d + x / d]) {
                         return false;
                     }
                     div_arr[divs + add] = d;
@@ -51,16 +47,14 @@ bool prime_generating(long x, long *div_arr, bool *sieve)
 long p357()
 {
     const int size = 100'000'000;
-    auto sieve = prime_sieve(size + 2);
+    auto sieve = mf::prime_sieve(size + 2);
 
     // find prime_generating
     long sum = 0;
     long div_arr[100];
 
-    for (long i = 1; i <= size; i++)
-    {
-        if (prime_generating(i, div_arr, sieve.get()))
-        {
+    for (long i = 1; i <= size; i++) {
+        if (prime_generating(i, div_arr, sieve.get())) {
             sum += i;
         }
     }

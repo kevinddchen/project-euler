@@ -17,10 +17,9 @@ ANSWER: 13938
 */
 
 // Simple tree node.
-struct Node
-{
+struct Node {
     int val;
-    Node *parent;
+    Node* parent;
     std::vector<std::unique_ptr<Node>> _children;
 
     Node(int x) : val(x), parent(nullptr) {}
@@ -32,10 +31,10 @@ struct Node
         _children.push_back(std::move(N));
     }
 
-    std::vector<Node *> get_children() const
+    std::vector<Node*> get_children() const
     {
-        std::vector<Node *> children;
-        for (const auto &child : _children)
+        std::vector<Node*> children;
+        for (const auto& child : _children)
             children.push_back(child.get());
         return children;
     }
@@ -55,59 +54,50 @@ struct Node
  * path exists.
  */
 template <size_t n_row, size_t n_col>
-Node *find_augmenting_path(
-    const std::array<std::array<bool, n_col>, n_row> &G,
-    const std::array<std::array<bool, n_col>, n_row> &M,
-    const std::array<bool, n_row> &matched_rows,
-    const std::array<bool, n_col> &matched_cols,
-    Node *root)
+Node* find_augmenting_path(
+    const std::array<std::array<bool, n_col>, n_row>& G,
+    const std::array<std::array<bool, n_col>, n_row>& M,
+    const std::array<bool, n_row>& matched_rows,
+    const std::array<bool, n_col>& matched_cols,
+    Node* root)
 {
-
     // printf("ENTER find_augmenting_path\n");
 
-    std::vector<Node *> row_layer, col_layer;
+    std::vector<Node*> row_layer, col_layer;
 
     // add free rows to first layer
-    for (int i = 0; i < n_row; i++)
-    {
-        if (!matched_rows[i])
-        {
+    for (int i = 0; i < n_row; i++) {
+        if (!matched_rows[i]) {
             auto node = std::make_unique<Node>(i);
             auto node_ptr = node.get();
             root->add_child(std::move(node));
-            node_ptr->parent = nullptr; // `node` is an actual root node, so has no parent
+            node_ptr->parent = nullptr;  // `node` is an actual root node, so has no parent
             row_layer.push_back(node_ptr);
         }
     }
 
     // breadth-first search
-    while (row_layer.size() > 0)
-    {
+    while (row_layer.size() > 0) {
         // traverse all row -unmatched-> col edges
         // if col is free, we are done
         // printf("==row layer==\n");
         col_layer.clear();
-        for (Node *row_node : row_layer)
-        {
+        for (Node* row_node : row_layer) {
             int i = row_node->val;
-            for (int j = 0; j < n_col; j++)
-            {
-                if (G[i][j] && !M[i][j])
-                {
+            for (int j = 0; j < n_col; j++) {
+                if (G[i][j] && !M[i][j]) {
                     // printf("row %d -> col %d\n", i, j);
                     auto col_node = std::make_unique<Node>(j);
                     auto col_node_ptr = col_node.get();
                     row_node->add_child(std::move(col_node));
 
-                    if (!matched_cols[j])
-                    {
+                    if (!matched_cols[j]) {
                         // printf("found free col %d\n", j);
                         // printf("EXIT find_augmenting_path\n");
                         return col_node_ptr;
                     }
 
                     col_layer.push_back(col_node_ptr);
-
                 }
             }
         }
@@ -116,13 +106,10 @@ Node *find_augmenting_path(
         // else, traverse all col -matched-> row edges
         // printf("==col layer==\n");
         row_layer.clear();
-        for (Node *col_node : col_layer)
-        {
+        for (Node* col_node : col_layer) {
             int j = col_node->val;
-            for (int i = 0; i < n_row; i++)
-            {
-                if (G[i][j] && M[i][j])
-                {
+            for (int i = 0; i < n_row; i++) {
+                if (G[i][j] && M[i][j]) {
                     // printf("col %d -> row %d\n", j, i);
                     auto row_node = std::make_unique<Node>(i);
                     auto row_node_ptr = row_node.get();
@@ -146,29 +133,27 @@ Node *find_augmenting_path(
  */
 template <size_t n_row, size_t n_col>
 void add_path(
-    const Node *leaf,
-    std::array<std::array<bool, n_col>, n_row> &M,
-    std::array<bool, n_row> &matched_rows,
-    std::array<bool, n_col> &matched_cols)
+    const Node* leaf,
+    std::array<std::array<bool, n_col>, n_row>& M,
+    std::array<bool, n_row>& matched_rows,
+    std::array<bool, n_col>& matched_cols)
 {
     // from `leaf`, recursively calling `->parent` gives all vertices in the path
-    const Node *col = leaf;
-    const Node *row;
+    const Node* col = leaf;
+    const Node* row;
 
     matched_cols[col->val] = true;
-    while (true)
-    {
+    while (true) {
         row = col->parent;
-        M[row->val][col->val] = !M[row->val][col->val]; // reverse matching
+        M[row->val][col->val] = !M[row->val][col->val];  // reverse matching
 
-        if (!row->has_parent())
-        {
+        if (!row->has_parent()) {
             matched_rows[row->val] = true;
             break;
         }
 
         col = row->parent;
-        M[row->val][col->val] = !M[row->val][col->val]; // reverse matching
+        M[row->val][col->val] = !M[row->val][col->val];  // reverse matching
     }
 }
 
@@ -185,17 +170,16 @@ void add_path(
  */
 template <size_t n_row, size_t n_col>
 std::unique_ptr<Node> find_maximum_matching(
-    const std::array<std::array<bool, n_col>, n_row> &G,
-    std::array<std::array<bool, n_col>, n_row> &M,
-    std::array<bool, n_row> &matched_rows,
-    std::array<bool, n_col> &matched_cols)
+    const std::array<std::array<bool, n_col>, n_row>& G,
+    std::array<std::array<bool, n_col>, n_row>& M,
+    std::array<bool, n_row>& matched_rows,
+    std::array<bool, n_col>& matched_cols)
 {
-    while (true)
-    {
-        auto root = std::make_unique<Node>(-1); // dummy node
-        Node *leaf = find_augmenting_path<n_row, n_col>(G, M, matched_rows, matched_cols, root.get());
+    while (true) {
+        auto root = std::make_unique<Node>(-1);  // dummy node
+        Node* leaf = find_augmenting_path<n_row, n_col>(G, M, matched_rows, matched_cols, root.get());
 
-        if (leaf == nullptr) // no augmenting path has been found
+        if (leaf == nullptr)  // no augmenting path has been found
         {
             return root;
         }
@@ -210,21 +194,14 @@ std::unique_ptr<Node> find_maximum_matching(
  */
 template <size_t n_row, size_t n_col>
 void find_minimum_vertex_cover(
-    const Node *root,
-    std::array<bool, n_row> &matched_rows,
-    std::array<bool, n_col> &matched_cols,
-    bool parity)
+    const Node* root, std::array<bool, n_row>& matched_rows, std::array<bool, n_col>& matched_cols, bool parity)
 {
-    std::vector<Node *> children = root->get_children();
+    std::vector<Node*> children = root->get_children();
 
-    for (auto child : children)
-    {
-        if (parity)
-        {
+    for (auto child : children) {
+        if (parity) {
             matched_rows[child->val] = false;
-        }
-        else
-        {
+        } else {
             matched_cols[child->val] = true;
         }
 
@@ -257,38 +234,30 @@ long p345()
     // minimum cost instead
     std::array<std::array<int, size>, size> cost;
 
-    for (int i = 0; i < size; i++)
-    {
-        for (int j = 0; j < size; j++)
-        {
+    for (int i = 0; i < size; i++) {
+        for (int j = 0; j < size; j++) {
             cost[i][j] = -reward[i][j];
         }
     }
 
     // STEP 1: subtract row minimum
-    for (int i = 0; i < size; i++)
-    {
+    for (int i = 0; i < size; i++) {
         int row_min = INT_MAX;
-        for (int j = 0; j < size; j++)
-        {
+        for (int j = 0; j < size; j++) {
             row_min = std::min(row_min, cost[i][j]);
         }
-        for (int j = 0; j < size; j++)
-        {
+        for (int j = 0; j < size; j++) {
             cost[i][j] -= row_min;
         }
     }
 
     // STEP 2: subtract col minimum
-    for (int j = 0; j < size; j++)
-    {
+    for (int j = 0; j < size; j++) {
         int col_min = INT_MAX;
-        for (int i = 0; i < size; i++)
-        {
+        for (int i = 0; i < size; i++) {
             col_min = std::min(col_min, cost[i][j]);
         }
-        for (int i = 0; i < size; i++)
-        {
+        for (int i = 0; i < size; i++) {
             cost[i][j] -= col_min;
         }
     }
@@ -298,9 +267,7 @@ long p345()
     std::array<bool, size> matched_rows;
     std::array<bool, size> matched_cols;
 
-    while (true)
-    {
-
+    while (true) {
         // STEP 3: find a smallest set of rows and/or columns that contains
         // all zero elements of the cost matrix. Doing this "marks" the rows
         // and columns. This is done by:
@@ -311,12 +278,10 @@ long p345()
         // 3. produce the minimum vertex cover using Konig's theorem
 
         // initialize data structures
-        for (int i = 0; i < size; i++)
-        {
+        for (int i = 0; i < size; i++) {
             matched_rows[i] = false;
             matched_cols[i] = false;
-            for (int j = 0; j < size; j++)
-            {
+            for (int j = 0; j < size; j++) {
                 graph[i][j] = cost[i][j] == 0;
                 maximum_matching[i][j] = false;
             }
@@ -336,22 +301,18 @@ long p345()
 
         // if all rows are matched, then we are done
         bool done = true;
-        for (int i = 0; i < size; i++)
-        {
-            if (!matched_rows[i])
-            {
+        for (int i = 0; i < size; i++) {
+            if (!matched_rows[i]) {
                 done = false;
                 break;
             }
         }
-        if (done)
-        {
+        if (done) {
             break;
         }
 
         // find minimum vertex cover using Konig's theorem.
-        for (int i = 0; i < size; i++)
-        {
+        for (int i = 0; i < size; i++) {
             matched_rows[i] = true;
             matched_cols[i] = false;
         }
@@ -374,27 +335,20 @@ long p345()
         // elements, and add to elements with marked row _and_ marked column.
 
         int unmarked_min = INT_MAX;
-        for (int i = 0; i < size; i++)
-        {
-            for (int j = 0; j < size; j++)
-            {
-                if (!matched_rows[i] and !matched_cols[j])
-                {
+        for (int i = 0; i < size; i++) {
+            for (int j = 0; j < size; j++) {
+                if (!matched_rows[i] and !matched_cols[j]) {
                     unmarked_min = std::min(unmarked_min, cost[i][j]);
                 }
             }
         }
 
-        for (int i = 0; i < size; i++)
-        {
-            for (int j = 0; j < size; j++)
-            {
-                if (!matched_rows[i])
-                {
+        for (int i = 0; i < size; i++) {
+            for (int j = 0; j < size; j++) {
+                if (!matched_rows[i]) {
                     cost[i][j] -= unmarked_min;
                 }
-                if (matched_cols[j])
-                {
+                if (matched_cols[j]) {
                     cost[i][j] += unmarked_min;
                 }
             }
@@ -402,12 +356,9 @@ long p345()
     }
 
     int sum = 0;
-    for (int i = 0; i < size; i++)
-    {
-        for (int j = 0; j < size; j++)
-        {
-            if (maximum_matching[i][j] == 1)
-            {
+    for (int i = 0; i < size; i++) {
+        for (int j = 0; j < size; j++) {
+            if (maximum_matching[i][j] == 1) {
                 sum += reward[i][j];
             }
         }

@@ -39,24 +39,20 @@ ANSWER 271204031455541309
 */
 
 /* Return all integers <= N whose prime factorizations only include elements of `primes`. */
-std::vector<int> generate_restricted_integers(const std::vector<int> &primes, int N)
+std::vector<int> generate_restricted_integers(const std::vector<int>& primes, int N)
 {
     std::vector<int> out{1};
-    for (int p : primes)
-    {
-        if (p > N)
-        {
+    for (int p : primes) {
+        if (p > N) {
             break;
         }
         // For each p, multiply its powers to previously obtained numbers.
         // It is slightly faster to keep `out` sorted each iteration.
         long power_of_p = p;
         std::vector<int> temp;
-        while (power_of_p <= N)
-        {
-            for (int n : out)
-            {
-                if (n * power_of_p > N) // `out` is sorted
+        while (power_of_p <= N) {
+            for (int n : out) {
+                if (n * power_of_p > N)  // `out` is sorted
                 {
                     break;
                 }
@@ -73,38 +69,34 @@ std::vector<int> generate_restricted_integers(const std::vector<int> &primes, in
 
 /* Iterate through all powers like p1^j1 * p2^j2 * ... */
 void recurse(
-    long &S,                        // sum so far
-    const long limit,               // limit = 10^11
-    const std::vector<int> &powers, // powers of p's we are considering
-    std::vector<int> &prev_p,       // previous p's
-    long prev_prod,                 // product of previous p's
-    int k,                          // current index of p
-    const std::vector<int> &p_primes,
-    const std::vector<int> &q_numbers,
-    const long *partial_sums)
+    long& S,                         // sum so far
+    const long limit,                // limit = 10^11
+    const std::vector<int>& powers,  // powers of p's we are considering
+    std::vector<int>& prev_p,        // previous p's
+    long prev_prod,                  // product of previous p's
+    int k,                           // current index of p
+    const std::vector<int>& p_primes,
+    const std::vector<int>& q_numbers,
+    const long* partial_sums)
 {
-    for (long p : p_primes)
-    {
+    for (long p : p_primes) {
         // check p is not previously used
-        if (std::find(prev_p.begin(), prev_p.begin() + k, p) != prev_p.begin() + k)
-        {
+        if (std::find(prev_p.begin(), prev_p.begin() + k, p) != prev_p.begin() + k) {
             continue;
         }
 
         const long prod = prev_prod * pow(p, powers[k]);
-        if (prod > limit)
-        {
+        if (prod > limit) {
             break;
         }
 
-        if (k == powers.size() - 1) // bottom of recursion
+        if (k == powers.size() - 1)  // bottom of recursion
         {
             // find first i such that limit/prod < q_numbers[i]
             auto i = std::upper_bound(q_numbers.begin(), q_numbers.end(), limit / prod);
             // then prod*q_numbers[i-1] <= limit
             S += prod * partial_sums[i - 1 - q_numbers.begin()];
-        }
-        else // not at bottom of recursion
+        } else  // not at bottom of recursion
         {
             prev_p[k] = p;
             recurse(S, limit, powers, prev_p, prod, k + 1, p_primes, q_numbers, partial_sums);
@@ -118,19 +110,16 @@ long p233()
 
     // generate all primes needed
     const int sieve_size = 1 + limit / (5 * 5 * 5 * 13 * 13);
-    auto sieve = prime_sieve(sieve_size);
+    auto sieve = mf::prime_sieve(sieve_size);
 
     // sort primes into {p : p=1 mod 4} and {q : q=2 or q=3 mod 4}
     std::vector<int> p_primes;
     std::vector<int> q_primes{2};
-    for (int i = 3; i < sieve_size; i += 4)
-    {
-        if (sieve[i])
-        {
+    for (int i = 3; i < sieve_size; i += 4) {
+        if (sieve[i]) {
             q_primes.push_back(i);
         }
-        if (i + 2 < sieve_size && sieve[i + 2])
-        {
+        if (i + 2 < sieve_size && sieve[i + 2]) {
             p_primes.push_back(i + 2);
         }
     }
@@ -142,8 +131,7 @@ long p233()
     const int q_numbers_size = q_numbers.size();
     auto partial_sums = std::make_unique<long[]>(q_numbers_size);
     long ps = 0;
-    for (int i = 0; i < q_numbers_size; i++)
-    {
+    for (int i = 0; i < q_numbers_size; i++) {
         ps += q_numbers[i];
         partial_sums[i] = ps;
     }

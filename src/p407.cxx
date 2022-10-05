@@ -31,14 +31,10 @@ std::unique_ptr<short[]> smallest_prime_factor(int N)
 {
     // create sieve
     auto sieve = std::make_unique<short[]>(N);
-    for (short i = 2; i * i < N; i++)
-    {
-        if (sieve[i] == 0)
-        {
-            for (int j = i * i; j < N; j += i)
-            {
-                if (sieve[j] == 0)
-                {
+    for (short i = 2; i * i < N; i++) {
+        if (sieve[i] == 0) {
+            for (int j = i * i; j < N; j += i) {
+                if (sieve[j] == 0) {
                     sieve[j] = i;
                 }
             }
@@ -48,44 +44,37 @@ std::unique_ptr<short[]> smallest_prime_factor(int N)
 }
 
 /* Calculate prime factorization, with speed up from `smallest_prime_factors`. */
-std::vector<PrimePower> prime_factorize(int x, short *sieve)
+std::vector<mf::PrimePower> prime_factorize(int x, short* sieve)
 {
-    std::vector<PrimePower> facts;
+    std::vector<mf::PrimePower> facts;
     short p;
     int a;
-    while (sieve[x] >= 2)
-    {
+    while (sieve[x] >= 2) {
         p = sieve[x];
         a = 0;
-        while (sieve[x] == p or x == p)
-        {
+        while (sieve[x] == p or x == p) {
             x /= p;
             a++;
         }
-        if (a != 0)
-        {
+        if (a != 0) {
             facts.push_back({p, a});
         }
     }
-    if (x > 1 && sieve[x] == 0)
-    {
+    if (x > 1 && sieve[x] == 0) {
         facts.push_back({x, 1});
     }
     return facts;
 }
 
-int max_idem(int *arr, int size, int N, int i = 0, int running_sum = 0)
+int max_idem(int* arr, int size, int N, int i = 0, int running_sum = 0)
 {
     /* Recursively find largest idempotent. */
 
-    if (i == size)
-    {
+    if (i == size) {
         return running_sum % N;
     }
 
-    return std::max(
-        max_idem(arr, size, N, i + 1, running_sum),
-        max_idem(arr, size, N, i + 1, running_sum + arr[i]));
+    return std::max(max_idem(arr, size, N, i + 1, running_sum), max_idem(arr, size, N, i + 1, running_sum + arr[i]));
 }
 
 long p407()
@@ -95,20 +84,18 @@ long p407()
 
     auto sieve = smallest_prime_factor(size + 1);
 
-    for (int n = 2; n <= size; n++)
-    {
+    for (int n = 2; n <= size; n++) {
         // prime factorize
-        std::vector<PrimePower> factors = prime_factorize(n, sieve.get());
+        std::vector<mf::PrimePower> factors = prime_factorize(n, sieve.get());
 
         // find base idempotents
         int num_idems = factors.size();
         int m, b, a;
         auto idems = std::make_unique<int[]>(num_idems);
-        for (int i = 0; i < num_idems; i++)
-        {
+        for (int i = 0; i < num_idems; i++) {
             m = pow(factors[i].base, factors[i].exp);
             b = n / m;
-            a = modular_inverse(b, m) * b % n;
+            a = mf::modular_inverse(b, m) * b % n;
             idems[i] = a;
         }
         // find largest idempotent

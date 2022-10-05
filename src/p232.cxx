@@ -30,8 +30,7 @@ int ceillog2(int n)
 {
     n--;
     int i = 0;
-    while (n > 0)
-    {
+    while (n > 0) {
         n >>= 1;
         i++;
     }
@@ -40,15 +39,13 @@ int ceillog2(int n)
 
 // class to store probabilities
 template <size_t size>
-struct Probs
-{
+struct Probs {
     std::array<std::array<double, size>, size> table;
 
     Probs()
     {
         // initialize 2d array storing probabilities
-        for (int i = 0; i < size; i++)
-        {
+        for (int i = 0; i < size; i++) {
             table[i].fill(-1);
         }
     }
@@ -56,27 +53,25 @@ struct Probs
     /* Probability of P2 winning if P2 has i pts left, P1 has j pts left, and P2 moves first. */
     double get(int i, int j)
     {
-        if (i <= 0)
-        {
+        if (i <= 0) {
             return 1;
         }
-        if (j == 0)
-        {
+        if (j == 0) {
             return 0;
         }
-        if (table[i - 1][j - 1] >= 0) // get(i, j) = table[i-1][j-1] if value is already computed
+        if (table[i - 1][j - 1] >= 0)  // get(i, j) = table[i-1][j-1] if value is already computed
         {
             return table[i - 1][j - 1];
         }
         // compute new probability
-        double max = 0;       // tracks highest probability
-        int power_of_two = 1; // tracks 2^(T-1)
-         int T_max = ceillog2(i) + 1;
-        for (int T = 1; T <= T_max; T++, power_of_two *= 2)
-        {
-            double p = (get(i - power_of_two, j) + get(i - power_of_two, j - 1) + (2 * power_of_two - 1) * get(i, j - 1)) / (2 * power_of_two + 1);
-            if (p > max)
-            {
+        double max = 0;        // tracks highest probability
+        int power_of_two = 1;  // tracks 2^(T-1)
+        int T_max = ceillog2(i) + 1;
+        for (int T = 1; T <= T_max; T++, power_of_two *= 2) {
+            double p =
+                (get(i - power_of_two, j) + get(i - power_of_two, j - 1) + (2 * power_of_two - 1) * get(i, j - 1)) /
+                (2 * power_of_two + 1);
+            if (p > max) {
                 max = p;
             }
         }
@@ -91,10 +86,8 @@ double p232()
 
     Probs<size> P;
     // generate entire table of needed values
-    for (int i = 1; i <= size; i++)
-    {
-        for (int j = 1; j <= size; j++)
-        {
+    for (int i = 1; i <= size; i++) {
+        for (int j = 1; j <= size; j++) {
             (void)P.get(i, j);
         }
     }
@@ -104,5 +97,5 @@ double p232()
 
 int main()
 {
-    TIMED(printf("%.8f\n", round(p232(), 8)));
+    TIMED(printf("%.8f\n", mf::round(p232(), 8)));
 }

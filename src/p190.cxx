@@ -13,8 +13,7 @@ ANSWER 371048281
 int P(int m)
 {
     double product = 1;
-    for (int j = 1; j <= m; j++)
-    {
+    for (int j = 1; j <= m; j++) {
         product *= pow(2 * j / (m + 1.), j);
     }
     return (int)product;
@@ -23,8 +22,7 @@ int P(int m)
 long p190()
 {
     long sum = 0;
-    for (int m = 2; m <= 15; m++)
-    {
+    for (int m = 2; m <= 15; m++) {
         sum += P(m);
     }
     return sum;

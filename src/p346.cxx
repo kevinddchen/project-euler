@@ -18,13 +18,11 @@ long p346()
 
     std::set<long> repeats;
 
-    for (long i = 2; i * i < limit; i++)
-    {
+    for (long i = 2; i * i < limit; i++) {
         long x = (i + 1) * i + 1;
-        while (x < limit)
-        {
+        while (x < limit) {
             auto it = repeats.find(x);
-            if (it == repeats.end()) // if x has not been encountered yet
+            if (it == repeats.end())  // if x has not been encountered yet
             {
                 sum += x;
                 repeats.insert(x);

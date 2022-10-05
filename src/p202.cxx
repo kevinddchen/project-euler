@@ -24,17 +24,14 @@ ANSWER 1209002624
 long count_multiples(long a, long n)
 {
     long k_max = (n - 1) / a;
-    if (a % 3 == 0 && n % 3 == 0)
-    {
+    if (a % 3 == 0 && n % 3 == 0) {
         return k_max;
     }
-    if (a % 3 == 0 && n % 3 != 0)
-    {
+    if (a % 3 == 0 && n % 3 != 0) {
         return 0;
     }
     int m = (k_max * a + n) % 3;
-    if (m != 0)
-    {
+    if (m != 0) {
         k_max -= a % 3 == m ? 1 : 2;
     }
     // k_max is the largest valid value for k.
@@ -43,27 +40,23 @@ long count_multiples(long a, long n)
 
 long p202()
 {
-
     const long bounces = 12017639147;
     const long n = (bounces + 3) / 2;
 
-    const auto prime_factors = prime_factorize(n);
+    const auto prime_factors = mf::prime_factorize(n);
 
     // old_factors[0] keeps track of odd-length products of distinct prime factors.
     // old_factors[1] "            " even-length "                               ".
     std::array<std::vector<long>, 2> old_factors, new_factors;
     old_factors[0] = {};
     old_factors[1] = {1};
-    for (const auto &pp : prime_factors)
-    {
+    for (const auto& pp : prime_factors) {
         new_factors[0] = {};
         new_factors[1] = {};
-        for (auto odd_o_f : old_factors[0])
-        {
+        for (auto odd_o_f : old_factors[0]) {
             new_factors[1].push_back(odd_o_f * pp.base);
         }
-        for (auto even_o_f : old_factors[1])
-        {
+        for (auto even_o_f : old_factors[1]) {
             new_factors[0].push_back(even_o_f * pp.base);
         }
         old_factors[0].insert(old_factors[0].end(), new_factors[0].begin(), new_factors[0].end());
@@ -71,13 +64,11 @@ long p202()
     }
 
     long count = 0;
-    for (auto even : old_factors[1])
-    {
-        count += count_multiples(even, n); // count_multiples(1, n) includes all integers.
+    for (auto even : old_factors[1]) {
+        count += count_multiples(even, n);  // count_multiples(1, n) includes all integers.
     }
-    for (auto odd : old_factors[0])
-    {
-        count -= count_multiples(odd, n); // exclude all multiples of a prime factor.
+    for (auto odd : old_factors[0]) {
+        count -= count_multiples(odd, n);  // exclude all multiples of a prime factor.
     }
 
     return count;

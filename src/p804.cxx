@@ -44,17 +44,15 @@ long p804()
     const long LIMIT = 10'000'000'000'000'000;
 
     // STEP 1: find boundaries of region A
-    const long x_bound = floor(sqrt(LIMIT));        // at y=0
-    const long y_bound = floor(sqrt(LIMIT / 41.0)); // at x=0
+    const long x_bound = floor(sqrt(LIMIT));         // at y=0
+    const long y_bound = floor(sqrt(LIMIT / 41.0));  // at x=0
 
     // STEP 2: count points in region A
     long count_a = 0;
     {
         long x = x_bound;
-        for (long y = 1; y <= y_bound; y++)
-        {
-            while (x > 0 && quad_form(x, y) > LIMIT)
-            {
+        for (long y = 1; y <= y_bound; y++) {
+            while (x > 0 && quad_form(x, y) > LIMIT) {
                 x--;
             }
             // printf("x=%ld, y=%ld\n", x, y);
@@ -65,19 +63,17 @@ long p804()
 
     // STEP 3: find boundaries of region B
     // y_bound is the same as in region A, but in the -y diretion
-    const long n_bound = floor(sqrt(LIMIT / 163.0)); // at x=n, y=2n
+    const long n_bound = floor(sqrt(LIMIT / 163.0));  // at x=n, y=2n
 
     // STEP 4: count points in region B
     long count_b = 0;
     {
         long x = 0, y = -y_bound;
-        for (long n = 1; n <= n_bound; n++)
-        {
+        for (long n = 1; n <= n_bound; n++) {
             x += 1;
             y -= 2;
 
-            while (-y - 2 * n > 0 && quad_form(x, y) > LIMIT)
-            {
+            while (-y - 2 * n > 0 && quad_form(x, y) > LIMIT) {
                 y++;
             }
             // printf("x=%ld, y=%ld\n", x, y);

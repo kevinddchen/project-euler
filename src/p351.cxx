@@ -18,18 +18,15 @@ std::unique_ptr<int[]> totient_sieve(int size)
 {
     auto sieve = std::make_unique<int[]>(size);
     // initialize values
-    for (int i = 2; i < size; i++)
-    {
+    for (int i = 2; i < size; i++) {
         sieve[i] = i;
     }
     // sieve
-    for (int i = 2; i < size; i++)
-    {
-        if (sieve[i] == i) // i is prime
+    for (int i = 2; i < size; i++) {
+        if (sieve[i] == i)  // i is prime
         {
             sieve[i] -= 1;
-            for (int j = 2 * i; j < size; j += i)
-            {
+            for (int j = 2 * i; j < size; j += i) {
                 sieve[j] = (sieve[j] / i) * (i - 1);
             }
         }
@@ -43,8 +40,7 @@ long p351()
     long count = size - 1;
 
     auto sieve = totient_sieve(size + 1);
-    for (int i = 2; i <= size; i++)
-    {
+    for (int i = 2; i <= size; i++) {
         count += i - sieve[i] - 1;
     }
 

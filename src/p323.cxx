@@ -26,13 +26,11 @@ double p323()
     double exp_val = 0;
     double prev_cum = 0;
 
-    for (int N = 1; true; N++)
-    {
+    for (int N = 1; true; N++) {
         double cum = pow(1 - pow(2, -N), 32);
         double prob = cum - prev_cum;
 
-        if (prob < 1e-13)
-        {
+        if (prob < 1e-13) {
             break;
         }
 
@@ -44,5 +42,5 @@ double p323()
 
 int main()
 {
-    TIMED(printf("%.10f\n", round(p323(), 10)));
+    TIMED(printf("%.10f\n", mf::round(p323(), 10)));
 }

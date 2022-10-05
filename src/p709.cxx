@@ -39,12 +39,11 @@ ANSWER 773479144
  * Given array of n choose 0, n choose 1, ..., n choose n, compute array of
  * n+1 choose 0, n+1 choose 1, ..., n+1 choose n+1.
  */
-void iterate_next_comb_mod(int *comb_mod_cache, int n, int M)
+void iterate_next_comb_mod(int* comb_mod_cache, int n, int M)
 {
     int temp_a = comb_mod_cache[0];
     int temp_b;
-    for (int i = 1; i < n; i++)
-    {
+    for (int i = 1; i < n; i++) {
         temp_b = comb_mod_cache[i];
         comb_mod_cache[i] = (temp_a + temp_b) % M;
         temp_a = temp_b;
@@ -57,7 +56,7 @@ long p709()
     const int M = 1'020'202'009;
     const int N = 24680;
 
-    const int inv2 = 510'101'005; // inverse of 2 mod M
+    const int inv2 = 510'101'005;  // inverse of 2 mod M
 
     // Vector that caches values of n choose k mod M. Starts off with n=0,
     // and call `iterate_next_comb_mod` to get n=1, n=2, and so forth.
@@ -69,15 +68,13 @@ long p709()
     f[0] = 1;
     f[1] = 1;
 
-    for (int n = 1; n < N; n++)
-    {
+    for (int n = 1; n < N; n++) {
         // get values of n choose k mod M
         iterate_next_comb_mod(comb_mod.get(), n, M);
 
         // get value of f(n+1)
         long sum = 0;
-        for (int k = 0; k <= n; k++)
-        {
+        for (int k = 0; k <= n; k++) {
             long x = ((long)comb_mod[k] * f[k]) % M;
             sum = (sum + x * f[n - k]) % M;
         }

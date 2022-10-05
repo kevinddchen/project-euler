@@ -24,21 +24,16 @@ long p153()
 
     // initialize sieve
     auto sieve = std::make_unique<long[]>(limit + 1);
-    for (int i = 0; i <= limit; i++)
-    {
+    for (int i = 0; i <= limit; i++) {
         sieve[i] = i;
     }
 
     // iterate over all a, b coprime
-    for (int a = 1; a * a < limit; a++)
-    {
-        for (int b = 1; b <= a; b++)
-        {
-            if (std::gcd(a, b) == 1)
-            {
+    for (int a = 1; a * a < limit; a++) {
+        for (int b = 1; b <= a; b++) {
+            if (std::gcd(a, b) == 1) {
                 int norm = a * a + b * b;
-                for (int k = 1; k * norm <= limit; k++)
-                {
+                for (int k = 1; k * norm <= limit; k++) {
                     sieve[k * norm] += (a == b ? 2 * a : 2 * (a + b)) * k;
                 }
             }
@@ -47,8 +42,7 @@ long p153()
 
     // do sum over divisors with new sieve values
     long sum = 0;
-    for (int i = 1; i <= limit; i++)
-    {
+    for (int i = 1; i <= limit; i++) {
         sum += sieve[i] * (limit / i);
     }
 

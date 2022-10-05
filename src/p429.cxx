@@ -20,9 +20,8 @@ ANSWER 98792821
 int count_factors(int N, int p)
 {
     int result = 0;
-    long x = p; // long to prevent overflow
-    while (x <= N)
-    {
+    long x = p;  // long to prevent overflow
+    while (x <= N) {
         result += N / x;
         x *= p;
     }
@@ -31,20 +30,17 @@ int count_factors(int N, int p)
 
 int p429()
 {
-
     const int N = 100'000'000;
     const int M = 1'000'000'009;
 
-    auto sieve = prime_sieve(N);
+    auto sieve = mf::prime_sieve(N);
 
     int a;
-    long result = 1; // long to prevent overflow
-    for (int p = 2; p < N; p++)
-    {
-        if (sieve[p])
-        {
+    long result = 1;  // long to prevent overflow
+    for (int p = 2; p < N; p++) {
+        if (sieve[p]) {
             a = count_factors(N, p);
-            result = (result * modular_power(p, 2 * a, M) + result) % M;
+            result = (result * mf::modular_power(p, 2 * a, M) + result) % M;
         }
     }
     return result;

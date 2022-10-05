@@ -36,13 +36,11 @@ ANSWER 5437849
 */
 
 /* Divide out t=sieve[n] from indices t-n, t+n, 2t-n, 2t+n, ... */
-void filter_multiples(long *sieve, int limit, long n)
+void filter_multiples(long* sieve, int limit, long n)
 {
     long a = sieve[n] - n, b = sieve[n] + n, temp;
-    while (a <= limit)
-    {
-        while (sieve[a] % sieve[n] == 0)
-        {
+    while (a <= limit) {
+        while (sieve[a] % sieve[n] == 0) {
             sieve[a] /= sieve[n];
         }
         temp = a + sieve[n];
@@ -57,19 +55,17 @@ long p216()
 
     // initialize sieve
     auto sieve = std::make_unique<long[]>(limit + 1);
-    for (long n = 0; n <= limit; n++)
-    {
+    for (long n = 0; n <= limit; n++) {
         sieve[n] = 2 * n * n - 1;
     }
 
     long count = 0;
-    for (long n = 2; n <= limit; n++)
-    {
-        if (sieve[n] == 1) // t(n) has no new factors
+    for (long n = 2; n <= limit; n++) {
+        if (sieve[n] == 1)  // t(n) has no new factors
         {
             continue;
         }
-        if (sieve[n] == 2 * n * n - 1) // t(n) is prime
+        if (sieve[n] == 2 * n * n - 1)  // t(n) is prime
         {
             count++;
         }

@@ -31,26 +31,19 @@ long p504()
 
     // generate table of values for gcd
     std::array<std::array<int, size + 1>, size + 1> G;
-    for (int i = 1; i <= size; i++)
-    {
-        for (int j = 1; j <= size; j++)
-        {
+    for (int i = 1; i <= size; i++) {
+        for (int j = 1; j <= size; j++) {
             G[i][j] = std::gcd(i, j);
         }
     }
 
     // iterate through all quadrilaterals
-    for (int a = 1; a <= size; a++)
-    {
-        for (int b = 1; b <= size; b++)
-        {
-            for (int c = 1; c <= size; c++)
-            {
-                for (int d = 1; d <= size; d++)
-                {
+    for (int a = 1; a <= size; a++) {
+        for (int b = 1; b <= size; b++) {
+            for (int c = 1; c <= size; c++) {
+                for (int d = 1; d <= size; d++) {
                     int x = (a * b + b * c + c * d + d * a - G[a][b] - G[b][c] - G[c][d] - G[d][a]) / 2 + 1;
-                    if (is_square(x))
-                    {
+                    if (is_square(x)) {
                         count++;
                     }
                 }

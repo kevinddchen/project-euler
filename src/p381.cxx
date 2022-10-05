@@ -15,16 +15,13 @@ ANSWER 139602943319822
 long p381()
 {
     const int size = 100'000'000;
-    auto sieve = prime_sieve(size);
+    auto sieve = mf::prime_sieve(size);
 
     long sum = 0;
-    for (long i = 2; i < size; i++)
-    {
-        if (sieve[i])
-        {
-            long n = (-3 * modular_inverse(8, i)) % i;
-            if (n < 0)
-            {
+    for (long i = 2; i < size; i++) {
+        if (sieve[i]) {
+            long n = (-3 * mf::modular_inverse(8, i)) % i;
+            if (n < 0) {
                 n += i;
             }
             sum += n;

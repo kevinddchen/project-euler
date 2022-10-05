@@ -21,17 +21,17 @@ ANSWER 13.1265108586
 */
 
 // number of regions in the marsh
-#define N 5
+constexpr int N = 5;
 // speed outside the marsh, in leagues per day
-#define V 10.0
+constexpr double V = 10.0;
 // total straight distance, in leagues
-#define D 100.0
+constexpr double D = 100.0;
 // total distance perpenticular to the marsh, in leagues
-#define PERP_D (D / M_SQRT2)
+constexpr double PERP_D = D / M_SQRT2;
 // thickness of each marsh region, in leagues
-#define T 10.0
+constexpr double T = 10.0;
 // distance to travel perpendicular to the marsh while outside the marsh, in leagues
-#define PERP_NONMARSH_D (PERP_D - N * T)
+constexpr double PERP_NONMARSH_D = PERP_D - N * T;
 
 /**
  * Given the angle of incidence entering the marsh, calculate the angles of
@@ -42,11 +42,10 @@ std::array<double, N> get_angles_of_refraction(double angle_of_incidence)
     const double s_inc = sin(angle_of_incidence);
 
     std::array<double, N> angles;
-    for (int i = 0; i < N; i++)
-    {
+    for (int i = 0; i < N; i++) {
         // speed of ith region is (10 - i) for i = 1, 2, 3, 4, 5
         const double v_i = V - static_cast<double>(i + 1);
-        angles[i] = asin( s_inc * v_i / V); // Snell's law
+        angles[i] = asin(s_inc * v_i / V);  // Snell's law
     }
     return angles;
 }
@@ -61,8 +60,7 @@ double parallel_distance(double angle_of_incidence)
     const std::array<double, N> angles_of_refraction = get_angles_of_refraction(angle_of_incidence);
 
     double par_dist = PERP_NONMARSH_D * tan(angle_of_incidence);
-    for (auto angle : angles_of_refraction)
-    {
+    for (auto angle : angles_of_refraction) {
         par_dist += T * tan(angle);
     }
     return par_dist;
@@ -75,25 +73,19 @@ double parallel_distance(double angle_of_incidence)
  * that contains `target` in the range, where the window is 2^(-n_bisects) the
  * size of the original domain.
  */
-void binary_search(double &min, double &max, double target, int n_bisects)
+void binary_search(double& min, double& max, double target, int n_bisects)
 {
     assert(target > 0);
-    for (int i = 0; i < n_bisects; i++)
-    {
+    for (int i = 0; i < n_bisects; i++) {
         const double mid = (min + max) / 2.0;
         const double val = parallel_distance(mid);
-        if (val == target)
-        {
+        if (val == target) {
             min = mid;
             max = mid;
             break;
-        }
-        else if (val < target)
-        {
+        } else if (val < target) {
             min = mid;
-        }
-        else
-        {
+        } else {
             max = mid;
         }
     }
@@ -109,8 +101,7 @@ double total_time(double angle_of_incidence)
     // distance travelled outside the marsh
     const double non_marshdist = PERP_NONMARSH_D / cos(angle_of_incidence);
     double time = non_marshdist / V;
-    for (int i = 0; i < N; i++)
-    {
+    for (int i = 0; i < N; i++) {
         const double dist = T / cos(angles_of_refraction[i]);
         const double v_i = V - static_cast<double>(i + 1);
         time += dist / v_i;
@@ -123,7 +114,7 @@ double p607()
     // First, find the input angle that makes `parallel_dist == PERP_D`.
     double min = 0.0;
     double max = M_PI_2;
-    binary_search(min, max, PERP_D, 40); // 2^(-40) is approximately 1e-12, which should be enough precision
+    binary_search(min, max, PERP_D, 40);  // 2^(-40) is approximately 1e-12, which should be enough precision
     const double angle_of_incidence = (min + max) / 2.0;
 
     // Sanity check
@@ -134,5 +125,5 @@ double p607()
 
 int main()
 {
-    TIMED(printf("%.10f\n", round(p607(), 10)));
+    TIMED(printf("%.10f\n", mf::round(p607(), 10)));
 }

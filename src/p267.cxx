@@ -48,22 +48,20 @@ double log_max_value(int n, int k)
  * Generate the binomial probability distribution for p=1/2.
  */
 template <size_t n>
-std::array<double, n+1> binomial_probs()
+std::array<double, n + 1> binomial_probs()
 {
     // We generate Pascal's triangle for the binomial coefficients. For the
     // probabilities, we just divide by 2 each time we make a new row.
-    std::array<double, n+1> triangle;
+    std::array<double, n + 1> triangle;
     triangle[0] = 1.0f;
 
     // iterate over rows of Pascal's triangle
-    for (int i = 1; i <= n; i++)
-    {
+    for (int i = 1; i <= n; i++) {
         // for in-place assignment, remember the value we will replace
         double reg = triangle[0];
         triangle[0] = exp2(-i);
         // iterate over elements of each row
-        for (int j = 1; j < i; j++)
-        {
+        for (int j = 1; j < i; j++) {
             const double sum = reg + triangle[j];
             reg = triangle[j];
             triangle[j] = sum / 2.0;
@@ -82,15 +80,13 @@ double p267()
     const auto probs = binomial_probs<n>();
 
     int k = n;
-    while (log_max_value(n, k - 1) > log(limit))
-    {
+    while (log_max_value(n, k - 1) > log(limit)) {
         k--;
     }
 
     // sum from i=k to i=1000
     double sum = 0;
-    for (int i = k; i <= n; i++)
-    {
+    for (int i = k; i <= n; i++) {
         sum += probs[i];
     }
 
@@ -99,5 +95,5 @@ double p267()
 
 int main()
 {
-    TIMED(printf("%.12f\n", round(p267(), 12)));
+    TIMED(printf("%.12f\n", mf::round(p267(), 12)));
 }

@@ -7,6 +7,9 @@
 #include <cassert>
 #include <cmath>
 
+namespace mf
+{
+
 /**
  * Given an integer n > 1, returns true if n is prime.
  */
@@ -14,19 +17,15 @@ bool is_prime(long n)
 {
     assert(n > 1);
 
-    if (n == 2)
-    {
+    if (n == 2) {
         return true;
     }
-    if (n % 2 == 0)
-    {
+    if (n % 2 == 0) {
         return false;
     }
 
-    for (long i = 3; i * i <= n; i += 2)
-    {
-        if (n % i == 0)
-        {
+    for (long i = 3; i * i <= n; i += 2) {
+        if (n % i == 0) {
             return false;
         }
     }
@@ -42,31 +41,27 @@ std::unique_ptr<bool[]> prime_sieve(size_t size)
 {
     // initialize sieve
     auto sieve = std::make_unique<bool[]>(size);
-    for (int i = 2; i < size; i++)
-    {
+    for (int i = 2; i < size; i++) {
         sieve[i] = true;
     }
 
     // sieve
-    for (int i = 2; i * i < size; i++)
-    {
-        if (sieve[i])
-        {
-            for (int j = i * i; j < size; j += i)
-            {
+    for (int i = 2; i * i < size; i++) {
+        if (sieve[i]) {
+            for (int j = i * i; j < size; j += i) {
                 sieve[j] = false;
             }
         }
     }
     return sieve;
-};
+}
 
-struct PrimePower
-{
+
+struct PrimePower {
     long base;
     long exp;
 
-    inline bool operator==(const PrimePower &other) const { return base == other.base && exp == other.exp; }
+    inline bool operator==(const PrimePower& other) const { return base == other.base && exp == other.exp; }
 };
 
 /**
@@ -79,23 +74,19 @@ std::vector<PrimePower> prime_factorize(long n)
     assert(n > 0);
     std::vector<PrimePower> facts;
 
-    for (long base = 2; base * base <= n; base++)
-    {
+    for (long base = 2; base * base <= n; base++) {
         long exp = 0;
-        while (n % base == 0)
-        {
+        while (n % base == 0) {
             n /= base;
             exp++;
         }
-        if (exp != 0)
-        {
+        if (exp != 0) {
             facts.push_back({base, exp});
         }
     }
 
     // remaining part may be a prime factor
-    if (n > 1)
-    {
+    if (n > 1) {
         facts.push_back({n, 1});
     }
 
@@ -107,7 +98,7 @@ std::vector<PrimePower> prime_factorize(long n)
  * coefficients, s and t, which solve the equation: a*s + b*t = r. Uses the
  * Extended Euclidean algorithm.
  */
-void extended_gcd(long a, long b, long &s, long &t, long &r)
+void extended_gcd(long a, long b, long& s, long& t, long& r)
 {
     assert(a > 0);
     assert(b > 0);
@@ -118,8 +109,7 @@ void extended_gcd(long a, long b, long &s, long &t, long &r)
     long new_s = 0, new_t = 1, new_r = b;
     long q, temp;
 
-    while (new_r != 0)
-    {
+    while (new_r != 0) {
         q = r / new_r;
 
         temp = r;
@@ -150,12 +140,10 @@ long modular_inverse(long a, long m)
     long s, t, r;
     extended_gcd(a, m, s, t, r);
 
-    if (r > 1)
-    {
+    if (r > 1) {
         return 0;
     }
-    if (s < 0)
-    {
+    if (s < 0) {
         s += m;
     }
 
@@ -171,9 +159,8 @@ long modular_power(long a, long b, long m)
     assert(a >= 0 && b >= 0 && m > 1);
 
     long result = 1, base = a % m;
-    while (b > 0)
-    {
-        if (b & 1) // if (b % 2) == 1
+    while (b > 0) {
+        if (b & 1)  // if (b % 2) == 1
         {
             result = (result * base) % m;
         }
@@ -186,19 +173,18 @@ long modular_power(long a, long b, long m)
 /**
  * Round a float to a certain number of decimal places
  */
-inline double round(double arg, uint32_t n_decimals)
+double round(double arg, uint32_t n_decimals)
 {
     const double x = pow(10.0, static_cast<double>(n_decimals));
-    return round(arg * x) / x;
+    return std::round(arg * x) / x;
 }
 
 /**
  * Lagged Fibonacci Generator. Used in various problems.
  */
-struct LaggedFibGen
-{
+struct LaggedFibGen {
     int buffer[55];
-    int jmod55; // j = k-1
+    int jmod55;  // j = k-1
 
     LaggedFibGen()
     {
@@ -215,3 +201,5 @@ struct LaggedFibGen
         return return_val;
     }
 };
+
+}  // namespace mf

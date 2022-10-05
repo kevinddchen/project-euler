@@ -26,19 +26,18 @@ ANSWER 259158998
 long p743()
 {
     const int M = 1'000'000'007;
-    const int k = 100'000'000; // window size
-    const int j = k;           // n/k
+    const int k = 100'000'000;  // window size
+    const int j = k;            // n/k
 
-    long term = modular_power(modular_power(2, k, M), j, M); // p=0 term
+    long term = mf::modular_power(mf::modular_power(2, k, M), j, M);  // p=0 term
     long S = term;
 
     // multiply by 2^(-2j)
-    int power_of_2 = modular_power(modular_inverse(4, M), j, M);
+    int power_of_2 = mf::modular_power(mf::modular_inverse(4, M), j, M);
 
-    for (int p = 1; p <= k / 2; p++)
-    {
+    for (int p = 1; p <= k / 2; p++) {
         term = (term * power_of_2) % M;
-        int inv_p = modular_inverse(p, M);
+        int inv_p = mf::modular_inverse(p, M);
         term = (term * (k - 2 * p + 2)) % M;
         term = (term * (k - 2 * p + 1)) % M;
         term = (term * inv_p) % M;
