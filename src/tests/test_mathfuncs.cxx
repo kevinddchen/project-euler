@@ -49,7 +49,7 @@ void test_is_prime()
 
 void test_prime_sieve()
 {
-    printf("Testing `prime_sieve`... ");
+    printf("Testing `prime_sieve()`... ");
 
     auto sieve = mf::prime_sieve(9);
     assert(!sieve[0]);
@@ -66,8 +66,9 @@ void test_prime_sieve()
     sieve = mf::prime_sieve(100);
     assert(!sieve[0]);
     assert(!sieve[1]);
-    for (int i = 2; i < 100; i++)
+    for (int i = 2; i < 100; i++) {
         assert(mf::is_prime(i) == sieve[i]);
+    }
 
     // Test no crash for small sizes
     sieve = mf::prime_sieve(0);
@@ -80,9 +81,46 @@ void test_prime_sieve()
     printf("Done!\n");
 }
 
+void test_prime_factor_sieve()
+{
+    printf("Testing `prime_factor_sieve()`... ");
+
+    auto sieve = mf::prime_factor_sieve(9);
+    assert(sieve[0] == 0);
+    assert(sieve[1] == 0);
+    assert(sieve[2] == 2);
+    assert(sieve[3] == 3);
+    assert(sieve[4] == 2);
+    assert(sieve[5] == 5);
+    assert(sieve[6] == 2);
+    assert(sieve[7] == 7);
+    assert(sieve[8] == 2);
+
+    // Test using `is_prime` and divisibility
+    sieve = mf::prime_factor_sieve(100);
+    assert(sieve[0] == 0);
+    assert(sieve[1] == 0);
+    for (int i = 2; i < 100; i++) {
+        if (mf::is_prime(i)) {
+            assert(sieve[i] == i);
+        }
+        assert(i % sieve[i] == 0);
+    }
+
+    // Test no crash for small sizes
+    sieve = mf::prime_factor_sieve(0);
+    sieve = mf::prime_factor_sieve(1);
+    assert(sieve[0] == 0);
+    sieve = mf::prime_factor_sieve(2);
+    assert(sieve[0] == 0);
+    assert(sieve[1] == 0);
+
+    printf("Done!\n");
+}
+
 void test_prime_factorize()
 {
-    printf("Testing `prime_factorize()`... ");
+    printf("Testing `prime_factorize(long)`... ");
 
     auto factors = mf::prime_factorize(2);
     assert(factors.size() == 1);
@@ -103,9 +141,6 @@ void test_prime_factorize()
     assert(factors[1].base == 3 && factors[1].exp == 1);
     assert(factors[2].base == 5 && factors[2].exp == 1);
 
-    factors = mf::prime_factorize(1);
-    assert(factors.size() == 0);
-
     factors = mf::prime_factorize(2 * 2 * 3 * 5 * 7 * 7 * 17 * 23);
     assert(factors.size() == 6);
     assert(factors[0].base == 2 && factors[0].exp == 2);
@@ -114,6 +149,25 @@ void test_prime_factorize()
     assert(factors[3].base == 7 && factors[3].exp == 2);
     assert(factors[4].base == 17 && factors[4].exp == 1);
     assert(factors[5].base == 23 && factors[5].exp == 1);
+
+    printf("Done!\n");
+}
+
+void test_prime_factorize_with_sieve()
+{
+    printf("Testing `prime_factorize(int, int*)`... ");
+
+    // we assume that the normal prime_factorize works
+    auto sieve = mf::prime_factor_sieve(100);
+
+    for (int i = 2; i < 100; i++)
+    {
+        auto factors = mf::prime_factorize(i, sieve.get());
+        auto exp_factors = mf::prime_factorize(i);
+        for (int j = 0; j < factors.size(); j++) {
+            assert(factors[j] == exp_factors[j]);
+        }
+    }
 
     printf("Done!\n");
 }
@@ -191,7 +245,9 @@ int main()
 {
     test_is_prime();
     test_prime_sieve();
+    test_prime_factor_sieve();
     test_prime_factorize();
+    test_prime_factorize_with_sieve();
     test_extended_gcd();
     test_modular_inverse();
     test_modular_power();

@@ -56,6 +56,31 @@ std::unique_ptr<bool[]> prime_sieve(size_t size)
     return sieve;
 }
 
+/**
+ * Creates a sieve where the nth entry, for n > 1, is the smallest prime factor
+ * of n. Entries 0 and 1 are '0'.
+ */
+std::unique_ptr<int[]> prime_factor_sieve(size_t size)
+{
+    // initialize sieve
+    auto sieve = std::make_unique<int[]>(size);
+    for (int i = 2; i < size; i++) {
+        sieve[i] = i;
+    }
+
+    // sieve
+    for (int i = 2; i * i < size; i++) {
+        if (sieve[i] == i) {
+            for (int j = i * i; j < size; j += i) {
+                if (sieve[j] == j) {
+                    sieve[j] = i;
+                }
+            }
+        }
+    }
+    return sieve;
+}
+
 
 struct PrimePower {
     long base;
@@ -67,11 +92,10 @@ struct PrimePower {
 /**
  * Prime factorize a positive integer, i.e. if n = p1^a1 * p2^a2 * ... * pk^ak
  * then return the list of {p, a} pairs. The p's are given in ascending order.
- * If n = 1, returns the empty vector.
  */
 std::vector<PrimePower> prime_factorize(long n)
 {
-    assert(n > 0);
+    assert(n > 1);
     std::vector<PrimePower> facts;
 
     for (long base = 2; base * base <= n; base++) {
@@ -89,6 +113,36 @@ std::vector<PrimePower> prime_factorize(long n)
     if (n > 1) {
         facts.push_back({n, 1});
     }
+
+    return facts;
+}
+
+
+/**
+ * Prime factorize a positive integer, with the speed-up from a prime factor
+ * sieve. The p's are given in descending order.
+ */
+std::vector<PrimePower> prime_factorize(int n, int* sieve)
+{
+    assert(n > 1);
+    std::vector<PrimePower> facts;
+
+    int base = sieve[n];
+    int exp = 1;
+    n /= base;
+
+    while (n != 1) {
+        if (sieve[n] == base) {
+            exp++;
+        } else {
+            facts.push_back({base, exp});
+            base = sieve[n];
+            exp = 1;
+        }
+        n /= base;
+    }
+
+    facts.push_back({base, exp});
 
     return facts;
 }

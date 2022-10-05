@@ -23,53 +23,9 @@ ANSWER 39782849136421
 
 */
 
-/* Computes sieve where nth entry is
- * - if n is composite: smallest prime factor of n.
- * - if n is prime: 0.
- */
-std::unique_ptr<short[]> smallest_prime_factor(int N)
-{
-    // create sieve
-    auto sieve = std::make_unique<short[]>(N);
-    for (short i = 2; i * i < N; i++) {
-        if (sieve[i] == 0) {
-            for (int j = i * i; j < N; j += i) {
-                if (sieve[j] == 0) {
-                    sieve[j] = i;
-                }
-            }
-        }
-    }
-    return sieve;
-}
-
-/* Calculate prime factorization, with speed up from `smallest_prime_factors`. */
-std::vector<mf::PrimePower> prime_factorize(int x, short* sieve)
-{
-    std::vector<mf::PrimePower> facts;
-    short p;
-    int a;
-    while (sieve[x] >= 2) {
-        p = sieve[x];
-        a = 0;
-        while (sieve[x] == p or x == p) {
-            x /= p;
-            a++;
-        }
-        if (a != 0) {
-            facts.push_back({p, a});
-        }
-    }
-    if (x > 1 && sieve[x] == 0) {
-        facts.push_back({x, 1});
-    }
-    return facts;
-}
-
+/* Recursively find largest idempotent. */
 int max_idem(int* arr, int size, int N, int i = 0, int running_sum = 0)
 {
-    /* Recursively find largest idempotent. */
-
     if (i == size) {
         return running_sum % N;
     }
@@ -79,17 +35,17 @@ int max_idem(int* arr, int size, int N, int i = 0, int running_sum = 0)
 
 long p407()
 {
-    const int size = 10'000'000;
+    constexpr int size = 10'000'000;
     long sum_idem = 0;
 
-    auto sieve = smallest_prime_factor(size + 1);
+    const auto sieve = mf::prime_factor_sieve(size + 1);
 
     for (int n = 2; n <= size; n++) {
         // prime factorize
-        std::vector<mf::PrimePower> factors = prime_factorize(n, sieve.get());
+        std::vector<mf::PrimePower> factors = mf::prime_factorize(n, sieve.get());
 
         // find base idempotents
-        int num_idems = factors.size();
+        const int num_idems = factors.size();
         int m, b, a;
         auto idems = std::make_unique<int[]>(num_idems);
         for (int i = 0; i < num_idems; i++) {
