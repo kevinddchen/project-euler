@@ -13,11 +13,20 @@
 Given an integer and its prime factorization, n = p1^a1 * p2^a2 * ... * pk^ak,
 the Chinese Remainder Theorem defines a ring isomorphism,
 
-    Z_n = Z_{p1^a1} + Z_{p2^a2} + ... + Z_{pk^ak}
+    Z_n = Z_{p1^a1} * Z_{p2^a2} * ... * Z_{pk^ak}
 
-The only idempotents in Z_{p^a} for any prime p are 0 and 1. Therefore, Z_n has
-2^k idempotents corresponding to every possible selection of 0 or 1 in each
-Z_{pi^ai}.
+The only multiplicative idempotents in Z_{p^a} for any prime p are 0 and 1:
+m * m = m (mod p^a) implies m(m-1) = d * p^a for some integer d. If d is
+nonzero, then p^a must divide m or m-1, which is not possible since m < p^a.
+Thus d=0 and m=0 or =1.
+
+Therefore, Z_n has 2^k multiplicative idempotents corresponding to every
+possible combination of 0 or 1 in each Z_{pi^ai}.
+
+We first compute the k "base idempotents" corresponding to the choices
+(1, 0, 0, ...), (0, 1, 0, ...), (0, 0, 1, ...), ...
+
+Then we find the combination of these base idempotents with the largest sum.
 
 ANSWER 39782849136421
 
@@ -46,13 +55,12 @@ long p407()
 
         // find base idempotents
         const int num_idems = factors.size();
-        int m, b, a;
         auto idems = std::make_unique<int[]>(num_idems);
         for (int i = 0; i < num_idems; i++) {
-            m = pow(factors[i].base, factors[i].exp);
-            b = n / m;
-            a = mf::modular_inverse(b, m) * b % n;
-            idems[i] = a;
+            const int q = pow(factors[i].base, factors[i].exp);  // pi^ai
+            const int n_q = n / q;
+            // find b * n_q such that b * n_q = 1 (mod q)
+            idems[i] = (mf::modular_inverse(n_q, q) * n_q) % n;
         }
         // find largest idempotent
         sum_idem += max_idem(idems.get(), num_idems, n);

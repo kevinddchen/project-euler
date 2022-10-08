@@ -37,8 +37,10 @@ bool is_prime(long n)
  * Creates a prime sieve, i.e. a boolean array where the nth entry, for n > 1,
  * is true when n is prime. 0 and 1 are not considered prime in the sieve.
  */
-std::unique_ptr<bool[]> prime_sieve(size_t size)
+std::unique_ptr<bool[]> prime_sieve(int size)
 {
+    assert(size >= 0);
+
     // initialize sieve
     auto sieve = std::make_unique<bool[]>(size);
     for (int i = 2; i < size; i++) {
@@ -60,8 +62,10 @@ std::unique_ptr<bool[]> prime_sieve(size_t size)
  * Creates a sieve where the nth entry, for n > 1, is the smallest prime factor
  * of n. Entries 0 and 1 are '0'.
  */
-std::unique_ptr<int[]> prime_factor_sieve(size_t size)
+std::unique_ptr<int[]> prime_factor_sieve(int size)
 {
+    assert(size >= 0);
+
     // initialize sieve
     auto sieve = std::make_unique<int[]>(size);
     for (int i = 2; i < size; i++) {
@@ -72,9 +76,7 @@ std::unique_ptr<int[]> prime_factor_sieve(size_t size)
     for (int i = 2; i * i < size; i++) {
         if (sieve[i] == i) {
             for (int j = i * i; j < size; j += i) {
-                if (sieve[j] == j) {
-                    sieve[j] = i;
-                }
+                sieve[j] = std::min(i, sieve[j]);
             }
         }
     }
@@ -84,7 +86,7 @@ std::unique_ptr<int[]> prime_factor_sieve(size_t size)
 
 struct PrimePower {
     long base;
-    long exp;
+    int exp;
 
     inline bool operator==(const PrimePower& other) const { return base == other.base && exp == other.exp; }
 };
@@ -99,7 +101,7 @@ std::vector<PrimePower> prime_factorize(long n)
     std::vector<PrimePower> facts;
 
     for (long base = 2; base * base <= n; base++) {
-        long exp = 0;
+        int exp = 0;
         while (n % base == 0) {
             n /= base;
             exp++;
@@ -210,7 +212,9 @@ long modular_inverse(long a, long m)
  */
 long modular_power(long a, long b, long m)
 {
-    assert(a >= 0 && b >= 0 && m > 1);
+    assert(a >= 0);
+    assert(b >= 0);
+    assert(m > 1);
 
     long result = 1, base = a % m;
     while (b > 0) {

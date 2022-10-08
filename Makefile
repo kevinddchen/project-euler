@@ -1,5 +1,5 @@
 CC = g++
-CFLAGS = -I./include -Wall -std=c++17
+CFLAGS = -I./include -Wall -std=c++17 -O2
 SRC = ./src
 BIN = ./bin
 # automatically recognize binaries corresponding to `.cxx` source files
