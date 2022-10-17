@@ -30,8 +30,7 @@ long find_max_root(long* arr, int size, int N, int i = 0, long running_prod = 1)
 
     return std::max(
         find_max_root(arr, size, N, i + 1, running_prod),
-        find_max_root(arr, size, N, i + 1, (running_prod * arr[i]) % N)
-    );
+        find_max_root(arr, size, N, i + 1, (running_prod * arr[i]) % N));
 }
 
 long p451()

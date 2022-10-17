@@ -122,7 +122,7 @@ std::vector<PrimePower> prime_factorize(long n)
 
 /**
  * Prime factorize a positive integer, with the speed-up from a prime factor
- * sieve. The p's are given in descending order.
+ * sieve. The p's are given in ascending order.
  */
 std::vector<PrimePower> prime_factorize(int n, int* sieve)
 {
