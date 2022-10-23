@@ -124,7 +124,7 @@ std::vector<PrimePower> prime_factorize(long n)
  * Prime factorize a positive integer, with the speed-up from a prime factor
  * sieve. The p's are given in ascending order.
  */
-std::vector<PrimePower> prime_factorize(int n, int* sieve)
+std::vector<PrimePower> prime_factorize(long n, int* sieve)
 {
     assert(n > 1);
     std::vector<PrimePower> facts;
@@ -207,16 +207,15 @@ long modular_inverse(long a, long m)
 }
 
 /**
- * Computes a^b mod m, where a and b are non-negative integers and m > 1.
+ * Computes a^b mod m, where b is a non-negative integer and m > 1.
  * (0^0 = 1 in this implementation.)
  */
 long modular_power(long a, long b, long m)
 {
-    assert(a >= 0);
     assert(b >= 0);
     assert(m > 1);
 
-    long result = 1, base = a % m;
+    long result = 1, base = ((a % m) + m) % m;
     while (b > 0) {
         if (b & 1)  // if (b % 2) == 1
         {

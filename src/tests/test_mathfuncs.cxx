@@ -224,6 +224,11 @@ void test_modular_power()
     assert(mf::modular_power(2, 0, 100) == 1);
     assert(mf::modular_power(0, 2, 100) == 0);
 
+    assert(mf::modular_power(-5, 5, 7) == 4);
+    assert(mf::modular_power(-12, 5, 7) == 4);
+    assert(mf::modular_power(-759, 46, 999) == 891);
+    assert(mf::modular_power(-930, 420, 999) == 729);
+
     printf("Done!\n");
 }
 
