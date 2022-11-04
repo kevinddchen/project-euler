@@ -1,9 +1,6 @@
+#include "common.h"
+#include "containers.h"
 #include "mathfuncs.h"
-
-#include <numeric>
-
-#include <cassert>
-#include <cstdio>
 
 /**
  * Tests equality between two floats, up to specified numerical tolerance.
@@ -160,8 +157,7 @@ void test_prime_factorize_with_sieve()
     // we assume that the normal prime_factorize works
     auto sieve = mf::prime_factor_sieve(100);
 
-    for (int i = 2; i < 100; i++)
-    {
+    for (int i = 2; i < 100; i++) {
         auto factors = mf::prime_factorize(i, sieve.get());
         auto exp_factors = mf::prime_factorize(i);
         for (int j = 0; j < factors.size(); j++) {
@@ -246,6 +242,80 @@ void test_round()
     printf("Done!\n");
 }
 
+void test_vec2()
+{
+    printf("Testing `Vec2`... ");
+
+    const mf::Vec2i v1 = {1, 2};
+    const mf::Vec2i v2 = {3, 4};
+
+    assert(v1 == v1);
+    assert(v1 != v2);
+    assert(!(v1 == v2));
+    assert(v1 + v2 == ((mf::Vec2i){4, 6}));
+    assert(-v1 == ((mf::Vec2i){-1, -2}));
+    assert(v1 - v2 == ((mf::Vec2i){-2, -2}));
+    assert(v1 - v2 == v1 + -v2);
+    assert(v1.dot(v2) == 11);
+    assert(v1.cross(v2) == -2);
+    assert(2 * v1 == ((mf::Vec2i){2, 4}));
+    assert(2 * v1 == v1 + v1);
+    assert(-1 * v1 == -v1);
+
+    printf("Done!\n");
+}
+
+void test_mat2()
+{
+    printf("Testing `Mat2`... ");
+
+    const mf::Mat2i m1 = {1, 2, 3, 4};
+    const mf::Mat2i m2 = {5, 6, 7, 8};
+    const mf::Vec2i v = {9, 10};
+
+    assert(m1 == m1);
+    assert(m1 != m2);
+    assert(!(m1 == m2));
+    assert(m1 + m2 == ((mf::Mat2i){6, 8, 10, 12}));
+    assert(-m1 == ((mf::Mat2i){-1, -2, -3, -4}));
+    assert(m1 - m2 == ((mf::Mat2i){-4, -4, -4, -4}));
+    assert(m1 - m2 == m1 + -m2);
+    assert(m1 * v == ((mf::Vec2i){29, 67}));
+    assert(m1 * m2 == ((mf::Mat2i){19, 22, 43, 50}));
+    assert(m1.det() == -2);
+    assert(m1.inv_times_det() == ((mf::Mat2i){4, -2, -3, 1}));
+    assert(m1 * m1.inv_times_det() == m1.det() * ((mf::Mat2i){1, 0, 0, 1}));
+    assert(2 * m1 == ((mf::Mat2i){2, 4, 6, 8}));
+    assert(2 * m1 == m1 + m1);
+    assert(-1 * m1 == -m1);
+
+    printf("Done!\n");
+}
+
+void test_frac()
+{
+    printf("Testing `Frac`... ");
+
+    const mf::Frac f1 = {3, 4};
+    const mf::Frac f2 = {5, 2};
+
+    assert(f1 == f1);
+    assert(f1 != f2);
+    assert(!(f1 == f2));
+    assert(((mf::Frac){2, 2}) == ((mf::Frac){1, 1}));
+    assert(((mf::Frac){1, -1}) == ((mf::Frac){-1, 1}));
+    assert(f1 + f2 == ((mf::Frac){13, 4}));
+    assert(-f1 == ((mf::Frac){-3, 4}));
+    assert(f1 - f2 == ((mf::Frac){-7, 4}));
+    assert(f1 - f2 == f1 + -f2);
+    assert(f1 * f2 == ((mf::Frac){15, 8}));
+    assert(f1.reciprocal() == ((mf::Frac){4, 3}));
+    assert(is_equal(f1.fp(), 0.75));
+    assert(is_equal((f1 * f1.reciprocal()).fp(), 1.0));
+
+    printf("Done!\n");
+}
+
 int main()
 {
     test_is_prime();
@@ -257,6 +327,9 @@ int main()
     test_modular_inverse();
     test_modular_power();
     test_round();
+    test_vec2();
+    test_mat2();
+    test_frac();
 
     return 0;
 }

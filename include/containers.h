@@ -17,6 +17,8 @@ struct Vec2 {
 
     inline bool operator==(const Vec2<T>& other) const { return x == other.x && y == other.y; }
 
+    inline bool operator!=(const Vec2<T>& other) const { return !(*this == other); }
+
     inline Vec2<T> operator+(const Vec2<T>& other) const { return {x + other.x, y + other.y}; }
 
     inline Vec2<T> operator-() const { return {-x, -y}; }
@@ -54,6 +56,8 @@ struct Mat2 {
         return xx == other.xx && xy == other.xy && yx == other.yx && yy == other.yy;
     }
 
+    inline bool operator!=(const Mat2<T>& other) const { return !(*this == other); }
+
     inline Mat2<T> operator+(const Mat2<T>& other) const
     {
         return {xx + other.xx, xy + other.xy, yx + other.yx, yy + other.yy};
@@ -63,14 +67,23 @@ struct Mat2 {
 
     inline Mat2<T> operator-(const Mat2<T>& other) const { return *this + -other; }
 
+    inline Vec2<T> operator*(const Vec2<T>& v) const { return {xx * v.x + xy * v.y, yx * v.x + yy * v.y}; }
+
+    inline Mat2<T> operator*(const Mat2<T>& other) const
+    {
+        return {
+            xx * other.xx + xy * other.yx,
+            xx * other.xy + xy * other.yy,
+            yx * other.xx + yy * other.yx,
+            yx * other.xy + yy * other.yy};
+    }
+
     inline T det() const { return xx * yy - xy * yx; }
 
     /*
      * Inverse times determinant, i.e. {{yy, -xy}, {-yx, xx}}
      */
     inline Mat2<T> inv_times_det() const { return {yy, -xy, -yx, xx}; }
-
-    Vec2<T> operator*(const Vec2<T>& v) const { return {xx * v.x + xy * v.y, yx * v.x + yy * v.y}; }
 };
 
 using Mat2i = Mat2<int>;
@@ -79,9 +92,9 @@ using Mat2f = Mat2<float>;
 using Mat2d = Mat2<double>;
 
 template <typename T>
-inline Mat2<T> operator*(T a, const Mat2<T>& M)
+inline Mat2<T> operator*(T a, const Mat2<T>& m)
 {
-    return {a * M.xx, a * M.xy, a * M.yx, a * M.yy};
+    return {a * m.xx, a * m.xy, a * m.yx, a * m.yy};
 }
 
 /**
@@ -107,6 +120,8 @@ struct Frac {
 
     inline bool operator==(const Frac& other) const { return numer == other.numer && denom == other.denom; }
 
+    inline bool operator!=(const Frac& other) const { return !(*this == other); }
+
     inline Frac operator+(const Frac& other) const
     {
         const long d = std::lcm(denom, other.denom);
@@ -120,6 +135,8 @@ struct Frac {
     inline Frac operator*(const Frac& other) const { return {numer * other.numer, denom * other.denom}; }
 
     inline Frac reciprocal() const { return {denom, numer}; }
+
+    inline double fp() const { return (double)numer / (double)denom; }
 };
 
 }  // namespace mf
