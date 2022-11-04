@@ -1,4 +1,6 @@
 #include "common.h"
+#include "containers.h"
+#include "hash.h"
 
 #include <array>
 #include <numeric>
@@ -21,54 +23,54 @@ ANSWER 3857447
 */
 
 // class to handle exact fractions
-struct Fraction {
-    int numer;
-    int denom;
+// struct Fraction {
+//     int numer;
+//     int denom;
 
-    Fraction(int numer, int denom) : numer(numer), denom(denom) { reduce(); };
+//     Fraction(int numer, int denom) : numer(numer), denom(denom) { reduce(); };
 
-    void reduce()
-    {
-        int d = std::gcd(numer, denom);
-        numer /= d;
-        denom /= d;
-    }
+//     void reduce()
+//     {
+//         int d = std::gcd(numer, denom);
+//         numer /= d;
+//         denom /= d;
+//     }
 
-    inline Fraction reciprocal() const { return (Fraction){denom, numer}; }
+//     inline Fraction reciprocal() const { return (Fraction){denom, numer}; }
 
-    inline bool operator==(const Fraction& other) const { return numer == other.numer && denom == other.denom; }
+//     inline bool operator==(const Fraction& other) const { return numer == other.numer && denom == other.denom; }
 
-    inline Fraction operator+(const Fraction& other) const
-    {
-        return (Fraction){numer * other.denom + denom * other.numer, denom * other.denom};
-    }
-};
+//     inline Fraction operator+(const Fraction& other) const
+//     {
+//         return (Fraction){numer * other.denom + denom * other.numer, denom * other.denom};
+//     }
+// };
 
-// Fraction hash
-template <>
-struct std::hash<Fraction> {
-    inline std::size_t operator()(const Fraction& frac) const
-    {
-        return std::hash<float>{}((float)frac.numer / frac.denom);
-    }
-};
+// // Fraction hash
+// template <>
+// struct std::hash<mf::Frac> {
+//     inline std::size_t operator()(const mf::Frac& frac) const
+//     {
+//         return std::hash<float>{}((float)frac.numer / frac.denom);
+//     }
+// };
 
 long p155()
 {
     const int limit = 18;
 
-    std::unordered_set<Fraction> set;               // hash map to check if a capacitance has been encountered yet
-    std::array<std::vector<Fraction>, limit> list;  // list of capacitances for each n
+    std::unordered_set<mf::Frac> set;               // hash map to check if a capacitance has been encountered yet
+    std::array<std::vector<mf::Frac>, limit> list;  // list of capacitances for each n
 
-    Fraction one{1, 1};
+    mf::Frac one{1, 1};
     list[0] = {one};
     set.insert(one);
 
     long sum = 1;
-    for (int n = 2; n <= limit; n++) {
+    for (long n = 2; n <= limit; n++) {
         // sum capacitances for 1 + (n-1), 2 + (n-2), ...
-        for (int i = 1; 2 * i <= n; i++) {
-            int j = n - i;
+        for (long i = 1; 2 * i <= n; i++) {
+            long j = n - i;
             for (auto f1 : list[i - 1]) {
                 for (auto f2 : list[j - 1]) {
                     auto f = f1 + f2;
