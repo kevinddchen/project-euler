@@ -22,39 +22,6 @@ ANSWER 3857447
 
 */
 
-// class to handle exact fractions
-// struct Fraction {
-//     int numer;
-//     int denom;
-
-//     Fraction(int numer, int denom) : numer(numer), denom(denom) { reduce(); };
-
-//     void reduce()
-//     {
-//         int d = std::gcd(numer, denom);
-//         numer /= d;
-//         denom /= d;
-//     }
-
-//     inline Fraction reciprocal() const { return (Fraction){denom, numer}; }
-
-//     inline bool operator==(const Fraction& other) const { return numer == other.numer && denom == other.denom; }
-
-//     inline Fraction operator+(const Fraction& other) const
-//     {
-//         return (Fraction){numer * other.denom + denom * other.numer, denom * other.denom};
-//     }
-// };
-
-// // Fraction hash
-// template <>
-// struct std::hash<mf::Frac> {
-//     inline std::size_t operator()(const mf::Frac& frac) const
-//     {
-//         return std::hash<float>{}((float)frac.numer / frac.denom);
-//     }
-// };
-
 long p155()
 {
     const int limit = 18;
