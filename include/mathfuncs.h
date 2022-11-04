@@ -1,10 +1,11 @@
 #pragma once
 
+#include "common.h"
+
 #include <array>
 #include <memory>
 #include <vector>
 
-#include <cassert>
 #include <cmath>
 
 namespace mf
