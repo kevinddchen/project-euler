@@ -75,7 +75,6 @@ std::vector<mf::Vec2i> get_indices_at_radius(const mf::Vec2i& center, int n_cell
  * into a grid.
  */
 struct PointGrid {
-
     std::vector<mf::Vec2l>** grid;
     const int n_cells;
     const int cell_size;
@@ -123,9 +122,7 @@ struct PointGrid {
      * :return: the best distance found
      */
     double nearest_neighbor_distance(
-        const mf::Vec2l& p,
-        int radius = 0,
-        double best = std::numeric_limits<double>::max()) const
+        const mf::Vec2l& p, int radius = 0, double best = std::numeric_limits<double>::max()) const
     {
         // we exit if we cannot find a better distance
         // radius is increasing and best is decreasing, so we will terminate eventually
@@ -138,7 +135,6 @@ struct PointGrid {
         // get all points in cells `radius` away
         std::vector<mf::Vec2l> points;
         if (radius == 0) {
-
             for (const auto& q : grid[p_idx.x][p_idx.y]) {
                 if (q != p) {
                     points.push_back(q);
@@ -146,13 +142,11 @@ struct PointGrid {
             }
 
         } else {
-
             for (const auto& q_idx : get_indices_at_radius(p_idx, n_cells, radius)) {
                 for (const auto& q : grid[q_idx.x][q_idx.y]) {
                     points.push_back(q);
                 }
             }
-
         }
 
         // compute distance to all points in the square ring
@@ -167,7 +161,6 @@ struct PointGrid {
         // recurse to next square ring
         return nearest_neighbor_distance(p, radius + 1, best);
     }
-
 };
 
 double p816()
