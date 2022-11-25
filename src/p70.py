@@ -18,7 +18,7 @@ This prevents us from searching all primes up to 10^7.
 
 """
 
-from .mathfuncs import is_prime
+from mathfuncs import is_prime
 
 
 def prime_gen():

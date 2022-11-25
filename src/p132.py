@@ -10,7 +10,7 @@ it suffices that we check 10^{gcd(10^9, p-1)} = 1 (mod p).
 
 """
 
-from .mathfuncs import is_prime
+from mathfuncs import is_prime
 
 
 def p132():

@@ -1,6 +1,0 @@
-# for running solutions
-numpy
-scipy
-# for testing and development
-pytest
-flake8

@@ -9,7 +9,7 @@ pentagonal number, then we are done.
 
 """
 
-from .mathfuncs import prime_factorize
+from mathfuncs import prime_factorize
 
 
 def pent(n):

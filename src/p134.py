@@ -8,7 +8,7 @@ explicitly, a = -p*10^(-k) mod q.
 
 """
 
-from .mathfuncs import PrimeSieve
+from mathfuncs import PrimeSieve
 
 
 def p134():

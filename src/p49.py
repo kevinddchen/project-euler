@@ -10,7 +10,7 @@ a prime and permutation.
 
 from itertools import permutations
 
-from .mathfuncs import PrimeSieve
+from mathfuncs import PrimeSieve
 
 
 def is_permutation(a, b):

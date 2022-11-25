@@ -8,7 +8,7 @@ finding the smallest odd n such that n*p_n > 5e9
 
 """
 
-from .mathfuncs import is_prime
+from mathfuncs import is_prime
 
 
 def p123():

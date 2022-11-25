@@ -6,7 +6,7 @@ Brute force prime factorization.
 
 """
 
-from .mathfuncs import prime_factorize
+from mathfuncs import prime_factorize
 
 
 def p124():

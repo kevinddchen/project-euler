@@ -9,7 +9,7 @@ quite straightforward to count them all.
 
 from math import isqrt
 
-from .mathfuncs import is_prime
+from mathfuncs import is_prime
 
 
 def prime_gen(maxim):

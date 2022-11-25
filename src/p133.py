@@ -9,7 +9,7 @@ For for each p, we iterate through n until the gcd does not change.
 
 from math import gcd
 
-from .mathfuncs import PrimeSieve, prime_factorize
+from mathfuncs import PrimeSieve, prime_factorize
 
 
 def totient(x):

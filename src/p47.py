@@ -1,6 +1,6 @@
 # ANSWER 134043
 
-from .mathfuncs import prime_factorize
+from mathfuncs import prime_factorize
 
 
 def p47():

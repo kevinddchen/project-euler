@@ -17,7 +17,7 @@ Using this approach, the question now changes to a limit of 8000000.
 
 from math import ceil, log, prod
 
-from .mathfuncs import is_prime
+from mathfuncs import is_prime
 
 
 def prime_gen(n):

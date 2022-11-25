@@ -11,7 +11,7 @@ compute the sum of divisors efficiently. routine.
 
 """
 
-from .mathfuncs import PrimeSieve, prime_factorize
+from mathfuncs import PrimeSieve, prime_factorize
 
 
 def p650():

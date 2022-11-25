@@ -1,6 +1,32 @@
+[build-system]
+requires = ["setuptools"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "mathfuncs"
+version = "0.0.0"
+description = "Commonly used mathematical functions"
+readme = "README.md"
+requires-python = ">=3.9"
+dependencies = [
+    "numpy",
+    "scipy",
+]
+
+[project.optional-dependencies]
+dev = [
+    "flake8",
+    "pip-tools",
+    "pytest",
+    "pre-commit",
+]
+
+[tool.setuptools.packages.find]
+include = ["mathfuncs*"]
+
 [tool.black]
 line-length = 120
-target-version = ['py39']
+target-version = ["py39", "py310"]
 include = '\.pyi?$'
 
 [tool.isort]
