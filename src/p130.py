@@ -1,6 +1,7 @@
 # ANSWER 149253
 
-from .mathfuncs import is_prime
+from mathfuncs import is_prime
+
 from .p129 import A
 
 

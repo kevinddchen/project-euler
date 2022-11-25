@@ -8,7 +8,7 @@ Solved using a prime sieve.
 
 from bisect import bisect
 
-from .mathfuncs import PrimeSieve
+from mathfuncs import PrimeSieve
 
 
 def p187():

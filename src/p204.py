@@ -1,6 +1,6 @@
 # ANSWER 2944730
 
-from .mathfuncs import PrimeSieve
+from mathfuncs import PrimeSieve
 
 
 def recurse(primes, limit, prod=1, i=0):

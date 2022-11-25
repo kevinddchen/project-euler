@@ -13,7 +13,7 @@ cubes and test for primality.
 
 """
 
-from .mathfuncs import is_prime
+from mathfuncs import is_prime
 
 
 def p131():

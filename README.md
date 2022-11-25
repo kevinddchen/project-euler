@@ -5,23 +5,38 @@
 These are my solutions to [Project Euler](https://projecteuler.net/) problems.
 Please do not blindly copy numerical answers.
 
-To run any solution, use
+Clone this repo and install the Python package containing commonly used mathematical functions by running the commands below.
+This will also install Python dependencies that are used in some of the solutions.
+Note that we use Python version >= 3.9.
+
+```bash
+git clone https://github.com/kevinddchen/project-euler.git
+cd project-euler
+pip install .
+```
+
+To run any solution, run the following command,
 
 ```bash
 ./run.sh $NUM
 ```
 
 where `$NUM` is the problem number.
-If the solution is written in C++, this will compile and run the code.
 If the solution is written in Python, this will run the code using the command `python -m src $NUM`.
-Note that we use Python version >= 3.9.
-The dependencies are listed in [requirements.in](requirements.in).
+If the solution is written in C++, this will compile and run the code.
+We are using the `C++17` standard.
 
 [EulerSolutions.pdf](docs/EulerSolutions.pdf) contains write-ups for problems that can be solved by hand.
 
 ---
 
 ## Development
+
+Set-up your local environment by running,
+```bash
+pip install -r requirements.txt
+pip install -e .
+```
 
 To run C++ tests,
 ```bash
@@ -30,10 +45,10 @@ To run C++ tests,
 
 To run Python tests,
 ```bash
-make tests
+pytest
 ```
 
 To run Python flake8
 ```bash
-make flake
+flake8
 ```

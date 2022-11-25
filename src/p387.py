@@ -7,7 +7,7 @@ resursively with increasing number of digits.
 
 """
 
-from .mathfuncs import is_prime
+from mathfuncs import is_prime
 
 
 def get_next_generation(RTHN_list):

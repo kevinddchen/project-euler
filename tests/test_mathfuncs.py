@@ -2,7 +2,7 @@ import logging
 
 import pytest
 
-from ..mathfuncs import PrimeSieve, is_prime, prime_factorize
+from mathfuncs import PrimeSieve, is_prime, prime_factorize
 
 LOG = logging.getLogger(__name__)
 

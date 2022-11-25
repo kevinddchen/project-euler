@@ -2,7 +2,7 @@
 
 from math import prod
 
-from .mathfuncs import prime_factorize
+from mathfuncs import prime_factorize
 
 """
 

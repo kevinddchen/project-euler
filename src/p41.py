@@ -2,7 +2,7 @@
 
 from itertools import permutations
 
-from .mathfuncs import is_prime
+from mathfuncs import is_prime
 
 
 def largest_prime(digits):
