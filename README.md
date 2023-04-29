@@ -34,8 +34,8 @@ We are using the `C++17` standard.
 
 Set-up your local environment by running,
 ```bash
-pip install -r requirements.txt
-pip install -e .
+pip install -e .[dev]
+pre-commit install
 ```
 
 To run C++ tests,
@@ -46,9 +46,4 @@ To run C++ tests,
 To run Python tests,
 ```bash
 pytest
-```
-
-To run Python flake8
-```bash
-flake8
 ```
