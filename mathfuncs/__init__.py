@@ -1,1 +1,1 @@
-from mathfuncs.mf import PrimePower, PrimeSieve, is_prime, prime_factorize
+from mathfuncs.core import PrimePower, PrimeSieve, is_prime, prime_factorize
