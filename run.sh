@@ -1,5 +1,5 @@
 #!/bin/bash
-set -e
+set -euo pipefail
 
 show_help () {
     echo
@@ -7,7 +7,7 @@ show_help () {
     echo "==========================="
     echo
     echo "To run a problem:     ./$(basename $0) 123"
-    echo "To run C++ tests:     ./$(basename $0) tests"
+    echo "To run tests:     ./$(basename $0) tests"
     echo
 }
 
@@ -28,6 +28,8 @@ if [[ $NUM = "tests" ]]; then
     make $BIN/test_mathfuncs
     echo "Running c++ tests..."
     $BIN/test_mathfuncs
+    echo "Running python tests..."
+    pytest
 
 elif [[ -a $SRC/p$NUM.cxx ]]; then
 
