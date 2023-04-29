@@ -20,7 +20,6 @@ from math import log
 
 
 def p686():
-
     CONS = log(2) / log(10)
     LOWER = log(1.23) / log(10)
     UPPER = log(1.24) / log(10)

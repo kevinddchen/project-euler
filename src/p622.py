@@ -19,7 +19,6 @@ def check(d, bad):
 
 
 def p622():
-
     divisors_of_60 = [2, 3, 4, 5, 6, 10, 12, 15, 20, 30]
     bad = [pow(2, d) - 1 for d in divisors_of_60]
     S = 0

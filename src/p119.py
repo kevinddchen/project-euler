@@ -29,7 +29,11 @@ def p119():
         # generate next numbers
         L.append((n * base, base, exp + 1, False))
         if first:
-            n_0, base_0, exp_0, = (
+            (
+                n_0,
+                base_0,
+                exp_0,
+            ) = (
                 (base + 1) ** 2,
                 base + 1,
                 2,

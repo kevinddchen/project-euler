@@ -72,7 +72,6 @@ def p192():
 
     S = 0
     for n in range(2, max_n + 1):
-
         root = isqrt(n)
         if root * root == n:
             continue

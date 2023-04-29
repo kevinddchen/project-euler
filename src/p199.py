@@ -69,7 +69,6 @@ def get_gasket_area(depth: int, k1: float, k2: float, k3: float) -> float:
 
 
 def p199() -> str:
-
     depth = 10
 
     # get curvature of enclosing circle

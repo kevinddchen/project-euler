@@ -19,7 +19,6 @@ decimal.getcontext().prec = 30
 
 
 def p751():
-
     theta = decimal.Decimal("2.22")
 
     prec = decimal.Decimal("0.01")  # decimal precision of theta

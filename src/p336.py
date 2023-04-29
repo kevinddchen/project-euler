@@ -53,12 +53,10 @@ def number_to_alpha(n, b):
 
 
 def recurse(L, depth, size, min_list):
-
     if depth == size:
         N = list_to_number(L, size)
         insert_in_order(N, min_list)
     else:
-
         reverse(L, 0, depth)
         for i in range(1, depth):
             reverse(L, 0, i)

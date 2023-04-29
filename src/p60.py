@@ -27,7 +27,6 @@ def add_pair(conn_dicts, p, q):
     for i in range(SIZE - 2):
         if p in conn_dicts[i]:
             for tup in conn_dicts[i][p]:
-
                 all_in = True
                 for a in tup:
                     if (a,) not in conn_dicts[0][q]:
@@ -55,7 +54,6 @@ def p60():
             if p_d * 2 > d:
                 continue
             for q in range(max(10 ** (d - p_d - 1) + 1, p + 2), 10 ** (d - p_d), 2):
-
                 # if concatenates, add pair to dictionary
                 if sieve[q] and sieve[int(str(p) + str(q))] and sieve[int(str(q) + str(p))]:
                     add_pair(conn_dicts, p, q)

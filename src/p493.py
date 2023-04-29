@@ -33,7 +33,6 @@ from math import comb, factorial
 
 
 def ordered_partitions(size, parts, limit):
-
     """Gives all partition of [size] into [parts] number of partitions in
     increasing order, with maximum partition size [limit]"""
 
@@ -50,7 +49,6 @@ def ordered_partitions(size, parts, limit):
 
 
 def permutations(lst):
-
     """Gives number of unique permutations of a list of numbers [lst]"""
 
     perm = factorial(len(lst))
@@ -61,7 +59,6 @@ def permutations(lst):
 
 
 def count_color(n_colors):
-
     """Gives the number of possible ways to draw [n_colors] different colors
     of balls"""
 

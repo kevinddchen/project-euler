@@ -15,7 +15,6 @@ from mathfuncs import PrimeSieve, prime_factorize
 
 
 def p650():
-
     N = 20_000
     M = 1_000_000_007
     S = 1
@@ -37,7 +36,6 @@ def p650():
     sub_f = [0 for _ in range(n_primes)]
 
     for n in range(2, N + 1):
-
         for pf in prime_factorize(n):
             p_i = prime_i[pf.base]
             curr_f[p_i] += pf.exp * n

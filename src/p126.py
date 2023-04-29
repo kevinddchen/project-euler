@@ -19,14 +19,12 @@ def blocks(a, b, c, L):
 
 
 def p126():
-
     h = []
     heapq.heappush(h, (blocks(1, 1, 1, 1), 1, 1, 1, 1))
 
     C = 0
     N = 0
     while True:
-
         (n, a, b, c, L) = heapq.heappop(h)
 
         if n == N:

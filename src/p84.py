@@ -23,7 +23,6 @@ def roll(tile, prob_vec, n_rolls=0, end_turn=False, prob=1.0):
     prob /= 16
     for i in [1, 2, 3, 4]:
         for j in [1, 2, 3, 4]:
-
             if i == j and n_rolls == 3:  # speeding
                 roll(10, prob_vec, n_rolls, True, prob)
                 continue

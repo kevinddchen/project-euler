@@ -21,7 +21,6 @@ def oneDartPossibilities(score):
     if score == 0:
         count += 1
     else:
-
         if score <= 20 or score == 25:
             count += 1
         if score % 2 == 0 and (score <= 40 or score == 50):

@@ -37,7 +37,6 @@ def test_is_prime() -> None:
 
 
 def test_prime_sieve() -> None:
-
     # Test basic functionality
     ps = PrimeSieve(9)
     assert ps.size == 9

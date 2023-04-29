@@ -42,7 +42,6 @@ def min_poss(poss):
 
 
 def find_multiple(N, MultTable):
-
     MultList = MultTable[N % 10]  # take multiplications for last digit
     poss = []
     # build initial possibilities:

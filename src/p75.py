@@ -12,7 +12,6 @@ from math import gcd, isqrt
 
 
 def p75():
-
     MAX_L = 1500000
 
     good = set()

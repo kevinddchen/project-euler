@@ -22,7 +22,6 @@ from mathfuncs import is_prime
 
 
 def recurse(lst=[], n=1):
-
     # evaluate criteria
     crit = n + len(lst) - 10
     if crit > 0:

@@ -57,7 +57,6 @@ class Sudoku(object):
     """
 
     def __init__(self, arg):
-
         # Sudoku(Sudoku) constructor
         if isinstance(arg, Sudoku):
             self._grid = arg._grid.copy()

@@ -5,7 +5,7 @@ show_help () {
     echo
     echo "Run Project Euler solutions"
     echo "==========================="
-    echo 
+    echo
     echo "To run a problem:     ./$(basename $0) 123"
     echo "To run C++ tests:     ./$(basename $0) tests"
     echo

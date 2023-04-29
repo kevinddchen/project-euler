@@ -38,7 +38,6 @@ def min_product_recursive(path, prod, max_factor, primes):
     global LIMIT, MIN
 
     if prod > LIMIT:
-
         n = calculate_N(path, primes)
         if n < MIN:
             MIN = n

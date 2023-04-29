@@ -18,7 +18,6 @@ zeros, but this is the outline of the code.
 
 
 def foo(lst, target_n, target_tot, index=0, n=0, tot=0, L=[]):
-
     """Iterates through the number of ways to pick [target_n] elements
     from [lst] which sum up to [target_tot]."""
 

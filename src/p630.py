@@ -92,7 +92,6 @@ def check_new_line(prev_coords: Container[Coordinate], coord: Coordinate, disp: 
 
 
 def p630() -> int:
-
     num_lines = 0
     num_intersections = 0
 
@@ -101,7 +100,6 @@ def p630() -> int:
 
     for coord in coord_generator(TARGET):
         for prev_coord in prev_coords:
-
             # displacement with each previous coordinate
             disp = compute_displacement(prev_coord, coord)
 

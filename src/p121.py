@@ -8,7 +8,6 @@ Can be solved by hand. See PDF for explanation.
 
 
 def p121():
-
     N_TURNS = 15
 
     # generate Stirling numbers (unsigned, of the first kind)

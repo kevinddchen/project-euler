@@ -11,7 +11,6 @@ from mathfuncs import is_prime
 
 
 def get_next_generation(RTHN_list):
-
     """A generation of RTHN (right truncatable Harshad number) is all RTHN
     with n digits. Given a generation with n digits, this returns the
     generation with n+1 digits."""

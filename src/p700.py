@@ -13,13 +13,11 @@ Let E1 be the first Eulercoin and P be the large prime. The other Eulercoins can
 
 
 def p700():
-
     a = 4503599627370517
     b = 1504170715041707
     S = b
 
     while b != 1:
-
         d = a // b
         r = (b * (d + 1)) - a
 

@@ -27,7 +27,6 @@ def p142():
             mid = (a * a + b * b) // 2  # mid = x
 
             if mid in mid_dict:
-
                 for c in mid_dict[mid]:
                     y = a * a - mid
                     z = c * c - mid
@@ -37,7 +36,6 @@ def p142():
                 mid_dict[mid].append(a)
 
             else:
-
                 mid_dict[mid] = [a]
 
         a += 1
