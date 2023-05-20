@@ -12,7 +12,6 @@ all from https://en.wikipedia.org/wiki/Repeating_decimal.
 1.  The period of 1/p is the order of 10 mod p. The order will divide p - 1.
     Let us denote the period of 1/p as T(1/p) = T_p.
 
-
 2.  The period of 1/p^k for k > 1 equals p^{k-1} * T_p EXCEPT when p is in the
     set {3, 487, 56598313}. In these cases, the period is p^{k-2} * T_p.
 
@@ -27,7 +26,7 @@ all from https://en.wikipedia.org/wiki/Repeating_decimal.
 Using these facts and doing things efficiently by utilizing a prime sieve to
 compute prime factors, we can compute the 10^7-th digit of all 1/n fractions.
 
-ANSWER
+ANSWER 44967734
 
 */
 
