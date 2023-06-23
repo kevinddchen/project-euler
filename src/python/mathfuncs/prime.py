@@ -1,4 +1,4 @@
-from dataclasses import dataclass
+from typing import NamedTuple
 
 
 def is_prime(n: int, /) -> bool:
@@ -54,8 +54,7 @@ def prime_sieve(size: int, /) -> list[bool]:
     return sieve
 
 
-@dataclass
-class PrimePower:
+class PrimePower(NamedTuple):
     base: int
     exp: int
 
@@ -72,7 +71,7 @@ def prime_factorize(n: int, /) -> list[PrimePower]:
     Return:
         List of {p_i, a_i}.
     """
-    assert n > 0, "n must be positive"
+    assert n > 1, "n must be greater than 1"
 
     prime_factors: list[PrimePower] = list()
 

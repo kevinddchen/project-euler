@@ -84,9 +84,6 @@ def test_prime_factorize() -> None:
     assert factors[1].base == 3 and factors[1].exp == 1
     assert factors[2].base == 5 and factors[2].exp == 1
 
-    factors = prime_factorize(1)
-    assert len(factors) == 0
-
     factors = prime_factorize(2 * 2 * 3 * 5 * 7 * 7 * 17 * 23)
     assert len(factors) == 6
     assert factors[0].base == 2 and factors[0].exp == 2
