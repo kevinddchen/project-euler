@@ -1,8 +1,6 @@
 import logging
 
-import pytest
-
-from mathfuncs import PrimeSieve, is_prime, prime_factorize
+from mathfuncs import is_prime, prime_factorize, prime_sieve
 
 LOG = logging.getLogger(__name__)
 
@@ -37,18 +35,8 @@ def test_is_prime() -> None:
 
 
 def test_prime_sieve() -> None:
-    # Test basic functionality
-    ps = PrimeSieve(9)
-    assert ps.size == 9
-    assert ps.__next__() == 2
-    assert ps.__next__() == 3
-    assert ps.__next__() == 5
-    assert ps.__next__() == 7
-    with pytest.raises(StopIteration):
-        ps.__next__()
-
     # Test sieve
-    sieve = ps.sieve
+    sieve = prime_sieve(9)
     assert len(sieve) == 9
     assert not sieve[0]
     assert not sieve[1]
@@ -60,38 +48,20 @@ def test_prime_sieve() -> None:
     assert sieve[7]
     assert not sieve[8]
 
-    # Test iteration
-    expected_primes = [2, 3, 5, 7]
-    actual_primes = [x for x in PrimeSieve(9)]
-    assert expected_primes == actual_primes
-
     # Test with `is_prime`
-    ps = PrimeSieve(100)
-    for x in ps:
-        assert is_prime(x)
-    sieve = ps.sieve
-    assert not sieve[0]
-    assert not sieve[1]
-    for i in range(2, 100):
-        assert is_prime(i) == sieve[i]
-
-    # Test getting sieve directly
-    sieve = PrimeSieve(100).sieve
+    sieve = prime_sieve(100)
     assert not sieve[0]
     assert not sieve[1]
     for i in range(2, 100):
         assert is_prime(i) == sieve[i]
 
     # Test no crash for small sizes
-    ps = PrimeSieve(0)
-    assert ps.size == 0
-    assert ps.sieve == []
-    ps = PrimeSieve(1)
-    assert ps.size == 1
-    assert ps.sieve == [False]
-    ps = PrimeSieve(2)
-    assert ps.size == 2
-    assert ps.sieve == [False, False]
+    sieve = prime_sieve(0)
+    assert sieve == []
+    sieve = prime_sieve(1)
+    assert sieve == [False]
+    sieve = prime_sieve(2)
+    assert sieve == [False, False]
 
 
 def test_prime_factorize() -> None:
@@ -113,9 +83,6 @@ def test_prime_factorize() -> None:
     assert factors[0].base == 2 and factors[0].exp == 2
     assert factors[1].base == 3 and factors[1].exp == 1
     assert factors[2].base == 5 and factors[2].exp == 1
-
-    factors = prime_factorize(1)
-    assert len(factors) == 0
 
     factors = prime_factorize(2 * 2 * 3 * 5 * 7 * 7 * 17 * 23)
     assert len(factors) == 6

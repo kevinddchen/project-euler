@@ -18,9 +18,9 @@ fi
 
 DIR=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
 
-SRC=$DIR/src/solutions
-BIN=$DIR/bin
-FILES=$DIR/files
+SRC=src/solutions
+BIN=bin
+FILES=files
 NUM=$1
 
 if [[ $NUM = "tests" ]]; then
@@ -40,7 +40,7 @@ elif [[ -a $SRC/p$NUM.cxx ]]; then
 elif [[ -a $SRC/p$NUM.py ]]; then
 
     echo "Running python solution #${NUM}..."
-    FILES_DIR=$FILES python -m src.solutions.run_python $NUM
+    FILES_DIR="$DIR/$FILES" python -m src.solutions.run_python $NUM
 
 else
 

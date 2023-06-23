@@ -8,7 +8,7 @@ explicitly, a = -p*10^(-k) mod q.
 
 """
 
-from mathfuncs import PrimeSieve
+from mathfuncs import prime_sieve
 
 
 def p134():
@@ -16,7 +16,9 @@ def p134():
     LIMIT = 1000000
 
     p = 0
-    for q in PrimeSieve(LIMIT + 100):  # small buffer
+    for q, is_prime in enumerate(prime_sieve(LIMIT + 100)):  # small buffer
+        if not is_prime:
+            continue
         if p > LIMIT:
             break
         if q > 5:

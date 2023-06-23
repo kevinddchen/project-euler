@@ -1,2 +1,2 @@
 from .io import read_text
-from .prime import PrimePower, PrimeSieve, is_prime, prime_factorize
+from .prime import PrimePower, is_prime, prime_factorize, prime_sieve

@@ -12,7 +12,7 @@ The five primes are 8389, 6733, 5701, 5197, and 13.
 
 """
 
-from mathfuncs import PrimeSieve
+from mathfuncs import prime_sieve
 
 SIZE = 5
 
@@ -44,7 +44,7 @@ def p60():
     conn_dicts = [{} for i in range(SIZE - 1)]
     d = 2
     while True:
-        sieve = PrimeSieve(10**d).sieve
+        sieve = prime_sieve(10**d)
 
         # generate prime pairs p, q with d total digits
         for p, p_prime in enumerate(sieve):

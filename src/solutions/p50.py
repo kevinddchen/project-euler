@@ -7,7 +7,7 @@ run up and check that it is prime.
 
 """
 
-from mathfuncs import PrimeSieve
+from mathfuncs import prime_sieve
 
 
 def gen_next_primes(p, sieve):
@@ -19,7 +19,7 @@ def gen_next_primes(p, sieve):
 
 
 def p50():
-    sieve = PrimeSieve(1000000).sieve
+    sieve = prime_sieve(1000000)
 
     M = (0, 0)
     for p, isprime in enumerate(sieve):

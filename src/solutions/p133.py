@@ -9,7 +9,7 @@ For for each p, we iterate through n until the gcd does not change.
 
 from math import gcd
 
-from mathfuncs import PrimeSieve, prime_factorize
+from mathfuncs import prime_factorize, prime_sieve
 
 
 def totient(x):
@@ -30,4 +30,8 @@ def possible(p):
 
 
 def p133():
-    return sum(p for p in PrimeSieve(100000) if p < 7 or not possible(p))
+    total = 0
+    for p, is_prime in enumerate(prime_sieve(100000)):
+        if is_prime and (p < 7 or not possible(p)):
+            total += p
+    return total

@@ -1,6 +1,6 @@
 # ANSWER 2944730
 
-from mathfuncs import PrimeSieve
+from mathfuncs import prime_sieve
 
 
 def recurse(primes, limit, prod=1, i=0):
@@ -13,5 +13,5 @@ def recurse(primes, limit, prod=1, i=0):
 
 
 def p204():
-    primes = [p for p in PrimeSieve(100)]
+    primes = [p for p, is_prime in enumerate(prime_sieve(100)) if is_prime]
     return recurse(primes, 10**9)
