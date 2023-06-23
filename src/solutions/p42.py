@@ -1,6 +1,6 @@
 # ANSWER 162
 
-from pathlib import Path
+from mathfuncs import read_text
 
 
 def convert_to_int(word):
@@ -14,7 +14,6 @@ def is_triangle(x):
 
 
 def p42():
-    fl = Path(__file__).parent / "../files/words.txt"
-    lst = fl.read_text().split(",")
-    lst = [convert_to_int(word) for word in lst]
+    text = read_text("words.txt")
+    lst = [convert_to_int(word) for word in text.split(",")]
     return sum(1 for x in lst if is_triangle(x))

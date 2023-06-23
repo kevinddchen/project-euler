@@ -2,9 +2,9 @@
 
 import heapq
 from functools import cached_property
-from pathlib import Path
 
 import numpy as np
+from mathfuncs import read_text
 
 
 class SudokuInputError(Exception):
@@ -234,12 +234,15 @@ def _get_major(major_idx, mode):
             yield (i, j)
 
 
-def read_puzzles(filename=Path(__file__).parent / "../files/sudoku.txt"):
-    with open(filename) as f:
-        while f.readline():  # simultaneously checks for EOF and removes header
+def read_puzzles():
+    text = read_text("sudoku.txt")
+    lines = text.splitlines()
+    while lines:
+        line = lines.pop(0)
+        if line:
             arr = []
             for _ in range(9):
-                x = f.readline()
+                x = lines.pop(0)
                 x = x.strip("\n")
                 x = [int(c) for c in x]
                 arr.append(x)

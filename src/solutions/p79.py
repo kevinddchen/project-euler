@@ -8,7 +8,7 @@ This method is guaranteed to work with non-repeating digits.
 
 """
 
-from pathlib import Path
+from mathfuncs import read_text
 
 
 def pop_longest_list(d):
@@ -20,8 +20,8 @@ def pop_longest_list(d):
 def p79():
     # Create graph
     dct = {}
-    fl = Path(__file__).parent / "../files/keylog.txt"
-    for line in fl.read_text().splitlines():
+    text = read_text("keylog.txt")
+    for line in text.splitlines():
         a, b, c = [int(x) for x in line.strip("\n")]
         for x in a, b, c:
             if x not in dct:

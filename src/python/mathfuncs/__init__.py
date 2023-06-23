@@ -1,1 +1,2 @@
-from mathfuncs.core import PrimePower, PrimeSieve, is_prime, prime_factorize
+from .io import read_text
+from .prime import PrimePower, PrimeSieve, is_prime, prime_factorize

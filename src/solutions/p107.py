@@ -8,7 +8,7 @@ that do not combine two trees, until the graph is connected.
 
 """
 
-from pathlib import Path
+from mathfuncs import read_text
 
 
 def merge_trees(forest, t1, t2):
@@ -20,8 +20,8 @@ def merge_trees(forest, t1, t2):
 def p107():
     # get edges and store in list
     edges = []
-    fl = Path(__file__).parent / "../files/network.txt"
-    for i, line in enumerate(fl.read_text().splitlines()):
+    text = read_text("network.txt")
+    for i, line in enumerate(text.splitlines()):
         for j, x in enumerate(line.split(",")):
             if j > i and x != "-":
                 edges.append((int(x), i, j))

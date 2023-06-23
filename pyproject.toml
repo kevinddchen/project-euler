@@ -20,6 +20,7 @@ dev = [
 ]
 
 [tool.setuptools.packages.find]
+where = ["src/python"]
 include = ["mathfuncs*"]
 
 [tool.black]
