@@ -9,7 +9,7 @@ Find the first pattern that satisifes the conditions in the problem.
 
 from itertools import product
 
-from mathfuncs import PrimeSieve
+from mathfuncs import prime_sieve
 
 
 def replace(tup, x, y):
@@ -38,7 +38,7 @@ def p51():
     digits = 2
     while True:
         # generate primes up to 10^digits
-        sieve = PrimeSieve(10**digits).sieve
+        sieve = prime_sieve(10**digits)
 
         # generate patterns
         for pattern in product("0123456789*", repeat=digits):

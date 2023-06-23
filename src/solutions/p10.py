@@ -11,8 +11,8 @@ to sqrt(N), we generate all primes less than or equal to N.
 
 """
 
-from mathfuncs import PrimeSieve
+from mathfuncs import prime_sieve
 
 
 def p10():
-    return sum(n for n in PrimeSieve(2000000))
+    return sum(n for n, is_prime in enumerate(prime_sieve(2000000)) if is_prime)

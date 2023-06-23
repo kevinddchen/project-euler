@@ -8,7 +8,7 @@ is equal to the number of carries when m is added to n-m in base p.
 
 """
 
-from mathfuncs import PrimeSieve
+from mathfuncs import prime_sieve
 
 
 def choose_greatest_power(m, n, p):
@@ -34,6 +34,7 @@ def choose_greatest_power(m, n, p):
 def p231():
     m, n = 2 * 10**7, 5 * 10**6
     s = 0
-    for p in PrimeSieve(m):
-        s += choose_greatest_power(m, n, p) * p
+    for p, is_prime in enumerate(prime_sieve(m)):
+        if is_prime:
+            s += choose_greatest_power(m, n, p) * p
     return s

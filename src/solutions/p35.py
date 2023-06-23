@@ -1,6 +1,6 @@
 # ANSWER 55
 
-from mathfuncs import PrimeSieve
+from mathfuncs import prime_sieve
 
 
 def circular(n, sieve):
@@ -13,5 +13,5 @@ def circular(n, sieve):
 
 
 def p35():
-    sieve = PrimeSieve(1000000).sieve
+    sieve = prime_sieve(1000000)
     return sum(1 for p, isprime in enumerate(sieve) if isprime and circular(p, sieve))

@@ -10,7 +10,7 @@ a prime and permutation.
 
 from itertools import permutations
 
-from mathfuncs import PrimeSieve
+from mathfuncs import prime_sieve
 
 
 def is_permutation(a, b):
@@ -18,7 +18,7 @@ def is_permutation(a, b):
 
 
 def p49():
-    sieve = PrimeSieve(10000).sieve
+    sieve = prime_sieve(10000)
 
     for p, isprime in enumerate(sieve):
         # search for 4 digit primes
