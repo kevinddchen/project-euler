@@ -6,7 +6,7 @@ We check that the cross-products of the points in order have the same sign.
 
 """
 
-from pathlib import Path
+from mathfuncs import read_text
 
 
 def cross(a, b):
@@ -15,8 +15,8 @@ def cross(a, b):
 
 def p102():
     count = 0
-    fl = Path(__file__).parent / "../files/triangles.txt"
-    for line in fl.read_text().splitlines():
+    text = read_text("triangles.txt")
+    for line in text.splitlines():
         line = line.split(",")
         A = (int(line[0]), int(line[1]))
         B = (int(line[2]), int(line[3]))

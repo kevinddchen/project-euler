@@ -9,7 +9,7 @@ distance.
 
 """
 
-from pathlib import Path
+from mathfuncs import read_text
 
 
 def directions(i, j, dim):
@@ -25,8 +25,8 @@ def directions(i, j, dim):
 
 def p83():
     # get matrix
-    fl = Path(__file__).parent / "../files/matrix.txt"
-    M = [[int(x) for x in line.split(",")] for line in fl.read_text().splitlines()]
+    text = read_text("matrix.txt")
+    M = [[int(x) for x in line.split(",")] for line in text.splitlines()]
 
     dim = len(M)
     # distance matrix

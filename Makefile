@@ -1,17 +1,17 @@
 CC = g++
-CFLAGS = -I./include -Wall -std=c++17 -O2
-SRC = ./src
+CFLAGS = -I./src/cpp/include -Wall -std=c++17 -O2
+SRC = ./src/solutions
 BIN = ./bin
-TST = ./tests
+TESTS = ./tests
 # automatically recognize binaries corresponding to `.cxx` source files
 TARGETS = $(patsubst $(SRC)/%.cxx,$(BIN)/%,$(wildcard $(SRC)/p*.cxx))
-TESTS = $(patsubst $(TST)/%.cxx,$(BIN)/%,$(wildcard $(TST)/*.cxx))
+TEST_TARGETS = $(patsubst $(TESTS)/%.cxx,$(BIN)/%,$(wildcard $(TESTS)/*.cxx))
 
 .PHONY: all clean
 
-all: $(TARGETS) $(TESTS)
+all: $(TARGETS) $(TESTS_TARGETS)
 
-$(BIN)/test_mathfuncs: $(TST)/test_mathfuncs.cxx
+$(BIN)/test_mathfuncs: $(TESTS)/test_mathfuncs.cxx
 	@mkdir -p $(@D)
 	$(CC) $< -o $@ $(CFLAGS)
 

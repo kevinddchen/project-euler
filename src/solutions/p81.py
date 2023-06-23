@@ -7,14 +7,14 @@ through each cell and replace its value with the lowest sum to reach that cell.
 
 """
 
-from pathlib import Path
+from mathfuncs import read_text
 
 
 def p81():
     # get matrix
     M = []
-    fl = Path(__file__).parent / "../files/matrix.txt"
-    for line in fl.read_text().splitlines():
+    text = read_text("matrix.txt")
+    for line in text.splitlines():
         M.append([int(x) for x in line.split(",")])
 
     # find least-sum path

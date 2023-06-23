@@ -1,6 +1,6 @@
 # ANSWER 871198282
 
-from pathlib import Path
+from mathfuncs import read_text
 
 
 def score(name):
@@ -9,6 +9,6 @@ def score(name):
 
 
 def p22():
-    fl = Path(__file__).parent / "../files/names.txt"
-    lst = [x.strip('"') for x in fl.read_text().split(",")]
+    text = read_text("names.txt")
+    lst = [x.strip('"') for x in text.split(",")]
     return sum(score(name) * (i + 1) for i, name in enumerate(sorted(lst)))

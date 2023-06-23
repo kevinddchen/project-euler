@@ -23,7 +23,7 @@ Straight Flush:     9   | Single | -      | -      | -      | -      |
 
 """
 
-from pathlib import Path
+from mathfuncs import read_text
 
 
 def score(hand):
@@ -104,8 +104,8 @@ def decompose(values):
 
 def p54():
     count = 0
-    fl = Path(__file__).parent / "../files/poker.txt"
-    for line in fl.read_text().splitlines():
+    text = read_text("poker.txt")
+    for line in text.splitlines():
         line = line.strip().split(" ")
         hand1, hand2 = line[:5], line[5:]
         if score(hand1) > score(hand2):

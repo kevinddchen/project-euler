@@ -6,12 +6,12 @@ Same method as problem 18. Start from the bottom and work upwards.
 
 """
 
-from pathlib import Path
+from mathfuncs import read_text
 
 
 def p67():
-    fl = Path(__file__).parent / "../files/triangle.txt"
-    m = [[int(x) for x in line.split(" ")] for line in fl.read_text().splitlines()]
+    text = read_text("triangle.txt")
+    m = [[int(x) for x in line.split(" ")] for line in text.splitlines()]
 
     for i in range(len(m) - 2, -1, -1):
         for j in range(len(m[i])):

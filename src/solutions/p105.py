@@ -6,7 +6,7 @@ Brute force. Not really any other choice.
 
 """
 
-from pathlib import Path
+from mathfuncs import read_text
 
 
 def no_equal_sums(lst, s=0, changes=0):
@@ -30,8 +30,8 @@ def order(lst):
 
 
 def p105():
-    fl = Path(__file__).parent / "../files/sets.txt"
-    allSets = fl.read_text().splitlines()
+    text = read_text("sets.txt")
+    allSets = text.splitlines()
 
     s = 0
     for raw_set in allSets:

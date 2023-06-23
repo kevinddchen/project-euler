@@ -6,21 +6,21 @@ show_help () {
     echo "Run Project Euler solutions"
     echo "==========================="
     echo
-    echo "To run a problem:     ./$(basename $0) 123"
+    echo "To run a problem: ./$(basename $0) 123"
     echo "To run tests:     ./$(basename $0) tests"
     echo
 }
 
-if [[ -z "$1" ]]; then
+if [[ $# -ne 1 ]]; then
     show_help
     exit 1
 fi
 
 DIR=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
-cd $DIR
 
-SRC=src
-BIN=bin
+SRC=$DIR/src/solutions
+BIN=$DIR/bin
+FILES=$DIR/files
 NUM=$1
 
 if [[ $NUM = "tests" ]]; then
@@ -40,11 +40,11 @@ elif [[ -a $SRC/p$NUM.cxx ]]; then
 elif [[ -a $SRC/p$NUM.py ]]; then
 
     echo "Running python solution #${NUM}..."
-    python -m $SRC $NUM
+    FILES_DIR=$FILES python -m src.solutions.run_python $NUM
 
 else
 
-    >&2 echo "No solution found for '${NUM}'."
+    >&2 echo "Error: No solution found for '${NUM}'."
     show_help
     exit 1
 

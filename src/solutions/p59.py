@@ -9,7 +9,7 @@ to be correct. The key is 'god' and the encrypted text is John 1:1-14
 
 """
 
-from pathlib import Path
+from mathfuncs import read_text
 
 
 def key_gen():
@@ -31,8 +31,8 @@ def xor_decode(encrypted, password):
 
 
 def p59():
-    fl = Path(__file__).parent / "../files/cipher.txt"
-    raw = [int(x) for x in fl.read_text().split(",")]
+    text = read_text("cipher.txt")
+    raw = [int(x) for x in text.split(",")]
 
     maxim = (0, (), "")
     for key in key_gen():

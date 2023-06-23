@@ -20,6 +20,7 @@ dev = [
 ]
 
 [tool.setuptools.packages.find]
+where = ["src/python"]
 include = ["mathfuncs*"]
 
 [tool.black]
@@ -30,3 +31,4 @@ include = '\.pyi?$'
 [tool.isort]
 line_length = 120
 profile = "black"
+known_first_party = ["mathfuncs"]
