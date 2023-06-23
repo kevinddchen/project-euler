@@ -4,6 +4,7 @@ import heapq
 from functools import cached_property
 
 import numpy as np
+
 from mathfuncs import read_text
 
 

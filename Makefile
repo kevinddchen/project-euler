@@ -1,13 +1,10 @@
 CC = g++
-CFLAGS = -I$(LIB) -Wall -std=c++17 -O2
-
-LIB = ./src/cpp/include
+CFLAGS = -I./src/cpp/include -Wall -std=c++17 -O2
+SRC = ./src/solutions
 BIN = ./bin
-SOLS = ./src/solutions
 TESTS = ./tests
-
 # automatically recognize binaries corresponding to `.cxx` source files
-TARGETS = $(patsubst $(SOLS)/%.cxx,$(BIN)/%,$(wildcard $(SOLS)/p*.cxx))
+TARGETS = $(patsubst $(SRC)/%.cxx,$(BIN)/%,$(wildcard $(SRC)/p*.cxx))
 TEST_TARGETS = $(patsubst $(TESTS)/%.cxx,$(BIN)/%,$(wildcard $(TESTS)/*.cxx))
 
 .PHONY: all clean
@@ -18,7 +15,7 @@ $(BIN)/test_mathfuncs: $(TESTS)/test_mathfuncs.cxx
 	@mkdir -p $(@D)
 	$(CC) $< -o $@ $(CFLAGS)
 
-$(BIN)/%: $(SOLS)/%.cxx
+$(BIN)/%: $(SRC)/%.cxx
 	@mkdir -p $(@D)
 	$(CC) $< -o $@ $(CFLAGS)
 

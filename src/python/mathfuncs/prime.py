@@ -4,7 +4,7 @@ from typing import Iterator
 
 def is_prime(n: int, /) -> bool:
     """
-    Checks if input is a prime number. Runs in O(sqrt(n)) time.
+    Checks if input is a prime number. Runs in O(sqrt(x)) time.
 
     Args:
         n: Integer greater than 1.

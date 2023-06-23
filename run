@@ -18,12 +18,10 @@ fi
 
 DIR=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
 
-SOLS=$DIR/src/solutions
+SRC=$DIR/src/solutions
 BIN=$DIR/bin
 FILES=$DIR/files
 NUM=$1
-
-echo $FILES
 
 if [[ $NUM = "tests" ]]; then
 
@@ -33,13 +31,13 @@ if [[ $NUM = "tests" ]]; then
     echo "Running python tests..."
     pytest
 
-elif [[ -a $SOLS/p$NUM.cxx ]]; then
+elif [[ -a $SRC/p$NUM.cxx ]]; then
 
     make $BIN/p$NUM
     echo "Running c++ solution #${NUM}..."
     $BIN/p$NUM
 
-elif [[ -a $SOLS/p$NUM.py ]]; then
+elif [[ -a $SRC/p$NUM.py ]]; then
 
     echo "Running python solution #${NUM}..."
     FILES_DIR=$FILES python -m src.solutions.run_python $NUM
