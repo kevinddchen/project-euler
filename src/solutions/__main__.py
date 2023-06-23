@@ -10,7 +10,7 @@ def _get_args() -> argparse.Namespace:
     return parser.parse_args()
 
 
-def _get_problem_function(num: str) -> Callable[[], Any]:
+def _get_problem_function(num: int) -> Callable[[], Any]:
     """Gets the `p{num}` function from the `p{num}.py` file."""
     name = f"p{num}"
     module = import_module(f".{name}", package=__package__)
