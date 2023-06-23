@@ -1,10 +1,9 @@
 from dataclasses import dataclass
-from typing import Iterator
 
 
 def is_prime(n: int, /) -> bool:
     """
-    Checks if input is a prime number. Runs in O(sqrt(x)) time.
+    Checks if input is a prime number. Runs in O(sqrt(n)) time.
 
     Args:
         n: Integer greater than 1.
@@ -25,49 +24,34 @@ def is_prime(n: int, /) -> bool:
     return True
 
 
-class PrimeSieve:
+def prime_sieve(size: int, /) -> list[bool]:
     """
-    Generate all primes up to (but not including) the specified size. This is
-    done by maintaining a prime sieve, i.e. a list of boolean values where the
-    nth entry, for n > 1, is True when n is prime. If you just want the prime
-    sieve, use the `sieve` property.
+    Creates a prime sieve, i.e. a list of boolean values where the nth entry,
+    for n > 1, is True when n is prime.
 
     Note: 0 and 1 are not considered prime in the sieve.
 
     Args:
         size: Positive integer.
+
+    Returns:
+        List of boolean values.
     """
+    assert size >= 0, "size must be non-negative"
 
-    def __init__(self, size: int) -> None:
-        self.size = size
-        self._sieve = [True for _ in range(size)]
-        if size > 0:
-            self._sieve[0] = False
-        if size > 1:
-            self._sieve[1] = False
-        self._x = 2  # tracks current prime
+    sieve = [True for _ in range(size)]
+    if size > 0:
+        sieve[0] = False
+    if size > 1:
+        sieve[1] = False
 
-    def __next__(self) -> int:
-        while self._x < self.size:
-            try:
-                x = self._x
-                if self._sieve[x]:
-                    for y in range(x * x, self.size, x):  # sieve out all multiples
-                        self._sieve[y] = False
-                    return x
-            finally:
-                self._x += 1
-        raise StopIteration
-
-    def __iter__(self) -> Iterator[int]:
-        return self
-
-    @property
-    def sieve(self) -> list[bool]:
-        """Returns the sieve as a list of booleans."""
-        for _ in self:  # Generate all primes
-            pass
-        return self._sieve
+    i = 2
+    while i * i < size:
+        if sieve[i]:
+            for j in range(i * i, size, i):  # sieve out all multiples
+                sieve[j] = False
+        i += 1
+    return sieve
 
 
 @dataclass
