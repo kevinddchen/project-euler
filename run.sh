@@ -6,12 +6,12 @@ show_help () {
     echo "Run Project Euler solutions"
     echo "==========================="
     echo
-    echo "To run a problem:     ./$(basename $0) 123"
+    echo "To run a problem: ./$(basename $0) 123"
     echo "To run tests:     ./$(basename $0) tests"
     echo
 }
 
-if [[ -z "$1" ]]; then
+if [[ $# -ne 1 ]]; then
     show_help
     exit 1
 fi
