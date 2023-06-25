@@ -58,7 +58,6 @@ bool check_limit(long a, long b, long c)
 struct Node {
     long product;
     int prime_idx;
-    int num_children = 0;
 };
 
 /**
@@ -73,39 +72,29 @@ long dfs(long limit, const std::vector<long> primes)
     stack.push_back({1, 0});
 
     while (!stack.empty()) {
-        Node& node = stack.back();
+        const Node node = stack.back();
+        stack.pop_back();
 
-        if (node.num_children == 0) {  // left child
-            node.num_children++;
-
-            // multiply by p or p^3
-            long p = primes[node.prime_idx];
-            if (node.product % p != 0) {
-                p = p * p * p;
-            } else {
-                // product is a newly encountered cube-full number
-                sum += limit / node.product;
-            }
-
-            if (!check_limit(node.product, p, limit)) {
-                stack.pop_back();
-                continue;
-            }
-
-            const Node left_child = {node.product * p, node.prime_idx};
-            stack.push_back(left_child);
-
-        } else if (node.num_children == 1) {  // right child
-            node.num_children++;
-
-            // next prime
-            if (node.prime_idx + 1 < primes.size()) {
-                const Node right_child = {node.product, node.prime_idx + 1};
-                stack.push_back(right_child);
-            }
-
+        // left child: multiply by p or p^3
+        long p = primes[node.prime_idx];
+        if (node.product % p != 0) {
+            p = p * p * p;
         } else {
-            stack.pop_back();
+            // `node.product` is a newly encountered cube-full number
+            sum += limit / node.product;
+        }
+
+        if (!check_limit(node.product, p, limit)) {
+            continue;
+        }
+
+        const Node left_child = {node.product * p, node.prime_idx};
+        stack.push_back(left_child);
+
+        // right child: next prime
+        if (node.prime_idx + 1 < primes.size()) {
+            const Node right_child = {node.product, node.prime_idx + 1};
+            stack.push_back(right_child);
         }
     }
     return sum;
