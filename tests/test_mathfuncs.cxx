@@ -228,6 +228,29 @@ void test_modular_power()
     printf("Done!\n");
 }
 
+void test_pow()
+{
+    printf("Testing `pow()`... ");
+
+    assert(mf::pow(2, 5) == 32);
+    assert(mf::pow(3, 7) == 2187);
+    assert(mf::pow(12, 12) == 8916100448256);
+    assert(mf::pow(101, 8) == 10828567056280801);
+
+    assert(mf::pow(0, 0) == 1);
+    assert(mf::pow(2, 0) == 1);
+    assert(mf::pow(0, 2) == 0);
+    assert(mf::pow(1, 1000) == 1);
+
+    assert(mf::pow(-3, 7) == -2187);
+    assert(mf::pow(-3, 8) == 6561);
+    assert(mf::pow(-12, 12) == 8916100448256);
+    assert(mf::pow(-12, 13) == -106993205379072);
+    assert(mf::pow(-101, 8) == 10828567056280801);
+
+    printf("Done!\n");
+}
+
 void test_round()
 {
     printf("Testing `round()`... ");
@@ -326,6 +349,7 @@ int main()
     test_extended_gcd();
     test_modular_inverse();
     test_modular_power();
+    test_pow();
     test_round();
     test_vec2();
     test_mat2();

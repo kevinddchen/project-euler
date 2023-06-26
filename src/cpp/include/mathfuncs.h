@@ -229,6 +229,26 @@ long modular_power(long a, long b, long m)
 }
 
 /**
+ * Computes a^b, where b is a non-negative integer. (0^0 = 1 in this
+ * implementation.)
+ */
+long pow(long a, int b)
+{
+    assert(b >= 0);
+
+    long result = 1;
+    while (b > 0) {
+        if (b & 1)  // if (b % 2) == 1
+        {
+            result = result * a;
+        }
+        a = a * a;
+        b >>= 1;
+    }
+    return result;
+}
+
+/**
  * Round a float to a certain number of decimal places
  */
 double round(double arg, uint32_t n_decimals)
