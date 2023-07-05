@@ -5,15 +5,23 @@
 These are my solutions to [Project Euler](https://projecteuler.net/) problems.
 Please do not blindly copy numerical answers.
 
+Most of the older solutions are written in Python, and most of the newer solutions are written in C++.
+
+---
+
+## Running solutions
+
 Clone this repo and install the Python package containing commonly used mathematical functions by running the commands below.
 This will also install third-party Python dependencies that are used in some of the solutions.
-Note that we use Python version >= 3.9.
+Note that we use Python version `>=3.9`.
 
 ```bash
 git clone https://github.com/kevinddchen/project-euler.git
 cd project-euler
 pip install .
 ```
+
+For C++, we are using the `C++17` standard without any third-party libraries.
 
 To run any solution, run the following command,
 
@@ -22,9 +30,7 @@ To run any solution, run the following command,
 ```
 
 where `$NUM` is the problem number.
-If the solution is written in Python, this will run the code using the command `python -m src.solutions.run_python $NUM`.
 If the solution is written in C++, this will compile and run the code.
-We are using the `C++17` standard.
 
 [EulerSolutions.pdf](docs/EulerSolutions.pdf) contains write-ups for problems that can be solved by hand.
 
