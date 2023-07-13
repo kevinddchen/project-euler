@@ -60,10 +60,10 @@ void test_prime_sieve()
     assert(!sieve[8]);
 
     // Test using `is_prime`
-    sieve = mf::prime_sieve(100);
+    sieve = mf::prime_sieve(1000);
     assert(!sieve[0]);
     assert(!sieve[1]);
-    for (int i = 2; i < 100; i++) {
+    for (int i = 2; i < 1000; i++) {
         assert(mf::is_prime(i) == sieve[i]);
     }
 
@@ -94,14 +94,15 @@ void test_prime_factor_sieve()
     assert(sieve[8] == 2);
 
     // Test using `is_prime` and divisibility
-    sieve = mf::prime_factor_sieve(100);
+    sieve = mf::prime_factor_sieve(1000);
     assert(sieve[0] == 0);
     assert(sieve[1] == 0);
-    for (int i = 2; i < 100; i++) {
+    for (int i = 2; i < 1000; i++) {
         if (mf::is_prime(i)) {
             assert(sieve[i] == i);
+        } else {
+            assert(i % sieve[i] == 0);
         }
-        assert(i % sieve[i] == 0);
     }
 
     // Test no crash for small sizes
@@ -155,9 +156,9 @@ void test_prime_factorize_with_sieve()
     printf("Testing `prime_factorize(int, int*)`... ");
 
     // we assume that the normal prime_factorize works
-    auto sieve = mf::prime_factor_sieve(100);
+    auto sieve = mf::prime_factor_sieve(1000);
 
-    for (int i = 2; i < 100; i++) {
+    for (int i = 2; i < 1000; i++) {
         auto factors = mf::prime_factorize(i, sieve.get());
         auto exp_factors = mf::prime_factorize(i);
         for (int j = 0; j < factors.size(); j++) {
@@ -224,6 +225,9 @@ void test_modular_power()
     assert(mf::modular_power(-12, 5, 7) == 4);
     assert(mf::modular_power(-759, 46, 999) == 891);
     assert(mf::modular_power(-930, 420, 999) == 729);
+
+    // test for large mods
+    assert(mf::modular_power(2, 64, 4294967311) == 225);
 
     printf("Done!\n");
 }

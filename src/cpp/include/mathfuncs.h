@@ -8,6 +8,38 @@
 
 #include <cmath>
 
+namespace
+{
+
+/**
+ * Compute modular product.
+ * @param a non-negative integer, less than m.
+ * @param b non-negative integer, less than m.
+ * @param m integer, greater than 1
+ */
+long modular_product(long a, long b, long m)
+{
+    // if mod is small enough, can directly multiply
+    if (m <= INT_MAX) {
+        return (a * b) % m;
+    }
+
+    // otherwise, we have to use an algorithm similar to `modular_power`
+    long result = 0;
+    while (b > 0) {
+        if (b & 1) {  // if (b % 2) == 1
+            result = (result + a) % m;
+        }
+        a = (2 * a) % m;
+        b >>= 1;
+    }
+    return result;
+}
+
+}  // namespace
+
+// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
 namespace mf
 {
 
@@ -216,13 +248,13 @@ long modular_power(long a, long b, long m)
     assert(b >= 0);
     assert(m > 1);
 
-    long result = 1, base = ((a % m) + m) % m;
+    long result = 1;
+    a = ((a % m) + m) % m;
     while (b > 0) {
-        if (b & 1)  // if (b % 2) == 1
-        {
-            result = (result * base) % m;
+        if (b & 1) {  // if (b % 2) == 1
+            result = modular_product(result, a, m);
         }
-        base = (base * base) % m;
+        a = modular_product(a, a, m);
         b >>= 1;
     }
     return result;
