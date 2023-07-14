@@ -228,6 +228,7 @@ void test_modular_power()
 
     // test for large mods
     assert(mf::modular_power(2, 64, 4294967311) == 225);
+    assert(mf::modular_power(999, 999, 100000000003) == 98562815202);
 
     printf("Done!\n");
 }
