@@ -49,10 +49,10 @@ def test_prime_sieve() -> None:
     assert not sieve[8]
 
     # Test with `is_prime`
-    sieve = prime_sieve(100)
+    sieve = prime_sieve(1000)
     assert not sieve[0]
     assert not sieve[1]
-    for i in range(2, 100):
+    for i in range(2, 1000):
         assert is_prime(i) == sieve[i]
 
     # Test no crash for small sizes
