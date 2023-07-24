@@ -292,20 +292,23 @@ double round(double arg, uint32_t n_decimals)
 /**
  * Lagged Fibonacci Generator. Used in various problems.
  */
-struct LaggedFibGen {
+class LaggedFibGen
+{
     int buffer[55];
     int jmod55;  // j = k-1
 
+public:
     LaggedFibGen()
     {
-        for (int j = 0; j < 55; j++)
-            buffer[j] = (100003L - 200003L * (j + 1) + 300007L * (j + 1) * (j + 1) * (j + 1)) % 1000000;
+        for (int k = 1; k <= 55; k++) {
+            buffer[k - 1] = (100003L - 200003L * k + 300007L * k * k * k) % 1000000;
+        }
         jmod55 = 0;
     }
 
     int next()
     {
-        int return_val = buffer[jmod55];
+        const int return_val = buffer[jmod55];
         buffer[jmod55] = (buffer[jmod55] + buffer[(jmod55 + 31) % 55]) % 1000000;
         jmod55 = (jmod55 + 1) % 55;
         return return_val;
