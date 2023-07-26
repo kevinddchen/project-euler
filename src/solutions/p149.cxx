@@ -76,15 +76,14 @@ std::vector<int> get_back_slash(int col_minus_row, const int* grid, int size)
  */
 long find_max_subsum(const std::vector<int>& list)
 {
-    long local_max = 0;
-    long max_sum = list[0];
-    for (int i = 0; i < list.size(); i++) {
-        local_max = std::max(0L, local_max + list[i]);
-        if (local_max > max_sum) {
-            max_sum = local_max;
-        }
+    assert(list.size() > 0);
+    long max_using_last = list[0];
+    long max = list[0];
+    for (int i = 1; i < list.size(); i++) {
+        max_using_last = std::max(0L, max_using_last) + list[i];
+        max = std::max(max, max_using_last);
     }
-    return max_sum;
+    return max;
 }
 
 long p149()
