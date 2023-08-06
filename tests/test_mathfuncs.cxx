@@ -40,6 +40,10 @@ void test_is_prime()
     assert(!mf::is_prime(2147483655));
     assert(!mf::is_prime(2147483657));
     assert(mf::is_prime(2147483659));
+    assert(!mf::is_prime(1));
+    assert(!mf::is_prime(0));
+    assert(!mf::is_prime(-1));
+    assert(!mf::is_prime(-2));
 
     printf("Done!\n");
 }
@@ -165,6 +169,27 @@ void test_prime_factorize_with_sieve()
             assert(factors[j] == exp_factors[j]);
         }
     }
+
+    printf("Done!\n");
+}
+
+void test_merge_prime_factors()
+{
+    printf("Testing `merge_prime_factors()`... ");
+
+    std::vector<mf::PrimePower> factors1 = {{2, 2}, {3, 1}, {7, 1}};
+    std::vector<mf::PrimePower> factors2 = {{3, 2}, {5, 1}};
+
+    std::vector<mf::PrimePower> merged = mf::merge_prime_factors(factors1, factors2);
+    assert(merged.size() == 4);
+    assert(merged[0].base == 2);
+    assert(merged[0].exp == 2);
+    assert(merged[1].base == 3);
+    assert(merged[1].exp == 3);
+    assert(merged[2].base == 5);
+    assert(merged[2].exp == 1);
+    assert(merged[3].base == 7);
+    assert(merged[3].exp == 1);
 
     printf("Done!\n");
 }
@@ -351,6 +376,7 @@ int main()
     test_prime_factor_sieve();
     test_prime_factorize();
     test_prime_factorize_with_sieve();
+    test_merge_prime_factors();
     test_extended_gcd();
     test_modular_inverse();
     test_modular_power();

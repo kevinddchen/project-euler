@@ -12,12 +12,12 @@ namespace
 {
 
 /**
- * Compute modular product.
+ * Compute modular product (a * b) % m.
  * @param a non-negative integer, less than m.
  * @param b non-negative integer, less than m.
- * @param m integer, greater than 1
+ * @param m integer, greater than 1.
  */
-long modular_product(long a, long b, long m)
+long _modular_product(long a, long b, long m)
 {
     // if mod is small enough, can directly multiply
     if (m <= INT_MAX) {
@@ -44,31 +44,30 @@ namespace mf
 {
 
 /**
- * Given an integer n > 1, returns true if n is prime.
+ * Returns true if n is prime.
+ * @param n integer.
  */
 bool is_prime(long n)
 {
-    assert(n > 1);
-
-    if (n == 2) {
+    if (n <= 1) {
+        return false;
+    } else if (n == 2) {
         return true;
-    }
-    if (n % 2 == 0) {
+    } else if (n % 2 == 0) {
         return false;
     }
-
     for (long i = 3; i * i <= n; i += 2) {
         if (n % i == 0) {
             return false;
         }
     }
-
     return true;
 }
 
 /**
- * Creates a prime sieve, i.e. a boolean array where the nth entry, for n > 1,
- * is true when n is prime. 0 and 1 are not considered prime in the sieve.
+ * Create a prime sieve, i.e. a boolean array where the nth entry is `true`
+ * when n is prime. Note: entries n=0 and n=1 are not prime in this sieve.
+ * @param size non-negative integer; size of sieve.
  */
 std::unique_ptr<bool[]> prime_sieve(int size)
 {
@@ -92,8 +91,9 @@ std::unique_ptr<bool[]> prime_sieve(int size)
 }
 
 /**
- * Creates a sieve where the nth entry, for n > 1, is the smallest prime factor
- * of n. Entries 0 and 1 are '0'.
+ * Create a sieve where the nth entry is the smallest prime factor of n. Note:
+ * entries n=0 and n=1 are equal to `0`.
+ * @param size non-negative integer; size of sieve.
  */
 std::unique_ptr<int[]> prime_factor_sieve(int size)
 {
@@ -116,7 +116,9 @@ std::unique_ptr<int[]> prime_factor_sieve(int size)
     return sieve;
 }
 
-
+/**
+ * Simple struct containing a prime and its exponent.
+ */
 struct PrimePower {
     long base;
     int exp;
@@ -125,8 +127,10 @@ struct PrimePower {
 };
 
 /**
- * Prime factorize a positive integer, i.e. if n = p1^a1 * p2^a2 * ... * pk^ak
- * then return the list of {p, a} pairs. The p's are given in ascending order.
+ * Prime factorize an integer, i.e. if n = p1^a1 * p2^a2 * ... * pk^ak
+ * then returns the list of {p, a} pairs. The factorization given in ascending
+ * order of p.
+ * @param n integer, greater than 1.
  */
 std::vector<PrimePower> prime_factorize(long n)
 {
@@ -154,8 +158,9 @@ std::vector<PrimePower> prime_factorize(long n)
 
 
 /**
- * Prime factorize a positive integer, with the speed-up from a prime factor
- * sieve. The p's are given in ascending order.
+ * Prime factorize a positive integer with the speed-up from a prime factor
+ * sieve. The factorization is given in ascending order of p.
+ * @param n integer, greater than 1.
  */
 std::vector<PrimePower> prime_factorize(long n, const int* sieve)
 {
@@ -183,9 +188,47 @@ std::vector<PrimePower> prime_factorize(long n, const int* sieve)
 }
 
 /**
+ * Merge two lists of prime factors, each given in ascending order of p.
+ * @param facts1 first list of prime factors.
+ * @param facts2 second list of prime factors.
+ */
+std::vector<mf::PrimePower> merge_prime_factors(
+    const std::vector<mf::PrimePower>& facts1, const std::vector<mf::PrimePower>& facts2)
+{
+    auto fact1 = facts1.begin();
+    auto fact2 = facts2.begin();
+    std::vector<mf::PrimePower> out_facts;
+
+    while (fact1 != facts1.end() && fact2 != facts2.end()) {
+        if (fact1->base < fact2->base) {
+            out_facts.push_back({fact1->base, fact1->exp});
+            fact1++;
+        } else if (fact1->base == fact2->base) {
+            out_facts.push_back({fact1->base, fact1->exp + fact2->exp});
+            fact1++;
+            fact2++;
+        } else {
+            out_facts.push_back({fact2->base, fact2->exp});
+            fact2++;
+        }
+    }
+
+    // push remaining elements
+    out_facts.insert(out_facts.end(), fact1, facts1.end());
+    out_facts.insert(out_facts.end(), fact2, facts2.end());
+
+    return out_facts;
+}
+
+/**
  * Given two positive integers, a and b, computes the gcd, r, and Bezout
  * coefficients, s and t, which solve the equation: a*s + b*t = r. Uses the
  * Extended Euclidean algorithm.
+ * @param a positive integer.
+ * @param b positive integer.
+ * @param s output parameter.
+ * @param t output parameter.
+ * @param r output parameter.
  */
 void extended_gcd(long a, long b, long& s, long& t, long& r)
 {
@@ -216,9 +259,10 @@ void extended_gcd(long a, long b, long& s, long& t, long& r)
 }
 
 /**
- * Computes the multiplicative inverse of a mod m, and returns a positive
- * integer. Uses the Extended Euclidean algorithm to compute the inverse. We
- * must have a > 0 and m > 1. If a and m are not coprime, returns 0 instead.
+ * Computes the multiplicative inverse of a mod m,  If a and m are not coprime, returns 0 instead. Uses the Extended
+ * Euclidean algorithm to compute the inverse.
+ * @param a positive integer.
+ * @param m integer, greater than 1.
  */
 long modular_inverse(long a, long m)
 {
@@ -240,8 +284,11 @@ long modular_inverse(long a, long m)
 }
 
 /**
- * Computes a^b mod m, where b is a non-negative integer and m > 1.
- * (0^0 = 1 in this implementation.)
+ * Computes a^b mod m, where b is a non-negative integer and m > 1, and returns
+ * a positive integer. Note: 0^0 = 1 in this implementation.
+ * @param a integer.
+ * @param b non-negative integer.
+ * @param m integer, greater than 1.
  */
 long modular_power(long a, long b, long m)
 {
@@ -252,17 +299,19 @@ long modular_power(long a, long b, long m)
     a = ((a % m) + m) % m;
     while (b > 0) {
         if (b & 1) {  // if (b % 2) == 1
-            result = modular_product(result, a, m);
+            result = _modular_product(result, a, m);
         }
-        a = modular_product(a, a, m);
+        a = _modular_product(a, a, m);
         b >>= 1;
     }
     return result;
 }
 
 /**
- * Computes a^b, where b is a non-negative integer. (0^0 = 1 in this
- * implementation.)
+ * Computes a^b, where b is a non-negative integer. Note: 0^0 = 1 in this
+ * implementation.
+ * @param a integer.
+ * @param b non-negative integer.
  */
 long pow(long a, int b)
 {
@@ -281,7 +330,9 @@ long pow(long a, int b)
 }
 
 /**
- * Round a float to a certain number of decimal places
+ * Round a float to a certain number of decimal places.
+ * @param arg float to round.
+ * @param n_decimals number of decimal places to round to.
  */
 double round(double arg, uint32_t n_decimals)
 {

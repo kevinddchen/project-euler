@@ -41,44 +41,6 @@ ANSWER 1098988351
 
 */
 
-/*
- * Merge two lists of sorted (ascending order) prime factors.
- *
- * Taken from Problem 752.
- */
-std::vector<mf::PrimePower> merge_prime_factors(
-    const std::vector<mf::PrimePower>& facts1, const std::vector<mf::PrimePower>& facts2)
-{
-    auto fact1 = facts1.begin();
-    auto fact2 = facts2.begin();
-    std::vector<mf::PrimePower> out_facts;
-
-    while (fact1 != facts1.end() && fact2 != facts2.end()) {
-        if (fact1->base < fact2->base) {
-            out_facts.push_back({fact1->base, fact1->exp});
-            fact1++;
-        } else if (fact1->base == fact2->base) {
-            out_facts.push_back({fact1->base, fact1->exp + fact2->exp});
-            fact1++;
-            fact2++;
-        } else {
-            out_facts.push_back({fact2->base, fact2->exp});
-            fact2++;
-        }
-    }
-
-    // push remaining elements
-    while (fact1 != facts1.end()) {
-        out_facts.push_back({fact1->base, fact1->exp});
-        fact1++;
-    }
-    while (fact2 != facts2.end()) {
-        out_facts.push_back({fact2->base, fact2->exp});
-        fact2++;
-    }
-    return out_facts;
-}
-
 
 /*
  * Given m with a prime factorization m = 2^a * p1^a1 * ..., returns the
@@ -99,7 +61,7 @@ long pseudoorder_of_2(long m)
             exp_of_2 = fact.exp;
         } else {
             order *= (fact.base - 1) * pow(fact.base, fact.exp - 1);
-            tot_facts = merge_prime_factors(tot_facts, mf::prime_factorize(fact.base - 1));
+            tot_facts = mf::merge_prime_factors(tot_facts, mf::prime_factorize(fact.base - 1));
             tot_facts.push_back({fact.base, fact.exp - 1});
         }
     }
