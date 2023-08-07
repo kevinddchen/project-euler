@@ -12,7 +12,7 @@ namespace
 {
 
 /**
- * Compute modular product (a * b) % m.
+ * Compute the modular product (a * b) % m.
  * @param a non-negative integer, less than m.
  * @param b non-negative integer, less than m.
  * @param m integer, greater than 1.
