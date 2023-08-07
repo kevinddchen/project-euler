@@ -19,12 +19,12 @@ ANSWER 846910284
 
 */
 
-inline int triangle(int n) noexcept
+inline int triangle(int n)
 {
     return n * (n + 1) / 2;
 }
 
-inline int half_round_up(int n) noexcept
+inline int half_round_up(int n)
 {
     return (n + 1) / 2;
 }

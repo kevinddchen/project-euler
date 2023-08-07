@@ -40,7 +40,7 @@ public:
  * (2,0) (2,1) (2,2)        3 4 5
  * ...                      ...
  */
-inline int get_index(int row, int col) noexcept
+inline int get_index(int row, int col)
 {
     return row * (row + 1) / 2 + col;
 }

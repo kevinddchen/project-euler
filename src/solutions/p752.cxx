@@ -51,42 +51,6 @@ struct QuadInt {
 
 constexpr QuadInt<7> ONE = {1, 0};
 
-/*
- * Merge two lists of sorted (ascending order) prime factors.
- */
-std::vector<mf::PrimePower> merge_prime_factors(
-    const std::vector<mf::PrimePower>& facts1, const std::vector<mf::PrimePower>& facts2)
-{
-    auto fact1 = facts1.begin();
-    auto fact2 = facts2.begin();
-    std::vector<mf::PrimePower> out_facts;
-
-    while (fact1 != facts1.end() && fact2 != facts2.end()) {
-        if (fact1->base < fact2->base) {
-            out_facts.push_back({fact1->base, fact1->exp});
-            fact1++;
-        } else if (fact1->base == fact2->base) {
-            out_facts.push_back({fact1->base, fact1->exp + fact2->exp});
-            fact1++;
-            fact2++;
-        } else {
-            out_facts.push_back({fact2->base, fact2->exp});
-            fact2++;
-        }
-    }
-
-    // push remaining elements
-    while (fact1 != facts1.end()) {
-        out_facts.push_back({fact1->base, fact1->exp});
-        fact1++;
-    }
-    while (fact2 != facts2.end()) {
-        out_facts.push_back({fact2->base, fact2->exp});
-        fact2++;
-    }
-    return out_facts;
-}
-
 /**
  * Recall that the totient of x counts the integers a, where 0 <= a < x, that
  * do not share a non-trivial divisor with x. If x has the prime factorization
@@ -115,12 +79,12 @@ std::vector<mf::PrimePower> prime_factorize_quad_totient(long x, int* factor_sie
     std::vector<mf::PrimePower> out_facts;
     for (const auto& fact : facts) {
         if (fact.base == rad) {
-            out_facts = merge_prime_factors(out_facts, {{fact.base, 2 * fact.exp - 1}});
+            out_facts = mf::merge_prime_factors(out_facts, {{fact.base, 2 * fact.exp - 1}});
         } else {
-            out_facts = merge_prime_factors(out_facts, {{fact.base, 2 * fact.exp - 2}});
-            out_facts = merge_prime_factors(out_facts, mf::prime_factorize(fact.base + 1));
+            out_facts = mf::merge_prime_factors(out_facts, {{fact.base, 2 * fact.exp - 2}});
+            out_facts = mf::merge_prime_factors(out_facts, mf::prime_factorize(fact.base + 1));
         }
-        out_facts = merge_prime_factors(out_facts, mf::prime_factorize(fact.base - 1));
+        out_facts = mf::merge_prime_factors(out_facts, mf::prime_factorize(fact.base - 1));
     }
     return out_facts;
 }
