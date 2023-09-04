@@ -1,4 +1,5 @@
 #include "common.h"
+#include "generator.h"
 
 #include <algorithm>
 #include <array>
@@ -137,11 +138,9 @@ long p793()
     // initialize s_i and sort
     std::array<long, n> sequence;
     {
-        const long mod = 50'515'093;
-        long s = 290'797;
+        auto bbs = mf::BlumBlumShub();
         for (int i = 0; i < n; i++) {
-            sequence[i] = s;
-            s = (s * s) % mod;
+            sequence[i] = bbs.next();
         }
         std::sort(sequence.begin(), sequence.end());
     }

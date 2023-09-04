@@ -1,5 +1,6 @@
 #include "common.h"
 #include "containers.h"
+#include "generator.h"
 #include "hash.h"
 
 #include <numeric>
@@ -79,29 +80,17 @@ bool true_intersection(const LineSeg& l1, const LineSeg& l2, Intersect& intersec
 }
 
 /*
- * Generates Blum Blum Shub sequence.
- */
-struct BBSGen {
-    static const long mod = 50'515'093;
-    long s = 290'797;
-
-    BBSGen() {}
-
-    int next()
-    {
-        s = (s * s) % mod;
-        return s;
-    }
-};
-
-/*
  * Generates line segments based on the Blum Blum Shub sequence.
  */
 struct LineSegGen {
     static const long size = 500;
-    BBSGen bbs;
+    mf::BlumBlumShub bbs;
 
-    LineSegGen() {}
+    LineSegGen()
+    {
+        bbs = mf::BlumBlumShub();
+        bbs.next();  // discard s0
+    }
 
     LineSeg next()
     {

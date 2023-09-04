@@ -43,4 +43,25 @@ public:
     }
 };
 
+/*
+ * Blum Blum Shub generator. For the definition, see https://projecteuler.net/problem=165.
+ * Yields the sequence s0, s1, s2, ... .
+ */
+class BlumBlumShub : _mf_Generator<int>
+{
+    long s = 290'797;
+
+public:
+    static const long mod = 50'515'093;
+
+    BlumBlumShub() {}
+
+    int next()
+    {
+        const long old_s = s;
+        s = (s * s) % mod;
+        return old_s;
+    }
+};
+
 }  // namespace mf
