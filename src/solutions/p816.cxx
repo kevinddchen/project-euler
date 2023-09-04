@@ -151,7 +151,7 @@ double p816()
 {
     constexpr int limit = 2'000'000;
 
-    mf::BlumBlumShub bbs;
+    auto bbs = mf::BlumBlumShub();
     const int n_cells = 1000;
     const int cell_size = (bbs.mod / n_cells) + 1;
 
