@@ -1,5 +1,8 @@
 #include "common.h"
-#include "mathfuncs.h"
+#include "generator.h"
+
+#include <memory>
+#include <vector>
 
 /*
 
@@ -91,7 +94,7 @@ long p149()
     const int size = 2000;
 
     // populate grid values
-    mf::LaggedFibGen gen;
+    mf::LaggedFibonacci gen;
     const auto grid = std::make_unique<int[]>(size * size);
     for (int row = 0; row < size; row++) {
         for (int col = 0; col < size; col++) {
