@@ -1,5 +1,5 @@
 #include "common.h"
-#include "mathfuncs.h"
+#include "generator.h"
 
 #include <array>
 #include <vector>
@@ -37,7 +37,7 @@ long p186()
     const int size = 1'000'000;
     const int threshold = .99 * size;
     const int pm = 524287;
-    mf::LaggedFibGen gen;
+    mf::LaggedFibonacci gen;
 
     // array keeping track of node parents and number of nodes
     std::array<int, size> parents;

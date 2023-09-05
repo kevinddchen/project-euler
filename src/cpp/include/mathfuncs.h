@@ -335,30 +335,4 @@ double round(double arg, uint32_t n_decimals)
     return std::round(arg * x) / x;
 }
 
-/**
- * Lagged Fibonacci Generator. Used in various problems.
- */
-class LaggedFibGen
-{
-    int buffer[55];
-    int jmod55;  // j = k-1
-
-public:
-    LaggedFibGen()
-    {
-        for (int k = 1; k <= 55; k++) {
-            buffer[k - 1] = (100003L - 200003L * k + 300007L * k * k * k) % 1000000;
-        }
-        jmod55 = 0;
-    }
-
-    int next()
-    {
-        const int return_val = buffer[jmod55];
-        buffer[jmod55] = (buffer[jmod55] + buffer[(jmod55 + 31) % 55]) % 1000000;
-        jmod55 = (jmod55 + 1) % 55;
-        return return_val;
-    }
-};
-
 }  // namespace mf

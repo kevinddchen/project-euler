@@ -1,5 +1,6 @@
 #include "common.h"
 #include "containers.h"
+#include "generator.h"
 #include "mathfuncs.h"
 
 #include <vector>
@@ -13,23 +14,6 @@ compare points that are too far away from each other.
 ANSWER 20.880613018
 
 */
-
-/*
- * Generates Blum Blum Shub sequence, with first value. Adapted from Problem 165.
- */
-struct BBSGen {
-    static const long mod = 50'515'093;
-    long s = 290'797;
-
-    BBSGen() {}
-
-    int next()
-    {
-        const long old_s = s;
-        s = (s * s) % mod;
-        return old_s;
-    }
-};
 
 /*
  * Given a point on a square grid of size n_cells x n_cells, return the points
@@ -167,7 +151,7 @@ double p816()
 {
     constexpr int limit = 2'000'000;
 
-    BBSGen bbs;
+    auto bbs = mf::BlumBlumShub();
     const int n_cells = 1000;
     const int cell_size = (bbs.mod / n_cells) + 1;
 
@@ -182,7 +166,7 @@ double p816()
     }
 
     // for each point, find the nearest neighbor
-    bbs = BBSGen();
+    bbs = mf::BlumBlumShub();
     double min_dist = std::numeric_limits<double>::max();
     for (int i = 0; i < limit; i++) {
         const int x = bbs.next();
