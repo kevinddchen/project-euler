@@ -68,24 +68,16 @@ long get_primitive_root(long p)
     throw std::runtime_error("No primitive root found");
 }
 
-/**
- * For a Z_p, holds the cube roots of unity and the multiplicative unit.
- */
-struct Choice {
-    std::vector<long> roots;
-    long unit;
-};
-
 /* Recursively sum all cube roots of unity. */
-long sum_all_roots(const std::vector<Choice>& choices, long n, int i = 0, long current_root = 0)
+long sum_all_roots(const std::vector<std::vector<long>>& base_roots, long n, int i = 0, long current_root = 0)
 {
-    if (i == choices.size()) {
-        return current_root;
+    if (i == base_roots.size()) {
+        return current_root % n;
     }
 
     long sum = 0;
-    for (const long root : choices[i].roots) {
-        sum += sum_all_roots(choices, n, i + 1, (current_root + root * choices[i].unit) % n);
+    for (const long base_root : base_roots[i]) {
+        sum += sum_all_roots(base_roots, n, i + 1, current_root + base_root);
     }
 
     return sum;
@@ -97,15 +89,15 @@ long p271()
 
     const auto prime_factors = mf::prime_factorize(n);
 
-    // for each prime factor, find the cube roots of unity
-    std::vector<Choice> choices;
-    choices.reserve(prime_factors.size());
+    // find the base cube roots of unity corresponding to each prime factor
+    std::vector<std::vector<long>> base_roots;
+    base_roots.reserve(prime_factors.size());
 
     for (const auto& factor : prime_factors) {
         // find the multiplicative unit, like (1, 0, 0, ...)
         const long unit = get_base_idempotent(n, factor);
 
-        std::vector<long> roots = {1};  // cube roots of unity
+        std::vector<long> roots = {unit};  // base root corresponding to 1 in Z_p
 
         // if totient is multiple of 3, there are two more cube roots of unity
         assert(factor.exp == 1);  // things are simpler if this is true
@@ -114,13 +106,14 @@ long p271()
             const long g = get_primitive_root(factor.base);
             const long first_root = mf::modular_power(g, totient / 3, factor.base);
             const long second_root = mf::modular_power(first_root, 2, factor.base);
-            roots.push_back(first_root);
-            roots.push_back(second_root);
+
+            roots.push_back((first_root * unit) % n);
+            roots.push_back((second_root * unit) % n);
         }
-        choices.push_back({roots, unit});
+        base_roots.push_back(roots);
     }
 
-    return sum_all_roots(choices, n) - 1;  // subtract 1 since its not counted
+    return sum_all_roots(base_roots, n) - 1;  // subtract 1 since its not counted
 }
 
 int main()
