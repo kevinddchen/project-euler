@@ -20,49 +20,65 @@ m * m = m (mod p^a) implies m(m-1) = d * p^a for some integer d. If d is
 nonzero, then p^a must divide m or m-1, which is not possible since m < p^a.
 Thus d=0 and m=0 or =1.
 
-Therefore, Z_n has 2^k multiplicative idempotents corresponding to every
-possible combination of 0 or 1 in each Z_{pi^ai}.
+Therefore, Z_n has 2^k multiplicative idempotents corresponding to all possible
+choices of picking 0 or 1 for each Z_{pi^ai}. We first compute the k "base
+idempotents" corresponding to the choices,
 
-We first compute the k "base idempotents" corresponding to the choices
-(1, 0, 0, ...), (0, 1, 0, ...), (0, 0, 1, ...), ...
+    (1, 0, 0, ...), (0, 1, 0, ...), (0, 0, 1, ...), ...
 
-Then we find the combination of these base idempotents with the largest sum.
+Then we find the combination of these base idempotents with the largest sum
+modulo n.
 
 ANSWER 39782849136421
 
 */
 
-/* Recursively find largest idempotent. */
-int max_idem(int* arr, int size, int N, int i = 0, int running_sum = 0)
+/**
+ * In the ring Z_n, for a given prime factor p^a find the integer 1 <= m < n
+ * such that m = 1 (mod p^a) and m = 0 (mod q^b) for all other prime factors
+ * q^b of n.
+ */
+long get_base_idempotent(long n, mf::PrimePower factor)
 {
-    if (i == size) {
-        return running_sum % N;
+    const long x = pow(factor.base, factor.exp);  // pi^ai
+    const long n_x = n / x;
+    // find b * n_x (mod n) such that b * n_x = 1 (mod x)
+    return (mf::modular_inverse(n_x, x) * n_x) % n;
+}
+
+/**
+ * Recursively find largest idempotent.
+ */
+long max_idem(long* base_idems, int num_idems, int n, int i = 0, int running_sum = 0)
+{
+    if (i == num_idems) {
+        return running_sum % n;
     }
 
-    return std::max(max_idem(arr, size, N, i + 1, running_sum), max_idem(arr, size, N, i + 1, running_sum + arr[i]));
+    return std::max(
+        max_idem(base_idems, num_idems, n, i + 1, running_sum),
+        max_idem(base_idems, num_idems, n, i + 1, running_sum + base_idems[i]));
 }
 
 long p407()
 {
     constexpr int size = 10'000'000;
-    long sum_idem = 0;
 
     const auto sieve = mf::prime_factor_sieve(size + 1);
 
+    long sum_idem = 0;
     for (int n = 2; n <= size; n++) {
         // prime factorize
         std::vector<mf::PrimePower> factors = mf::prime_factorize(n, sieve.get());
 
         // find base idempotents
         const int num_idems = factors.size();
-        auto idems = std::make_unique<int[]>(num_idems);
+        const auto idems = std::make_unique<long[]>(num_idems);
         for (int i = 0; i < num_idems; i++) {
-            const int q = pow(factors[i].base, factors[i].exp);  // pi^ai
-            const int n_q = n / q;
-            // find b * n_q such that b * n_q = 1 (mod q)
-            idems[i] = (mf::modular_inverse(n_q, q) * n_q) % n;
+            idems[i] = get_base_idempotent(n, factors[i]);
         }
-        // find largest idempotent
+
+        // find combination giving largest idempotent
         sum_idem += max_idem(idems.get(), num_idems, n);
     }
 
