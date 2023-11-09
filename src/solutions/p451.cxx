@@ -9,17 +9,38 @@
 The strategy is similar to Problem 407: when p != 2, the ring Z_{p^a} is cyclic
 and has two elements which square to 1: 1 and -1. So, the goal is to find all
 "base square roots of 1" corresponding to the choices
-(-1, 1, 1, ...), (1, -1, 1, ...), (1, 1, -1, ...) ...
+
+    (-1, 1, 1, ...), (1, -1, 1, ...), (1, 1, -1, ...) ...
+
 and then find the combination with the largest product (that is not -1).
 
 However, this story needs to be modified for Z_8, Z_16, Z_32, ... which are
 actually not cyclic and there are 4 square roots of 1 in each of these rings:
-1, 2^{k-1} - 1, 2^{k-1} + 1, -1
-So we just need to treat this as a special case
+
+    1, 2^{k-1} - 1, 2^{k-1} + 1, -1
+
+So we just need to treat this as a special case that adds an extra "base square
+root of 1", which we can take to be (2^{k-1} + 1, 1, 1, ...). See this link for
+more info: https://en.wikipedia.org/wiki/Primitive_root_modulo_n.
 
 ANSWER 153651073760956
 
 */
+
+/**
+ * Copied from Problem 407.
+ *
+ * In the ring Z_n, for a given prime factor p^a find the integer 1 <= m < n
+ * such that m = 1 (mod p^a) and m = 0 (mod q^b) for all other prime factors
+ * q^b of n.
+ */
+long get_base_idempotent(long n, mf::PrimePower factor)
+{
+    const long x = pow(factor.base, factor.exp);  // pi^ai
+    const long n_x = n / x;
+    // find b * n_x (mod n) such that b * n_x = 1 (mod x)
+    return (mf::modular_inverse(n_x, x) * n_x) % n;
+}
 
 /* Recursively find largest root. */
 long find_max_root(long* arr, int size, int N, int i = 0, long running_prod = 1)
@@ -50,14 +71,12 @@ long p451()
 
         // find all base roots
         const int num_roots = factors.size() + (non_cyclic ? 1 : 0);
-        auto roots = std::make_unique<long[]>(num_roots);
+        const auto roots = std::make_unique<long[]>(num_roots);
+
         int i = 0;
         for (const auto& factor : factors) {
             // first, find the multiplicative unit, like (1, 0, 0, ...)
-            const long q = pow(factor.base, factor.exp);  // pi^ai
-            const long n_q = n / q;
-            // find b * n_q such that b * n_q = 1 (mod q)
-            const long unit = (mf::modular_inverse(n_q, q) * n_q) % n;
+            const long unit = get_base_idempotent(n, factor);
 
             // find the non-cyclic base root, like (1 + 2^{k-1}, 1, 1, ...)
             if (non_cyclic && factor.base == 2) {
