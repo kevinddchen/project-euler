@@ -6,22 +6,32 @@
 
 /*
 
-The strategy is similar to Problem 407: when p != 2, the ring Z_{p^a} is cyclic
-and has two elements which square to 1: 1 and -1. So, the goal is to find all
-"base square roots of 1" corresponding to the choices
+The strategy is similar to that of Problem 407. Given an integer and its prime
+factorization, n = p1^a1 * p2^a2 * ... * pk^ak, the Chinese Remainder Theorem
+defines a ring isomorphism,
 
-    (-1, 1, 1, ...), (1, -1, 1, ...), (1, 1, -1, ...) ...
+    Z_n = Z_{p1^a1} * Z_{p2^a2} * ... * Z_{pk^ak}
 
-and then find the combination with the largest product (that is not -1).
-
-However, this story needs to be modified for Z_8, Z_16, Z_32, ... which are
-actually not cyclic and there are 4 square roots of 1 in each of these rings:
+When p != 2, the ring Z_{p^a} is cyclic and has two elements which square to 1:
+1 and -1, but one is just the negative of the other. However, the rings Z_8,
+Z_16, Z_32, ... are not cyclic and there are 4 square roots of 1 in
+each of these rings, two of which are negatives of the others.
 
     1, 2^{k-1} - 1, 2^{k-1} + 1, -1
 
-So we just need to treat this as a special case that adds an extra "base square
-root of 1", which we can take to be (2^{k-1} + 1, 1, 1, ...). See this link for
-more info: https://en.wikipedia.org/wiki/Primitive_root_modulo_n.
+So, the goal is to find all "base square roots of 1" corresponding to
+the choices
+
+    (-1, 1, 1, ...), (1, -1, 1, ...), (1, 1, -1, ...) ...
+
+If Z_n contains a special case Z_8, Z_16, Z_32, ... then we also need to add
+an extra "base square root of 1" corresponding to the choice
+
+    (2^{k-1} + 1, 1, 1, ...)
+
+We find the combination of these base roots to find the largest product mod n,
+that is not n-1. See this link for more info:
+https://en.wikipedia.org/wiki/Primitive_root_modulo_n.
 
 (Related problems: 271, 407)
 
