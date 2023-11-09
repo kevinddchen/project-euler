@@ -23,6 +23,8 @@ So we just need to treat this as a special case that adds an extra "base square
 root of 1", which we can take to be (2^{k-1} + 1, 1, 1, ...). See this link for
 more info: https://en.wikipedia.org/wiki/Primitive_root_modulo_n.
 
+(Related problems: 271, 407)
+
 ANSWER 153651073760956
 
 */
@@ -34,24 +36,24 @@ ANSWER 153651073760956
  * such that m = 1 (mod p^a) and m = 0 (mod q^b) for all other prime factors
  * q^b of n.
  */
-long get_base_idempotent(long n, mf::PrimePower factor)
+long get_base_idempotent(long n, const mf::PrimePower& factor)
 {
-    const long x = pow(factor.base, factor.exp);  // pi^ai
+    const long x = mf::pow(factor.base, factor.exp);  // pi^ai
     const long n_x = n / x;
     // find b * n_x (mod n) such that b * n_x = 1 (mod x)
     return (mf::modular_inverse(n_x, x) * n_x) % n;
 }
 
 /* Recursively find largest root. */
-long find_max_root(long* arr, int size, int N, int i = 0, long running_prod = 1)
+long find_max_root(long* base_roots, int num_roots, int n, int i = 0, long running_prod = 1)
 {
-    if (i == size) {
-        return running_prod < N - 1 ? running_prod : 1;
+    if (i == num_roots) {
+        return running_prod < n - 1 ? running_prod : 1;
     }
 
     return std::max(
-        find_max_root(arr, size, N, i + 1, running_prod),
-        find_max_root(arr, size, N, i + 1, (running_prod * arr[i]) % N));
+        find_max_root(base_roots, num_roots, n, i + 1, running_prod),
+        find_max_root(base_roots, num_roots, n, i + 1, (running_prod * base_roots[i]) % n));
 }
 
 long p451()
@@ -71,7 +73,7 @@ long p451()
 
         // find all base roots
         const int num_roots = factors.size() + (non_cyclic ? 1 : 0);
-        const auto roots = std::make_unique<long[]>(num_roots);
+        const auto base_roots = std::make_unique<long[]>(num_roots);
 
         int i = 0;
         for (const auto& factor : factors) {
@@ -81,18 +83,18 @@ long p451()
             // find the non-cyclic base root, like (1 + 2^{k-1}, 1, 1, ...)
             if (non_cyclic && factor.base == 2) {
                 const long root = 1 + (int)pow(2, factor.exp - 1) * unit;
-                roots[i] = ((root % n) + n) % n;
+                base_roots[i] = ((root % n) + n) % n;
                 i++;
             }
 
             // find the base root, like (-1, 1, 1, ...)
             const long root = 1 - 2 * unit;
-            roots[i] = ((root % n) + n) % n;
+            base_roots[i] = ((root % n) + n) % n;
             i++;
         }
 
         // find largest root
-        sum += find_max_root(roots.get(), num_roots, n);
+        sum += find_max_root(base_roots.get(), num_roots, n);
     }
 
     return sum;

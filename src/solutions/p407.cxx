@@ -29,6 +29,8 @@ idempotents" corresponding to the choices,
 Then we find the combination of these base idempotents with the largest sum
 modulo n.
 
+(Related problems: 271, 451)
+
 ANSWER 39782849136421
 
 */
@@ -38,9 +40,9 @@ ANSWER 39782849136421
  * such that m = 1 (mod p^a) and m = 0 (mod q^b) for all other prime factors
  * q^b of n.
  */
-long get_base_idempotent(long n, mf::PrimePower factor)
+long get_base_idempotent(long n, const mf::PrimePower& factor)
 {
-    const long x = pow(factor.base, factor.exp);  // pi^ai
+    const long x = mf::pow(factor.base, factor.exp);  // pi^ai
     const long n_x = n / x;
     // find b * n_x (mod n) such that b * n_x = 1 (mod x)
     return (mf::modular_inverse(n_x, x) * n_x) % n;
@@ -69,17 +71,17 @@ long p407()
     long sum_idem = 0;
     for (int n = 2; n <= size; n++) {
         // prime factorize
-        std::vector<mf::PrimePower> factors = mf::prime_factorize(n, sieve.get());
+        const auto factors = mf::prime_factorize(n, sieve.get());
 
         // find base idempotents
         const int num_idems = factors.size();
-        const auto idems = std::make_unique<long[]>(num_idems);
+        const auto base_idems = std::make_unique<long[]>(num_idems);
         for (int i = 0; i < num_idems; i++) {
-            idems[i] = get_base_idempotent(n, factors[i]);
+            base_idems[i] = get_base_idempotent(n, factors[i]);
         }
 
         // find combination giving largest idempotent
-        sum_idem += max_idem(idems.get(), num_idems, n);
+        sum_idem += max_idem(base_idems.get(), num_idems, n);
     }
 
     return sum_idem;
