@@ -1,6 +1,6 @@
 import argparse
-from importlib import import_module
-from time import perf_counter_ns
+import importlib
+import time
 from typing import Any, Callable
 
 
@@ -13,7 +13,7 @@ def _get_args() -> argparse.Namespace:
 def _get_problem_function(num: int) -> Callable[[], Any]:
     """Gets the `p{num}` function from the `p{num}.py` file."""
     name = f"p{num}"
-    module = import_module(f".{name}", package=__package__)
+    module = importlib.import_module(name)
     func = getattr(module, name)
     return func
 
@@ -23,12 +23,12 @@ def main() -> None:
     func = _get_problem_function(args.num)
 
     # run with timing
-    t_start = perf_counter_ns()
+    t_start_ns = time.perf_counter_ns()
     print(func())
-    t_end = perf_counter_ns()
-    t_diff = (t_end - t_start) / 1e9
+    t_end_ns = time.perf_counter_ns()
+    t_diff_sec = (t_end_ns - t_start_ns) / 1e9
 
-    print(f"Time: {t_diff:.3f} sec")
+    print(f"Time: {t_diff_sec:.3f} sec")
 
 
 if __name__ == "__main__":
