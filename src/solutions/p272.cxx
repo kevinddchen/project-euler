@@ -7,140 +7,113 @@ ANSWER
 
 */
 
-int count_cube_roots(long n)
-{
-    int count = 0;
-    for (long i = 1; i < n; i++) {
-        if (mf::modular_power(i, 3, n) == 1) {
-            count++;
-        }
-    }
-    return count;
-}
-
 long p272()
 {
-    // we are looking for n where n <= limit and C(n) = target
+    // we are looking for n where n <= limit and C(n) = 243
     const long limit = 100'000'000'000;
-    // const long target = 243;
 
-    // smallest n such that C(n) = target
+    // smallest n such that C(n) = 243
     const long smallest_solution = 7 * 9 * 13 * 19 * 31;
 
     // only need to generate primes up to this limit
     const int prime_limit = limit / (7 * 9 * 13 * 19);
     const std::unique_ptr<bool[]> prime_sieve = mf::prime_sieve(prime_limit + 1);
-    printf("done generating prime sieve\n");
 
     // split primes into "candidates" (i.e. have three cube roots of unity) and
     // "trivials" (i.e. only cube root of unity is 1).
-    std::vector<long> candidates = {9};  // special case is 3^k for k >= 2
-    std::vector<long> trivials = {2};
+    std::vector<long> cands = {9};  // special case is 3^k for k >= 2
+    std::vector<long> trivs = {2};
     for (int p = 5; p <= prime_limit; p += 2) {
         if (prime_sieve[p]) {
             if (p % 3 == 1) {
-                candidates.push_back(p);
+                cands.push_back(p);
             } else {
-                trivials.push_back(p);
+                trivs.push_back(p);
             }
         }
     }
-    printf("done splitting primes\n");
-    printf("  num candidates: %ld\n", candidates.size());
-    printf("  num trivials: %ld\n", trivials.size());
 
     // generate all n built out of trivials, where C(n) = 1
-    std::vector<long> trivial_products = {1, 3};  // 3 is special case
+    std::vector<long> triv_prods = {1, 3};  // 3 is special case
 
-    const long trivial_product_limit = limit / smallest_solution;
-    for (const long trivial : trivials) {
-        const long size = trivial_products.size();  // we are modifying `other_products` in the loop
+    const long triv_prod_limit = limit / smallest_solution;
+    for (const long triv : trivs) {
+        const long size = triv_prods.size();  // vector is modified in the loop
         for (int i = 0; i < size; i++) {
-            long prod = trivial_products[i] * trivial;
-            while (prod <= trivial_product_limit) {
-                trivial_products.push_back(prod);
-                prod *= trivial;
+            long prod = triv_prods[i] * triv;
+            while (prod <= triv_prod_limit) {
+                triv_prods.push_back(prod);
+                prod *= triv;
             }
         }
     }
-    std::sort(trivial_products.begin(), trivial_products.end());
-    printf("done generating trivial products\n");
-    printf("  num trivial products: %ld\n", trivial_products.size());
+
+    // sort for later binary search
+    std::sort(triv_prods.begin(), triv_prods.end());
+
+    // compute partial sums
+    std::vector<long> triv_prods_partial_sums(triv_prods.size() + 1);
+    triv_prods_partial_sums[0] = 0;
+    for (int i = 0; i < triv_prods.size(); i++) {
+        triv_prods_partial_sums[i + 1] = triv_prods_partial_sums[i] + triv_prods[i];
+    }
 
     // iterate over 5-combinations of candidates, and iterate over all products
-    // of those candidates, not exceeding `limit`. for each product, find the
-    // number of trivial products that can be multiplied together without
-    // exceeding `limit`. This is done by binary search through the sorted
-    // `trivial_products`.
+    // of those candidates, not exceeding `limit`. the nested loops are ugly,
+    // but it gets the job done.
     long total = 0;
-    for (int i = 0; i < candidates.size() - 4; i++) {
-        if (candidates[i] * candidates[i + 1] * candidates[i + 2] * candidates[i + 3] * candidates[i + 4] > limit) {
+
+    for (int i = 0; i < cands.size() - 4; i++) {
+        if (cands[i] * cands[i + 1] * cands[i + 2] * cands[i + 3] * cands[i + 4] > limit) {
             break;
         }
-        for (int j = i + 1; j < candidates.size() - 3; j++) {
-            if (candidates[i] * candidates[j] * candidates[j + 1] * candidates[j + 2] * candidates[j + 3] > limit) {
+        for (int j = i + 1; j < cands.size() - 3; j++) {
+            if (cands[i] * cands[j] * cands[j + 1] * cands[j + 2] * cands[j + 3] > limit) {
                 break;
             }
-            for (int k = j + 1; k < candidates.size() - 2; k++) {
-                if (candidates[i] * candidates[j] * candidates[k] * candidates[k + 1] * candidates[k + 2] > limit) {
+            for (int k = j + 1; k < cands.size() - 2; k++) {
+                if (cands[i] * cands[j] * cands[k] * cands[k + 1] * cands[k + 2] > limit) {
                     break;
                 }
-                for (int s = k + 1; s < candidates.size() - 1; s++) {
-                    if (candidates[i] * candidates[j] * candidates[k] * candidates[s] * candidates[s + 1] > limit) {
+                for (int s = k + 1; s < cands.size() - 1; s++) {
+                    if (cands[i] * cands[j] * cands[k] * cands[s] * cands[s + 1] > limit) {
                         break;
                     }
-                    for (int t = s + 1; t < candidates.size(); t++) {
-                        // iterate over products of p^n that are less than `limit`
-
-                        std::vector<long> candidate_products = {
-                            candidates[i] * candidates[j] * candidates[k] * candidates[s] * candidates[t]};
-
-                        // break if too large
-                        if (candidate_products[0] > limit) {
+                    for (int t = s + 1; t < cands.size(); t++) {
+                        if (cands[i] * cands[j] * cands[k] * cands[s] * cands[t] > limit) {
                             break;
                         }
+                        // iterate over products of p^n that are less than `limit`
 
-                        for (long candidate : {
-                                 candidates[i],
-                                 candidates[j],
-                                 candidates[k],
-                                 candidates[s],
-                                 candidates[t],
-                             }) {
-                            // Note (special case): candidate can be 9, and this will generate powers involving 9, 81,
+                        std::vector<long> cand_prods = {cands[i] * cands[j] * cands[k] * cands[s] * cands[t]};
+
+                        for (long cand : {cands[i], cands[j], cands[k], cands[s], cands[t]}) {
+                            // note (special case): candidate can be 9, and this will generate powers involving 9, 81,
                             // 729, ... The other powers 27, 243, ... are generated by multiplying by the 3 in
-                            // `trivial_products`.
-                            const int size = candidate_products.size();  // vector is modified in the loop
+                            // `triv_prods`.
+                            const int size = cand_prods.size();  // vector is modified in the loop
                             for (int i = 0; i < size; i++) {
-                                long prod = candidate_products[i] * candidate;
+                                long prod = cand_prods[i] * cand;
                                 while (prod <= limit) {
-                                    candidate_products.push_back(prod);
-                                    prod *= candidate;
+                                    cand_prods.push_back(prod);
+                                    prod *= cand;
                                 }
                             }
                         }
 
-                        for (const long candidate_product : candidate_products) {
-                            const long max_trivial = limit / candidate_product;
-                            const auto it =
-                                std::upper_bound(trivial_products.begin(), trivial_products.end(), max_trivial);
-                            total += it - trivial_products.begin();
+                        // for each product, find the number of trivial products that can be multiplied together without
+                        // exceeding `limit`. This is done by binary search through the sorted `triv_prods`.
+                        for (const long prod : cand_prods) {
+                            const long max_trivial = limit / prod;
+                            const auto iter = std::upper_bound(triv_prods.begin(), triv_prods.end(), max_trivial);
+                            const long slice = iter - triv_prods.begin();
+                            total += triv_prods_partial_sums[slice] * prod;
                         }
                     }
                 }
             }
         }
     }
-
-    // // Test: compare with brute force computation
-    // long brute_force_total = 0;
-    // for (long n = 1; n <= limit; n++) {
-    //     if (count_cube_roots(n) == target) {
-    //         printf("%ld ", n);
-    //         brute_force_total++;
-    //     }
-    // }
-    // printf("brute force total: %ld\n", brute_force_total);
 
     return total;
 }
