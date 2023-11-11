@@ -3,7 +3,28 @@
 
 /*
 
-ANSWER
+From Problem 271, we know that if we decompose n into its prime factors,
+
+    n = p1^a1 * p2^a2 * ... * pk^ak
+
+then the number of cube roots of unity (mod n) is equal to the product of the
+number of cube roots of unity for each prime factor. For a prime factor p, it
+has 3 cube roots of unity if p-1 is divisible by 3, and 1 cube root of unity
+otherwise. One exception is p = 3^k for k >= 2, which has 3 cube roots of
+unity.
+
+Since 243 = 3^5, we want to generate all n whose prime factorization contains
+exactly 5 elements from the list {7, 9, 13, 19, 31, 37, ...}.
+
+This can be done by generating primes and then filtering them by whether they
+are in this list (i.e. whether they have 3 cube roots of unity) or not. Then
+iterate over all combinations of 5 primes from this list, and consider all
+numbers formed by taking products of these 5 primes to some power. Then for
+each of these numbers, we further consider all products with the other primes
+not in the list. This sounds like a lot of nested loops, but with enough
+filtering it can run in a reasonable time.
+
+ANSWER 8495585919506151122
 
 */
 
