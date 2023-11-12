@@ -1,8 +1,6 @@
 #include "common.h"
 #include "mathfuncs.h"
 
-#include <algorithm>
-
 /*
 
 Brute force.
@@ -34,7 +32,7 @@ long p347()
     const int N = 10'000'000;
 
     // get primes
-    auto sieve = mf::prime_sieve(N / 2);
+    const auto sieve = mf::prime_sieve(N / 2);
     std::vector<int> primes;
     for (int i = 0; i < N / 2; i++) {
         if (sieve[i]) {

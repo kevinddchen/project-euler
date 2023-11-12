@@ -2,8 +2,6 @@
 
 #include "common.h"
 
-#include <array>
-#include <memory>
 #include <vector>
 
 #include <cmath>
@@ -64,12 +62,12 @@ bool is_prime(long n)
  * when n is prime. Note: entries n=0 and n=1 are not prime in this sieve.
  * @param size non-negative integer; size of sieve.
  */
-std::unique_ptr<bool[]> prime_sieve(int size)
+std::vector<bool> prime_sieve(int size)
 {
     assert(size >= 0);
 
     // initialize sieve
-    auto sieve = std::make_unique<bool[]>(size);
+    std::vector<bool> sieve(size);
     for (int i = 2; i < size; i++) {
         sieve[i] = true;
     }
@@ -90,12 +88,12 @@ std::unique_ptr<bool[]> prime_sieve(int size)
  * entries n=0 and n=1 are equal to `0`.
  * @param size non-negative integer; size of sieve.
  */
-std::unique_ptr<int[]> prime_factor_sieve(int size)
+std::vector<int> prime_factor_sieve(int size)
 {
     assert(size >= 0);
 
     // initialize sieve
-    auto sieve = std::make_unique<int[]>(size);
+    std::vector<int> sieve(size);
     for (int i = 2; i < size; i++) {
         sieve[i] = i;
     }
@@ -157,7 +155,7 @@ std::vector<PrimePower> prime_factorize(long n)
  * sieve. The factorization is given in ascending order of p.
  * @param n integer, greater than 1.
  */
-std::vector<PrimePower> prime_factorize(long n, const int* sieve)
+std::vector<PrimePower> prime_factorize(long n, const std::vector<int>& sieve)
 {
     assert(n > 1);
     std::vector<PrimePower> facts;

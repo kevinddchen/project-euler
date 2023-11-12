@@ -10,7 +10,7 @@ ANSWER 1739023853137
 
 */
 
-bool prime_generating(long x, long* div_arr, bool* sieve)
+bool prime_generating(long x, long* div_arr, const std::vector<bool>& sieve)
 {
     div_arr[0] = 1;
     int divs = 1;
@@ -47,14 +47,14 @@ bool prime_generating(long x, long* div_arr, bool* sieve)
 long p357()
 {
     const int size = 100'000'000;
-    auto sieve = mf::prime_sieve(size + 2);
+    const auto sieve = mf::prime_sieve(size + 2);
 
     // find prime_generating
     long sum = 0;
     long div_arr[100];
 
     for (long i = 1; i <= size; i++) {
-        if (prime_generating(i, div_arr, sieve.get())) {
+        if (prime_generating(i, div_arr, sieve)) {
             sum += i;
         }
     }

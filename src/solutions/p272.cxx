@@ -38,7 +38,7 @@ long p272()
 
     // only need to generate primes up to this limit
     const int prime_limit = limit / (7 * 9 * 13 * 19);
-    const std::unique_ptr<bool[]> prime_sieve = mf::prime_sieve(prime_limit + 1);
+    const auto prime_sieve = mf::prime_sieve(prime_limit + 1);
 
     // split primes into "candidates" (i.e. have three cube roots of unity) and
     // "trivials" (i.e. only cube root of unity is 1).

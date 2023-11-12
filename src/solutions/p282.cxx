@@ -1,8 +1,6 @@
 #include "common.h"
 #include "mathfuncs.h"
 
-#include <cmath>
-
 /*
 
 We start by computing the tetrations 2^^n mod 14^8.

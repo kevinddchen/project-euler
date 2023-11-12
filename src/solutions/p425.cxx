@@ -1,9 +1,7 @@
 #include "common.h"
 #include "mathfuncs.h"
 
-#include <memory>
 #include <queue>
-#include <vector>
 
 /*
 
@@ -26,11 +24,11 @@ long p425()
     const int limit = 10'000'000;
 
     // pre-compute primes
-    const std::unique_ptr<bool[]> prime_sieve = mf::prime_sieve(limit + 1);
+    const auto prime_sieve = mf::prime_sieve(limit + 1);
 
     // array keeping track of maximum prime in the chain to 2; -1 means not connected yet
-    auto connected = std::make_unique<int[]>(limit + 1);
-    std::fill(connected.get(), connected.get() + limit + 1, -1);
+    std::vector<int> connected(limit + 1);
+    std::fill(connected.begin(), connected.end(), -1);
     connected[2] = 2;
 
     // priority queue of primes yet to process

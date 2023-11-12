@@ -1,11 +1,6 @@
 #include "common.h"
 #include "mathfuncs.h"
 
-#include <algorithm>
-#include <array>
-#include <memory>
-#include <vector>
-
 /*
 
 For any integers a, b such that N^2 = a^2 + b^2, we can check that the integers
@@ -77,7 +72,7 @@ void recurse(
     int k,                           // current index of p
     const std::vector<int>& p_primes,
     const std::vector<int>& q_numbers,
-    const long* partial_sums)
+    const std::vector<long>& partial_sums)
 {
     for (long p : p_primes) {
         // check p is not previously used
@@ -110,7 +105,7 @@ long p233()
 
     // generate all primes needed
     const int sieve_size = 1 + limit / (5 * 5 * 5 * 13 * 13);
-    auto sieve = mf::prime_sieve(sieve_size);
+    const auto sieve = mf::prime_sieve(sieve_size);
 
     // sort primes into {p : p=1 mod 4} and {q : q=2 or q=3 mod 4}
     std::vector<int> p_primes;
@@ -129,7 +124,7 @@ long p233()
 
     // calculate partial sums of `q_numbers`
     const int q_numbers_size = q_numbers.size();
-    auto partial_sums = std::make_unique<long[]>(q_numbers_size);
+    std::vector<long> partial_sums(q_numbers_size);
     long ps = 0;
     for (int i = 0; i < q_numbers_size; i++) {
         ps += q_numbers[i];
@@ -140,13 +135,13 @@ long p233()
     std::vector<int> powers, prev_p = {0, 0};
     // iterate through all p1^3 * p2^2 * p3
     powers = {3, 2, 1};
-    recurse(sum, limit, powers, prev_p, 1, 0, p_primes, q_numbers, partial_sums.get());
+    recurse(sum, limit, powers, prev_p, 1, 0, p_primes, q_numbers, partial_sums);
     // iterate through all p1^7 * p2^3
     powers = {7, 3};
-    recurse(sum, limit, powers, prev_p, 1, 0, p_primes, q_numbers, partial_sums.get());
+    recurse(sum, limit, powers, prev_p, 1, 0, p_primes, q_numbers, partial_sums);
     // iterate through all p1^10 * p2^2
     powers = {10, 2};
-    recurse(sum, limit, powers, prev_p, 1, 0, p_primes, q_numbers, partial_sums.get());
+    recurse(sum, limit, powers, prev_p, 1, 0, p_primes, q_numbers, partial_sums);
 
     return sum;
 }

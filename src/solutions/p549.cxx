@@ -1,6 +1,6 @@
 #include "common.h"
 
-#include <memory>
+#include <vector>
 
 /*
 
@@ -31,7 +31,7 @@ long p549()
     const int size = 100'000'000;
     long sum = 0;
 
-    auto s = std::make_unique<int[]>(size + 1);  // array to store s[n]
+    std::vector<int> s(size + 1);
 
     for (int p = 2; p <= size; p++) {
         if (s[p] != 0)  // if not prime

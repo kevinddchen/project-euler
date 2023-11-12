@@ -1,9 +1,6 @@
 #include "common.h"
 #include "mathfuncs.h"
 
-#include <numeric>
-#include <vector>
-
 /*
 
 The strategy is similar to that of Problem 407. Given an integer and its prime
@@ -55,7 +52,7 @@ long get_base_idempotent(long n, const mf::PrimePower& factor)
 }
 
 /* Recursively find largest root. */
-long find_max_root(long* base_roots, int num_roots, int n, int i = 0, long running_prod = 1)
+long find_max_root(const std::vector<long>& base_roots, int num_roots, int n, int i = 0, long running_prod = 1)
 {
     if (i == num_roots) {
         return running_prod < n - 1 ? running_prod : 1;
@@ -75,7 +72,7 @@ long p451()
     long sum = 0;
     for (long n = 3; n <= limit; n++) {
         // get prime factorization
-        const auto factors = mf::prime_factorize(n, sieve.get());
+        const auto factors = mf::prime_factorize(n, sieve);
 
         // Z_8, Z_16, Z_32, ... are not cyclic groups under multiplication but
         // decompose into a product of cyclic groups: Z_2 * Z_{2^{k-2}}
@@ -83,7 +80,7 @@ long p451()
 
         // find all base roots
         const int num_roots = factors.size() + (non_cyclic ? 1 : 0);
-        const auto base_roots = std::make_unique<long[]>(num_roots);
+        std::vector<long> base_roots(num_roots);
 
         int i = 0;
         for (const auto& factor : factors) {
@@ -104,7 +101,7 @@ long p451()
         }
 
         // find largest root
-        sum += find_max_root(base_roots.get(), num_roots, n);
+        sum += find_max_root(base_roots, num_roots, n);
     }
 
     return sum;

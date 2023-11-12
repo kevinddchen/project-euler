@@ -3,7 +3,6 @@
 #include "generator.h"
 #include "hash.h"
 
-#include <numeric>
 #include <unordered_set>
 #include <vector>
 

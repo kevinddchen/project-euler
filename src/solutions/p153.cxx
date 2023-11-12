@@ -1,7 +1,7 @@
 #include "common.h"
 
-#include <memory>
 #include <numeric>
+#include <vector>
 
 /*
 
@@ -23,7 +23,7 @@ long p153()
     const int limit = 100'000'000;
 
     // initialize sieve
-    auto sieve = std::make_unique<long[]>(limit + 1);
+    std::vector<long> sieve(limit + 1);
     for (int i = 0; i <= limit; i++) {
         sieve[i] = i;
     }

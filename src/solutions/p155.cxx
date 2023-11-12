@@ -3,7 +3,6 @@
 #include "hash.h"
 
 #include <array>
-#include <numeric>
 #include <unordered_set>
 #include <vector>
 

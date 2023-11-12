@@ -1,6 +1,6 @@
 #include "common.h"
 
-#include <memory>
+#include <vector>
 
 /*
 
@@ -68,7 +68,7 @@ long p810()
     const int size = 1 << log2_size;  // size of the sieve
 
     // create prime sieve
-    auto sieve = std::make_unique<bool[]>(size);
+    std::vector<bool> sieve(size);
     for (int i = 2; i < size; i++) {
         sieve[i] = true;
     }

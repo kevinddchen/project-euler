@@ -1,8 +1,6 @@
 #include "common.h"
 #include "mathfuncs.h"
 
-#include <vector>
-
 /*
 
 In order to compute the 10^16th digit of A, we only need to compute 16 * ln(10)

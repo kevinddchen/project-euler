@@ -3,8 +3,6 @@
 #include "generator.h"
 #include "mathfuncs.h"
 
-#include <vector>
-
 /*
 
 Finding the nearest-neighbor for each point is significantly sped up by using a

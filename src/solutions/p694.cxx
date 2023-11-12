@@ -31,7 +31,7 @@ ANSWER 1339784153569958487
  */
 std::vector<long> get_primes(int size)
 {
-    const std::unique_ptr<bool[]> sieve = mf::prime_sieve(size);
+    const auto sieve = mf::prime_sieve(size);
 
     std::vector<long> primes;
     for (long i = 2; i < size; ++i) {

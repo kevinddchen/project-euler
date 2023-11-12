@@ -36,7 +36,7 @@ ANSWER 44967734
  *
  * Uses the fact that the order divides p - 1 to speed up the computation.
  */
-int order_of_10(int p, int* prime_factor_sieve)
+int order_of_10(int p, const std::vector<int>& prime_factor_sieve)
 {
     assert(prime_factor_sieve[p] == p);  // p must be prime
     assert(p != 2 && p != 5);
@@ -63,7 +63,7 @@ int order_of_10(int p, int* prime_factor_sieve)
  * starts.
  */
 std::pair<int, int> decimal_period_and_offset(
-    int n, const std::unordered_map<int, int>& periods, int* prime_factor_sieve)
+    int n, const std::unordered_map<int, int>& periods, const std::vector<int>& prime_factor_sieve)
 {
     // First, compute the offset. this is given by max(a, b) where the prime
     // factorization of n contains 2^a * 5^b.
@@ -93,9 +93,9 @@ std::pair<int, int> decimal_period_and_offset(
     for (const auto& fact : facts) {
         int fact_period = periods.at(fact.base);
         if ((fact.exp > 1) && (fact.base == 3 || fact.base == 487 || fact.base == 56598313)) {
-            fact_period *= std::pow(fact.base, fact.exp - 2);
+            fact_period *= mf::pow(fact.base, fact.exp - 2);
         } else {
-            fact_period *= std::pow(fact.base, fact.exp - 1);
+            fact_period *= mf::pow(fact.base, fact.exp - 1);
         }
         period = std::lcm(period, fact_period);
     }
@@ -124,14 +124,14 @@ long p820()
         if (prime_factor_sieve[p] != p || p == 5) {
             continue;
         }
-        const int order = order_of_10(p, prime_factor_sieve.get());
+        const int order = order_of_10(p, prime_factor_sieve);
         periods[p] = order;
     }
 
     // compute limit-th digit for all n
     int total = 0;
     for (int i = 1; i <= limit; i++) {
-        const auto& [period, offset] = decimal_period_and_offset(i, periods, prime_factor_sieve.get());
+        const auto [period, offset] = decimal_period_and_offset(i, periods, prime_factor_sieve);
         if (period == 0) {
             assert(offset < limit);  // make sure the digit is 0
             continue;
