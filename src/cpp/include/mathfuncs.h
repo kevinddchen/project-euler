@@ -64,12 +64,12 @@ bool is_prime(long n)
  * when n is prime. Note: entries n=0 and n=1 are not prime in this sieve.
  * @param size non-negative integer; size of sieve.
  */
-std::unique_ptr<bool[]> prime_sieve(int size)
+std::vector<bool> prime_sieve(int size)
 {
     assert(size >= 0);
 
     // initialize sieve
-    auto sieve = std::make_unique<bool[]>(size);
+    std::vector<bool> sieve(size);
     for (int i = 2; i < size; i++) {
         sieve[i] = true;
     }

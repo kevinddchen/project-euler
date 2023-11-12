@@ -33,7 +33,7 @@ int p429()
     const int N = 100'000'000;
     const int M = 1'000'000'009;
 
-    auto sieve = mf::prime_sieve(N);
+    const auto sieve = mf::prime_sieve(N);
 
     int a;
     long result = 1;  // long to prevent overflow

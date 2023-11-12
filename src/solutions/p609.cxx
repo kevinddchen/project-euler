@@ -1,8 +1,6 @@
 #include "common.h"
 #include "mathfuncs.h"
 
-#include <memory>
-
 /*
 
 Use dynamic programming. If you know all values of p(n, k) for some n, then by
@@ -22,7 +20,7 @@ long p609()
     const auto sieve = mf::prime_sieve(limit + 1);
 
     // compute prime counting function
-    auto pi = std::make_unique<int[]>(limit + 1);
+    std::vector<int> pi(limit + 1);
     int count = 0;
     for (int i = 2; i <= limit; ++i) {
         if (sieve[i]) {

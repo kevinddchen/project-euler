@@ -79,7 +79,7 @@ long p315()
     // count transitions
     long count = 0;
 
-    auto sieve = mf::prime_sieve(limit);
+    const auto sieve = mf::prime_sieve(limit);
     for (int i = limit / 2; i < limit; i++) {
         if (!sieve[i]) {
             continue;

@@ -1,8 +1,6 @@
 #include "common.h"
 #include "mathfuncs.h"
 
-#include <memory>
-
 /*
 
 The sum over terms with g(n) = 1 equals the number of square-free integers up
@@ -24,12 +22,12 @@ ANSWER 94586478
 /**
  * Calculates the Mobius function for all integers up to `size` using a sieve.
  */
-std::unique_ptr<int8_t[]> mobius_sieve(int size)
+std::vector<int8_t> mobius_sieve(int size)
 {
     const auto primes = mf::prime_sieve(size);
 
     // initialize sieve
-    auto sieve = std::make_unique<int8_t[]>(size);
+    std::vector<int8_t> sieve(size);
     for (int i = 1; i < size; i++) {
         sieve[i] = 1;
     }
@@ -58,7 +56,7 @@ std::unique_ptr<int8_t[]> mobius_sieve(int size)
  * @param n
  * @param mobius The Mobius function for all integers up to `sqrt(n)`.
  */
-long count_square_free(long n, int8_t* mobius)
+long count_square_free(long n, const std::vector<int8_t>& mobius)
 {
     long sum = 0;
     for (long d = 1; d * d <= n; d++) {
@@ -77,7 +75,7 @@ long p745()
 
     long sum = 0;
     for (long i = 1; i <= sqrt_limit; i++) {
-        sum = (sum + i * i * count_square_free(limit / (i * i), mobius.get())) % mod;
+        sum = (sum + i * i * count_square_free(limit / (i * i), mobius)) % mod;
     }
 
     return sum;
