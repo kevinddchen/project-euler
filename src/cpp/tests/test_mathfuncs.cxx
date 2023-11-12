@@ -161,11 +161,11 @@ void test_prime_factorize_with_sieve()
     printf("Testing `prime_factorize(int, int*)`... ");
 
     // we assume that the normal prime_factorize works
-    auto sieve = mf::prime_factor_sieve(1000);
+    const auto sieve = mf::prime_factor_sieve(1000);
 
     for (int i = 2; i < 1000; i++) {
-        auto factors = mf::prime_factorize(i, sieve.get());
-        auto exp_factors = mf::prime_factorize(i);
+        const auto factors = mf::prime_factorize(i, sieve);
+        const auto exp_factors = mf::prime_factorize(i);
         for (int j = 0; j < factors.size(); j++) {
             assert(factors[j] == exp_factors[j]);
         }

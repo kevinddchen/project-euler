@@ -1,6 +1,7 @@
 #include "common.h"
 
 #include <numeric>
+#include <vector>
 
 /*
 
@@ -10,12 +11,12 @@ ANSWER 18407904
 
 */
 
-std::unique_ptr<int[]> radical_sieve(int size)
+std::vector<int> radical_sieve(int size)
 {
     assert(size >= 0);
 
     // initialize sieve
-    auto sieve = std::make_unique<int[]>(size);
+    std::vector<int> sieve(size);
     for (int i = 0; i < size; i++) {
         sieve[i] = 1;
     }

@@ -1,6 +1,6 @@
 #include "common.h"
 
-#include <memory>
+#include <vector>
 
 /*
 
@@ -14,9 +14,9 @@ ANSWER 11762187201804552
 */
 
 /* Taken from p69. */
-std::unique_ptr<int[]> totient_sieve(int size)
+std::vector<int> totient_sieve(int size)
 {
-    auto sieve = std::make_unique<int[]>(size);
+    std::vector<int> sieve(size);
     // initialize values
     for (int i = 2; i < size; i++) {
         sieve[i] = i;
