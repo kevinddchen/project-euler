@@ -151,7 +151,7 @@ double p816()
 {
     constexpr int limit = 2'000'000;
 
-    auto bbs = mf::BlumBlumShub();
+    mf::BlumBlumShub bbs;
     const int n_cells = 1000;
     const int cell_size = (bbs.mod / n_cells) + 1;
 
@@ -160,8 +160,8 @@ double p816()
 
     // generate points and populate grid
     for (int i = 0; i < limit; i++) {
-        const int x = bbs.next();
-        const int y = bbs.next();
+        const int x = *bbs++;
+        const int y = *bbs++;
         pg.add_point({x, y});
     }
 
@@ -169,8 +169,8 @@ double p816()
     bbs = mf::BlumBlumShub();
     double min_dist = std::numeric_limits<double>::max();
     for (int i = 0; i < limit; i++) {
-        const int x = bbs.next();
-        const int y = bbs.next();
+        const int x = *bbs++;
+        const int y = *bbs++;
 
         const double dist = pg.nearest_neighbor_distance({x, y});
 

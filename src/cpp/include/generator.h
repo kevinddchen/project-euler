@@ -2,66 +2,87 @@
 
 #include "common.h"
 
-/**
- * Abstract class for an infinite sequence generator.
- */
-template <typename T>
-class _mf_Generator
-{
-public:
-    virtual T next() = 0;
-};
-
-// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#include <iterator>
 
 namespace mf
 {
 
 /**
- * Lagged Fibonacci Generator. For the definition, see https://projecteuler.net/problem=149.
+ * Lagged Fibonacci Generator. For the definition, see
+ * https://projecteuler.net/problem=186.
  */
-class LaggedFibonacci : _mf_Generator<int>
+class LaggedFibonacci
 {
-    int buffer[55];
-    int jmod55;  // j = k-1
-
 public:
+    using value_type = int;
+    using difference_type = std::ptrdiff_t;
+
     LaggedFibonacci()
     {
-        for (int k = 1; k <= 55; k++) {
-            buffer[k - 1] = (100003L - 200003L * k + 300007L * k * k * k) % 1000000;
+        // k is long to avoid numerical overflow
+        for (long k = 1; k <= 55; k++) {
+            buffer[k - 1] = (100003 - 200003 * k + 300007 * k * k * k) % 1000000;
         }
         jmod55 = 0;
     }
 
-    int next()
+    LaggedFibonacci& operator++()
     {
-        const int return_val = buffer[jmod55];
         buffer[jmod55] = (buffer[jmod55] + buffer[(jmod55 + 31) % 55]) % 1000000;
         jmod55 = (jmod55 + 1) % 55;
-        return return_val;
+        return *this;
     }
-};
 
-/*
- * Blum Blum Shub generator. For the definition, see https://projecteuler.net/problem=165.
- * Yields the sequence s0, s1, s2, ... .
- */
-class BlumBlumShub : _mf_Generator<int>
-{
-    long s = 290'797;
-
-public:
-    static const long mod = 50'515'093;
-
-    BlumBlumShub() {}
-
-    int next()
+    LaggedFibonacci operator++(int)
     {
-        const long old_s = s;
-        s = (s * s) % mod;
-        return old_s;
+        LaggedFibonacci tmp = *this;
+        ++*this;
+        return tmp;
     }
+
+    value_type operator*() const { return buffer[jmod55]; }
+
+private:
+    value_type buffer[55];
+    value_type jmod55;  // j = k-1
 };
+
+static_assert(std::input_iterator<LaggedFibonacci>);
+
+/**
+ * Blum Blum Shub generator. For the definition, see
+ * https://projecteuler.net/problem=165. Yields the sequence s0, s1, s2, ... .
+ */
+class BlumBlumShub
+{
+public:
+    using value_type = long;
+    using difference_type = std::ptrdiff_t;
+
+    static const value_type mod = 50'515'093;
+    static const value_type s0 = 290'797;
+
+    BlumBlumShub() : s(s0) {}
+
+    BlumBlumShub& operator++()
+    {
+        s = (s * s) % mod;
+        return *this;
+    }
+
+    BlumBlumShub operator++(int)
+    {
+        BlumBlumShub tmp = *this;
+        ++*this;
+        return tmp;
+    }
+
+    value_type operator*() const { return s; }
+
+private:
+    value_type s;
+};
+
+static_assert(std::input_iterator<BlumBlumShub>);
 
 }  // namespace mf

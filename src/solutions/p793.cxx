@@ -138,9 +138,9 @@ long p793()
     // initialize s_i and sort
     std::array<long, n> sequence;
     {
-        auto bbs = mf::BlumBlumShub();
+        mf::BlumBlumShub bbs;
         for (int i = 0; i < n; i++) {
-            sequence[i] = bbs.next();
+            sequence[i] = *bbs++;
         }
         std::sort(sequence.begin(), sequence.end());
     }

@@ -49,8 +49,8 @@ long p186()
 
     long n = 0;
     while (num_nodes[find_root(pm, parents)] < threshold) {
-        int a = gen.next();
-        int b = gen.next();
+        int a = *gen++;
+        int b = *gen++;
         if (a == b) {
             continue;
         }

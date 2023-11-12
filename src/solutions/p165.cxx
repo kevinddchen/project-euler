@@ -89,15 +89,15 @@ struct LineSegGen {
     LineSegGen()
     {
         bbs = mf::BlumBlumShub();
-        bbs.next();  // discard s0
+        ++bbs;  // discard s0
     }
 
     LineSeg next()
     {
-        const int x1 = bbs.next() % size;
-        const int y1 = bbs.next() % size;
-        const int x2 = bbs.next() % size;
-        const int y2 = bbs.next() % size;
+        const int x1 = *bbs++ % size;
+        const int y1 = *bbs++ % size;
+        const int x2 = *bbs++ % size;
+        const int y2 = *bbs++ % size;
         return LineSeg({x1, y1}, {x2, y2});
     }
 };
