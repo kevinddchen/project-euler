@@ -16,7 +16,7 @@ Note that we use Python version >= 3.9.
 pip install .
 ```
 
-For C++, we are using the `C++17` standard without any third-party libraries.
+For C++, we are using the `C++20` standard without any third-party libraries.
 
 To run any solution, run the following command,
 
