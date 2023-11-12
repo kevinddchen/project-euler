@@ -1,6 +1,7 @@
 #include "common.h"
-#include "constants.h"
 #include "mathfuncs.h"
+
+#include <numbers>
 
 #include <cmath>
 
@@ -89,7 +90,7 @@ double p392()
     const int N = 200;
 
     // determine min and max
-    double max = mf::PI / 2 / N;  // this will always be too small
+    double max = std::numbers::pi / 2 / N;  // this will always be too small
     while (!overshoots_target(0, max, N)) {
         max *= 2;
     }
