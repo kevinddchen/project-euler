@@ -30,14 +30,15 @@ long p288()
 
     const long mod = mf::pow(p, mod_log_p);
 
-    auto bbs = mf::BlumBlumShub();
-    bbs.next();  // discard s0
+    mf::BlumBlumShub bbs;
+    ++bbs;  // discard s0
     int n = 0;
 
     // initialize an array with `mod_log_p` elements
     std::deque<long> ts;
     for (; n < mod_log_p; n++) {
-        ts.push_back(bbs.next() % p);
+        ts.push_back(*bbs % p);
+        ++bbs;
     }
 
     long sum = 0;
@@ -51,7 +52,8 @@ long p288()
         // shift ts
         ts.pop_front();
         if (n < limit) {
-            ts.push_back(bbs.next() % p);
+            ts.push_back(*bbs % p);
+            ++bbs;
         } else {
             ts.push_back(0);  // pad with zeros, which do not contribute to the sum
         }

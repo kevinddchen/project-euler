@@ -4,18 +4,6 @@
 
 #include <iterator>
 
-/**
- * Abstract class for an infinite sequence generator.
- */
-template <typename T>
-class _mf_Generator
-{
-public:
-    virtual T next() = 0;
-};
-
-// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
 namespace mf
 {
 
@@ -58,25 +46,33 @@ public:
     int operator*() const { return buffer[jmod55]; }
 };
 
-/*
- * Blum Blum Shub generator. For the definition, see https://projecteuler.net/problem=165.
- * Yields the sequence s0, s1, s2, ... .
+/**
+ * Blum Blum Shub generator. For the definition, see
+ * https://projecteuler.net/problem=165. Yields the sequence s0, s1, s2, ... .
  */
-class BlumBlumShub : _mf_Generator<int>
+class BlumBlumShub
 {
-    long s = 290'797;
+    long s;
 
 public:
     static const long mod = 50'515'093;
 
-    BlumBlumShub() {}
+    BlumBlumShub() : s(290'797) {}
 
-    int next()
+    BlumBlumShub& operator++()
     {
-        const long old_s = s;
         s = (s * s) % mod;
-        return old_s;
+        return *this;
     }
+
+    BlumBlumShub operator++(int)
+    {
+        BlumBlumShub tmp = *this;
+        ++*this;
+        return tmp;
+    }
+
+    int operator*() const { return s; }
 };
 
 }  // namespace mf
