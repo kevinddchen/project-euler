@@ -1,8 +1,6 @@
 #include "common.h"
 #include "mathfuncs.h"
 
-#include <cmath>
-
 /*
 
 At index N, the probability that x_N will be all 1's is,

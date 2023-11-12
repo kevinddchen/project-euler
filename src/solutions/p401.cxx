@@ -1,5 +1,7 @@
 #include "common.h"
 
+#include <cmath>
+
 /*
 
 The answer is the sum of k^2 * floor(n/k) for k = 1, 2, ..., n where n = 10^15.

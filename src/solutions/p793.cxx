@@ -1,7 +1,6 @@
 #include "common.h"
 #include "generator.h"
 
-#include <algorithm>
 #include <array>
 #include <vector>
 

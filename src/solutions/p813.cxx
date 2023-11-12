@@ -2,7 +2,6 @@
 #include "mathfuncs.h"
 
 #include <set>
-#include <vector>
 
 /*
 

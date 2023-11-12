@@ -3,8 +3,6 @@
 
 #include <array>
 
-#include <cmath>
-
 /*
 
 Let L = 1,000,000,000. For a given value of f, the final value after winning k

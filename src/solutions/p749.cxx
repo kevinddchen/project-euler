@@ -1,6 +1,8 @@
 #include "common.h"
 #include "mathfuncs.h"
 
+#include <array>
+
 /*
 
 We iterate through all combinations of digits. For each combination, we go

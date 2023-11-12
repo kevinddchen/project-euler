@@ -3,8 +3,6 @@
 
 #include <numbers>
 
-#include <cmath>
-
 /*
 
 Consider the graph of the function y = 1 - sqrt(1 - (x-1)^2) for 0 <= x <= 1.

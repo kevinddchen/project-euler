@@ -1,6 +1,8 @@
 #include "common.h"
 #include "mathfuncs.h"
 
+#include <array>
+
 /*
 
 Brute force.

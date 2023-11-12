@@ -1,8 +1,6 @@
 #include "common.h"
 #include "mathfuncs.h"
 
-#include <cmath>
-
 /*
 
 Brute force. It is easier to work with logarithms,

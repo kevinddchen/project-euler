@@ -93,9 +93,9 @@ std::pair<int, int> decimal_period_and_offset(
     for (const auto& fact : facts) {
         int fact_period = periods.at(fact.base);
         if ((fact.exp > 1) && (fact.base == 3 || fact.base == 487 || fact.base == 56598313)) {
-            fact_period *= std::pow(fact.base, fact.exp - 2);
+            fact_period *= mf::pow(fact.base, fact.exp - 2);
         } else {
-            fact_period *= std::pow(fact.base, fact.exp - 1);
+            fact_period *= mf::pow(fact.base, fact.exp - 1);
         }
         period = std::lcm(period, fact_period);
     }

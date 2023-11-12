@@ -1,10 +1,7 @@
 #include "common.h"
 #include "mathfuncs.h"
 
-#include <algorithm>
 #include <array>
-
-#include <cmath>
 
 /*
 

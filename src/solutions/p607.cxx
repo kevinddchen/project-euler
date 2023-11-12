@@ -3,8 +3,6 @@
 
 #include <array>
 
-#include <cmath>
-
 /*
 
 We can use Snell's law to find the minimum time. Using a geometric optics
