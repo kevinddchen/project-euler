@@ -2,6 +2,8 @@
 
 #include "common.h"
 
+#include <iterator>
+
 /**
  * Abstract class for an infinite sequence generator.
  */
@@ -18,29 +20,42 @@ namespace mf
 {
 
 /**
- * Lagged Fibonacci Generator. For the definition, see https://projecteuler.net/problem=149.
+ * Lagged Fibonacci Generator. For the definition, see
+ * https://projecteuler.net/problem=186.
  */
-class LaggedFibonacci : _mf_Generator<int>
+class LaggedFibonacci
 {
     int buffer[55];
     int jmod55;  // j = k-1
 
 public:
+    using value_type = int;
+    using difference_type = int;
+    using iterator_category = std::input_iterator_tag;
+
     LaggedFibonacci()
     {
-        for (int k = 1; k <= 55; k++) {
-            buffer[k - 1] = (100003L - 200003L * k + 300007L * k * k * k) % 1000000;
+        for (long k = 1; k <= 55; k++) {
+            buffer[k - 1] = (100003 - 200003 * k + 300007 * k * k * k) % 1000000;
         }
         jmod55 = 0;
     }
 
-    int next()
+    LaggedFibonacci& operator++()
     {
-        const int return_val = buffer[jmod55];
         buffer[jmod55] = (buffer[jmod55] + buffer[(jmod55 + 31) % 55]) % 1000000;
         jmod55 = (jmod55 + 1) % 55;
-        return return_val;
+        return *this;
     }
+
+    LaggedFibonacci operator++(int)
+    {
+        LaggedFibonacci tmp = *this;
+        ++*this;
+        return tmp;
+    }
+
+    int operator*() const { return buffer[jmod55]; }
 };
 
 /*
