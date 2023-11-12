@@ -140,8 +140,7 @@ long p793()
     {
         mf::BlumBlumShub bbs;
         for (int i = 0; i < n; i++) {
-            sequence[i] = *bbs;
-            ++bbs;
+            sequence[i] = *bbs++;
         }
         std::sort(sequence.begin(), sequence.end());
     }

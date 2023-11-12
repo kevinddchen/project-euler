@@ -13,16 +13,13 @@ namespace mf
  */
 class LaggedFibonacci
 {
-    int buffer[55];
-    int jmod55;  // j = k-1
-
 public:
     using value_type = int;
-    using difference_type = int;
-    using iterator_category = std::input_iterator_tag;
+    using difference_type = std::ptrdiff_t;
 
     LaggedFibonacci()
     {
+        // k is long to avoid numerical overflow
         for (long k = 1; k <= 55; k++) {
             buffer[k - 1] = (100003 - 200003 * k + 300007 * k * k * k) % 1000000;
         }
@@ -43,8 +40,14 @@ public:
         return tmp;
     }
 
-    int operator*() const { return buffer[jmod55]; }
+    value_type operator*() const { return buffer[jmod55]; }
+
+private:
+    value_type buffer[55];
+    value_type jmod55;  // j = k-1
 };
+
+static_assert(std::input_iterator<LaggedFibonacci>);
 
 /**
  * Blum Blum Shub generator. For the definition, see
@@ -52,12 +55,14 @@ public:
  */
 class BlumBlumShub
 {
-    long s;
-
 public:
-    static const long mod = 50'515'093;
+    using value_type = long;
+    using difference_type = std::ptrdiff_t;
 
-    BlumBlumShub() : s(290'797) {}
+    static const value_type mod = 50'515'093;
+    static const value_type s0 = 290'797;
+
+    BlumBlumShub() : s(s0) {}
 
     BlumBlumShub& operator++()
     {
@@ -72,7 +77,12 @@ public:
         return tmp;
     }
 
-    int operator*() const { return s; }
+    value_type operator*() const { return s; }
+
+private:
+    value_type s;
 };
+
+static_assert(std::input_iterator<BlumBlumShub>);
 
 }  // namespace mf

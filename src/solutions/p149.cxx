@@ -98,8 +98,7 @@ long p149()
     const auto grid = std::make_unique<int[]>(size * size);
     for (int row = 0; row < size; row++) {
         for (int col = 0; col < size; col++) {
-            grid[row * size + col] = *gen - 500'000;
-            ++gen;
+            grid[row * size + col] = *gen++ - 500'000;
         }
     }
 

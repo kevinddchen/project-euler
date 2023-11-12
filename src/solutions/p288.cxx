@@ -37,8 +37,7 @@ long p288()
     // initialize an array with `mod_log_p` elements
     std::deque<long> ts;
     for (; n < mod_log_p; n++) {
-        ts.push_back(*bbs % p);
-        ++bbs;
+        ts.push_back(*bbs++ % p);
     }
 
     long sum = 0;
@@ -52,8 +51,7 @@ long p288()
         // shift ts
         ts.pop_front();
         if (n < limit) {
-            ts.push_back(*bbs % p);
-            ++bbs;
+            ts.push_back(*bbs++ % p);
         } else {
             ts.push_back(0);  // pad with zeros, which do not contribute to the sum
         }
