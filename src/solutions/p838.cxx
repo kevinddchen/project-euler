@@ -88,9 +88,9 @@ double p838()
     // step 1: initial population of these two lists
     {
         // compute prime factorization of 3, 13, 23, 33, ...
-        const std::unique_ptr<int[]> sieve = mf::prime_factor_sieve(limit + 1);
+        const auto sieve = mf::prime_factor_sieve(limit + 1);
         for (int i = 3; i <= limit; i += 10) {
-            const std::vector<mf::PrimePower> facts = mf::prime_factorize(i, sieve.get());
+            const auto facts = mf::prime_factorize(i, sieve);
 
             // if prime, add to `primes`
             if (facts.size() == 1 && facts[0].exp == 1) {

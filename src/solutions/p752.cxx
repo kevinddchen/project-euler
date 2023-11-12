@@ -1,8 +1,6 @@
 #include "common.h"
 #include "mathfuncs.h"
 
-#include <vector>
-
 /*
 
 Recall that if we want to find the order of a mod x, by Euler's theorem we have
@@ -71,7 +69,7 @@ constexpr QuadInt<7> ONE = {1, 0};
  * more useful in this specific problem.
  */
 template <long rad>
-std::vector<mf::PrimePower> prime_factorize_quad_totient(long x, int* factor_sieve)
+std::vector<mf::PrimePower> prime_factorize_quad_totient(long x, const std::vector<int>& factor_sieve)
 {
     assert(factor_sieve[rad] == rad);  // only implemented for primes
 
@@ -112,7 +110,7 @@ QuadInt<rad> modular_power(const QuadInt<rad>& a, long b, long m)
 }
 
 template <long rad>
-long order(const QuadInt<rad>& x, long m, int* factor_sieve)
+long order(const QuadInt<rad>& x, long m, const std::vector<int>& factor_sieve)
 {
     // compute the totient for quadratic integers
     const auto& facts = prime_factorize_quad_totient<rad>(m, factor_sieve);
@@ -146,7 +144,7 @@ long p752()
     long sum = 0;
     for (int x = 2; x <= limit; x++) {
         if ((x % 2 != 0) && (x % 3 != 0)) {
-            sum += order<7>(init, x, sieve.get());
+            sum += order<7>(init, x, sieve);
         }
     }
     return sum;

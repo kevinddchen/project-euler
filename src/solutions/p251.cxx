@@ -51,14 +51,14 @@ long p251()
         std::vector<mf::PrimePower> prime_powers;
         {
             const long s = (p + 1) / 2;
-            std::vector<mf::PrimePower> s_prime_powers = mf::prime_factorize(s, factor_sieve.get());
+            std::vector<mf::PrimePower> s_prime_powers = mf::prime_factorize(s, factor_sieve);
             // double all exponents
             for (auto& s_fact : s_prime_powers) {
                 s_fact.exp *= 2;
             }
 
             const long t = 4 * p + 1;
-            const std::vector<mf::PrimePower> t_prime_powers = mf::prime_factorize(t, factor_sieve.get());
+            const std::vector<mf::PrimePower> t_prime_powers = mf::prime_factorize(t, factor_sieve);
 
             prime_powers = mf::merge_prime_factors(s_prime_powers, t_prime_powers);
         }

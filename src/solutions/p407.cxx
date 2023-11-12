@@ -1,13 +1,6 @@
 #include "common.h"
 #include "mathfuncs.h"
 
-#include <algorithm>
-#include <array>
-#include <memory>
-#include <vector>
-
-#include <cmath>
-
 /*
 
 Given an integer and its prime factorization, n = p1^a1 * p2^a2 * ... * pk^ak,
@@ -51,7 +44,7 @@ long get_base_idempotent(long n, const mf::PrimePower& factor)
 /**
  * Recursively find largest idempotent.
  */
-long max_idem(long* base_idems, int num_idems, int n, int i = 0, int running_sum = 0)
+long max_idem(const std::vector<long>& base_idems, int num_idems, int n, int i = 0, int running_sum = 0)
 {
     if (i == num_idems) {
         return running_sum % n;
@@ -71,17 +64,17 @@ long p407()
     long sum_idem = 0;
     for (int n = 2; n <= size; n++) {
         // prime factorize
-        const auto factors = mf::prime_factorize(n, sieve.get());
+        const auto factors = mf::prime_factorize(n, sieve);
 
         // find base idempotents
         const int num_idems = factors.size();
-        const auto base_idems = std::make_unique<long[]>(num_idems);
+        std::vector<long> base_idems(num_idems);
         for (int i = 0; i < num_idems; i++) {
             base_idems[i] = get_base_idempotent(n, factors[i]);
         }
 
         // find combination giving largest idempotent
-        sum_idem += max_idem(base_idems.get(), num_idems, n);
+        sum_idem += max_idem(base_idems, num_idems, n);
     }
 
     return sum_idem;

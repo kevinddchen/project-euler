@@ -1,6 +1,8 @@
 #include "common.h"
 #include "mathfuncs.h"
 
+#include <array>
+
 /*
 
 This problem is very similar to p351, since we can unfold the reflections to
