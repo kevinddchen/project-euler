@@ -50,15 +50,14 @@ long p659()
     const long mod = 1'000'000'000'000'000'000;
 
     // initialize array of potential_ps
-    // std::array<long, target + 1> potential_ps;
-    auto potential_ps = std::make_unique<long[]>(target + 1);
+    std::vector<long> potential_ps(target + 1);
     for (long k = 1; k <= target; k++) {
         potential_ps[k] = 4 * k * k + 1;
     }
 
     // initialize array of largest prime factors
     // std::array<long, target + 1> largest_prime_factors;
-    auto largest_prime_factors = std::make_unique<long[]>(target + 1);
+    std::vector<long> largest_prime_factors(target + 1);
     for (long k = 1; k <= target; k++) {
         largest_prime_factors[k] = -1;  // sentinel value for not yet computed
     }

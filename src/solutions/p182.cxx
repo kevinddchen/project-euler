@@ -1,10 +1,6 @@
 #include "common.h"
 #include "mathfuncs.h"
 
-#include <array>
-#include <memory>
-#include <vector>
-
 /*
 
 First note that by the Chinese remainder theorem, solving m^e = m (mod pq)
@@ -40,7 +36,7 @@ ANSWER 399788195976
 
 */
 
-void filter(const std::vector<mf::PrimePower>& pf, bool* sieve, int size)
+void filter(const std::vector<mf::PrimePower>& pf, std::vector<bool>& sieve, int size)
 {
     // Sieve out prime factors. If prime factor is 2, skip if power is =1,
     // otherwise sieve out multiples of 4.
@@ -77,14 +73,14 @@ long p182()
     // since p, q are odd, sieve to find e such that
     // odd e: true when gcd(e, p-1) = gcd(e, q-1) = 1
     // even e: true when gcd(e, p-1) = gcd(e, q-1) = 2
-    auto sieve = std::make_unique<bool[]>(phi);
+    std::vector<bool> sieve(phi);
     for (int i = 0; i < phi; i++) {
         sieve[i] = true;
     }
 
     // sieve
-    filter(p_factors, sieve.get(), phi);
-    filter(q_factors, sieve.get(), phi);
+    filter(p_factors, sieve, phi);
+    filter(q_factors, sieve, phi);
 
     long sum = 0;
     for (int i = 3; i < phi; i += 2) {

@@ -1,6 +1,6 @@
 #include "common.h"
 
-#include <memory>
+#include <vector>
 
 /*
 
@@ -36,7 +36,7 @@ ANSWER 5437849
 */
 
 /* Divide out t=sieve[n] from indices t-n, t+n, 2t-n, 2t+n, ... */
-void filter_multiples(long* sieve, int limit, long n)
+void filter_multiples(std::vector<long>& sieve, int limit, long n)
 {
     long a = sieve[n] - n, b = sieve[n] + n, temp;
     while (a <= limit) {
@@ -54,7 +54,7 @@ long p216()
     const int limit = 50'000'000;
 
     // initialize sieve
-    auto sieve = std::make_unique<long[]>(limit + 1);
+    std::vector<long> sieve(limit + 1);
     for (long n = 0; n <= limit; n++) {
         sieve[n] = 2 * n * n - 1;
     }
@@ -69,7 +69,7 @@ long p216()
         {
             count++;
         }
-        filter_multiples(sieve.get(), limit, n);
+        filter_multiples(sieve, limit, n);
     }
 
     return count;

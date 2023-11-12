@@ -1,8 +1,6 @@
 #include "common.h"
 #include "mathfuncs.h"
 
-#include <memory>
-
 /*
 
 Not too bad by brute force. For each number of digits, we count the number of
@@ -21,7 +19,7 @@ ANSWER 471745499
  *
  * Taken from Problem 709.
  */
-void iterate_next_comb_mod(int* comb_mod_cache, int n, int M)
+void iterate_next_comb_mod(std::vector<int>& comb_mod_cache, int n, int M)
 {
     int temp_a = comb_mod_cache[0];
     int temp_b;
@@ -37,7 +35,7 @@ void iterate_next_comb_mod(int* comb_mod_cache, int n, int M)
  * Compute the number of dominating numbers with exactly `num_digits` digits.
  * `comb_mod_cache` is an array of n choose k for `n = num_digits - 1`.
  */
-long count_dominating_numbers(int num_digits, int* comb_mod, long mod)
+long count_dominating_numbers(int num_digits, const std::vector<int>& comb_mod, long mod)
 {
     long count = 9;  // all digits are the same
     for (int i = 1; 2 * i < num_digits; i++) {
@@ -69,13 +67,13 @@ long p788()
 
     // Vector that caches values of n choose k mod M. Starts off with n=0,
     // and call `iterate_next_comb_mod` to get n=1, n=2, and so forth.
-    auto comb_mod = std::make_unique<int[]>(N + 1);
+    std::vector<int> comb_mod(N + 1);
     comb_mod[0] = 1;
 
     long total = 0;
     for (int num_digits = 1; num_digits <= N; num_digits++) {
-        total = (total + count_dominating_numbers(num_digits, comb_mod.get(), mod)) % mod;
-        iterate_next_comb_mod(comb_mod.get(), num_digits, mod);
+        total = (total + count_dominating_numbers(num_digits, comb_mod, mod)) % mod;
+        iterate_next_comb_mod(comb_mod, num_digits, mod);
     }
 
     return total;

@@ -1,6 +1,6 @@
 #include "common.h"
 
-#include <memory>
+#include <vector>
 
 /*
 
@@ -39,7 +39,7 @@ ANSWER 773479144
  * Given array of n choose 0, n choose 1, ..., n choose n, compute array of
  * n+1 choose 0, n+1 choose 1, ..., n+1 choose n+1.
  */
-void iterate_next_comb_mod(int* comb_mod_cache, int n, int M)
+void iterate_next_comb_mod(std::vector<int>& comb_mod_cache, int n, int M)
 {
     int temp_a = comb_mod_cache[0];
     int temp_b;
@@ -60,17 +60,17 @@ long p709()
 
     // Vector that caches values of n choose k mod M. Starts off with n=0,
     // and call `iterate_next_comb_mod` to get n=1, n=2, and so forth.
-    auto comb_mod = std::make_unique<int[]>(N + 1);
+    std::vector<int> comb_mod(N + 1);
     comb_mod[0] = 1;
 
     // Vector caches values of f(n) mod M.
-    auto f = std::make_unique<int[]>(N + 1);
+    std::vector<int> f(N + 1);
     f[0] = 1;
     f[1] = 1;
 
     for (int n = 1; n < N; n++) {
         // get values of n choose k mod M
-        iterate_next_comb_mod(comb_mod.get(), n, M);
+        iterate_next_comb_mod(comb_mod, n, M);
 
         // get value of f(n+1)
         long sum = 0;

@@ -1,6 +1,5 @@
 #include "common.h"
 
-#include <algorithm>
 #include <array>
 #include <vector>
 

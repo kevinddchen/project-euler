@@ -1,7 +1,6 @@
 #include "common.h"
 #include "generator.h"
 
-#include <memory>
 #include <vector>
 
 /*
@@ -20,7 +19,7 @@ ANSWER 52852124
 /**
  * Get row, where 0 <= row < size.
  */
-std::vector<int> get_row(int row, const int* grid, int size)
+std::vector<int> get_row(int row, const std::vector<int>& grid, int size)
 {
     std::vector<int> row_vec;
     for (int col = 0; col < size; col++) {
@@ -32,7 +31,7 @@ std::vector<int> get_row(int row, const int* grid, int size)
 /**
  * Get column, where 0 <= col < size.
  */
-std::vector<int> get_col(int col, const int* grid, int size)
+std::vector<int> get_col(int col, const std::vector<int>& grid, int size)
 {
     std::vector<int> col_vec;
     for (int row = 0; row < size; row++) {
@@ -44,7 +43,7 @@ std::vector<int> get_col(int col, const int* grid, int size)
 /**
  * Get forward slash diagonal, where 0 <= col_plus_row < 2 * size - 1.
  */
-std::vector<int> get_forward_slash(int col_plus_row, const int* grid, int size)
+std::vector<int> get_forward_slash(int col_plus_row, const std::vector<int>& grid, int size)
 {
     std::vector<int> slash_vec;
     for (int row = 0; row < size; row++) {
@@ -60,7 +59,7 @@ std::vector<int> get_forward_slash(int col_plus_row, const int* grid, int size)
 /**
  * Get back slash diagonal, where -size + 1 <= col_minus_row < size.
  */
-std::vector<int> get_back_slash(int col_minus_row, const int* grid, int size)
+std::vector<int> get_back_slash(int col_minus_row, const std::vector<int>& grid, int size)
 {
     std::vector<int> slash_vec;
     for (int row = 0; row < size; row++) {
@@ -95,7 +94,7 @@ long p149()
 
     // populate grid values
     mf::LaggedFibonacci gen;
-    const auto grid = std::make_unique<int[]>(size * size);
+    std::vector<int> grid(size * size);
     for (int row = 0; row < size; row++) {
         for (int col = 0; col < size; col++) {
             grid[row * size + col] = *gen++ - 500'000;
@@ -106,7 +105,7 @@ long p149()
     long max_sum = 0;
 
     for (int row = 0; row < size; row++) {
-        const std::vector<int> row_vec = get_row(row, grid.get(), size);
+        const std::vector<int> row_vec = get_row(row, grid, size);
         const long sum = find_max_subsum(row_vec);
         if (sum > max_sum) {
             max_sum = sum;
@@ -114,7 +113,7 @@ long p149()
     }
 
     for (int col = 0; col < size; col++) {
-        const std::vector<int> col_vec = get_col(col, grid.get(), size);
+        const std::vector<int> col_vec = get_col(col, grid, size);
         const long sum = find_max_subsum(col_vec);
         if (sum > max_sum) {
             max_sum = sum;
@@ -122,7 +121,7 @@ long p149()
     }
 
     for (int col_plus_row = 0; col_plus_row < 2 * size - 1; col_plus_row++) {
-        const std::vector<int> slash_vec = get_forward_slash(col_plus_row, grid.get(), size);
+        const std::vector<int> slash_vec = get_forward_slash(col_plus_row, grid, size);
         const long sum = find_max_subsum(slash_vec);
         if (sum > max_sum) {
             max_sum = sum;
@@ -130,7 +129,7 @@ long p149()
     }
 
     for (int col_minus_row = -size + 1; col_minus_row < size; col_minus_row++) {
-        const std::vector<int> slash_vec = get_back_slash(col_minus_row, grid.get(), size);
+        const std::vector<int> slash_vec = get_back_slash(col_minus_row, grid, size);
         const long sum = find_max_subsum(slash_vec);
         if (sum > max_sum) {
             max_sum = sum;
