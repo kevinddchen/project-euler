@@ -2,7 +2,7 @@ CC = g++
 CFLAGS = -I./src/cpp/include -Wall -std=c++20 -O2
 SRC = ./src/solutions
 BIN = ./bin
-TESTS = ./tests
+TESTS = ./src/cpp/tests
 # automatically recognize binaries corresponding to `.cxx` source files
 TARGETS = $(patsubst $(SRC)/%.cxx,$(BIN)/%,$(wildcard $(SRC)/p*.cxx))
 TEST_TARGETS = $(patsubst $(TESTS)/%.cxx,$(BIN)/%,$(wildcard $(TESTS)/*.cxx))
@@ -11,7 +11,7 @@ TEST_TARGETS = $(patsubst $(TESTS)/%.cxx,$(BIN)/%,$(wildcard $(TESTS)/*.cxx))
 
 all: $(TARGETS) $(TESTS_TARGETS)
 
-$(BIN)/test_mathfuncs: $(TESTS)/test_mathfuncs.cxx
+$(BIN)/%: $(TESTS)/%.cxx
 	@mkdir -p $(@D)
 	$(CC) $< -o $@ $(CFLAGS)
 
