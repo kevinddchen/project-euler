@@ -27,8 +27,7 @@ long p425()
     const auto prime_sieve = mf::prime_sieve(limit + 1);
 
     // array keeping track of maximum prime in the chain to 2; -1 means not connected yet
-    std::vector<int> connected(limit + 1);
-    std::fill(connected.begin(), connected.end(), -1);
+    std::vector<int> connected(limit + 1, -1);
     connected[2] = 2;
 
     // priority queue of primes yet to process

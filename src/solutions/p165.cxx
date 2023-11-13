@@ -1,7 +1,9 @@
 #include "common.h"
-#include "containers.h"
 #include "generator.h"
 #include "hash.h"
+
+#include <Eigen/Core>
+#include <Eigen/LU>
 
 #include <unordered_set>
 #include <vector>
@@ -18,11 +20,13 @@ ANSWER 2868868
 
 */
 
-struct LineSeg {
-    mf::Vec2l start;
-    mf::Vec2l end;
+using Vec2l = Eigen::Matrix<long, 2, 1>;
 
-    LineSeg(mf::Vec2l start, mf::Vec2l end) : start(start), end(end) {}
+struct LineSeg {
+    Vec2l start;
+    Vec2l end;
+
+    LineSeg(Vec2l start, Vec2l end) : start(std::move(start)), end(std::move(end)) {}
 };
 
 struct Intersect {
@@ -31,7 +35,7 @@ struct Intersect {
 
     Intersect() : x(0, 1), y(0, 1) {}
 
-    Intersect(mf::Frac x, mf::Frac y) : x(x), y(y) {}
+    Intersect(mf::Frac x, mf::Frac y) : x(std::move(x)), y(std::move(y)) {}
 
     inline bool operator==(const Intersect& other) const { return x == other.x && y == other.y; }
 };
@@ -54,26 +58,30 @@ bool true_intersection(const LineSeg& l1, const LineSeg& l2, Intersect& intersec
     // suppose we have two line segments l1, l2
     // we are solving the equation:
     //      l1.start + a (l1.end - l1.start) = l2.end + b (l2.start - l2.end)
+    // or
     //      a (l1.end - l1.start) + b (l2.end - l2.start) = l2.end - l1.start
-    const auto d1 = l1.end - l1.start, d2 = l2.end - l2.start;
-    const mf::Mat2l D = {d1.x, d2.x, d1.y, d2.y};  // {{d1.x, d2.x}, {d1.y, d2.y}}
-    const auto det = D.det();
+    const Vec2l d1 = l1.end - l1.start;
+    const Vec2l d2 = l2.end - l2.start;
+    // the LHS is now D * {a, b} where D is the matrix with columns d1, d2
+    // D = {{d1.x, d2.x}, {d1.y, d2.y}}
+    // let D_prime be the inverse of D times the determinant of D
+    const Eigen::Matrix<long, 2, 2> D_prime{{d2.y(), -d2.x()}, {-d1.y(), d1.x()}};
+    const long det = D_prime.determinant();
     if (det == 0) {
         // lines are parallel
         return false;
     }
-    const auto rhs = l2.end - l1.start;
-    const auto a_b_det = D.inv_times_det() * rhs;  // this equals {a, b} * det(D)
-    const double a = a_b_det.x / (double)det;
-    const double b = a_b_det.y / (double)det;
+    const Vec2l rhs = l2.end - l1.start;
+    const Vec2l a_b_det = D_prime * rhs;  // this equals {a, b} * det(D)
+    const double a = a_b_det.x() / (double)det;
+    const double b = a_b_det.y() / (double)det;
 
-    // there is a true intersection if 0 < a < 1 and 0 < b < 1
     const bool is_true_intersect = (a > 0) && (a < 1) && (b > 0) && (b < 1);
 
     if (is_true_intersect) {
         intersect = {
-            mf::Frac(l1.start.x) + mf::Frac(a_b_det.x * d1.x, det),
-            mf::Frac(l1.start.y) + mf::Frac(a_b_det.x * d1.y, det)};
+            mf::Frac(l1.start.x()) + mf::Frac(a_b_det.x() * d1.x(), det),
+            mf::Frac(l1.start.y()) + mf::Frac(a_b_det.x() * d1.y(), det)};
     }
     return is_true_intersect;
 }
@@ -97,7 +105,7 @@ struct LineSegGen {
         const int y1 = *bbs++ % size;
         const int x2 = *bbs++ % size;
         const int y2 = *bbs++ % size;
-        return LineSeg({x1, y1}, {x2, y2});
+        return LineSeg(Vec2l(x1, y1), Vec2l(x2, y2));
     }
 };
 
@@ -111,7 +119,7 @@ long p165()
     LineSegGen line_seg_gen;
     long count = 0;
     while (lines.size() < limit) {
-        const auto new_line = line_seg_gen.next();
+        auto new_line = line_seg_gen.next();
         for (const auto& line : lines) {
             Intersect intersect;
             if (true_intersection(line, new_line, intersect)) {
@@ -122,7 +130,7 @@ long p165()
                 }
             }
         }
-        lines.push_back(new_line);
+        lines.push_back(std::move(new_line));
     }
 
     return count;
