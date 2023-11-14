@@ -1,4 +1,5 @@
 #include "common.h"
+#include "containers.h"
 #include "generator.h"
 #include "hash.h"
 

@@ -2,6 +2,7 @@
 
 #include "common.h"
 
+#include <functional>
 #include <numeric>
 
 namespace mf
@@ -140,3 +141,9 @@ struct Frac {
 };
 
 }  // namespace mf
+
+// Since our fractions are always reduced, we can just hash the floating point value
+template <>
+struct std::hash<mf::Frac> {
+    inline std::size_t operator()(const mf::Frac& frac) const { return std::hash<double>{}(frac.fp()); }
+};
