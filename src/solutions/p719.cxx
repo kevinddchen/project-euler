@@ -1,7 +1,5 @@
 #include "common.h"
 
-#include <cmath>
-
 /*
 
 Brute force. Iterate through all square roots.

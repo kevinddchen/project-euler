@@ -3,8 +3,6 @@
 #include <array>
 #include <vector>
 
-#include <cmath>
-
 /*
 
 For a Torricelli triangle, we can use the law of cosines to show that
