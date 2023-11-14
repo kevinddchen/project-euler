@@ -1,5 +1,5 @@
 #include "common.h"
-#include "generator.h"
+#include "generators.h"
 #include "mathfuncs.h"
 
 #include <deque>

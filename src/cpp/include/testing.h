@@ -2,8 +2,6 @@
 
 #include "common.h"
 
-#include <cmath>
-
 /**
  * Tests equality between two floats, up to specified numerical tolerance.
  */

@@ -1,7 +1,5 @@
 #include "common.h"
 
-#include <cmath>
-
 /*
 
 Can be solved by hand. See PDF for explanation.

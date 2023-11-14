@@ -3,8 +3,6 @@
 #include <array>
 #include <numeric>
 
-#include <cmath>
-
 /*
 
 Brute force. Note that the number of strictly contained lattice points is equal to

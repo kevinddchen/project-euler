@@ -1,7 +1,5 @@
 #include "common.h"
 
-#include <cmath>
-
 /*
 
 We are just counting the points (x, y) where x^2 + xy + 41y^2 <= LIMIT.

@@ -1,6 +1,6 @@
 #include "common.h"
 #include "containers.h"
-#include "generator.h"
+#include "generators.h"
 #include "hash.h"
 
 #include <Eigen/Core>
