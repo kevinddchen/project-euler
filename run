@@ -25,9 +25,11 @@ NUM=$1
 
 if [[ $NUM = "tests" ]]; then
 
-    make $BIN/test_mathfuncs
+    make tests
     echo "Running c++ tests..."
-    $BIN/test_mathfuncs
+    for test in $(ls $BIN/test_*); do
+        ./$test
+    done
     echo "Running python tests..."
     pytest
 

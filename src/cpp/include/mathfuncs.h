@@ -4,8 +4,6 @@
 
 #include <vector>
 
-#include <cmath>
-
 /**
  * Compute the modular product (a * b) % m.
  * @param a non-negative integer, less than m.

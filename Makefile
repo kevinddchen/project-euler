@@ -7,9 +7,11 @@ TESTS = ./src/cpp/tests
 TARGETS = $(patsubst $(SRC)/%.cxx,$(BIN)/%,$(wildcard $(SRC)/p*.cxx))
 TEST_TARGETS = $(patsubst $(TESTS)/%.cxx,$(BIN)/%,$(wildcard $(TESTS)/*.cxx))
 
-.PHONY: all clean
+.PHONY: all tests clean
 
 all: $(TARGETS) $(TESTS_TARGETS)
+
+tests: $(TEST_TARGETS)
 
 $(BIN)/%: $(TESTS)/%.cxx
 	@mkdir -p $(@D)
