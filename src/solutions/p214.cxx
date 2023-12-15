@@ -47,5 +47,5 @@ long p214()
 
 int main()
 {
-    TIMED(printf("%ld\n", p214()));
+    printf("%ld\n", p214());
 }

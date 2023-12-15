@@ -98,5 +98,5 @@ long p150()
 
 int main()
 {
-    TIMED(printf("%ld\n", p150()));
+    printf("%ld\n", p150());
 }

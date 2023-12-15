@@ -49,5 +49,5 @@ long p351()
 
 int main()
 {
-    TIMED(printf("%ld\n", p351()));
+    printf("%ld\n", p351());
 }

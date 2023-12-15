@@ -79,5 +79,5 @@ long p166()
 
 int main()
 {
-    TIMED(printf("%ld\n", p166()));
+    printf("%ld\n", p166());
 }

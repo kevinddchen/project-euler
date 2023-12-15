@@ -141,5 +141,5 @@ long p272()
 
 int main()
 {
-    TIMED(printf("%ld\n", p272()));
+    printf("%ld\n", p272());
 }

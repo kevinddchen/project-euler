@@ -102,5 +102,5 @@ long p315()
 
 int main()
 {
-    TIMED(printf("%ld\n", p315()));
+    printf("%ld\n", p315());
 }

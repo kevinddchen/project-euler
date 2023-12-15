@@ -56,5 +56,5 @@ long p347()
 
 int main()
 {
-    TIMED(printf("%ld\n", p347()));
+    printf("%ld\n", p347());
 }

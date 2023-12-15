@@ -40,5 +40,5 @@ double p323()
 
 int main()
 {
-    TIMED(printf("%.10f\n", mf::round(p323(), 10)));
+    printf("%.10f\n", mf::round(p323(), 10));
 }

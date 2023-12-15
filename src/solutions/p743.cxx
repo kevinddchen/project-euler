@@ -49,5 +49,5 @@ long p743()
 
 int main()
 {
-    TIMED(printf("%ld\n", p743()));
+    printf("%ld\n", p743());
 }

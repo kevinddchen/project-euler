@@ -109,5 +109,5 @@ long p451()
 
 int main()
 {
-    TIMED(printf("%ld\n", p451()));
+    printf("%ld\n", p451());
 }

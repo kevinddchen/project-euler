@@ -91,5 +91,5 @@ double p371()
 
 int main()
 {
-    TIMED(printf("%.8f\n", mf::round(p371(), 8)));
+    printf("%.8f\n", mf::round(p371(), 8));
 }

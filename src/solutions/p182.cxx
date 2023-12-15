@@ -94,5 +94,5 @@ long p182()
 
 int main()
 {
-    TIMED(printf("%ld\n", p182()));
+    printf("%ld\n", p182());
 }

@@ -81,5 +81,5 @@ long p788()
 
 int main()
 {
-    TIMED(printf("%ld\n", p788()));
+    printf("%ld\n", p788());
 }

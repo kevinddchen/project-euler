@@ -32,5 +32,5 @@ long p381()
 
 int main()
 {
-    TIMED(printf("%ld\n", p381()));
+    printf("%ld\n", p381());
 }

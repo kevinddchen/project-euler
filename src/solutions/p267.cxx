@@ -93,5 +93,5 @@ double p267()
 
 int main()
 {
-    TIMED(printf("%.12f\n", mf::round(p267(), 12)));
+    printf("%.12f\n", mf::round(p267(), 12));
 }

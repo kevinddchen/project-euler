@@ -136,5 +136,5 @@ long p845()
 
 int main()
 {
-    TIMED(printf("%ld\n", p845()));
+    printf("%ld\n", p845());
 }

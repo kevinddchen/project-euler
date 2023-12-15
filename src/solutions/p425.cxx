@@ -89,5 +89,5 @@ long p425()
 
 int main()
 {
-    TIMED(printf("%ld\n", p425()));
+    printf("%ld\n", p425());
 }

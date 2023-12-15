@@ -97,5 +97,5 @@ double p232()
 
 int main()
 {
-    TIMED(printf("%.8f\n", mf::round(p232(), 8)));
+    printf("%.8f\n", mf::round(p232(), 8));
 }

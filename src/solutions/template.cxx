@@ -13,5 +13,5 @@ long p0()
 
 int main()
 {
-    TIMED(printf("%ld\n", p0()));
+    printf("%ld\n", p0());
 }

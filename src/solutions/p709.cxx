@@ -85,5 +85,5 @@ long p709()
 
 int main()
 {
-    TIMED(printf("%ld\n", p709()));
+    printf("%ld\n", p709());
 }

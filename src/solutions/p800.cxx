@@ -48,5 +48,5 @@ long p800()
 
 int main()
 {
-    TIMED(printf("%ld\n", p800()));
+    printf("%ld\n", p800());
 }

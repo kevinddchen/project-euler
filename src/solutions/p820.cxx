@@ -151,5 +151,5 @@ long p820()
 
 int main()
 {
-    TIMED(printf("%ld\n", p820()));
+    printf("%ld\n", p820());
 }

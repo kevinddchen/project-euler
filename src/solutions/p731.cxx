@@ -81,5 +81,5 @@ long p731()
 
 int main()
 {
-    TIMED(printf("%ld\n", p731()));
+    printf("%ld\n", p731());
 }

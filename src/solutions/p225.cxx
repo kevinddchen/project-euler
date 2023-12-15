@@ -52,5 +52,5 @@ long p225()
 
 int main()
 {
-    TIMED(printf("%ld\n", p225()));
+    printf("%ld\n", p225());
 }

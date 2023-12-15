@@ -48,5 +48,5 @@ int p429()
 
 int main()
 {
-    TIMED(printf("%d\n", p429()));
+    printf("%d\n", p429());
 }

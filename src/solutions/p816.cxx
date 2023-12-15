@@ -185,5 +185,5 @@ double p816()
 
 int main()
 {
-    TIMED(printf("%.9f\n", mf::round(p816(), 9)));
+    printf("%.9f\n", mf::round(p816(), 9));
 }

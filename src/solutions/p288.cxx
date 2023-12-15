@@ -62,5 +62,5 @@ long p288()
 
 int main()
 {
-    TIMED(printf("%ld\n", p288()));
+    printf("%ld\n", p288());
 }

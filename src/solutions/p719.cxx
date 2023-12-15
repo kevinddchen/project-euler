@@ -45,5 +45,5 @@ long p719()
 
 int main()
 {
-    TIMED(printf("%ld\n", p719()));
+    printf("%ld\n", p719());
 }

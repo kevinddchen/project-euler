@@ -245,5 +245,5 @@ double p838()
 
 int main()
 {
-    TIMED(printf("%.6f\n", mf::round(p838(), 6)));
+    printf("%.6f\n", mf::round(p838(), 6));
 }

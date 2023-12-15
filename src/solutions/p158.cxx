@@ -32,5 +32,5 @@ long p158()
 
 int main()
 {
-    TIMED(printf("%ld\n", p158()));
+    printf("%ld\n", p158());
 }

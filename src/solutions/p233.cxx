@@ -148,5 +148,5 @@ long p233()
 
 int main()
 {
-    TIMED(printf("%ld\n", p233()));
+    printf("%ld\n", p233());
 }

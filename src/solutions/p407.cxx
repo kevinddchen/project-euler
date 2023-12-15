@@ -82,5 +82,5 @@ long p407()
 
 int main()
 {
-    TIMED(printf("%ld\n", p407()));
+    printf("%ld\n", p407());
 }

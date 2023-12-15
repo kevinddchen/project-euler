@@ -60,5 +60,5 @@ long p155()
 
 int main()
 {
-    TIMED(printf("%ld\n", p155()));
+    printf("%ld\n", p155());
 }

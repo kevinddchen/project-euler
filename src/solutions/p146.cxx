@@ -84,5 +84,5 @@ long p146()
 
 int main()
 {
-    TIMED(printf("%ld\n", p146()));
+    printf("%ld\n", p146());
 }

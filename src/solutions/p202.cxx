@@ -78,5 +78,5 @@ long p202()
 
 int main()
 {
-    TIMED(printf("%ld\n", p202()));
+    printf("%ld\n", p202());
 }
