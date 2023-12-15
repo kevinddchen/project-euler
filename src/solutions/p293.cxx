@@ -98,5 +98,5 @@ long p293()
 
 int main()
 {
-    TIMED(printf("%ld\n", p293()));
+    printf("%ld\n", p293());
 }

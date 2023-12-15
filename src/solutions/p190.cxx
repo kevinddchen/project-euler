@@ -28,5 +28,5 @@ long p190()
 
 int main()
 {
-    TIMED(printf("%ld\n", p190()));
+    printf("%ld\n", p190());
 }

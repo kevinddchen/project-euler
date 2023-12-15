@@ -53,5 +53,5 @@ long p504()
 
 int main()
 {
-    TIMED(printf("%ld\n", p504()));
+    printf("%ld\n", p504());
 }

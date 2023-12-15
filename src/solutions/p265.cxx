@@ -91,5 +91,5 @@ long p265()
 
 int main()
 {
-    TIMED(printf("%ld\n", p265()));
+    printf("%ld\n", p265());
 }

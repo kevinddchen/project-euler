@@ -83,5 +83,5 @@ long p745()
 
 int main()
 {
-    TIMED(printf("%ld\n", p745()));
+    printf("%ld\n", p745());
 }

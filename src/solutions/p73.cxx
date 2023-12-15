@@ -30,5 +30,5 @@ long p73()
 
 int main()
 {
-    TIMED(printf("%ld\n", p73()));
+    printf("%ld\n", p73());
 }

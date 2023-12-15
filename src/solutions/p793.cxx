@@ -162,5 +162,5 @@ long p793()
 
 int main()
 {
-    TIMED(printf("%ld\n", p793()));
+    printf("%ld\n", p793());
 }

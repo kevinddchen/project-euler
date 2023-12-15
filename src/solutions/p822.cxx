@@ -89,5 +89,5 @@ long p822()
 
 int main()
 {
-    TIMED(printf("%ld\n", p822()));
+    printf("%ld\n", p822());
 }

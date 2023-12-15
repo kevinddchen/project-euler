@@ -119,5 +119,5 @@ long p282()
 
 int main()
 {
-    TIMED(printf("%ld\n", p282()));
+    printf("%ld\n", p282());
 }

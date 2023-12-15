@@ -155,5 +155,5 @@ long p749()
 
 int main()
 {
-    TIMED(printf("%ld\n", p749()));
+    printf("%ld\n", p749());
 }

@@ -183,5 +183,5 @@ long p349()
 
 int main()
 {
-    TIMED(printf("%ld\n", p349()));
+    printf("%ld\n", p349());
 }

@@ -141,5 +141,5 @@ long p149()
 
 int main()
 {
-    TIMED(printf("%ld\n", p149()));
+    printf("%ld\n", p149());
 }

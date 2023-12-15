@@ -114,5 +114,5 @@ long p694()
 
 int main()
 {
-    TIMED(printf("%ld\n", p694()));
+    printf("%ld\n", p694());
 }

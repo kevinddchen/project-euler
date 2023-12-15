@@ -35,5 +35,5 @@ long p346()
 
 int main()
 {
-    TIMED(printf("%ld\n", p346()));
+    printf("%ld\n", p346());
 }

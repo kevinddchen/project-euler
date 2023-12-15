@@ -131,5 +131,5 @@ long p710()
 
 int main()
 {
-    TIMED(printf("%ld\n", p710()));
+    printf("%ld\n", p710());
 }

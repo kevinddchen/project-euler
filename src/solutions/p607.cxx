@@ -123,5 +123,5 @@ double p607()
 
 int main()
 {
-    TIMED(printf("%.10f\n", mf::round(p607(), 10)));
+    printf("%.10f\n", mf::round(p607(), 10));
 }

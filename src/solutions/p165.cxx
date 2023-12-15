@@ -139,5 +139,5 @@ long p165()
 
 int main()
 {
-    TIMED(printf("%ld\n", p165()));
+    printf("%ld\n", p165());
 }

@@ -87,5 +87,5 @@ long p804()
 
 int main()
 {
-    TIMED(printf("%ld\n", p804()));
+    printf("%ld\n", p804());
 }

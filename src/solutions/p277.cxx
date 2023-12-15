@@ -76,5 +76,5 @@ long p277()
 
 int main()
 {
-    TIMED(printf("%ld\n", p277()));
+    printf("%ld\n", p277());
 }

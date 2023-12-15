@@ -65,5 +65,5 @@ long p609()
 
 int main()
 {
-    TIMED(printf("%ld\n", p609()));
+    printf("%ld\n", p609());
 }

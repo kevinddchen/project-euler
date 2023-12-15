@@ -106,5 +106,5 @@ long p659()
 
 int main()
 {
-    TIMED(printf("%ld\n", p659()));
+    printf("%ld\n", p659());
 }

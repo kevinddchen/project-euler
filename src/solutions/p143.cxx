@@ -78,5 +78,5 @@ long p143()
 
 int main()
 {
-    TIMED(printf("%ld\n", p143()));
+    printf("%ld\n", p143());
 }

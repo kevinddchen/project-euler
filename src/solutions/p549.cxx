@@ -70,5 +70,5 @@ long p549()
 
 int main()
 {
-    TIMED(printf("%ld\n", p549()));
+    printf("%ld\n", p549());
 }

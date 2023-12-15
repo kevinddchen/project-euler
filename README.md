@@ -9,10 +9,10 @@ Most of the newer solutions are written in C++, and most of the older solutions 
 
 ## Running solutions
 
-Clone this repo and run the command below to install third-party dependencies.
-For C++, this just downloads Eigen, which is a header-only library.
+Clone this repo and run the commands below to install third-party dependencies.
+For C++, this downloads [Eigen](https://eigen.tuxfamily.org/), which is a header-only library.
 For Python, this installs `numpy` and `scipy`.
-Note that we use the `C++20` standard and Python version >= 3.9
+Note that we use the `C++20` standard and Python version >= 3.9.
 
 ```bash
 # install c++ third-party dependency

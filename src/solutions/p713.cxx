@@ -54,5 +54,5 @@ long p713()
 
 int main()
 {
-    TIMED(printf("%ld\n", p713()));
+    printf("%ld\n", p713());
 }

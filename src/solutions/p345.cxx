@@ -367,5 +367,5 @@ long p345()
 
 int main()
 {
-    TIMED(printf("%ld\n", p345()));
+    printf("%ld\n", p345());
 }

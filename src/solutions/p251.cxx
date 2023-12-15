@@ -135,5 +135,5 @@ long p251()
 
 int main()
 {
-    TIMED(printf("%ld\n", p251()));
+    printf("%ld\n", p251());
 }

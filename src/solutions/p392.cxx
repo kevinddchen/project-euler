@@ -110,5 +110,5 @@ double p392()
 
 int main()
 {
-    TIMED(printf("%.10f\n", p392()));
+    printf("%.10f\n", p392());
 }

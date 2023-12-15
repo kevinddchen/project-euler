@@ -106,5 +106,5 @@ long p813()
 
 int main()
 {
-    TIMED(printf("%ld\n", p813()));
+    printf("%ld\n", p813());
 }

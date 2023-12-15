@@ -56,5 +56,5 @@ long p808()
 
 int main()
 {
-    TIMED(printf("%ld\n", p808()));
+    printf("%ld\n", p808());
 }

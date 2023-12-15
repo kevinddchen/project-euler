@@ -50,5 +50,5 @@ long p757()
 
 int main()
 {
-    TIMED(printf("%ld\n", p757()));
+    printf("%ld\n", p757());
 }

@@ -69,5 +69,5 @@ long p186()
 
 int main()
 {
-    TIMED(printf("%ld\n", p186()));
+    printf("%ld\n", p186());
 }

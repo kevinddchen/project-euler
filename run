@@ -37,12 +37,12 @@ elif [[ -a $SRC/p$NUM.cxx ]]; then
 
     make $BIN/p$NUM
     echo "Running c++ solution #${NUM}..."
-    $BIN/p$NUM
+    time $BIN/p$NUM
 
 elif [[ -a $SRC/p$NUM.py ]]; then
 
     echo "Running python solution #${NUM}..."
-    FILES_DIR="$DIR/$FILES" python "$SRC/__main__.py" $NUM
+    time FILES_DIR="$DIR/$FILES" python "$SRC/__main__.py" $NUM
 
 else
 

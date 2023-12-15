@@ -97,5 +97,5 @@ long p297()
 
 int main()
 {
-    TIMED(printf("%ld\n", p297()));
+    printf("%ld\n", p297());
 }
