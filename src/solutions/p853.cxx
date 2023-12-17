@@ -5,8 +5,12 @@
 
 /*
 
-Hypothesis:
- -  pi(p^m)         = p^(m-1) * pi(m)
+By definition of the Pisano period, if pi(n) = 120 then Fib(120) = 0 (mod n)
+and Fib(121) = 1 (mod n). This implies that n divides gcd(Fib(120), Fib(121)-1)
+= Fib(60). Thus, we just need to compute the Pisano periods of all divisors of
+Fib(60). This is aided by the following facts:
+
+ -  pi(p^m)         = p^(m-1) * pi(m) ... technically still a conjecture
  -  pi(p^m * q^n)   = lcm( pi(p^m) , pi(q^n) )
 
 ANSWER 44511058204
