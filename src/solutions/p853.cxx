@@ -22,6 +22,10 @@ ANSWER 44511058204
  */
 long pisano(long n)
 {
+    if (n == 1) {
+        return 1;  // edge case
+    }
+
     long a = 1;  // Fib i
     long b = 0;  // Fib i-1
 
@@ -61,8 +65,7 @@ long p853()
     // iterate over all divisors of Fib(60)
     // this is done by iterating over all combinations of prime factor exponents
     std::vector<long> exps(factors.size());
-    // skip `div_idx = 0`, which is the divisor 1
-    for (long div_idx = 1; div_idx <= num_divisors - 2; ++div_idx) {
+    for (long div_idx = 0; div_idx < num_divisors; ++div_idx) {
         // populate `exps` with a unique combination
         {
             long i = div_idx;
