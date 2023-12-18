@@ -2,13 +2,22 @@
 
 """
 
-We can make a table to find out that H(k) = k if k is a Fibonacci number, and
-in general H(k) = the smallest term in the Zeckendorf representation of k. Then
-G(n) satisfies the recursion
+If we make a table for the first few values of H(k), we can note that H(k) =
+the smallest term in the Zeckendorf representation of k. This has a couple
+noteworthy consequences:
 
-    G(F_{n+1}) = G(F_n) + G(F_{n-1}) + F_n
+ -  H(F_n) = F_n, where F_n is the nth Fibonacci number
+ -  H(F_n + i) = H(n), where F_n < F_n + i < F_{n+1}
 
-where F_n is the nth Fibonacci number. Note that the big number given is F_80.
+This allows us to derive a useful recurrence relation for G(n):
+
+    G(F_{n+1}) = G(F_n) + H(F_n + 1) + H(F_n + 2) + ... + H(F_{n+1} - 1) + H(F_{n+1})
+               = G(F_n) + H(1) + H(2) + ... + H(F_{n+1} - F_n - 1) + F_{n+1}
+               = G(F_n) + G(F_{n-1}) - H(F_{n+1} - F_n) + F_{n+1}
+               = G(F_n) + G(F_{n-1}) - F_{n-1} + F_{n+1}
+               = G(F_n) + G(F_{n-1}) + F_n
+
+Note that the answer is G(F_80).
 
 """
 

@@ -4,18 +4,27 @@
 
 /*
 
-Let S(k) be the sum of z(n) for 0 < n < k, i.e. we want to find S(10^17). We
-can note two properties of S(k) that can be proven:
+We first note some properties of z(n):
 
-1.  S(F_{i+1}) = S(F_i) + S(F_{i-1}) + F_{i-1} for all Fibbonacci numbers F_i.
-2.  If k has the Zeckendorf representation k = F_a0 + F_a1 + ... F_an, then
+ -  z(F_n) = 1, where F_n is the nth Fibonacci number
+ -  z(F_n + i) = 1 + z(i), where F_n < F_n + i < F_{n+1}
+
+Let S(k) be the sum of z(n) for 0 < n < k, i.e. we want to find S(10^17). We
+can derive a useful recurrence relation for S(k):
+
+    S(F_{n+1}) = S(F_n) + z(F_n) + z(F_n + 1) + z(F_n + 2) + ... + z(F_{n+1} - 1)
+               = S(F_n) + z(1) + z(2) + ... + z(F_{n+1} - F_n - 1) + F_{n+1} - F_n
+               = S(F_n) + S(F_{n-1}) + F_{n-1}
+
+In general, if k has the Zeckendorf representation k = F_a0 + F_a1 + ... F_an, then
     S(k) =   S(F_a0) + F_a1 + F_a2 + ... + F_an
            + S(F_a1) + F_a2 + F_a3 + ... + F_an
            + ...
            + S(F_a{n-1}) + F_an
            + S(F_an)
 
-Using these two propositions, we can compute S(10^17) quite efficiently.
+Using this recurrence relation, we can compute S(10^17) quite efficiently
+knowing its Zeckendorf representation.
 
 ANSWER 2252639041804718029
 
