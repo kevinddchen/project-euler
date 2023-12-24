@@ -7,7 +7,7 @@ the smallest term in the Zeckendorf representation of k. This has a couple
 noteworthy consequences:
 
  -  H(F_n) = F_n, where F_n is the nth Fibonacci number
- -  H(F_n + i) = H(n), where F_n < F_n + i < F_{n+1}
+ -  H(F_n + i) = H(i), where F_n < F_n + i < F_{n+1}
 
 This allows us to derive a useful recurrence relation for G(n):
 
