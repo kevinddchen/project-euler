@@ -30,35 +30,31 @@ ANSWER 2252639041804718029
 
 */
 
-/*
- * Return largest fibonacci number <= the input.
+/**
+ * Returns the Zeckendorf representation of `n`. The Fibonacci numbers are
+ * returned in descending order.
  */
-long largest_fibonacci(long x)
+std::vector<long> get_zeckendorf(long n)
 {
-    assert(x >= 0);
-
-    long curr_fib = 0;
-    long next_fib = 1;
-    while (next_fib <= x) {
-        const long temp = curr_fib + next_fib;
-        curr_fib = next_fib;
-        next_fib = temp;
+    // first, generate the Fibonacci numbers until we get one that is >= n.
+    std::vector<long> fibs = {1, 2};
+    while (fibs.back() < n) {
+        const size_t len = fibs.size();
+        fibs.push_back(fibs.at(len - 1) + fibs.at(len - 2));
     }
-    return curr_fib;
-}
 
-/*
- * Return the Zeckendorf representation of the input.
- */
-std::vector<long> zeckendorf(long x)
-{
-    std::vector<long> result;
-    while (x > 0) {
-        const long f = largest_fibonacci(x);
-        result.push_back(f);
-        x -= f;
+    // then, generate Zeckendorf representation via greedy algorithm
+    std::vector<long> zeckendorf;
+    // NOTE: may be faster to use binary search here, but this is same time complexity as the loop above
+    for (long index = fibs.size() - 1; index >= 0; --index) {
+        const long fib = fibs.at(index);
+        if (n >= fib) {
+            n -= fib;
+            zeckendorf.push_back(fib);
+        }
     }
-    return result;
+
+    return zeckendorf;
 }
 
 long p297()
@@ -66,7 +62,7 @@ long p297()
     const long limit = 100'000'000'000'000'000;
 
     // Compute Zeckendorf representation of the limit
-    const auto fibs = zeckendorf(limit);
+    const auto fibs = get_zeckendorf(limit);
 
     long sum = 0;
 
@@ -84,7 +80,7 @@ long p297()
         while (fib_ptr >= fibs.begin()) {
             if (*fib_ptr == curr_fib) {
                 sum += curr_S;
-                fib_ptr--;
+                --fib_ptr;
             }
 
             const long next_fib = curr_fib + prev_fib;
