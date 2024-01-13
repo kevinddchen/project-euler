@@ -57,7 +57,7 @@ bool is_prime(long n)
 
 /**
  * Create a prime sieve, i.e. a boolean array where the nth entry is `true`
- * when n is prime. Note: entries n=0 and n=1 are not prime in this sieve.
+ * when n is prime. Note: entries n=0 and n=1 are `false` in this sieve.
  * @param size non-negative integer; size of sieve.
  */
 std::vector<bool> prime_sieve(int size)
@@ -72,10 +72,11 @@ std::vector<bool> prime_sieve(int size)
 
     // sieve
     for (int i = 2; i * i < size; i++) {
-        if (sieve[i]) {
-            for (int j = i * i; j < size; j += i) {
-                sieve[j] = false;
-            }
+        if (!sieve[i]) {  // skip if not prime
+            continue;
+        }
+        for (int j = i * i; j < size; j += i) {
+            sieve[j] = false;
         }
     }
     return sieve;
@@ -98,9 +99,12 @@ std::vector<int> prime_factor_sieve(int size)
 
     // sieve
     for (int i = 2; i * i < size; i++) {
-        if (sieve[i] == i) {
-            for (int j = i * i; j < size; j += i) {
-                sieve[j] = std::min(i, sieve[j]);
+        if (sieve[i] != i) {  // skip if not prime
+            continue;
+        }
+        for (int j = i * i; j < size; j += i) {
+            if (i < sieve[j]) {
+                sieve[j] = i;
             }
         }
     }
@@ -118,9 +122,9 @@ struct PrimePower {
 };
 
 /**
- * Prime factorize an integer, i.e. if n = p1^a1 * p2^a2 * ... * pk^ak
- * then returns the list of {p, a} pairs. The factorization given in ascending
- * order of p.
+ * Prime factorize an integer, i.e. if n = p1^a1 * p2^a2 * ... * pk^ak then
+ * returns the list of {p, a} pairs. The factorization given in ascending order
+ * of p.
  * @param n integer, greater than 1.
  */
 std::vector<PrimePower> prime_factorize(long n)
