@@ -26,7 +26,7 @@ pip install .
 To run any solution, run the following command,
 
 ```bash
-./run $NUM
+./run.sh $NUM
 ```
 
 where `$NUM` is the problem number.
@@ -44,5 +44,5 @@ pre-commit install
 
 To run C++ and Python tests,
 ```bash
-./run tests
+./run.sh tests
 ```
