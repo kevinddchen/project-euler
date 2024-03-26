@@ -15,6 +15,8 @@ struct Frac {
     long numer;
     long denom;
 
+    Frac() : numer(0), denom(1) {}
+
     Frac(long a) : numer(a), denom(1) {}
 
     Frac(long a, long b) : numer(a), denom(b)
