@@ -256,11 +256,6 @@ void test_modular_power()
     assert(mf::modular_power(2, 0, 100) == 1);
     assert(mf::modular_power(0, 2, 100) == 0);
 
-    assert(mf::modular_power(-5, 5, 7) == 4);
-    assert(mf::modular_power(-12, 5, 7) == 4);
-    assert(mf::modular_power(-759, 46, 999) == 891);
-    assert(mf::modular_power(-930, 420, 999) == 729);
-
     // test for large mods
     assert(mf::modular_power(2, 64, 4294967311) == 225);
     assert(mf::modular_power(999, 999, 100000000003) == 98562815202);

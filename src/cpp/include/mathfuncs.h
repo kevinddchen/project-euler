@@ -281,19 +281,18 @@ long modular_product(long a, long b, long m)
 }
 
 /**
- * Computes a^b mod m, where b is a non-negative integer and m > 1, and returns
- * a positive integer. Note: 0^0 = 1 in this implementation.
+ * Computes the modular power a^b mod m. Note: 0^0 = 1 in this implementation.
  * @param a non-negative integer, less than m.
  * @param b non-negative integer.
  * @param m integer, greater than 1.
  */
 long modular_power(long a, long b, long m)
 {
-    assert(b >= 0);
-    assert(m > 1);
+    assert(0 <= a && a < m);
+    assert(0 <= b && b < m);
+    assert(1 < m);
 
     long result = 1;
-    a = ((a % m) + m) % m;
     while (b > 0) {
         if (b & 1) {  // if (b % 2) == 1
             result = modular_product(result, a, m);
