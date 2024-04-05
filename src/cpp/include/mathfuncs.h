@@ -4,33 +4,6 @@
 
 #include <vector>
 
-/**
- * Compute the modular product (a * b) % m.
- * @param a non-negative integer, less than m.
- * @param b non-negative integer, less than m.
- * @param m integer, greater than 1.
- */
-long _mf_modular_product(long a, long b, long m)
-{
-    // if mod is small enough, can directly multiply
-    if (m <= INT_MAX) {
-        return (a * b) % m;
-    }
-
-    // otherwise, we have to use an algorithm similar to `modular_power`
-    long result = 0;
-    while (b > 0) {
-        if (b & 1) {  // if (b % 2) == 1
-            result = (result + a) % m;
-        }
-        a = (2 * a) % m;
-        b >>= 1;
-    }
-    return result;
-}
-
-// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
 namespace mf
 {
 
@@ -254,8 +227,9 @@ void extended_gcd(long a, long b, long& s, long& t, long& r)
 }
 
 /**
- * Computes the multiplicative inverse of a mod m,  If a and m are not coprime, returns 0 instead. Uses the Extended
- * Euclidean algorithm to compute the inverse.
+ * Computes the multiplicative inverse of a mod m,  If a and m are not coprime,
+ * returns 0 instead. Uses the Extended Euclidean algorithm to compute the
+ * inverse.
  * @param a positive integer.
  * @param m integer, greater than 1.
  */
@@ -279,31 +253,59 @@ long modular_inverse(long a, long m)
 }
 
 /**
- * Computes a^b mod m, where b is a non-negative integer and m > 1, and returns
- * a positive integer. Note: 0^0 = 1 in this implementation.
- * @param a integer.
- * @param b non-negative integer.
+ * Computes the modular product (a * b) mod m.
+ * @param a non-negative integer, less than m.
+ * @param b non-negative integer, less than m.
  * @param m integer, greater than 1.
  */
-long modular_power(long a, long b, long m)
+long modular_product(long a, long b, long m)
 {
-    assert(b >= 0);
-    assert(m > 1);
+    assert(0 <= a && a < m);
+    assert(0 <= b && b < m);
+    assert(1 < m);
 
-    long result = 1;
-    a = ((a % m) + m) % m;
+    // if mod is small enough, can directly multiply
+    if (m <= INT_MAX) {
+        return (a * b) % m;
+    }
+
+    // otherwise, we have to use an algorithm similar to `modular_power`
+    long result = 0;
     while (b > 0) {
         if (b & 1) {  // if (b % 2) == 1
-            result = _mf_modular_product(result, a, m);
+            result = (result + a) % m;
         }
-        a = _mf_modular_product(a, a, m);
+        a = (2 * a) % m;
         b >>= 1;
     }
     return result;
 }
 
 /**
- * Computes a^b, where b is a non-negative integer. Note: 0^0 = 1 in this
+ * Computes the modular power a^b mod m. Note: 0^0 = 1 in this implementation.
+ * @param a non-negative integer, less than m.
+ * @param b non-negative integer.
+ * @param m integer, greater than 1.
+ */
+long modular_power(long a, long b, long m)
+{
+    assert(0 <= a && a < m);
+    assert(0 <= b);
+    assert(1 < m);
+
+    long result = 1;
+    while (b > 0) {
+        if (b & 1) {  // if (b % 2) == 1
+            result = modular_product(result, a, m);
+        }
+        a = modular_product(a, a, m);
+        b >>= 1;
+    }
+    return result;
+}
+
+/**
+ * Computes a^b. No checks for overflow are performed. Note: 0^0 = 1 in this
  * implementation.
  * @param a integer.
  * @param b non-negative integer.
@@ -314,8 +316,7 @@ long pow(long a, int b)
 
     long result = 1;
     while (b > 0) {
-        if (b & 1)  // if (b % 2) == 1
-        {
+        if (b & 1) {  // if (b % 2) == 1
             result = result * a;
         }
         a = a * a;

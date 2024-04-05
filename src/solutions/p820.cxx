@@ -47,7 +47,7 @@ int order_of_10(int p, const std::vector<int>& prime_factor_sieve)
     int order = p - 1;
     for (const auto& fact : facts) {
         for (int i = 0; i < fact.exp; i++) {
-            if (mf::modular_power(10, order / fact.base, p) == 1) {
+            if (mf::modular_power(10 % p, order / fact.base, p) == 1) {
                 order /= fact.base;
             } else {
                 break;
@@ -108,7 +108,7 @@ std::pair<int, int> decimal_period_and_offset(
 int get_decimal_digit(int n, int k)
 {
     assert(k > 0);
-    const int x = mf::modular_power(10, k - 1, n);
+    const int x = mf::modular_power(10 % n, k - 1, n);
     return (x * 10) / n;
 }
 

@@ -227,6 +227,23 @@ void test_modular_inverse()
     printf("Done!\n");
 }
 
+void test_modular_product()
+{
+    printf("Testing `modular_product()`...");
+
+    long mod = 100;
+    for (long a = 0; a < mod; ++a) {
+        for (long b = 0; b < mod; ++b) {
+            assert(mf::modular_product(a, b, mod) == (a * b) % mod);
+        }
+    }
+
+    // test something that could usually overflow
+    assert(mf::modular_product(1234567891011, 1110987654321, 10000000000000) == 4334871208531);
+
+    printf("Done!\n");
+}
+
 void test_modular_power()
 {
     printf("Testing `modular_power()`... ");
@@ -238,11 +255,6 @@ void test_modular_power()
     assert(mf::modular_power(0, 0, 100) == 1);
     assert(mf::modular_power(2, 0, 100) == 1);
     assert(mf::modular_power(0, 2, 100) == 0);
-
-    assert(mf::modular_power(-5, 5, 7) == 4);
-    assert(mf::modular_power(-12, 5, 7) == 4);
-    assert(mf::modular_power(-759, 46, 999) == 891);
-    assert(mf::modular_power(-930, 420, 999) == 729);
 
     // test for large mods
     assert(mf::modular_power(2, 64, 4294967311) == 225);
@@ -298,6 +310,7 @@ int main()
     test_merge_prime_factors();
     test_extended_gcd();
     test_modular_inverse();
+    test_modular_product();
     test_modular_power();
     test_pow();
     test_round();
