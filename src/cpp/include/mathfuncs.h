@@ -4,33 +4,6 @@
 
 #include <vector>
 
-/**
- * Compute the modular product (a * b) % m.
- * @param a non-negative integer, less than m.
- * @param b non-negative integer, less than m.
- * @param m integer, greater than 1.
- */
-long _mf_modular_product(long a, long b, long m)
-{
-    // if mod is small enough, can directly multiply
-    if (m <= INT_MAX) {
-        return (a * b) % m;
-    }
-
-    // otherwise, we have to use an algorithm similar to `modular_power`
-    long result = 0;
-    while (b > 0) {
-        if (b & 1) {  // if (b % 2) == 1
-            result = (result + a) % m;
-        }
-        a = (2 * a) % m;
-        b >>= 1;
-    }
-    return result;
-}
-
-// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
 namespace mf
 {
 
@@ -279,9 +252,38 @@ long modular_inverse(long a, long m)
 }
 
 /**
+ * Computes the modular product (a * b) mod m.
+ * @param a non-negative integer, less than m.
+ * @param b non-negative integer, less than m.
+ * @param m integer, greater than 1.
+ */
+long modular_product(long a, long b, long m)
+{
+    assert(0 <= a && a < m);
+    assert(0 <= b && b < m);
+    assert(1 < m);
+
+    // if mod is small enough, can directly multiply
+    if (m <= INT_MAX) {
+        return (a * b) % m;
+    }
+
+    // otherwise, we have to use an algorithm similar to `modular_power`
+    long result = 0;
+    while (b > 0) {
+        if (b & 1) {  // if (b % 2) == 1
+            result = (result + a) % m;
+        }
+        a = (2 * a) % m;
+        b >>= 1;
+    }
+    return result;
+}
+
+/**
  * Computes a^b mod m, where b is a non-negative integer and m > 1, and returns
  * a positive integer. Note: 0^0 = 1 in this implementation.
- * @param a integer.
+ * @param a non-negative integer, less than m.
  * @param b non-negative integer.
  * @param m integer, greater than 1.
  */
@@ -294,16 +296,16 @@ long modular_power(long a, long b, long m)
     a = ((a % m) + m) % m;
     while (b > 0) {
         if (b & 1) {  // if (b % 2) == 1
-            result = _mf_modular_product(result, a, m);
+            result = modular_product(result, a, m);
         }
-        a = _mf_modular_product(a, a, m);
+        a = modular_product(a, a, m);
         b >>= 1;
     }
     return result;
 }
 
 /**
- * Computes a^b, where b is a non-negative integer. Note: 0^0 = 1 in this
+ * Computes a^b. No checks for overflow are performed. Note: 0^0 = 1 in this
  * implementation.
  * @param a integer.
  * @param b non-negative integer.
@@ -314,8 +316,7 @@ long pow(long a, int b)
 
     long result = 1;
     while (b > 0) {
-        if (b & 1)  // if (b % 2) == 1
-        {
+        if (b & 1) {  // if (b % 2) == 1
             result = result * a;
         }
         a = a * a;
