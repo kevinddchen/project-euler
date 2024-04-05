@@ -227,8 +227,9 @@ void extended_gcd(long a, long b, long& s, long& t, long& r)
 }
 
 /**
- * Computes the multiplicative inverse of a mod m,  If a and m are not coprime, returns 0 instead. Uses the Extended
- * Euclidean algorithm to compute the inverse.
+ * Computes the multiplicative inverse of a mod m,  If a and m are not coprime,
+ * returns 0 instead. Uses the Extended Euclidean algorithm to compute the
+ * inverse.
  * @param a positive integer.
  * @param m integer, greater than 1.
  */
@@ -289,7 +290,7 @@ long modular_product(long a, long b, long m)
 long modular_power(long a, long b, long m)
 {
     assert(0 <= a && a < m);
-    assert(0 <= b && b < m);
+    assert(0 <= b);
     assert(1 < m);
 
     long result = 1;

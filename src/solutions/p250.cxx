@@ -36,7 +36,7 @@ long p250()
 
     for (long k = 1; k <= 250250; ++k) {
         // compute k^k mod 250
-        long pow = mf::modular_power(k, k, 250);
+        long pow = mf::modular_power(k % 250, k, 250);
 
         // copy the counts
         std::array<long, 250> new_counts = counts;

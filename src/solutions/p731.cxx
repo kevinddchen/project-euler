@@ -25,7 +25,7 @@ std::vector<int> get_decimal_digits(long k, long n, long m)
 {
     assert(n > 0);
     assert(m > 0);
-    long x = mf::modular_power(10, n - 1, k);  // this implementation prevents integer overflow
+    long x = mf::modular_power(10 % k, n - 1, k);  // this implementation prevents integer overflow
 
     std::vector<int> digits;
     for (int i = 0; i < m; i++) {
