@@ -22,7 +22,7 @@ bool is_smooth(long n)
 
 long p0()
 {
-    constexpr long limit = 9'000'000;
+    constexpr long limit = 10'000'000'000;
 
     // {
     //     long count = 1;
@@ -57,20 +57,20 @@ long p0()
     long count = 1;
 
     for (long p : primes) {
-        // iterate over `nums` while we are adding items to it
-        const int max_idx = nums.size() - 1;
+        std::vector<long> new_nums;
 
-        for (int i = 0; i <= max_idx; ++i) {
-            long num = nums[i];
+        for (long num : nums) {
             while (num * p <= limit) {
+                new_nums.push_back(num);
                 if (p < num) {
                     // printf("%ld\n", num * p);
                     ++count;
                 }
                 num *= p;
-                nums.push_back(num);
             }
         }
+
+        nums = new_nums;
     }
     printf("count=%ld\n", count);
     return 0;
