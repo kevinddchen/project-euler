@@ -6,7 +6,20 @@
 
 /*
 
-ANSWER
+The key is to quickly generate 100,000 primes larger than 10^14. It turns out
+that this can be accomplished with a sieve and the primes less than 10^7, since
+the next prime after 10^7 is q = 10,000,019 and there are 11,787,044 primes
+between 10^14 and q^2.
+
+To compute the nth fibonacci number modulo m, we use the closed-form matrix
+representation,
+
+    {{1, 1}, {1, 0}}^n = {{F_(n-1), F_n}, {F_n, F_(n-1)}}
+
+and then efficiently compute the modular power of the matrix in a way analogous
+to how it is done for integers.
+
+ANSWER 283988410192
 
 */
 
@@ -63,7 +76,7 @@ long next_prime(long n)
     return n;
 }
 
-long p0()
+long p304()
 {
     const long mod = 1234567891011;
 
@@ -107,7 +120,6 @@ long p0()
 
     // sum `fib_mod` on first 100,000 primes
     long sum = 0;
-
     {
         long count = 0;
         for (int i = 0; i < size; ++i) {
@@ -130,5 +142,5 @@ long p0()
 
 int main()
 {
-    printf("%ld\n", p0());
+    printf("%ld\n", p304());
 }
