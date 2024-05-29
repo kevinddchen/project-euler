@@ -2,6 +2,7 @@
 #include "mathfuncs.h"
 
 #include <array>
+#include <vector>
 
 /*
 
@@ -49,26 +50,82 @@ long fib_mod(long n, long m)
     return result[0][1];
 }
 
+
+/**
+ * Generate the smallest prime greater than n.
+ */
+long next_prime(long n)
+{
+    n += 1 + n % 2;  // next odd number greater than n
+    while (!mf::is_prime(n)) {
+        n += 2;
+    }
+    return n;
+}
+
 long p0()
 {
     const long mod = 1234567891011;
 
-    long x = static_cast<long>(1e14) - 1;
+    const long limit = 100'000;
 
-    int count = 0;
-    while (count < 100) {
-        x += 2;
+    const long N = 1e14;
+    const long sqrt_N = sqrt(N);
 
-        while (!mf::is_prime(x)) {
-            x += 2;
+    // generate primes up to 10^7
+    std::vector<long> primes = {2};
+    {
+        const auto sieve = mf::prime_sieve(sqrt_N);
+        for (long p = 3; p < sieve.size(); p += 2) {
+            if (sieve[p]) {
+                primes.push_back(p);
+            }
         }
-
-        long fib = fib_mod(x, mod);
-        printf("F(%ld): %ld\n", x, fib, mod);
-        ++count;
     }
 
-    return 0;
+    // q = prime after 10^7
+    const long q = next_prime(sqrt_N);
+
+    // do prime sieve on integers 1e14 to q * q
+    // hopefully, there are more than 100,000 primes in this range
+    const long size = q * q - N;
+    std::vector<bool> sieve(size);
+    {
+        // initialize sieve
+        for (int i = 0; i < size; ++i) {
+            sieve[i] = true;
+        }
+
+        for (auto p : primes) {
+            // N % p gives the remainder, so p less this gives the first multiple of p greater than N
+            // we take a final modulo to get the first multiple greater _or equal_ than N
+            for (long j = (p - N % p) % p; j < size; j += p) {
+                sieve[j] = false;
+            }
+        }
+    }
+
+    // sum `fib_mod` on first 100,000 primes
+    long sum = 0;
+
+    {
+        long count = 0;
+        for (int i = 0; i < size; ++i) {
+            if (!sieve[i]) {
+                continue;
+            }
+
+            sum = (sum + fib_mod(N + i, mod)) % mod;
+            ++count;
+
+            if (count == limit) {
+                break;
+            }
+        }
+        assert(count == limit);
+    }
+
+    return sum;
 }
 
 int main()
