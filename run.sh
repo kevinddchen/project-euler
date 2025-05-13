@@ -27,7 +27,7 @@ if [[ $NUM = "tests" ]]; then
 
     make tests
     echo "Running c++ tests..."
-    for test in $(ls $BIN/test_*); do
+    for test in $(ls $BIN/cpp/tests/test_*); do
         ./$test
     done
     echo "Running python tests..."
@@ -35,9 +35,9 @@ if [[ $NUM = "tests" ]]; then
 
 elif [[ -a $SRC/p$NUM.cxx ]]; then
 
-    make $BIN/p$NUM
+    make $BIN/solutions/p$NUM
     echo "Running c++ solution #${NUM}..."
-    time $BIN/p$NUM
+    time $BIN/solutions/p$NUM
 
 elif [[ -a $SRC/p$NUM.py ]]; then
 

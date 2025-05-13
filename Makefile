@@ -1,26 +1,41 @@
-CC = g++
-CFLAGS = -I./src/cpp/include -I./src/cpp/thirdparty/eigen -Wall -std=c++20 -O2
-SRC = ./src/solutions
-BIN = ./bin
-TESTS = ./src/cpp/tests
+# https://stackoverflow.com/a/25966957
 
-# automatically recognize targets corresponding to `.cxx` source files
-TARGETS = $(patsubst $(SRC)/%.cxx,$(BIN)/%,$(wildcard $(SRC)/p*.cxx))
-TEST_TARGETS = $(patsubst $(TESTS)/%.cxx,$(BIN)/%,$(wildcard $(TESTS)/test_*.cxx))
+BIN := bin
+SRC := src
+OBJ := objects
 
-.PHONY: all tests clean
+# These will be added to as we include the modules
+sources := $(wildcard $(SRC)/solutions/p*.cxx)
+apps    := $(subst $(SRC),$(BIN),$(sources:.cxx=))
+objects := $(subst $(SRC),$(OBJ),$(sources:.cxx=.o))
+deps    := $(objects:.o=.d)
 
-all: $(TARGETS)
+include $(SRC)/cpp/tests/module.mk
 
-tests: $(TEST_TARGETS)
+-include $(deps)
 
-$(BIN)/%: $(TESTS)/%.cxx
+CXX      := g++
+CPPFLAGS := -I./src/cpp/include -I./src/cpp/thirdparty/eigen -MMD -MP
+CXXFLAGS := -std=c++20 -O3 -Wall -Wextra -pedantic-errors
+LDFLAGS  :=
+LDLIBS   :=
+
+# Link apps
+$(BIN)/%: $(OBJ)/%.o
 	@mkdir -p $(@D)
-	$(CC) -o $@ $(CFLAGS) $^
+	$(CXX) $(LDFLAGS) $^ $(LDLIBS) -o $@
 
-$(BIN)/%: $(SRC)/%.cxx
+# Compile objects
+$(OBJ)/%.o: $(SRC)/%.cxx
 	@mkdir -p $(@D)
-	$(CC) -o $@ $(CFLAGS) $^
+	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -c $< -o $@
 
+.PHONY: all
+all: $(apps) $(objects)
+
+.PHONY: clean
 clean:
-	rm -rf $(BIN)
+	$(RM) -r $(BIN)/* $(OBJ)/*
+
+.PHONY: tests
+tests: $(test_apps)
