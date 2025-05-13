@@ -1,8 +1,9 @@
 #pragma once
 
-#include "common.h"
-
 #include <vector>
+
+#include <cassert>
+
 
 namespace mf
 {
@@ -11,7 +12,7 @@ namespace mf
  * Returns true if n is prime.
  * @param n integer.
  */
-bool is_prime(long n)
+inline bool is_prime(long n)
 {
     if (n <= 1) {
         return false;
@@ -33,7 +34,7 @@ bool is_prime(long n)
  * when n is prime. Note: entries n=0 and n=1 are `false` in this sieve.
  * @param size non-negative integer; size of sieve.
  */
-std::vector<bool> prime_sieve(int size)
+inline std::vector<bool> prime_sieve(int size)
 {
     assert(size >= 0);
 
@@ -60,7 +61,7 @@ std::vector<bool> prime_sieve(int size)
  * entries n=0 and n=1 are equal to `0`.
  * @param size non-negative integer; size of sieve.
  */
-std::vector<int> prime_factor_sieve(int size)
+inline std::vector<int> prime_factor_sieve(int size)
 {
     assert(size >= 0);
 
@@ -100,7 +101,7 @@ struct PrimePower {
  * of p.
  * @param n integer, greater than 1.
  */
-std::vector<PrimePower> prime_factorize(long n)
+inline std::vector<PrimePower> prime_factorize(long n)
 {
     assert(n > 1);
     std::vector<PrimePower> facts;
@@ -130,7 +131,7 @@ std::vector<PrimePower> prime_factorize(long n)
  * sieve. The factorization is given in ascending order of p.
  * @param n integer, greater than 1.
  */
-std::vector<PrimePower> prime_factorize(long n, const std::vector<int>& sieve)
+inline std::vector<PrimePower> prime_factorize(long n, const std::vector<int>& sieve)
 {
     assert(n > 1);
     std::vector<PrimePower> facts;
@@ -160,7 +161,7 @@ std::vector<PrimePower> prime_factorize(long n, const std::vector<int>& sieve)
  * @param facts1 first list of prime factors.
  * @param facts2 second list of prime factors.
  */
-std::vector<mf::PrimePower> merge_prime_factors(
+inline std::vector<mf::PrimePower> merge_prime_factors(
     const std::vector<mf::PrimePower>& facts1, const std::vector<mf::PrimePower>& facts2)
 {
     auto fact1 = facts1.begin();
@@ -198,7 +199,7 @@ std::vector<mf::PrimePower> merge_prime_factors(
  * @param t output parameter.
  * @param r output parameter.
  */
-void extended_gcd(long a, long b, long& s, long& t, long& r)
+inline void extended_gcd(long a, long b, long& s, long& t, long& r)
 {
     assert(a > 0);
     assert(b > 0);
@@ -233,7 +234,7 @@ void extended_gcd(long a, long b, long& s, long& t, long& r)
  * @param a positive integer.
  * @param m integer, greater than 1.
  */
-long modular_inverse(long a, long m)
+inline long modular_inverse(long a, long m)
 {
     assert(a > 0);
     assert(m > 1);
@@ -258,7 +259,7 @@ long modular_inverse(long a, long m)
  * @param b non-negative integer, less than m.
  * @param m integer, greater than 1.
  */
-long modular_product(long a, long b, long m)
+inline long modular_product(long a, long b, long m)
 {
     assert(0 <= a && a < m);
     assert(0 <= b && b < m);
@@ -287,7 +288,7 @@ long modular_product(long a, long b, long m)
  * @param b non-negative integer.
  * @param m integer, greater than 1.
  */
-long modular_power(long a, long b, long m)
+inline long modular_power(long a, long b, long m)
 {
     assert(0 <= a && a < m);
     assert(0 <= b);
@@ -310,7 +311,7 @@ long modular_power(long a, long b, long m)
  * @param a integer.
  * @param b non-negative integer.
  */
-long pow(long a, int b)
+inline long pow(long a, int b)
 {
     assert(b >= 0);
 
@@ -330,7 +331,7 @@ long pow(long a, int b)
  * @param arg float to round.
  * @param n_decimals number of decimal places to round to.
  */
-double round(double arg, uint32_t n_decimals)
+inline double round(double arg, uint32_t n_decimals)
 {
     const double x = pow(10.0, static_cast<double>(n_decimals));
     return std::round(arg * x) / x;

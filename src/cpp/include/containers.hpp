@@ -1,9 +1,10 @@
 #pragma once
 
-#include "common.h"
-
 #include <functional>
 #include <numeric>
+
+#include <cassert>
+
 
 namespace mf
 {
