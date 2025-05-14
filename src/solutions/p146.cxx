@@ -1,7 +1,7 @@
-#include "common.h"
-#include "mathfuncs.h"
+#include <mathfuncs.hpp>
 
 #include <array>
+
 
 /*
 

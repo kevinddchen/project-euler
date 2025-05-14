@@ -1,5 +1,9 @@
-#include "generators.h"
-#include "testing.h"
+#include <mf/generators.hpp>
+#include <mf/test.hpp>
+
+#include <cassert>
+#include <cstdio>
+
 
 void test_laggedfibonacci()
 {

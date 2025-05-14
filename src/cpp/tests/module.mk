@@ -1,6 +1,6 @@
-test_sources := $(wildcard $(SRC)/cpp/tests/*.cxx)
-test_apps    := $(subst $(SRC),$(BIN),$(test_sources:.cxx=))
-test_objects := $(subst $(SRC),$(OBJ),$(test_sources:.cxx=.o))
+test_sources := $(wildcard $(SRC)/cpp/tests/*.cpp)
+test_apps    := $(subst $(SRC),$(BIN),$(test_sources:.cpp=))
+test_objects := $(subst $(SRC),$(OBJ),$(test_sources:.cpp=.o))
 test_deps    := $(test_objects:.o=.d)
 
 sources += $(test_sources)

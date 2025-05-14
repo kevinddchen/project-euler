@@ -13,12 +13,9 @@ namespace mf
  * Fraction class. Denominator is always positive.
  */
 struct Frac {
-    long numer;
-    long denom;
+    Frac() = default;
 
-    Frac() : numer(0), denom(1) {}
-
-    Frac(long a) : numer(a), denom(1) {}
+    Frac(long a) : numer(a), denom(1) {};
 
     Frac(long a, long b) : numer(a), denom(b)
     {
@@ -50,10 +47,14 @@ struct Frac {
 
     inline Frac reciprocal() const { return {denom, numer}; }
 
-    inline double fp() const { return (double)numer / (double)denom; }
+    inline double fp() const { return static_cast<double>(numer) / static_cast<double>(denom); }
+
+    long numer;
+    long denom;
 };
 
 }  // namespace mf
+
 
 // Since our fractions are always reduced, we can just hash the floating point value
 template <>

@@ -1,7 +1,8 @@
-#include "mathfuncs.h"
-#include "testing.h"
+#include <mf/mathfuncs.hpp>
+#include <mf/test.hpp>
 
 #include <numeric>
+
 
 void test_is_prime()
 {
@@ -158,7 +159,7 @@ void test_prime_factorize_with_sieve()
     for (int i = 2; i < 1000; i++) {
         const auto factors = mf::prime_factorize(i, sieve);
         const auto exp_factors = mf::prime_factorize(i);
-        for (int j = 0; j < factors.size(); j++) {
+        for (int j = 0; j < static_cast<int>(factors.size()); j++) {
             assert(factors[j] == exp_factors[j]);
         }
     }
@@ -290,12 +291,12 @@ void test_round()
 {
     printf("Testing `round()`... ");
 
-    assert(is_equal(mf::round(0.90909, 0), 1.0));
-    assert(is_equal(mf::round(0.90909, 1), 0.9));
-    assert(is_equal(mf::round(0.90909, 2), 0.91));
-    assert(is_equal(mf::round(0.90909, 3), 0.909));
-    assert(is_equal(mf::round(0.90909, 4), 0.9091));
-    assert(is_equal(mf::round(0.90909, 5), 0.90909));
+    assert(mf::test::is_equal(mf::round(0.90909, 0), 1.0));
+    assert(mf::test::is_equal(mf::round(0.90909, 1), 0.9));
+    assert(mf::test::is_equal(mf::round(0.90909, 2), 0.91));
+    assert(mf::test::is_equal(mf::round(0.90909, 3), 0.909));
+    assert(mf::test::is_equal(mf::round(0.90909, 4), 0.9091));
+    assert(mf::test::is_equal(mf::round(0.90909, 5), 0.90909));
 
     printf("Done!\n");
 }

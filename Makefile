@@ -15,7 +15,7 @@ include $(SRC)/cpp/tests/module.mk
 -include $(deps)
 
 CXX      := g++
-CPPFLAGS := -I./src/cpp/include -I./src/cpp/thirdparty/eigen -MMD -MP
+CPPFLAGS := -I./src/cpp -I./src/cpp/thirdparty/eigen -MMD -MP
 CXXFLAGS := -std=c++20 -O3 -Wall -Wextra -pedantic-errors
 LDFLAGS  :=
 LDLIBS   :=
@@ -26,7 +26,7 @@ $(BIN)/%: $(OBJ)/%.o
 	$(CXX) $(LDFLAGS) $^ $(LDLIBS) -o $@
 
 # Compile objects
-$(OBJ)/%.o: $(SRC)/%.cxx
+$(OBJ)/%.o: $(SRC)/%.cpp
 	@mkdir -p $(@D)
 	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -c $< -o $@
 
