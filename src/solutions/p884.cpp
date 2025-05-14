@@ -1,5 +1,6 @@
 #include <unordered_map>
 
+#include <cmath>
 #include <cassert>
 
 /*
@@ -31,7 +32,7 @@ ANSWER 1105985795684653500
 
 */
 
-inline long cube(long x)
+long cube(long x)
 {
     return x * x * x;
 }
@@ -41,14 +42,14 @@ inline long cube(long x)
  */
 long icbrt(long x)
 {
-    // Do we fear floating point errors?
     long root = std::cbrtl(x);
-    // while (cube(root) > x) {
-    //     --root;
-    // }
-    // while (cube(root + 1) <= x) {
-    //     ++root;
-    // }
+    // account for floating point errors
+    while (cube(root) > x) {
+        --root;
+    }
+    while (cube(root + 1) <= x) {
+        ++root;
+    }
     return root;
 }
 
