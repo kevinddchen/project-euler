@@ -5,9 +5,9 @@ SRC := src
 OBJ := objects
 
 # These will be added to as we include the modules
-sources := $(wildcard $(SRC)/solutions/p*.cxx)
-apps    := $(subst $(SRC),$(BIN),$(sources:.cxx=))
-objects := $(subst $(SRC),$(OBJ),$(sources:.cxx=.o))
+sources := $(wildcard $(SRC)/solutions/p*.cpp)
+apps    := $(subst $(SRC),$(BIN),$(sources:.cpp=))
+objects := $(subst $(SRC),$(OBJ),$(sources:.cpp=.o))
 deps    := $(objects:.o=.d)
 
 include $(SRC)/cpp/tests/module.mk
