@@ -91,7 +91,7 @@ long dfs(long limit, const std::vector<long> primes)
         stack.push_back(left_child);
 
         // right child: next prime
-        if (node.prime_idx + 1 < primes.size()) {
+        if (node.prime_idx + 1 < static_cast<int>(primes.size())) {
             const Node right_child = {node.product, node.prime_idx + 1};
             stack.push_back(right_child);
         }

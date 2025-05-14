@@ -16,14 +16,14 @@ element of the sequence F_{A,B}, then we have the following recursion relation:
 
 All that remains is to compute L_i until we exceed the desired initial n.
 
-ANSWER
+ANSWER 850481152593119296
 
 */
 
 int get_nth_digit(const std::string& A, const std::string& B, long n)
 {
     // first, compute length of each string in the sequence F_{A,B} until we exceed n
-    std::vector<long> lengths = {(long)A.length(), (long)B.length()};
+    std::vector<long> lengths = {static_cast<long>(A.length()), static_cast<long>(B.length())};
     while (lengths.back() < n) {
         const auto size = lengths.size();
         lengths.push_back(lengths[size - 2] + lengths[size - 1]);

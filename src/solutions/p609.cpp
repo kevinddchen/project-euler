@@ -43,7 +43,7 @@ long p609()
                 k++;
             }
             // increment p_k[k]
-            while (p_k.size() <= k) {
+            while (static_cast<int>(p_k.size()) <= k) {
                 p_k.push_back(0);
             }
             p_k[k]++;

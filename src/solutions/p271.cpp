@@ -72,7 +72,7 @@ long get_primitive_root(long p)
 /* Recursively sum all cube roots of unity. */
 long sum_all_roots(const std::vector<std::vector<long>>& base_roots, long n, int i = 0, long current_root = 0)
 {
-    if (i == base_roots.size()) {
+    if (i == static_cast<int>(base_roots.size())) {
         return current_root % n;
     }
 

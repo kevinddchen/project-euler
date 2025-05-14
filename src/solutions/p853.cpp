@@ -68,7 +68,7 @@ long p853()
         // populate `exps` with a unique combination
         {
             long i = div_idx;
-            for (int j = 0; j < factors.size(); ++j) {
+            for (int j = 0; j < static_cast<int>(factors.size()); ++j) {
                 const long max_exp = factors[j].exp + 1;
                 exps[j] = i % max_exp;
                 i /= max_exp;
@@ -76,7 +76,7 @@ long p853()
         }
         // compute the divisor represented by `exps`
         long n = 1;
-        for (int j = 0; j < factors.size(); ++j) {
+        for (int j = 0; j < static_cast<int>(factors.size()); ++j) {
             n *= mf::pow(factors[j].base, exps[j]);
         }
         if (n >= limit) {
@@ -84,7 +84,7 @@ long p853()
         }
         // compute the Pisano period of `n`
         long pi = 1;
-        for (int j = 0; j < factors.size(); ++j) {
+        for (int j = 0; j < static_cast<int>(factors.size()); ++j) {
             if (exps[j] > 0) {
                 const long prime_pi = mf::pow(factors[j].base, exps[j] - 1) * prime_pis[j];
                 pi = std::lcm(pi, prime_pi);

@@ -87,7 +87,7 @@ struct Collection {
         {
             int prev = mults[0];
             int run = 1;
-            for (int i = 1; i < mults.size(); ++i) {
+            for (int i = 1; i < static_cast<int>(mults.size()); ++i) {
                 if (mults[i] == prev) {
                     ++run;
                 } else {
@@ -100,7 +100,7 @@ struct Collection {
         }
         // start with 9 * 8 * ...
         long num = 1;
-        for (int i = 0; i < mults.size(); ++i) {
+        for (int i = 0; i < static_cast<int>(mults.size()); ++i) {
             num *= (9 - i);
         }
         // divide out by factorial of run lengths

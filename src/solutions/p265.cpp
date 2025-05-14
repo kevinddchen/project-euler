@@ -25,7 +25,7 @@ inline std::pair<int, int> next_vertices(int current_vertex, int num_vertices)
 inline int sequence_encoding(const std::vector<int>& path, int N)
 {
     int encoding = 0;
-    for (int i = 0; i < path.size() - (N - 1); i++) {  // disregard last N - 1 vertices
+    for (int i = 0; i < static_cast<int>(path.size()) - (N - 1); i++) {  // disregard last N - 1 vertices
         encoding = (encoding << 1) + (path[i] & 1);    // shift and add last bit of each vertex
     }
     return encoding;
@@ -51,7 +51,7 @@ long p265()
 
     long sum = 0;
     while (true) {
-        if (path.size() < num_vertices && !unexplored.at(path.size()).empty()) {
+        if (static_cast<int>(path.size()) < num_vertices && !unexplored.at(path.size()).empty()) {
             // descend graph
             current_vertex = unexplored.at(path.size()).back();
             unexplored.at(path.size()).pop_back();
@@ -60,7 +60,7 @@ long p265()
 
             // add new vertices to unexplored
             const auto [v1, v2] = next_vertices(current_vertex, num_vertices);
-            if (path.size() == num_vertices) {
+            if (static_cast<int>(path.size()) == num_vertices) {
                 if (v1 == 0 || v2 == 0) {
                     // found a Hamiltonian cycle
                     sum += sequence_encoding(path, N);

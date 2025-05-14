@@ -1,7 +1,5 @@
 #include <mf/mathfuncs.hpp>
 
-#include <algorithm>
-
 /*
 
 By playing around, you can convince yourself that for all m, n > 1:

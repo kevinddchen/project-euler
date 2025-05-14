@@ -53,7 +53,7 @@ std::pair<int, int> get_bottom_left_coordinate(const std::vector<Subdivision>& r
 {
     int x = 0;
     int y = 0;
-    for (int i = 0; i < region.size(); i++) {
+    for (int i = 0; i < static_cast<int>(region.size()); i++) {
         const Subdivision subdivision = region[i];
         const int size = 1 << (N - i - 1);
         switch (subdivision) {
@@ -82,7 +82,7 @@ std::pair<int, int> get_bottom_left_coordinate(const std::vector<Subdivision>& r
  */
 bool check_same_color(const std::vector<Subdivision>& region, int N)
 {
-    assert(region.size() < N);
+    assert(static_cast<int>(region.size()) < N);
 
     // coordinates of the bottom left corner
     const auto [x, y] = get_bottom_left_coordinate(region, N);

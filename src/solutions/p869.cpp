@@ -131,11 +131,11 @@ double p869()
         double p0 = 0.0;
         double p1 = 0.0;
         if (current->zero) {
-            p0 = (double)current->zero->num_primes / (double)current->num_primes;
+            p0 = static_cast<double>(current->zero->num_primes) / static_cast<double>(current->num_primes);
             current->expected_score += p0 * current->zero->expected_score;
         }
         if (current->one) {
-            p1 = (double)current->one->num_primes / (double)current->num_primes;
+            p1 = static_cast<double>(current->one->num_primes) / static_cast<double>(current->num_primes);
             current->expected_score += p1 * current->one->expected_score;
         }
         current->expected_score += std::max(p0, p1);

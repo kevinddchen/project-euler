@@ -12,7 +12,7 @@ For each new license plate, we have a transition probability between states, as
 well as a probability to "win". We then just calcualte the expected time to
 "win".
 
-ANSWER
+ANSWER 40.66368097
 
 */
 
@@ -26,7 +26,7 @@ struct Probs {
 
     Probs()
     {
-        for (int t = 0; t < no_500.size(); t++) {
+        for (int t = 0; t < static_cast<int>(no_500.size()); t++) {
             no_500[t] = 0.0;
             yes_500[t] = 0.0;
         }

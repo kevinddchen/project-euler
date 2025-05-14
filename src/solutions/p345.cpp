@@ -63,7 +63,7 @@ Node* find_augmenting_path(
     std::vector<Node*> row_layer, col_layer;
 
     // add free rows to first layer
-    for (int i = 0; i < n_row; i++) {
+    for (int i = 0; i < static_cast<int>(n_row); i++) {
         if (!matched_rows[i]) {
             auto node = std::make_unique<Node>(i);
             auto node_ptr = node.get();
@@ -81,7 +81,7 @@ Node* find_augmenting_path(
         col_layer.clear();
         for (Node* row_node : row_layer) {
             int i = row_node->val;
-            for (int j = 0; j < n_col; j++) {
+            for (int j = 0; j < static_cast<int>(n_col); j++) {
                 if (G[i][j] && !M[i][j]) {
                     // printf("row %d -> col %d\n", i, j);
                     auto col_node = std::make_unique<Node>(j);
@@ -105,7 +105,7 @@ Node* find_augmenting_path(
         row_layer.clear();
         for (Node* col_node : col_layer) {
             int j = col_node->val;
-            for (int i = 0; i < n_row; i++) {
+            for (int i = 0; i < static_cast<int>(n_row); i++) {
                 if (G[i][j] && M[i][j]) {
                     // printf("col %d -> row %d\n", j, i);
                     auto row_node = std::make_unique<Node>(i);

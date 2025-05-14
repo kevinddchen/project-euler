@@ -64,7 +64,7 @@ mf::Frac p329()
     std::array<mf::Frac, SIZE> probs;
     probs.fill(mf::Frac(1, SIZE));
 
-    for (int i = 0; i < sequence.length(); ++i) {
+    for (int i = 0; i < static_cast<int>(sequence.length()); ++i) {
         croak(probs, sieve, sequence[i]);
         jump(probs);
     }

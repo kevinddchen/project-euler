@@ -91,7 +91,7 @@ long p297()
     }
 
     // Add the remaining part of the sum
-    for (int i = 0; i < fibs.size(); i++) {
+    for (int i = 0; i < static_cast<int>(fibs.size()); i++) {
         sum += i * fibs[i];
     }
 

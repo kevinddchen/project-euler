@@ -35,7 +35,7 @@ long p668()
     // generate primes up to sqrt(limit)
     const std::vector<bool> sieve = mf::prime_sieve(sqrt(limit) + 1);
     std::vector<long> primes;
-    for (int i = 2; i < sieve.size(); ++i) {
+    for (int i = 2; i < static_cast<int>(sieve.size()); ++i) {
         if (sieve[i]) {
             primes.push_back(i);
         }

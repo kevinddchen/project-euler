@@ -31,7 +31,7 @@ ANSWER 684465067343069
 long recurse(const std::vector<long>& squares, long quotient, int index = 0)
 {
     long count = quotient;
-    for (int i = index; i < squares.size(); ++i) {
+    for (int i = index; i < static_cast<int>(squares.size()); ++i) {
         const long new_quotient = quotient / squares[i];
         if (new_quotient == 0) {
             break;  // short-circuit for speed

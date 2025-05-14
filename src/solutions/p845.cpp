@@ -38,7 +38,7 @@ T sum_at_prime_indices(const std::vector<T>& array, int shift)
 
     // generating a sieve every call is not ideal--improve if too slow
     const std::vector<bool> sieve = mf::prime_sieve(array.size() + shift);
-    for (int i = 0; i < array.size(); i++) {
+    for (int i = 0; i < static_cast<int>(array.size()); i++) {
         if (sieve[i + shift]) {
             sum += array[i];
         }

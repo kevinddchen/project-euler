@@ -15,7 +15,7 @@ int P(int m)
     for (int j = 1; j <= m; j++) {
         product *= std::pow(2 * j / (m + 1.), j);
     }
-    return (int)product;
+    return static_cast<int>(product);
 }
 
 long p190()

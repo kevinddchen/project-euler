@@ -53,7 +53,7 @@ std::array<double, n + 1> binomial_probs()
     triangle[0] = 1.0f;
 
     // iterate over rows of Pascal's triangle
-    for (int i = 1; i <= n; i++) {
+    for (int i = 1; i <= static_cast<int>(n); i++) {
         // for in-place assignment, remember the value we will replace
         double reg = triangle[0];
         triangle[0] = exp2(-i);

@@ -71,7 +71,7 @@ long p516()
     for (auto p : primes) {
         // append to `products` p time each element
         const size_t prev_size = products.size();
-        for (int i = 0; i < prev_size; ++i) {
+        for (int i = 0; i < static_cast<int>(prev_size); ++i) {
             const long prod = products[i] * p;
             if (prod > limit) {
                 break;  // can break because `products` is sorted

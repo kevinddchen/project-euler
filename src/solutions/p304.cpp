@@ -88,7 +88,7 @@ long p304()
     std::vector<long> primes = {2};
     {
         const auto sieve = mf::prime_sieve(sqrt_N);
-        for (long p = 3; p < sieve.size(); p += 2) {
+        for (long p = 3; p < static_cast<int>(sieve.size()); p += 2) {
             if (sieve[p]) {
                 primes.push_back(p);
             }

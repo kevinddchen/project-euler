@@ -35,8 +35,8 @@ struct Grid {
         // width must be even
         assert(width % 2 == 0);
         // initialize grid with white
-        for (int x = 0; x < width; x++) {
-            for (int y = 0; y < width; y++) {
+        for (int x = 0; x < static_cast<int>(width); x++) {
+            for (int y = 0; y < static_cast<int>(width); y++) {
                 squares[x][y] = WHITE;
             }
         }

@@ -82,7 +82,7 @@ long find_max_subsum(const std::vector<int>& list)
     assert(list.size() > 0);
     long max_using_last = list[0];
     long max = list[0];
-    for (int i = 1; i < list.size(); i++) {
+    for (int i = 1; i < static_cast<int>(list.size()); i++) {
         max_using_last = std::max(0L, max_using_last) + list[i];
         max = std::max(max, max_using_last);
     }

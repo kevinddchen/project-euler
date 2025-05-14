@@ -40,7 +40,7 @@ void recurse(
     int depth = 0,
     int partial_sum = 0)
 {
-    if (depth == unexpanded_powers_of_y.size()) {
+    if (depth == static_cast<int>(unexpanded_powers_of_y.size())) {
         // reached base case
         if (const auto it = powers_of_y.find(partial_sum); it == powers_of_y.end()) {
             // sum is not in set, add it

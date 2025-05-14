@@ -40,7 +40,7 @@ long p808()
             continue;
         }
 
-        const long y = (long)sqrt(rev);
+        const long y = static_cast<long>(sqrt(rev));
 
         // if   (i) rev is a perfect square
         //      (ii) x is prime

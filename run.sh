@@ -33,7 +33,7 @@ if [[ $NUM = "tests" ]]; then
     echo "Running python tests..."
     pytest
 
-elif [[ -a $SRC/p$NUM.cxx ]]; then
+elif [[ -a $SRC/p$NUM.cpp ]]; then
 
     make $BIN/solutions/p$NUM
     echo "Running c++ solution #${NUM}..."

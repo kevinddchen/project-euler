@@ -44,7 +44,7 @@ struct Probs {
     Probs()
     {
         // initialize 2d array storing probabilities
-        for (int i = 0; i < size; i++) {
+        for (int i = 0; i < static_cast<int>(size); i++) {
             table[i].fill(-1);
         }
     }

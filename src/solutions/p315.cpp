@@ -17,7 +17,7 @@ struct Clock {
 
     Clock(int n) : n(n)
     {
-        for (int i = 0; i < n_digits; i++) {
+        for (int i = 0; i < static_cast<int>(n_digits); i++) {
             if (n == 0) {
                 digit_states[i] = 10;
             } else {
@@ -45,7 +45,7 @@ template <size_t n_digits>
 int count_on(const Clock<n_digits>& clock1, const Clock<n_digits>& clock2, const bool light_segments[11][7])
 {
     int count = 0;
-    for (int i = 0; i < n_digits; i++) {
+    for (int i = 0; i < static_cast<int>(n_digits); i++) {
         const auto& states1 = light_segments[clock1.digit_states[i]];
         const auto& states2 = light_segments[clock2.digit_states[i]];
         for (int segm = 0; segm < 7; segm++) {

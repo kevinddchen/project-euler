@@ -31,7 +31,7 @@ long p201()
     // first, determine max sum 51^2 + 52^2 + ... + 100^2. this will be a
     // dimension of the `counts` array.
     int max_sum = 0;
-    for (int i = set.size() - size; i < set.size(); ++i) {
+    for (int i = set.size() - size; i < static_cast<int>(set.size()); ++i) {
         const int elem = set[i];
         max_sum += elem;
     }

@@ -26,7 +26,7 @@ long p234()
     std::vector<long> primes;
     {
         const std::vector<bool> sieve = mf::prime_sieve(sqrt_limit + 1);
-        for (int i = 2; i < sieve.size(); ++i) {
+        for (int i = 2; i < static_cast<int>(sieve.size()); ++i) {
             if (sieve[i]) {
                 primes.push_back(i);
             }
@@ -35,7 +35,7 @@ long p234()
 
     // iterate over pairs (p, q) of consecutive primes
     long sum = 0;
-    for (int prime_idx = 0; prime_idx < primes.size() - 1; ++prime_idx) {
+    for (int prime_idx = 0; prime_idx < static_cast<int>(primes.size()) - 1; ++prime_idx) {
         const long p = primes[prime_idx];
         const long q = primes[prime_idx + 1];
 

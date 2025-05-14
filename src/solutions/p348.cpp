@@ -26,7 +26,7 @@ bool is_palindrome(long n)
         n /= 10;
     }
     // second, compare digits
-    for (int i = 0; i < digits.size() / 2; ++i) {
+    for (int i = 0; i < static_cast<int>(digits.size()) / 2; ++i) {
         if (digits[i] != digits[digits.size() - i - 1]) {
             return false;
         }
@@ -54,10 +54,10 @@ long p348()
             }
 
             // make sure that `cube_bases[cube_base]` exists
-            while (cube_base >= cube_bases.size()) {
+            while (cube_base >= static_cast<int>(cube_bases.size())) {
                 cube_bases.push_back(2);
             }
-            assert(cube_base < cube_bases.size());
+            assert(cube_base < static_cast<int>(cube_bases.size()));
 
             for (long& square_base = cube_bases[cube_base];; square_base++) {
                 const long num = cube + square_base * square_base;

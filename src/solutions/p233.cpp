@@ -84,7 +84,7 @@ void recurse(
             break;
         }
 
-        if (k == powers.size() - 1)  // bottom of recursion
+        if (k == static_cast<int>(powers.size()) - 1)  // bottom of recursion
         {
             // find first i such that limit/prod < q_numbers[i]
             auto i = std::upper_bound(q_numbers.begin(), q_numbers.end(), limit / prod);

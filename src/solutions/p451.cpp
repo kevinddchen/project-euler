@@ -88,7 +88,7 @@ long p451()
 
             // find the non-cyclic base root, like (1 + 2^{k-1}, 1, 1, ...)
             if (non_cyclic && factor.base == 2) {
-                const long root = 1 + (int)pow(2, factor.exp - 1) * unit;
+                const long root = 1 + static_cast<long>(pow(2, factor.exp - 1)) * unit;
                 base_roots[i] = ((root % n) + n) % n;
                 i++;
             }

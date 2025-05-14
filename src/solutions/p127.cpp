@@ -48,8 +48,8 @@ long p127()
         for (int a = 1; a <= (c - 1) / 2; a++) {
             const int b = c - a;
 
-            if ((long)rad[a] * (long)rad[b] < c / rad[c] && std::gcd(a, b) == 1 && std::gcd(a, c) == 1 &&
-                std::gcd(b, c) == 1) {
+            if (static_cast<long>(rad[a]) * static_cast<long>(rad[b]) < c / rad[c] && std::gcd(a, b) == 1 &&
+                std::gcd(a, c) == 1 && std::gcd(b, c) == 1) {
                 count += c;
             }
         }

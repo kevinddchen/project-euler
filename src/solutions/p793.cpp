@@ -68,7 +68,7 @@ long iteration(
 
     // find the slice of the pivot in each range
     std::vector<int> slices;
-    for (int i = 0; i < n - 1; i++) {
+    for (int i = 0; i < static_cast<int>(n) - 1; i++) {
         // if range is empty, skip
         if (ranges[i][0] == ranges[i][1]) {
             slices.push_back(ranges[i][0]);
@@ -90,7 +90,7 @@ long iteration(
     }
 
     long new_num_products = 0;
-    for (int i = 0; i < n - 1; i++) {
+    for (int i = 0; i < static_cast<int>(n) - 1; i++) {
         if (pick_upper_half) {
             ranges[i][0] = slices[i];  // set left to slice
         } else {
@@ -117,7 +117,7 @@ long brute_force(const std::array<long, n>& sequence, const std::vector<std::arr
     assert(ranges.size() == n - 1);
 
     std::vector<long> products;
-    for (int i = 0; i < n - 1; i++) {
+    for (int i = 0; i < static_cast<int>(n) - 1; i++) {
         for (int j = ranges[i][0]; j < ranges[i][1]; j++) {
             products.push_back(sequence[i] * sequence[j]);
         }

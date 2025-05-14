@@ -73,8 +73,8 @@ bool true_intersection(const LineSeg& l1, const LineSeg& l2, Intersect& intersec
     }
     const Vec2l rhs = l2.end - l1.start;
     const Vec2l a_b_det = D_prime * rhs;  // this equals {a, b} * det(D)
-    const double a = a_b_det.x() / (double)det;
-    const double b = a_b_det.y() / (double)det;
+    const double a = a_b_det.x() / static_cast<double>(det);
+    const double b = a_b_det.y() / static_cast<double>(det);
 
     const bool is_true_intersect = (a > 0) && (a < 1) && (b > 0) && (b < 1);
 

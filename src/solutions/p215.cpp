@@ -78,7 +78,7 @@ bool has_crack(const std::vector<int>& a, const std::vector<int>& b)
     int idx_a = 0;
     int idx_b = 0;
 
-    while (idx_a < a.size() && idx_b < b.size()) {
+    while (idx_a < static_cast<int>(a.size()) && idx_b < static_cast<int>(b.size())) {
         if (sum_a == sum_b && sum_a != 0) {
             return true;
         } else if (sum_a < sum_b) {

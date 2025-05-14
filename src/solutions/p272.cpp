@@ -74,7 +74,7 @@ long p272()
     // compute partial sums
     std::vector<long> triv_prods_partial_sums(triv_prods.size() + 1);
     triv_prods_partial_sums[0] = 0;
-    for (int i = 0; i < triv_prods.size(); i++) {
+    for (int i = 0; i < static_cast<int>(triv_prods.size()); i++) {
         triv_prods_partial_sums[i + 1] = triv_prods_partial_sums[i] + triv_prods[i];
     }
 
@@ -83,23 +83,23 @@ long p272()
     // but it gets the job done.
     long total = 0;
 
-    for (int i = 0; i < cands.size() - 4; i++) {
+    for (int i = 0; i < static_cast<int>(cands.size()) - 4; i++) {
         if (cands[i] * cands[i + 1] * cands[i + 2] * cands[i + 3] * cands[i + 4] > limit) {
             break;
         }
-        for (int j = i + 1; j < cands.size() - 3; j++) {
+        for (int j = i + 1; j < static_cast<int>(cands.size()) - 3; j++) {
             if (cands[i] * cands[j] * cands[j + 1] * cands[j + 2] * cands[j + 3] > limit) {
                 break;
             }
-            for (int k = j + 1; k < cands.size() - 2; k++) {
+            for (int k = j + 1; k < static_cast<int>(cands.size()) - 2; k++) {
                 if (cands[i] * cands[j] * cands[k] * cands[k + 1] * cands[k + 2] > limit) {
                     break;
                 }
-                for (int s = k + 1; s < cands.size() - 1; s++) {
+                for (int s = k + 1; s < static_cast<int>(cands.size()) - 1; s++) {
                     if (cands[i] * cands[j] * cands[k] * cands[s] * cands[s + 1] > limit) {
                         break;
                     }
-                    for (int t = s + 1; t < cands.size(); t++) {
+                    for (int t = s + 1; t < static_cast<int>(cands.size()); t++) {
                         if (cands[i] * cands[j] * cands[k] * cands[s] * cands[t] > limit) {
                             break;
                         }

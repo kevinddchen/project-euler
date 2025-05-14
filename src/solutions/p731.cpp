@@ -57,7 +57,7 @@ long p731()
     while (power_of_3 < n) {
         const long start_digit = n - power_of_3;  // account for 10^(3^i) factor
         const std::vector<int> digits = get_decimal_digits(power_of_3, start_digit, adj_num_digits);
-        for (int i = 0; i < sum_digits.size(); i++) {
+        for (int i = 0; i < static_cast<int>(sum_digits.size()); i++) {
             sum_digits[i] += digits[i];
         }
         power_of_3 = power_of_3 * 3;

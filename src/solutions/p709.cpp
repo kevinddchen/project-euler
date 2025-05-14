@@ -73,7 +73,7 @@ long p709()
         // get value of f(n+1)
         long sum = 0;
         for (int k = 0; k <= n; k++) {
-            long x = ((long)comb_mod[k] * f[k]) % M;
+            const long x = (static_cast<long>(comb_mod[k]) * f[k]) % M;
             sum = (sum + x * f[n - k]) % M;
         }
         f[n + 1] = (sum * inv2) % M;
