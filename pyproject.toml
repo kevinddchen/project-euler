@@ -23,12 +23,11 @@ dev = [
 where = ["src/python"]
 include = ["mathfuncs*"]
 
-[tool.black]
+[tool.ruff]
 line-length = 120
-target-version = ["py39", "py310", "py311", "py312"]
-include = '\.pyi?$'
 
-[tool.isort]
-line_length = 120
-profile = "black"
-known_first_party = ["mathfuncs"]
+[tool.ruff.lint]
+select = ["E", "F", "I"]
+
+[tool.ruff.lint.isort]
+known-first-party = ["mathfuncs"]

@@ -26,7 +26,7 @@ inline int sequence_encoding(const std::vector<int>& path, int N)
 {
     int encoding = 0;
     for (int i = 0; i < static_cast<int>(path.size()) - (N - 1); i++) {  // disregard last N - 1 vertices
-        encoding = (encoding << 1) + (path[i] & 1);    // shift and add last bit of each vertex
+        encoding = (encoding << 1) + (path[i] & 1);                      // shift and add last bit of each vertex
     }
     return encoding;
 }

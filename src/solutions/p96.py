@@ -120,7 +120,7 @@ class Sudoku(object):
                             self._fill_in(c2, n)
                     # if already filled-in, check not equal
                     elif self._grid[c2] == el and c1 != c2:
-                        err_msg = f"Found inconsistent entry {el} at ({c2[0]+1}, {c2[1]+1})."
+                        err_msg = f"Found inconsistent entry {el} at ({c2[0] + 1}, {c2[1] + 1})."
                         raise SudokuInconsistency(err_msg)
 
     def solve(self):
@@ -183,12 +183,13 @@ def _validate_input(arr):
         raise SudokuInputError(err_msg)
     for i, row in enumerate(arr):
         if len(row) != 9:
-            err_msg = f"Invalid length for row {i+1}. Got {len(row)}, but expected 9."
+            err_msg = f"Invalid length for row {i + 1}. Got {len(row)}, but expected 9."
             raise SudokuInputError(err_msg)
         for j, el in enumerate(row):
             if (not isinstance(el, int)) or el < 0 or el > 9:
                 err_msg = (
-                    f"Invalid entry at ({i+1}, {j+1}). Got {el}, but expected an integer between 0 and 9 (inclusive)."
+                    f"Invalid entry at ({i + 1}, {j + 1}). "
+                    "Got {el}, but expected an integer between 0 and 9 (inclusive)."
                 )
                 raise SudokuInputError(err_msg)
 
@@ -202,7 +203,7 @@ def _validate_grid(grid):
                 el = grid[c]
                 if el > 0:
                     if el in filled:
-                        err_msg = f"Invalid puzzle. Duplicate entry {el} at ({c[0]+1}, {c[1]+1})."
+                        err_msg = f"Invalid puzzle. Duplicate entry {el} at ({c[0] + 1}, {c[1] + 1})."
                         raise SudokuInputError(err_msg)
                     filled.add(el)
 
