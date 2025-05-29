@@ -1,6 +1,6 @@
 [build-system]
-requires = ["setuptools"]
-build-backend = "setuptools.build_meta"
+requires = ["hatchling"]
+build-backend = "hatchling.build"
 
 [project]
 name = "mathfuncs"
@@ -19,9 +19,8 @@ dev = [
     "pre-commit",
 ]
 
-[tool.setuptools.packages.find]
-where = ["src/python"]
-include = ["mathfuncs*"]
+[tool.hatch.build.targets.wheel]
+packages = ["./src/python/mathfuncs"]
 
 [tool.ruff]
 line-length = 120
