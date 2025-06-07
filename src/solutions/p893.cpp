@@ -2,6 +2,15 @@
 
 /*
 
+First, for all integers up to 1,000,000 we compute how many matches are needed to write down the number without any
+multiplication or addition operators.
+
+Next, we allow multiplications: we iterate over all pairs a, b and check if c = a * b can be written with fewer matches
+if we use a multiplication operator. If we iterate over a, b in the right way, then we can compute the optimal number of
+matches in one pass of all pairs a, b.
+
+Finally, we do the same with addition.
+
 ANSWER 26688208
 
 */
