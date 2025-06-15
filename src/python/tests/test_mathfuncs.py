@@ -1,8 +1,4 @@
-import logging
-
 from mathfuncs import is_prime, prime_factorize, prime_sieve
-
-LOG = logging.getLogger(__name__)
 
 
 def test_is_prime() -> None:
