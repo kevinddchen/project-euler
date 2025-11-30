@@ -1,8 +1,8 @@
+#include <mf/mathfuncs.hpp>
+
 #include <algorithm>
 #include <numeric>
 #include <vector>
-
-#include "mf/mathfuncs.hpp"
 
 /*
 
@@ -29,7 +29,6 @@ triangle number we will quickly hit values that exceed the max value of a C++ lo
 ANSWER 6795261671274
 
 */
-
 
 /**
  * Given prime factorization, produce divisors less than `n` in decreasing order.
