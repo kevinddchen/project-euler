@@ -31,7 +31,7 @@ ANSWER 6795261671274
 */
 
 /**
- * Given prime factorization, produce divisors less than `n` in decreasing order.
+ * Given prime factorization, produce divisors less than `n`.
  */
 std::vector<long> divisors_less_than_n(const std::vector<mf::PrimePower>& prime_factors, long n)
 {
@@ -62,7 +62,6 @@ std::vector<long> divisors_less_than_n(const std::vector<mf::PrimePower>& prime_
         }
         divisors.insert(divisors.end(), new_divisors.begin(), new_divisors.end());
     }
-    std::sort(divisors.begin(), divisors.end(), std::greater<long>());
     return divisors;
 }
 
@@ -77,8 +76,9 @@ std::pair<long, long> compute_next_n(long n)
     const auto np1_pf = mf::prime_factorize(n + 1);
     const auto pf = mf::merge_prime_factors(n_pf, np1_pf);
 
-    // get divisors of n * (n + 1) less than n
-    const auto divisors = divisors_less_than_n(pf, n);
+    // get divisors of n * (n + 1) less than n, in decreasing order
+    auto divisors = divisors_less_than_n(pf, n);
+    std::sort(divisors.begin(), divisors.end(), std::greater<long>());
 
     // since a are decreasing, the first valid k we encounter will be the smallest
     for (long a : divisors) {
