@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 set -euo pipefail
 
 show_help () {
@@ -11,7 +11,7 @@ show_help () {
     echo
 }
 
-if [[ $# -ne 1 ]]; then
+if [ $# -ne 1 ]; then
     show_help
     exit 1
 fi
@@ -23,7 +23,7 @@ BIN=bin
 FILES=files
 NUM=$1
 
-if [[ $NUM = "tests" ]]; then
+if [ $NUM = "tests" ]; then
 
     make tests
     echo "Running c++ tests..."
@@ -33,13 +33,13 @@ if [[ $NUM = "tests" ]]; then
     echo "Running python tests..."
     pytest
 
-elif [[ -a $SRC/p$NUM.cpp ]]; then
+elif [ -a $SRC/p$NUM.cpp ]; then
 
     make $BIN/solutions/p$NUM
     echo "Running c++ solution #${NUM}..."
     time $BIN/solutions/p$NUM
 
-elif [[ -a $SRC/p$NUM.py ]]; then
+elif [ -a $SRC/p$NUM.py ]; then
 
     echo "Running python solution #${NUM}..."
     time FILES_DIR="$DIR/$FILES" python "$SRC/__main__.py" $NUM
