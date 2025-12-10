@@ -5,11 +5,12 @@ SRC := src
 OBJ := objects
 
 # These will be added to as we include the modules
-sources := $(wildcard $(SRC)/solutions/p*.cpp)
-apps    := $(subst $(SRC),$(BIN),$(sources:.cpp=))
-objects := $(subst $(SRC),$(OBJ),$(sources:.cpp=.o))
-deps    := $(objects:.o=.d)
+sources :=
+apps    :=
+objects :=
+deps    :=
 
+include $(SRC)/solutions/module.mk
 include $(SRC)/cpp/tests/module.mk
 
 -include $(deps)
@@ -36,6 +37,3 @@ all: $(apps) $(objects)
 .PHONY: clean
 clean:
 	$(RM) -r $(BIN)/* $(OBJ)/*
-
-.PHONY: tests
-tests: $(test_apps)
