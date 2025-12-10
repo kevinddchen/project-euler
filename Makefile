@@ -4,9 +4,9 @@ BIN := bin
 SRC := src
 OBJ := objects
 
-# These will be added to as we include the modules
-sources :=
+# These will be populated as we include the modules
 apps    :=
+sources :=
 objects :=
 deps    :=
 
