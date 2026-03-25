@@ -11,6 +11,7 @@ objects :=
 deps    :=
 
 include $(SRC)/solutions/module.mk
+include $(SRC)/cpp/mf/module.mk
 include $(SRC)/cpp/tests/module.mk
 
 -include $(deps)
@@ -22,7 +23,7 @@ LDFLAGS  :=
 LDLIBS   :=
 
 # Link apps
-$(BIN)/%: $(OBJ)/%.o
+$(BIN)/%: $(mf_objects) $(OBJ)/%.o
 	@mkdir -p $(@D)
 	$(CXX) $(LDFLAGS) $^ $(LDLIBS) -o $@
 

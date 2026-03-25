@@ -17,6 +17,7 @@ if [ $# -ne 1 ]; then
 fi
 
 DIR=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
+cd $DIR
 
 SRC=src/solutions
 BIN=bin
