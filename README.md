@@ -12,7 +12,7 @@ Most of the newer solutions are written in C++, and most of the older solutions 
 Clone this repo and run the commands below to install third-party dependencies.
 For C++, this downloads [Eigen](https://eigen.tuxfamily.org/), which is a header-only library.
 For Python, this installs `numpy` and `scipy`.
-Note that we use the `C++20` standard and Python version >= 3.9.
+Note that we use the `C++20` standard and Python version >= 3.10.
 
 ```bash
 # install c++ third-party dependency
@@ -20,7 +20,7 @@ git submodule init
 git submodule update
 
 # install python third-party dependencies
-pip install .
+uv sync --no-dev  # OR `pip install .`
 ```
 
 To run any solution, run the following command,
@@ -38,7 +38,7 @@ If the solution is written in C++, this will compile and run the code.
 
 Install additional Python dependencies for development by running,
 ```bash
-pip install -e .[dev]
+uv sync  # OR `pip install -e . --group dev`
 pre-commit install
 ```
 
