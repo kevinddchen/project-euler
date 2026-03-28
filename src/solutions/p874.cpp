@@ -7,7 +7,26 @@
 #include <span>
 #include <vector>
 
+/*
+
+We can solve the equivalent problem: find nonnegative integers m0, m1, ..., m{k-1} such that:
+ - sum of all m_a = n
+ - sum of all a * m_a = multiple of k
+ - maximize sum of all p_a * m_a, where p_a is the ath prime
+Basically, m_a equals the multiplicity of `a` in the original problem.
+
+Note that since we want the largest multiple of k in the second equation, it must equal the largest multiple of k no
+greater than `n * (k-1)`.
+
+In this form, the problem takes on the form of a linear optimization problem. I already wrote a C program to solve this
+exact kind of problem, so the only difficulty was porting it to C++.
+
+ANSWER 4992775389
+
+*/
+
 using ArrayXXl = Eigen::Array<long, Eigen::Dynamic, Eigen::Dynamic>;
+using ColXl = Eigen::Array<long, Eigen::Dynamic, 1>;
 
 /**
  * Compute first `size` primes.
@@ -284,8 +303,6 @@ void loop_pivot(ArrayXXl& tableau, bool auxiliary)
     }
 }
 
-using ColXl = Eigen::Array<long, Eigen::Dynamic, 1>;
-
 /**
  * Checks that all `values[i]` are multiples of `coeffs[i]`.
  */
@@ -383,9 +400,7 @@ long min_integral_score(const ArrayXXl& tableau)
     return best_z;
 }
 
-
 // ============================================================================
-
 
 long p874()
 {
@@ -396,7 +411,7 @@ long p874()
 
     auto tableau = create_tableau(k, n, primes);
 
-    // to put `tableau` longo canonical form, we first solve the auxiliary problem
+    // to put `tableau` into canonical form, we first solve the auxiliary problem
     auto aux_tableau = create_auxiliary_tableau(tableau);
     loop_pivot(aux_tableau, true);
     assert(aux_tableau(0, aux_tableau.cols() - 1) == 0);  // check auxiliary problem is solved
