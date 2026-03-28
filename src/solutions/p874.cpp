@@ -2,13 +2,28 @@
 
 #include <Eigen/Dense>
 
-#include <iostream>
 #include <numeric>
 #include <optional>
 #include <span>
 #include <vector>
 
 using ArrayXXl = Eigen::Array<long, Eigen::Dynamic, Eigen::Dynamic>;
+
+/**
+ * Compute first `size` primes.
+ */
+std::vector<long> get_primes(size_t size)
+{
+    std::vector<long> primes = {2};
+    primes.reserve(size);
+    long p = 1;
+    while (primes.size() < size) {
+        p += 2;
+        if (mf::is_prime(p))
+            primes.push_back(p);
+    }
+    return primes;
+}
 
 /**
  * Return largest multiple of k no greater than `n * (k-1)`.
@@ -23,7 +38,7 @@ long get_multiple(long k, long n)
 
 // ============================================================================
 // Code for linear program solver adapted from original C code here:
-// https://github.com/kevinddchen/aoc_c/blob/d02c0aa783831a18b1086931fbb25c3de71e9c19/src/apps/day10.c
+// https://github.com/kevinddchen/aoc_c/blob/5c82596c53316481a6e3ecdc95ae807e58f98a0c/src/apps/day10.c
 // ============================================================================
 
 /**
@@ -262,13 +277,10 @@ void pivot(ArrayXXl& tableau, long pivot_row, long pivot_col)
  */
 void loop_pivot(ArrayXXl& tableau, bool auxiliary)
 {
-    std::cout << tableau << std::endl << std::endl;
     std::optional<long> pivot_col = {};
     while (pivot_col = find_pivot_column(tableau, auxiliary), pivot_col.has_value()) {
         const long pivot_row = find_pivot_row(tableau, pivot_col.value(), auxiliary);
-        printf("pivot: %ld %ld\n", pivot_row, pivot_col.value());
         pivot(tableau, pivot_row, pivot_col.value());
-        std::cout << tableau << std::endl << std::endl;
     }
 }
 
@@ -322,8 +334,6 @@ long min_integral_score(const ArrayXXl& tableau)
             nonfree_coeffs(nonfree_row.value()) = tableau(nonfree_row.value(), col);
     }
 
-    std::cout << "coeffs: " << nonfree_coeffs.transpose() << std::endl;
-
     assert(nonfree_coeffs(0) != 0);  // coeff corresponding to Z must be non-zero
 
     // For an integral solution, the RHS values must be divisible by the coefficients in `nonfree_coeffs`. We have the
@@ -347,8 +357,6 @@ long min_integral_score(const ArrayXXl& tableau)
     for (size_t i = 0; i < value_cols.size(); i++) {
         const auto value_col = value_cols[i];  // copy, since we are changing the vector `value_cols`
 
-        std::cout << value_col.transpose() << std::endl;
-
         // exit if no chance of strictly better Z
         if (best_z_set && best_z * nonfree_coeffs[0] <= value_col[0])
             continue;
@@ -362,7 +370,6 @@ long min_integral_score(const ArrayXXl& tableau)
             if (!best_z_set || z < best_z) {
                 best_z = z;
                 best_z_set = true;
-                printf("GOOD!\n");
             }
         }
 
@@ -379,38 +386,15 @@ long min_integral_score(const ArrayXXl& tableau)
 
 // ============================================================================
 
-/**
- * Compute first `size` primes.
- */
-std::vector<long> get_primes(size_t size)
-{
-    std::vector<long> primes = {2};
-    primes.reserve(size);
-    long p = 1;
-    while (primes.size() < size) {
-        p += 2;
-        if (mf::is_prime(p))
-            primes.push_back(p);
-    }
-    return primes;
-}
-
 
 long p874()
 {
-    constexpr long k = 10;
+    constexpr long k = 7000;
 
-    const auto primes = get_primes(k);
-    const long n = primes[k - 1];
-    printf("k=%ld, n=%ld\n", k, n);
-    printf("primes: ");
-    for (auto p : primes)
-        printf("%ld ", p);
-    printf("\n");
+    const auto primes = get_primes(k + 1);
+    const long n = primes[k];
 
     auto tableau = create_tableau(k, n, primes);
-
-    std::cout << tableau << std::endl << std::endl;
 
     // to put `tableau` longo canonical form, we first solve the auxiliary problem
     auto aux_tableau = create_auxiliary_tableau(tableau);
@@ -419,15 +403,10 @@ long p874()
 
     // now that the original problem is in canonical form, it can be solved
     tableau = extract_original_tableau(aux_tableau);
-    std::cout << tableau << std::endl << std::endl;
-
     loop_pivot(tableau, false);
 
-    std::cout << tableau << std::endl << std::endl;
-
-    printf("%ld\n", -min_integral_score(tableau));
-
-    return 0;
+    // since we solved the negative problem, we negate to get the actual answer
+    return -min_integral_score(tableau);
 }
 
 int main()
