@@ -1,7 +1,7 @@
 #include "mf/generators.hpp"
 #include "mf/mathfuncs.hpp"
 
-#include <Eigen/Core>
+#include <Eigen/Dense>
 
 /*
 

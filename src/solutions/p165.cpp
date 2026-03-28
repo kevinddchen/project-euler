@@ -2,8 +2,7 @@
 #include "mf/generators.hpp"
 #include "mf/hash.hpp"
 
-#include <Eigen/Core>
-#include <Eigen/LU>
+#include <Eigen/Dense>
 
 #include <unordered_set>
 #include <vector>
