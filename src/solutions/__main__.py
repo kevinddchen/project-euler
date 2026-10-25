@@ -9,7 +9,7 @@ def main() -> None:
 
     # Import function
     name = f"p{args.num}"
-    module = importlib.import_module(name)
+    module = importlib.import_module(f".{name}", package=__package__)
 
     func = getattr(module, name)
     answer = getattr(module, "ANSWER")

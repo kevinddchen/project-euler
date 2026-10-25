@@ -43,7 +43,7 @@ elif [ -a $SRC/p$NUM.cpp ]; then
 elif [ -a $SRC/p$NUM.py ]; then
 
     echo "Running python solution #${NUM}..."
-    time FILES_DIR="$DIR/$FILES" python "$SRC/__main__.py" $NUM
+    time FILES_DIR="$DIR/$FILES" python -m solutions "$NUM"
 
 else
 
