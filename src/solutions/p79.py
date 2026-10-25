@@ -8,7 +8,7 @@ This method is guaranteed to work with non-repeating digits.
 
 from mathfuncs import read_text
 
-ANSWER = 73162890
+ANSWER = "73162890"
 
 
 def pop_longest_list(d):

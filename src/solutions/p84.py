@@ -7,7 +7,7 @@ and over on any vector to get the steady state.
 
 import numpy as np
 
-ANSWER = 101524
+ANSWER = "101524"
 
 
 def roll(tile, prob_vec, n_rolls=0, end_turn=False, prob=1.0):

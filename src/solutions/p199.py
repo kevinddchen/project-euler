@@ -68,7 +68,7 @@ def get_gasket_area(depth: int, k1: float, k2: float, k3: float) -> float:
     return area
 
 
-def p199() -> str:
+def p199() -> float:
     depth = 10
 
     # get curvature of enclosing circle
@@ -80,4 +80,4 @@ def p199() -> str:
     covered_area += 3 * get_gasket_area(depth, 1.0, 1.0, k0)  # even though k0 < 0, this is ok
     percent = round(1.0 - covered_area / total_area, 8)
 
-    return f"{percent:.8f}"
+    return round(percent, 8)

@@ -10,7 +10,7 @@ from itertools import permutations
 
 from mathfuncs import prime_sieve
 
-ANSWER = 296962999629
+ANSWER = "296962999629"
 
 
 def is_permutation(a, b):

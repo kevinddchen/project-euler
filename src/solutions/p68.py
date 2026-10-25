@@ -10,7 +10,7 @@ the first valid magic 5-gon is already maximal and is the answer.
 
 from itertools import permutations
 
-ANSWER = 6531031914842725
+ANSWER = "6531031914842725"
 
 
 def generate_5_gons():

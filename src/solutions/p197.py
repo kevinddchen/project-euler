@@ -22,4 +22,4 @@ def p197():
     u = -1
     for _ in range(1000):
         u = f(u)
-    return "{0:.9f}".format(u + f(u))
+    return round(u + f(u), 9)

@@ -13,9 +13,7 @@ The hardest part is keeping track of enough precision, which we do using the
 
 import decimal
 
-ANSWER = 2.223561019313554106173177
-
-decimal.getcontext().prec = 30
+ANSWER = "2.223561019313554106173177"
 
 
 def p751():
@@ -36,6 +34,5 @@ def p751():
         prec /= 10 ** len(str(a))
         theta += a * prec
 
-        print(theta)
-
-    return theta.quantize(decimal.Decimal("1e-24"), rounding=decimal.ROUND_DOWN)
+    theta = theta.quantize(decimal.Decimal("1e-24"))
+    return str(theta)

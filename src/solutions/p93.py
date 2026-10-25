@@ -8,7 +8,7 @@ of digits, permutations of those digits, permutations of the symbols (+, -, *,
 
 from itertools import combinations, combinations_with_replacement, permutations
 
-ANSWER = 1258
+ANSWER = "1258"
 
 
 def add(x, y):

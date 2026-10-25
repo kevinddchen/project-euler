@@ -32,7 +32,7 @@ import scipy.integrate
 ANSWER = 0.0000372091
 
 
-def p363() -> str:
+def p363() -> float:
     v = 2 - sqrt((22 - 5 * pi) / 3)
 
     def dx(t: float) -> float:
@@ -53,4 +53,4 @@ def p363() -> str:
     assert err / actual_area < 1e-10, "Not enough precision"
 
     diff = 100 * abs(area - actual_area) / actual_area
-    return f"{diff:.10f}"
+    return round(diff, 10)

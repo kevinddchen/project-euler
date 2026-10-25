@@ -39,7 +39,7 @@ def recurse(x, y, d, n, level, s):
     """Recurse through path."""
     for char in s:
         if n == 0:
-            return "{0},{1}".format(x, y)
+            return (x, y)
         if char == "a":
             action = A_LIST[level]
             if n + action[-1] > 0:

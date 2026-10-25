@@ -41,4 +41,4 @@ def p151():
         prob_space = next_job(prob_space)
     norm = float(sum(prob_space.values()))
     prob = sum(event[0] * num for event, num in prob_space.items()) / norm
-    return "{0:.6f}".format(prob)
+    return round(prob, 6)

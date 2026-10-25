@@ -35,4 +35,4 @@ def p613() -> str:
     assert integral[1] < 1e-10, "error is too large"
     area = 6.0
     prob = integral[0] / area
-    return f"{prob:.10f}"
+    return round(prob, 10)

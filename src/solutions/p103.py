@@ -9,7 +9,7 @@ As it turns out, the guess is actually the optimal set.
 
 """
 
-ANSWER = 20313839404245
+ANSWER = "20313839404245"
 
 
 def subsets(lst, i=0, temp=[]):

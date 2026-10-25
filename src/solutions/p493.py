@@ -76,4 +76,4 @@ def p493():
     for n_colors in range(2, 8):
         weighted_count += count_color(n_colors) * comb(7, n_colors) * n_colors
     total = comb(70, 20)  # value of numerator for expected value
-    return "{0:.9f}".format(weighted_count * 1.0 / total)
+    return round(weighted_count * 1.0 / total, 9)
