@@ -1,5 +1,3 @@
-# ANSWER 303963552391
-
 """
 
 The number of reduced fractions with denominator d is precisely the totatives of
@@ -9,6 +7,8 @@ totient function.
 """
 
 from .p69 import totient_sieve
+
+ANSWER = 303963552391
 
 
 def p72():

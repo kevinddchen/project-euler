@@ -1,5 +1,3 @@
-# ANSWER 1111981904675169
-
 """
 
 Work out the possible multiples digit-by-digit instead of brute force, then
@@ -17,6 +15,8 @@ numbers up to 9998, and then added manually for 9999 and 10000 (which is just
 1).
 
 """
+
+ANSWER = 1111981904675169
 
 
 def only012(x):

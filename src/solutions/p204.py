@@ -1,6 +1,6 @@
-# ANSWER 2944730
-
 from mathfuncs import prime_sieve
+
+ANSWER = 2944730
 
 
 def recurse(primes, limit, prod=1, i=0):

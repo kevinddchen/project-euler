@@ -1,5 +1,3 @@
-# ANSWER 121313
-
 """
 
 Generate all primes for a certain number of digits, then generate all patterns.
@@ -10,6 +8,8 @@ Find the first pattern that satisifes the conditions in the problem.
 from itertools import product
 
 from mathfuncs import prime_sieve
+
+ANSWER = 121313
 
 
 def replace(tup, x, y):

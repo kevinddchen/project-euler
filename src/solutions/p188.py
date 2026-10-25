@@ -1,5 +1,3 @@
-# ANSWER 95962097
-
 """
 
 We are finding 1777^^1855 = 1777^{1777^^1854} (mod 10^8)$. The generalized
@@ -15,6 +13,8 @@ until we find a_0, which is the answer.
 """
 
 from mathfuncs import prime_factorize
+
+ANSWER = 95962097
 
 
 def totient(x):

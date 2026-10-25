@@ -1,5 +1,3 @@
-# ANSWER 26033
-
 """
 
 Here we generate primes with a sieve, and store each pair of primes that they
@@ -13,6 +11,8 @@ The five primes are 8389, 6733, 5701, 5197, and 13.
 """
 
 from mathfuncs import prime_sieve
+
+ANSWER = 26033
 
 SIZE = 5
 

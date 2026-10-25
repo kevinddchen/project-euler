@@ -1,5 +1,3 @@
-# ANSWER 40730
-
 """
 
 Similar to Problem 30 with the condition n*9! <= 10^(n-1) satisfied by n <= 7.
@@ -7,6 +5,8 @@ Similar to Problem 30 with the condition n*9! <= 10^(n-1) satisfied by n <= 7.
 """
 
 from math import factorial
+
+ANSWER = 40730
 
 
 def generator(digits_left, initial, curr_sum):

@@ -1,6 +1,6 @@
-# ANSWER 4179871
-
 from .p21 import sum_proper_divisors
+
+ANSWER = 4179871
 
 
 def p23():

@@ -1,5 +1,3 @@
-# ANSWER 2240
-
 """
 
 If the circle has unit radius, then the L-section has area 1 - pi/4. If the
@@ -20,6 +18,8 @@ We iterate through values of n until the area is small enough.
 """
 
 from math import asin, pi, sqrt
+
+ANSWER = 2240
 
 
 def xn(n):

@@ -1,6 +1,6 @@
-# ANSWER 840
-
 from math import gcd, isqrt
+
+ANSWER = 840
 
 
 def p39():

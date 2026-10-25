@@ -1,10 +1,10 @@
-# ANSWER 1582
-
 """
 
 We generate a tree of all addition chains, and traverse breadth first.
 
 """
+
+ANSWER = 1582
 
 
 def p122():

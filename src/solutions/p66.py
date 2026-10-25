@@ -1,5 +1,3 @@
-# ANSWER 661
-
 """
 
 This Diophantine equation is called Pell's equation. A minimal solution for x
@@ -13,6 +11,8 @@ eventually find a solution to Pell's equation for that D.
 from math import isqrt
 
 from .p64 import continued_fraction_of_sqrt
+
+ANSWER = 661
 
 
 def minimal_pell(D):

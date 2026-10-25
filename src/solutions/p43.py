@@ -1,10 +1,10 @@
-# ANSWER 16695334890
-
 """
 
 Can be solved by hand. See PDF for explanation.
 
 """
+
+ANSWER = 16695334890
 
 
 def p43():

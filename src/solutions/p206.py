@@ -1,5 +1,3 @@
-# ANSWER 1389019170
-
 """
 
 If x^2 has a 0 in the digits place, then x is a multiple of 10, so the tens digit in
@@ -9,6 +7,8 @@ so the units digit of x must be a 3 or 7.
 """
 
 from math import isqrt
+
+ANSWER = 1389019170
 
 
 def fit_pattern(x):

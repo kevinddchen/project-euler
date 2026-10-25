@@ -1,5 +1,3 @@
-# ANSWER 3010983666182123972
-
 """
 
 s(n) is the smallest integer such that 2^{s(n)} = 1 mod (n-1). So we find all
@@ -9,6 +7,8 @@ divisors d of 60.
 """
 
 from .p44 import divisors
+
+ANSWER = 3010983666182123972
 
 
 def check(d, bad):

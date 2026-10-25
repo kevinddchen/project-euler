@@ -1,4 +1,4 @@
-# ANSWER 872187
+ANSWER = 872187
 
 
 def p36():

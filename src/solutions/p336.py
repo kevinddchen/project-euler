@@ -1,5 +1,3 @@
-# ANSWER CAGBIHEFJDK
-
 """
 
 The maximix arrangements for n carridges generate the maximix arrangements for
@@ -10,6 +8,8 @@ was the slowest part of the first program).  Doesn't take long at all, as there
 are only 362,800 maximix arrangements to go search through.
 
 """
+
+ANSWER = "CAGBIHEFJDK"
 
 
 def reverse(L, a, b):

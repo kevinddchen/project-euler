@@ -1,11 +1,11 @@
-# ANSWER 28684
-
 """
 
 Generate all polygon numbers, then do a depth-first search for a cycle. The set
 is {8256, 5625, 2512, 1281, 8128, 2882} with polygonal types {3, 4, 7, 8, 6, 5}.
 
 """
+
+ANSWER = 28684
 
 
 def polygon_gen(s):

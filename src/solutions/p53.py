@@ -1,6 +1,6 @@
-# ANSWER 4075
-
 from math import comb
+
+ANSWER = 4075
 
 
 def p53():

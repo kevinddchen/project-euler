@@ -1,5 +1,3 @@
-# ANSWER 7587457
-
 """
 
 Here we took every combination of integers, 2x2, 2x3, 2x4, ... 3x3, 3x4, ...
@@ -13,6 +11,8 @@ and knowing when to stop incrementing and search the next branch over.
 """
 
 from math import prod
+
+ANSWER = 7587457
 
 
 def recurse(i, prev_list, k_dict):

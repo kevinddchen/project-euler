@@ -1,5 +1,3 @@
-# ANSWER 248155780267521
-
 """
 
 Generate a^b and check digital sum is equal to a. For traversing the tree, it
@@ -17,6 +15,8 @@ least ceil(b/9) digits. For example:
 """
 
 from math import ceil
+
+ANSWER = 248155780267521
 
 
 def p119():

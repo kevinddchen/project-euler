@@ -1,6 +1,6 @@
-# ANSWER 134043
-
 from mathfuncs import prime_factorize
+
+ANSWER = 134043
 
 
 def p47():

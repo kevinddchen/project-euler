@@ -1,11 +1,11 @@
-# ANSWER 0.5731441
-
 """
 
 The possibilities for rolling 9 four-sided dice is given by the generating function
 (x + x^2 + x^3 + x^4)^9, and similary for the 6 six-sided dice
 
 """
+
+ANSWER = 0.5731441
 
 
 def mult_poly(p_1, p_2):

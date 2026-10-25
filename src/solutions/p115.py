@@ -1,5 +1,3 @@
-# ANSWER 168
-
 """
 
 Nearly identical to Problem 114, but generalized. Now
@@ -7,6 +5,8 @@ F(m, n) = 2F(m, n-1) - F(m, n-2) + F(m, n-m-1) where F(m, n) = 1 when n < m and
 F(m, m) = 2.
 
 """
+
+ANSWER = 168
 
 
 def p115():

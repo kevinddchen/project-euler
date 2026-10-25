@@ -1,10 +1,10 @@
-# ANSWER 20492570929
-
 """
 
 Can be solved by hand. See PDF for explanation.
 
 """
+
+ANSWER = 20492570929
 
 
 def p116():

@@ -1,8 +1,8 @@
-# ANSWER 149253
-
 from mathfuncs import is_prime
 
 from .p129 import A
+
+ANSWER = 149253
 
 
 def p130():

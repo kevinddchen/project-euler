@@ -1,10 +1,10 @@
-# ANSWER 2178309
-
 """
 
 Can be solved by hand. See PDF for explanation.
 
 """
+
+ANSWER = 2178309
 
 
 def p301():

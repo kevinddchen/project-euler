@@ -1,5 +1,3 @@
-# ANSWER 57060635927998347
-
 """
 
 The best rational approximations are easily generated from the continued
@@ -32,6 +30,8 @@ integers to test which difference is larger.
 from math import isqrt
 
 from .p64 import continued_fraction_of_sqrt
+
+ANSWER = 57060635927998347
 
 
 def best_rational_approximation(n, bound):

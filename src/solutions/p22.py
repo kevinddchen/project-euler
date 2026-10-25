@@ -1,6 +1,6 @@
-# ANSWER 871198282
-
 from mathfuncs import read_text
+
+ANSWER = 871198282
 
 
 def score(name):

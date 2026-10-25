@@ -1,5 +1,3 @@
-# ANSWER 0.00396087
-
 """
 
 Descartes' Theorem allows you to find the radius of the kissing circle, given
@@ -12,6 +10,8 @@ We memoize the results of the area calculations, but this is not necessary.
 import logging
 from functools import cache
 from math import pi
+
+ANSWER = 0.00396087
 
 LOG = logging.getLogger(__name__)
 
@@ -68,7 +68,7 @@ def get_gasket_area(depth: int, k1: float, k2: float, k3: float) -> float:
     return area
 
 
-def p199() -> str:
+def p199() -> float:
     depth = 10
 
     # get curvature of enclosing circle
@@ -80,4 +80,4 @@ def p199() -> str:
     covered_area += 3 * get_gasket_area(depth, 1.0, 1.0, k0)  # even though k0 < 0, this is ok
     percent = round(1.0 - covered_area / total_area, 8)
 
-    return f"{percent:.8f}"
+    return round(percent, 8)

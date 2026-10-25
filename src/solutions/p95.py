@@ -1,5 +1,3 @@
-# ANSWER 14316
-
 """
 
 This can be done in a fairly straightforward manner, keeping track of integers
@@ -8,6 +6,8 @@ you already traversed and using an efficient method of finding sum of divisors.
 """
 
 from .p21 import sum_proper_divisors
+
+ANSWER = 14316
 
 
 def p95():

@@ -1,6 +1,6 @@
-# ANSWER 104743
-
 from mathfuncs import is_prime
+
+ANSWER = 104743
 
 
 def p7():

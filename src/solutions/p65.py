@@ -1,10 +1,10 @@
-# ANSWER 272
-
 """
 
 See solution explanations.
 
 """
+
+ANSWER = 272
 
 
 def continued_fraction_of_e():

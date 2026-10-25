@@ -1,5 +1,3 @@
-# ANSWER 180180
-
 """
 
 n < x, y so let x = n+a and y = n+b. Then with some algebra we can show that
@@ -13,6 +11,8 @@ calculate, as mentioned in Problem 12.
 """
 
 from mathfuncs import prime_factorize
+
+ANSWER = 180180
 
 
 def p108():

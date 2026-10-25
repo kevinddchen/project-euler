@@ -1,5 +1,3 @@
-# ANSWER 193060223
-
 """
 
 Brute force. We can write
@@ -17,6 +15,8 @@ digts are '123'.
 """
 
 from math import log
+
+ANSWER = 193060223
 
 
 def p686():

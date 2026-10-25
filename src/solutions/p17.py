@@ -1,10 +1,10 @@
-# ANSWER 21124
-
 """
 
 Can be solved by hand. See PDF for explanation.
 
 """
+
+ANSWER = 21124
 
 
 def num_letters(x):

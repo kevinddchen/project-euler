@@ -1,10 +1,10 @@
-# ANSWER 10057761
-
 """
 
 Can be solved by hand. See PDF for explanation.
 
 """
+
+ANSWER = 10057761
 
 
 def p139():

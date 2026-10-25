@@ -1,10 +1,10 @@
-# ANSWER 608720
-
 """
 
 Can be solved by hand. See PDF for explanation.
 
 """
+
+ANSWER = 608720
 
 
 def p145():

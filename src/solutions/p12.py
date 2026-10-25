@@ -1,5 +1,3 @@
-# ANSWER 76576500
-
 """
 
 There is a fast way to count the divisors of an integer. Given an integer and
@@ -12,6 +10,8 @@ of divisors of n is (a_1 + 1)(a_2 + 1)...(a_k+1).
 from math import prod
 
 from mathfuncs import prime_factorize
+
+ANSWER = 76576500
 
 
 def num_divisors(n):

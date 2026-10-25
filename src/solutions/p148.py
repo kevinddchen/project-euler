@@ -1,10 +1,10 @@
-# ANSWER 2129970655314432
-
 """
 
 Can be solved by hand. See PDF for explanation.
 
 """
+
+ANSWER = 2129970655314432
 
 
 def p148():

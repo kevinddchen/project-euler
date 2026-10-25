@@ -1,5 +1,3 @@
-# ANSWER 1818
-
 """
 
 Here we present a new method for generating Pythagorean triples. Given a
@@ -14,6 +12,8 @@ Using an initial seed (3, 4, 5) every primitive triple can be generated using
 this method.
 
 """
+
+ANSWER = 1818
 
 
 def possible(a, b):

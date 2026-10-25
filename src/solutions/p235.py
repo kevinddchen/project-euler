@@ -1,5 +1,3 @@
-# ANSWER 1.002322108633
-
 """
 
 The sum of the first n terms of a arithmetico-geometric sequence is given by
@@ -10,8 +8,7 @@ sum_{k=1}^n [a+(k-1)d]r^{k-1} = (a + (d-a)r - (a+nd)r^n +(a+nd-d)r^{n+1}) / (1-r
 
 import decimal
 
-decimal.getcontext().prec = 13
-decimal.getcontext().rounding = decimal.ROUND_HALF_UP
+ANSWER = "1.002322108633"
 
 
 def sum_arithgeo_series(a, d, r, n):
@@ -27,6 +24,7 @@ def p235():
         r = (r_bounds[1] + r_bounds[0]) / 2
         s = sum_arithgeo_series(897, -3, r, 5000)
         if r == prev:
+            r = r.quantize(decimal.Decimal("1e-12"))
             return str(r)
         elif s < TARGET:
             r_bounds[1] = r

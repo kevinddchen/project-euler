@@ -1,5 +1,3 @@
-# ANSWER 330.721154
-
 """
 
 The problem can be modeled as a Markov process. If a single flea starts on a
@@ -11,6 +9,8 @@ gives the expected number of unoccupied squares.
 """
 
 import numpy as np
+
+ANSWER = 330.721154
 
 
 def p213():

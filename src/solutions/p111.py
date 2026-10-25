@@ -1,8 +1,8 @@
-# ANSWER 612407567715
-
 from itertools import combinations, product
 
 from mathfuncs import is_prime
+
+ANSWER = 612407567715
 
 
 def matchPattern(pattern, d, DIGITS):

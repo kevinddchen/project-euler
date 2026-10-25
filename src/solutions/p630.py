@@ -1,5 +1,3 @@
-# ANSWER 9669182880384
-
 """
 
 We keep track of all previous coordinates. For each new coordinate, we compute
@@ -17,6 +15,8 @@ from __future__ import annotations
 
 from math import gcd
 from typing import Container, Iterator, NamedTuple
+
+ANSWER = 9669182880384
 
 SIZE = 1000
 TARGET = 2500

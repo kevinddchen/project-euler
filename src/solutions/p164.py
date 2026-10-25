@@ -1,11 +1,11 @@
-# ANSWER 378158756814587
-
 """
 
 Brute force. My strategy was counting three digits at a time, keep adding
 digits and counting all possibilities until you reach 20 digits.
 
 """
+
+ANSWER = 378158756814587
 
 
 def add_dict(dct, key, value):

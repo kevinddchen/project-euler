@@ -1,5 +1,3 @@
-# ANSWER 4343871.06
-
 """
 
 We first reformulate the problem slightly,
@@ -37,6 +35,8 @@ that produces an output of 0.25, for the given value of n.
 from math import log
 
 from scipy.special import gammaincc
+
+ANSWER = 4343871.06
 
 
 def p697():

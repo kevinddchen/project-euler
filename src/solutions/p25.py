@@ -1,10 +1,10 @@
-# ANSWER 4782
-
 """
 
 Can be solved by hand. See PDF for explanation.
 
 """
+
+ANSWER = 4782
 
 
 def p25():

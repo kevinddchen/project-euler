@@ -1,5 +1,3 @@
-# ANSWER 354
-
 """
 
 This question can be solved using a lot of tedious geometry. Given two points, A
@@ -13,6 +11,8 @@ solution. This gives the next point of reflection, C.
 """
 
 import numpy as np
+
+ANSWER = 354
 
 
 def normal_at(A):

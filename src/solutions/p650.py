@@ -1,5 +1,3 @@
-# ANSWER 538319652
-
 """
 
 We use the fact that
@@ -12,6 +10,8 @@ compute the sum of divisors efficiently. routine.
 """
 
 from mathfuncs import prime_factorize, prime_sieve
+
+ANSWER = 538319652
 
 
 def p650():

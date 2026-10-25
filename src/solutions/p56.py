@@ -1,4 +1,4 @@
-# ANSWER 972
+ANSWER = 972
 
 
 def p56():

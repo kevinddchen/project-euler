@@ -1,5 +1,3 @@
-# ANSWER 73162890
-
 """
 
 This problem is best solved by hand. From the key logger we created a graph
@@ -9,6 +7,8 @@ This method is guaranteed to work with non-repeating digits.
 """
 
 from mathfuncs import read_text
+
+ANSWER = "73162890"
 
 
 def pop_longest_list(d):

@@ -1,5 +1,3 @@
-# ANSWER 194505988824000
-
 """
 
 Here we use the fact that a number is divisible by 11 iff the alternative sum
@@ -15,6 +13,8 @@ are repeated. We also have to modify our counting slightly to avoid leading
 zeros, but this is the outline of the code.
 
 """
+
+ANSWER = 194505988824000
 
 
 def foo(lst, target_n, target_tot, index=0, n=0, tot=0, L=[]):

@@ -1,10 +1,10 @@
-# ANSWER 756872327473
-
 """
 
 Can be solved by hand. See PDF for explanation.
 
 """
+
+ANSWER = 756872327473
 
 
 def p100():

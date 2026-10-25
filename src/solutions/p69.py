@@ -1,5 +1,3 @@
-# ANSWER 510510
-
 """
 
 Can be solved by hand. See PDF for explanation.
@@ -7,6 +5,8 @@ Can be solved by hand. See PDF for explanation.
 Below, we use a sieve to generate totient values.
 
 """
+
+ANSWER = 510510
 
 
 def totient_sieve(limit):

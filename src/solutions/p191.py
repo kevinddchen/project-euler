@@ -1,4 +1,4 @@
-# ANSWER 1918080160
+ANSWER = 1918080160
 
 
 def add_dict(d, L, i):

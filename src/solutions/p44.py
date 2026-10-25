@@ -1,5 +1,3 @@
-# ANSWER 5482660
-
 """
 
 Notice that if P_m = P_{n+k} - P_n, then P_m = (n+k)(3n+3k-1)/2 - n(3n-1)/2 =
@@ -10,6 +8,8 @@ pentagonal number, then we are done.
 """
 
 from mathfuncs import prime_factorize
+
+ANSWER = 5482660
 
 
 def pent(n):

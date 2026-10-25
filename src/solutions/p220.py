@@ -1,11 +1,11 @@
-# ANSWER 139776,963904
-
 """
 
 Iteratively determine what "a" and "b" branch out into at some D_n, then use a
 long-division like algorithm to determine the 10**12th step.
 
 """
+
+ANSWER = 139776, 963904
 
 A_STRING = "aRbFR"
 B_STRING = "LFaLb"
@@ -39,7 +39,7 @@ def recurse(x, y, d, n, level, s):
     """Recurse through path."""
     for char in s:
         if n == 0:
-            return "{0},{1}".format(x, y)
+            return (x, y)
         if char == "a":
             action = A_LIST[level]
             if n + action[-1] > 0:

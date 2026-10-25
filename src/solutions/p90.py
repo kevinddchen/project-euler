@@ -1,5 +1,3 @@
-# ANSWER 1217
-
 """
 
 The scope of this problem is small enough to use brute force and generate all
@@ -8,6 +6,8 @@ dice combinations.
 """
 
 from itertools import combinations
+
+ANSWER = 1217
 
 square_list = [(0, 1), (0, 4), (0, 6), (1, 6), (1, 8), (2, 5), (3, 6), (4, 6)]
 

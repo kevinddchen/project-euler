@@ -1,6 +1,6 @@
-# ANSWER 748317
-
 from mathfuncs import is_prime
+
+ANSWER = 748317
 
 
 def check_trunc(x):

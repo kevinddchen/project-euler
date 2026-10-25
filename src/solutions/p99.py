@@ -1,5 +1,3 @@
-# ANSWER 709
-
 """
 
 Just compute log of the value. As log is a monotonically increasing
@@ -10,6 +8,8 @@ function, it preserves order, i.e. x<y implies log(x)<log(y).
 from math import log
 
 from mathfuncs import read_text
+
+ANSWER = 709
 
 
 def p99():

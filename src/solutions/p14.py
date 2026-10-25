@@ -1,5 +1,3 @@
-# ANSWER 837799
-
 """
 
 A useful programming technique in dynamical programming is memoization. In a
@@ -11,6 +9,8 @@ the @cache decorator.
 """
 
 from functools import cache
+
+ANSWER = 837799
 
 
 @cache

@@ -1,5 +1,3 @@
-# ANSWER 40886
-
 """
 
 Use Newton's method to generate a good rational approximation of the the
@@ -8,6 +6,8 @@ square root (error < 1e-110). Then, use long division to get the digits.
 """
 
 from math import isqrt
+
+ANSWER = 40886
 
 
 def gen_sqrt(p):

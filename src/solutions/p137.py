@@ -1,10 +1,10 @@
-# ASNWER 1120149658760
-
 """
 
 Can be solved by hand. See PDF for explanation.
 
 """
+
+ANSWER = 1120149658760
 
 
 def p137():

@@ -1,5 +1,3 @@
-# ANSWER 6.818741802
-
 """
 
 Here it is important to understand how to count the different possibilities.
@@ -30,6 +28,8 @@ Two such partitions are {1, 9, 10} and {6, 6, 7}. For {1, 9, 10} we multiply by
 """
 
 from math import comb, factorial
+
+ANSWER = 6.818741802
 
 
 def ordered_partitions(size, parts, limit):
@@ -76,4 +76,4 @@ def p493():
     for n_colors in range(2, 8):
         weighted_count += count_color(n_colors) * comb(7, n_colors) * n_colors
     total = comb(70, 20)  # value of numerator for expected value
-    return "{0:.9f}".format(weighted_count * 1.0 / total)
+    return round(weighted_count * 1.0 / total, 9)

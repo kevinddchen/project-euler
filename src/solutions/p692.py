@@ -1,5 +1,3 @@
-# ANSWER 842043391019219959
-
 """
 
 If we make a table for the first few values of H(k), we can note that H(k) =
@@ -20,6 +18,8 @@ This allows us to derive a useful recurrence relation for G(n):
 Note that the answer is G(F_80).
 
 """
+
+ANSWER = 842043391019219959
 
 
 def fib_gen():

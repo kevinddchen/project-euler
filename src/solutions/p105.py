@@ -1,5 +1,3 @@
-# ANSWER 73702
-
 """
 
 Brute force. Not really any other choice.
@@ -7,6 +5,8 @@ Brute force. Not really any other choice.
 """
 
 from mathfuncs import read_text
+
+ANSWER = 73702
 
 
 def no_equal_sums(lst, s=0, changes=0):

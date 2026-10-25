@@ -1,8 +1,8 @@
-# ANSWER 7652413
-
 from itertools import permutations
 
 from mathfuncs import is_prime
+
+ANSWER = 7652413
 
 
 def largest_prime(digits):

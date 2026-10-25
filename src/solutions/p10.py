@@ -1,5 +1,3 @@
-# ANSWER 142913828922
-
 """
 
 A very fast way of generating prime numbers up to some N is to use a Sieve of
@@ -12,6 +10,8 @@ to sqrt(N), we generate all primes less than or equal to N.
 """
 
 from mathfuncs import prime_sieve
+
+ANSWER = 142913828922
 
 
 def p10():

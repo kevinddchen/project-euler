@@ -1,5 +1,3 @@
-# ANSWER 20313839404245
-
 """
 
 We can apply the algorithm to guess the optimal solution for n=7. Then we
@@ -10,6 +8,8 @@ traversing the tree to only build sets that can construct special sum sets.
 As it turns out, the guess is actually the optimal set.
 
 """
+
+ANSWER = "20313839404245"
 
 
 def subsets(lst, i=0, temp=[]):

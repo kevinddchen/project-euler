@@ -1,5 +1,3 @@
-# ANSWER 1000023
-
 """
 
 We can generate R(k) mod n by the recurrence relation R(k+1) = 10R(k) + 1 (mod
@@ -10,6 +8,8 @@ Additionally, since the cycle must have length <= n, so we have A(n) <= n.
 Therefore, for this problem we can start finding A(n) from n=10^6.
 
 """
+
+ANSWER = 1000023
 
 
 def A(n):

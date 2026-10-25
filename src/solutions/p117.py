@@ -1,10 +1,10 @@
-# ANSWER 100808458960497
-
 """
 
 Can be solved by hand. See PDF for explanation.
 
 """
+
+ANSWER = 100808458960497
 
 
 def p117():

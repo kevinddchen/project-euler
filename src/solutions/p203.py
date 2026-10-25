@@ -1,6 +1,6 @@
-# ANSWER 34029210557338
-
 from mathfuncs import prime_factorize
+
+ANSWER = 34029210557338
 
 
 def add_dict(d, x, i):

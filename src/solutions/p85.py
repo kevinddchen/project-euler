@@ -1,5 +1,3 @@
-# ANSWER 2772
-
 """
 
 For a nx1 grid, there are (n+1) choose 2 = n(n+1)/2 ways of choosing the end
@@ -7,6 +5,8 @@ points for our rectangle. Therefore for a nxm grid, there are nm(n+1)(m+1)/4
 possible rectangles.
 
 """
+
+ANSWER = 2772
 
 
 def nearest_m(n, t):

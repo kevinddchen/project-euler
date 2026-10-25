@@ -1,5 +1,3 @@
-# ANSWER: 173
-
 """
 
 We claim that n is a perfect cube. Assume for a contradiction that n = x * y^3
@@ -14,6 +12,8 @@ cubes and test for primality.
 """
 
 from mathfuncs import is_prime
+
+ANSWER = 173
 
 
 def p131():

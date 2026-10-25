@@ -1,6 +1,6 @@
-# ANSWER 2906969179
-
 from math import isqrt
+
+ANSWER = 2906969179
 
 LIMIT = 10**8
 

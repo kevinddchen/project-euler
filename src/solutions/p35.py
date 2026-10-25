@@ -1,6 +1,6 @@
-# ANSWER 55
-
 from mathfuncs import prime_sieve
+
+ANSWER = 55
 
 
 def circular(n, sieve):

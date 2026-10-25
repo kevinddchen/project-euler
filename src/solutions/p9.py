@@ -1,5 +1,3 @@
-# ANSWER 31875000
-
 """
 
 Can be solved by hand. See PDF for explanation.
@@ -7,6 +5,8 @@ Can be solved by hand. See PDF for explanation.
 """
 
 from math import gcd, isqrt
+
+ANSWER = 31875000
 
 
 def p9():

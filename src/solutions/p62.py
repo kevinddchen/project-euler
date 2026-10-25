@@ -1,5 +1,3 @@
-# ANSWER 127035954683
-
 """
 
 Generate all cubes with n digits, sort each cube in increasing digits, then
@@ -7,6 +5,8 @@ search for five cubes with the same digit pattern. If no pattern is found, then
 increment n and repeat.
 
 """
+
+ANSWER = 127035954683
 
 
 def cube_gen(d):

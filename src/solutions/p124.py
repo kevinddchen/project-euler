@@ -1,5 +1,3 @@
-# ANSWER 21417
-
 """
 
 Brute force prime factorization.
@@ -7,6 +5,8 @@ Brute force prime factorization.
 """
 
 from mathfuncs import prime_factorize
+
+ANSWER = 21417
 
 
 def p124():

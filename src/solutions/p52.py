@@ -1,5 +1,3 @@
-# ANSWER 142857
-
 """
 
 Very direct approach; check each integer with no repeating digits that its
@@ -7,6 +5,8 @@ multiples are permutations. In fact, the answer is the repeating decimal part
 of 1/7, which has the property stated in the question.
 
 """
+
+ANSWER = 142857
 
 
 def p52():

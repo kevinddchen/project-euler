@@ -1,6 +1,6 @@
-# ANSWER 8581146
-
 from functools import cache
+
+ANSWER = 8581146
 
 
 def sort_digits(x):

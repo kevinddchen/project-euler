@@ -1,5 +1,3 @@
-# ANSWER 427337
-
 """
 
 Starting from the top-left and traversing to the bottom-right, we go
@@ -8,6 +6,8 @@ through each cell and replace its value with the lowest sum to reach that cell.
 """
 
 from mathfuncs import read_text
+
+ANSWER = 427337
 
 
 def p81():

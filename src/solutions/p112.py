@@ -1,4 +1,4 @@
-# ANSWER 1587000
+ANSWER = 1587000
 
 
 def increasing(x):

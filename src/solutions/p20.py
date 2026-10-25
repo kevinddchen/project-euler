@@ -1,6 +1,6 @@
-# ANSWER 648
-
 from math import factorial
+
+ANSWER = 648
 
 
 def p20():

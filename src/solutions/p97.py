@@ -1,10 +1,10 @@
-# ANSWER 8739992577
-
 """
 
 Just keep track of the last 10 digits
 
 """
+
+ANSWER = 8739992577
 
 
 def p97():

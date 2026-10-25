@@ -1,10 +1,10 @@
-# ANSWER 333082500
-
 """
 
 Can be solved by hand. See PDF for explanation.
 
 """
+
+ANSWER = 333082500
 
 
 def p120():
