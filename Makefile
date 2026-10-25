@@ -37,4 +37,4 @@ all: $(apps) $(objects)
 
 .PHONY: clean
 clean:
-	$(RM) -r $(BIN)/* $(OBJ)/*
+	$(RM) -r $(BIN) $(OBJ)
