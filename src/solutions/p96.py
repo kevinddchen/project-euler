@@ -256,5 +256,5 @@ def p96():
     for arr in read_puzzles():
         puzzle = Sudoku(arr)
         puzzle = puzzle.solve()
-        S += puzzle._grid[0, 0] * 100 + puzzle._grid[0, 1] * 10 + puzzle._grid[0, 2]
+        S += int(puzzle._grid[0, 0]) * 100 + int(puzzle._grid[0, 1]) * 10 + int(puzzle._grid[0, 2])
     return S
