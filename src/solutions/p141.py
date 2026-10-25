@@ -1,5 +1,3 @@
-# ANSWER 878454337159
-
 """
 
 n = dq + r where r < d. WLOG we can assume that d < n < q. Then as r, d, q are
@@ -11,6 +9,8 @@ iterate through a then b then r, testing if n is a perfect square.
 """
 
 from math import gcd, isqrt
+
+ANSWER = 878454337159
 
 
 def p141():

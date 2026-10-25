@@ -1,5 +1,3 @@
-# ANSWER 37076114526
-
 """
 
 The optimum polynomial OP(k, n) is the polynomial P interpolated on the points n
@@ -12,6 +10,8 @@ find polynomials P_i such that P_i(x_j) = delta_{ij}. An explicit formula is:
 Then our interpolation is simply P(x) = sum_{i=1}^k u_i P_i(x).
 
 """
+
+ANSWER = 37076114526
 
 
 def neq_prod(i, k, f):

@@ -1,5 +1,3 @@
-# ANSWER 26241
-
 """
 
 For side length n, there are 2n-1 numbers on the diagonals. The numbers at the
@@ -8,6 +6,8 @@ corners are n^2 - i(n-1) for i = 0, 1, 2, 3.
 """
 
 from mathfuncs import is_prime
+
+ANSWER = 26241
 
 
 def p58():

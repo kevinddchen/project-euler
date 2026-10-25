@@ -1,5 +1,3 @@
-# ANSWER 6531031914842725
-
 """
 
 As the question asks for 16-digit strings, we can assume that 10 lies in
@@ -11,6 +9,8 @@ the first valid magic 5-gon is already maximal and is the answer.
 """
 
 from itertools import permutations
+
+ANSWER = 6531031914842725
 
 
 def generate_5_gons():

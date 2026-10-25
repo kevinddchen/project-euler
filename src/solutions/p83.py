@@ -1,5 +1,3 @@
-# ANSWER 425185
-
 """
 
 This can be solved by an implementation of Dijkstra's algorithm. We traverse
@@ -10,6 +8,8 @@ distance.
 """
 
 from mathfuncs import read_text
+
+ANSWER = 425185
 
 
 def directions(i, j, dim):

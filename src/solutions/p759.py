@@ -1,5 +1,3 @@
-# ANSWER 282771304
-
 """
 
 First, note that f(k) = k * g(k) where g(k) is the number of 1s in the binary
@@ -27,6 +25,8 @@ to calculate S(2n) so that we can calculate S(10^16) in the end.
 """
 
 import numpy as np
+
+ANSWER = 282771304
 
 
 def _get_bits(n: int) -> list[int]:

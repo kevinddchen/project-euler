@@ -1,10 +1,10 @@
-# ANSWER 49
-
 """
 
 Can be solved by hand. See PDF for explanation.
 
 """
+
+ANSWER = 49
 
 
 def p63():

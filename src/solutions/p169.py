@@ -1,5 +1,3 @@
-# ANSWER 178653872807
-
 """
 
 The function f(n) is equivalent to the number of ways of expressing n as a
@@ -24,6 +22,8 @@ With this, we can recursively find f(n) for all n.
 """
 
 from functools import cache
+
+ANSWER = 178653872807
 
 
 @cache

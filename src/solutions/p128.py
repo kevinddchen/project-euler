@@ -1,5 +1,3 @@
-# ANSWER 14516824220
-
 """
 
 You can work out that in a ring the only two tiles that can have up to 3 prime
@@ -10,6 +8,8 @@ differences need to be calculated.
 """
 
 from mathfuncs import is_prime
+
+ANSWER = 14516824220
 
 
 def p128():

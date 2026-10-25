@@ -1,5 +1,3 @@
-# ANSWER 190569292
-
 """
 
 This problem is asking for the integer partition of 100. This can be calculated
@@ -8,6 +6,8 @@ recursively using the pentagonal number theorem.
 """
 
 from functools import cache
+
+ANSWER = 190569292
 
 
 def pent(n):

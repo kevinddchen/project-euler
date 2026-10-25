@@ -1,5 +1,3 @@
-# ANSWER 0.00396087
-
 """
 
 Descartes' Theorem allows you to find the radius of the kissing circle, given
@@ -12,6 +10,8 @@ We memoize the results of the area calculations, but this is not necessary.
 import logging
 from functools import cache
 from math import pi
+
+ANSWER = 0.00396087
 
 LOG = logging.getLogger(__name__)
 

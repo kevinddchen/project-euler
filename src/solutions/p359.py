@@ -1,5 +1,3 @@
-# ANSWER 40632119
-
 """
 
 If we make a large grid of P(f, r) values, we can note three properties:
@@ -18,6 +16,8 @@ are able to exploit Python's arbitrarily large integers to make handling large
 integers easy.
 
 """
+
+ANSWER = 40632119
 
 
 def P(f: int, r: int) -> int:

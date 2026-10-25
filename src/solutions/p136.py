@@ -1,11 +1,11 @@
-# ANSWER 2544559
-
 """
 
 We can write n = y(4a-y) as a product of two positive factors, and y>a. Go
 through all y and a, keeping track of how many times we can form each n.
 
 """
+
+ANSWER = 2544559
 
 
 def p136():

@@ -1,5 +1,3 @@
-# ANSWER 9350130049860600
-
 """
 
 From Problem 108, it was observed that in performing the calculation,
@@ -18,6 +16,8 @@ Using this approach, the question now changes to a limit of 8000000.
 from math import ceil, log, prod
 
 from mathfuncs import is_prime
+
+ANSWER = 9350130049860600
 
 
 def prime_gen(n):

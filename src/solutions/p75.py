@@ -1,5 +1,3 @@
-# ANSWER 161667
-
 """
 
 Generate Pythagorean triples, like in Problem 9. The perimeter is 2km(m+n).
@@ -9,6 +7,8 @@ of unique perimeters.
 """
 
 from math import gcd, isqrt
+
+ANSWER = 161667
 
 
 def p75():

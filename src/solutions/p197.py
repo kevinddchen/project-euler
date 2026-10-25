@@ -1,5 +1,3 @@
-# ANSWER 1.710637717
-
 """
 
 The function given is very close to the analytic function f(x) = 1.42*2^{-x^2}.
@@ -12,6 +10,8 @@ initial point u_0 is picked near these values, iteratively calling u_{n+1} =
 f(u_n) will converge upon these two fixed-points very quickly.
 
 """
+
+ANSWER = 1.710637717
 
 
 def f(x):

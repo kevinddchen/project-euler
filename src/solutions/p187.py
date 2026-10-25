@@ -1,5 +1,3 @@
-# ANSWER 17427258
-
 """
 
 Solved using a prime sieve.
@@ -9,6 +7,8 @@ Solved using a prime sieve.
 from bisect import bisect
 
 from mathfuncs import prime_sieve
+
+ANSWER = 17427258
 
 
 def p187():

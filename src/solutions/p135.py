@@ -1,11 +1,11 @@
-# ANSWER 4989
-
 """
 
 If we have an arithmetic progression x, x+d, x+2d, the the equation simplifies
 to (3d-x)(d+x) = n. Therefore for each n we find divisors and solve for d and x.
 
 """
+
+ANSWER = 4989
 
 
 def divisor_sieve(LIMIT):

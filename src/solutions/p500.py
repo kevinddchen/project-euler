@@ -1,5 +1,3 @@
-# ANSWER 35407281
-
 """
 
 Given an integer and its prime factorization, n = p1^a1 * p2^a2 * ... * pk^ak,
@@ -9,6 +7,8 @@ smallest number, as we can replace p_{500500} with 2^2. We repeat this,
 replacing the largest primes in the product with powers of smaller primes.
 
 """
+
+ANSWER = 35407281
 
 
 def prime_generator(iterable):

@@ -1,5 +1,3 @@
-# ANSWER 329468
-
 """
 
 First we generate fibonacci numbers, saving only the last 9 digits, until we
@@ -9,6 +7,8 @@ prevent overflow errors, we manually exponentiate, keeping only the first 9
 digits. Then we check it is pandigital.
 
 """
+
+ANSWER = 329468
 
 
 def fib_last_generator():

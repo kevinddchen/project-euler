@@ -1,5 +1,3 @@
-# ANSWER 0.3916721504
-
 """
 
 Relatively simple if we can rely on third-party integration routines.
@@ -10,6 +8,8 @@ Thankfully, Python has scipy.integrate.
 from math import acos, pi, sqrt
 
 from scipy.integrate import dblquad
+
+ANSWER = 0.3916721504
 
 
 def func(y: float, x: float) -> float:

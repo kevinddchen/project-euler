@@ -1,10 +1,10 @@
-# ANSWER 2406376.3623
-
 """
 
 Can be solved by hand. See PDF for explanation.
 
 """
+
+ANSWER = 2406376.3623
 
 
 def p389():

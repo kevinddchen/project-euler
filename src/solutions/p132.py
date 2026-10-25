@@ -1,5 +1,3 @@
-# ANSWER 843296
-
 """
 
 R(k) = (10^k-1)/9, so if we are checking divisibility of R(k) by some prime p,
@@ -11,6 +9,8 @@ it suffices that we check 10^{gcd(10^9, p-1)} = 1 (mod p).
 """
 
 from mathfuncs import is_prime
+
+ANSWER = 843296
 
 
 def p132():

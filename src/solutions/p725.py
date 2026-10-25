@@ -1,5 +1,3 @@
-# ANSWER 4598797036650685
-
 """
 
 Since we are adding together digit-sum numbers, we can use some of their nice
@@ -37,6 +35,8 @@ digits is
 from collections import defaultdict
 from math import comb, factorial
 from typing import Generator, Iterable
+
+ANSWER = 4598797036650685
 
 
 def _generate_partitions(n: int) -> Generator[list[int], None, None]:

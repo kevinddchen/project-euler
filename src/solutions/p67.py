@@ -1,5 +1,3 @@
-# ANSWER 7273
-
 """
 
 Same method as problem 18. Start from the bottom and work upwards.
@@ -7,6 +5,8 @@ Same method as problem 18. Start from the bottom and work upwards.
 """
 
 from mathfuncs import read_text
+
+ANSWER = 7273
 
 
 def p67():

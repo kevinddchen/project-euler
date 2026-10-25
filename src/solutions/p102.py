@@ -1,5 +1,3 @@
-# ANSWER 228
-
 """
 
 We check that the cross-products of the points in order have the same sign.
@@ -7,6 +5,8 @@ We check that the cross-products of the points in order have the same sign.
 """
 
 from mathfuncs import read_text
+
+ANSWER = 228
 
 
 def cross(a, b):

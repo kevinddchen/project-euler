@@ -1,11 +1,11 @@
-# ANSWER 139776,963904
-
 """
 
 Iteratively determine what "a" and "b" branch out into at some D_n, then use a
 long-division like algorithm to determine the 10**12th step.
 
 """
+
+ANSWER = 139776, 963904
 
 A_STRING = "aRbFR"
 B_STRING = "LFaLb"

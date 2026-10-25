@@ -1,5 +1,3 @@
-# ANSWER 1.002322108633
-
 """
 
 The sum of the first n terms of a arithmetico-geometric sequence is given by
@@ -9,6 +7,8 @@ sum_{k=1}^n [a+(k-1)d]r^{k-1} = (a + (d-a)r - (a+nd)r^n +(a+nd-d)r^{n+1}) / (1-r
 """
 
 import decimal
+
+ANSWER = 1.002322108633
 
 decimal.getcontext().prec = 13
 decimal.getcontext().rounding = decimal.ROUND_HALF_UP

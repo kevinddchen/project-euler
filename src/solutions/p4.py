@@ -1,4 +1,4 @@
-# ANSWER 906609
+ANSWER = 906609
 
 
 def p4():

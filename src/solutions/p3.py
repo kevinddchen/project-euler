@@ -1,4 +1,4 @@
-# ANSWER 6857
+ANSWER = 6857
 
 
 def p3():

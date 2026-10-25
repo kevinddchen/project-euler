@@ -1,5 +1,3 @@
-# ANSWER 18522
-
 """
 
 For a cuboid a x b x c, the Lth layer contains
@@ -12,6 +10,8 @@ to keep track of all possibilities in a reasonable amount of time.
 """
 
 import heapq
+
+ANSWER = 18522
 
 
 def blocks(a, b, c, L):

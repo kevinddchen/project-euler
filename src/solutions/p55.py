@@ -1,4 +1,4 @@
-# ANSWER 249
+ANSWER = 249
 
 
 def is_lychrel(x):

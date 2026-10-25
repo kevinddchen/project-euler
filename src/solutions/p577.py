@@ -1,10 +1,10 @@
-# ANSWER 265695031399260211
-
 """
 
 Can be solved by hand. See PDF for explanation.
 
 """
+
+ANSWER = 265695031399260211
 
 
 def p577():

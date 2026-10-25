@@ -1,5 +1,3 @@
-# ANSWER 7526965179680
-
 """
 
 Kummer's theorem on binomial coefficients states that given integers n >= m
@@ -9,6 +7,8 @@ is equal to the number of carries when m is added to n-m in base p.
 """
 
 from mathfuncs import prime_sieve
+
+ANSWER = 7526965179680
 
 
 def choose_greatest_power(m, n, p):

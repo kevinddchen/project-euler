@@ -1,6 +1,6 @@
-# ANSWER 402
-
 from math import factorial
+
+ANSWER = 402
 
 # saved values
 fact = [factorial(x) for x in range(10)]

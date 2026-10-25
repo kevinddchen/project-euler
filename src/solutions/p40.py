@@ -1,4 +1,4 @@
-# ANSWER 210
+ANSWER = 210
 
 
 def p40():

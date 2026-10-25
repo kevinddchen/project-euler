@@ -1,5 +1,3 @@
-# ANSWER 21035
-
 """
 
 Just like in Problem 120, the remainder for odd n is 2*n*p_n mod (p_n)^2. For
@@ -9,6 +7,8 @@ finding the smallest odd n such that n*p_n > 5e9
 """
 
 from mathfuncs import is_prime
+
+ANSWER = 21035
 
 
 def p123():

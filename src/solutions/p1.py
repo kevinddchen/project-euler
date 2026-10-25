@@ -1,10 +1,10 @@
-# ANSWER 233168
-
 """
 
 Can be solved by hand. See PDF for explanation.
 
 """
+
+ANSWER = 233168
 
 
 def p1():

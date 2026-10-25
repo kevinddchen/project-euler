@@ -1,5 +1,3 @@
-# ANSWER 153
-
 """
 
 Given a continued fraction expansion [a_0; a_1, a_2, ...], the convergents can
@@ -11,6 +9,8 @@ be calculated by the recurrence relation,
 Then the fraction p_n/q_n gives the nth convergent.
 
 """
+
+ANSWER = 153
 
 
 def continued_fraction_of_sqrt2():

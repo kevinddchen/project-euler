@@ -1,5 +1,3 @@
-# ANSWER 18769
-
 """
 
 Brute force. Get all the words, find all anagram pairs, and start
@@ -10,6 +8,8 @@ matching squares to the pattern and see if you get a square.
 from math import ceil
 
 from mathfuncs import read_text
+
+ANSWER = 18769
 
 
 def get_words():

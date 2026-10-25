@@ -1,5 +1,3 @@
-# ANSWER 1006193
-
 """
 
 Note that x is the midpoint between two pairs of squares: x+y and x-y, and x+z
@@ -9,6 +7,8 @@ two pairs have the same midpoints, check that y+z and y-z are squares.
 """
 
 from math import isqrt
+
+ANSWER = 1006193
 
 
 def is_square(n):

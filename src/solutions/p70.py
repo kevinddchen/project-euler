@@ -1,5 +1,3 @@
-# ANSWER 8319823
-
 """
 
 We are trying to minimize n/phi(n), which is the product:
@@ -19,6 +17,8 @@ This prevents us from searching all primes up to 10^7.
 """
 
 from mathfuncs import is_prime
+
+ANSWER = 8319823
 
 
 def prime_gen():

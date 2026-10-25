@@ -1,10 +1,10 @@
-# ANSWER 73682
-
 """
 
 Recursive tree search
 
 """
+
+ANSWER = 73682
 
 coins = [100, 50, 20, 10, 5, 2]
 

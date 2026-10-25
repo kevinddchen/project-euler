@@ -1,5 +1,3 @@
-# ANSWER 5777
-
 """
 
 Because squares grow faster than primes, it is faster to take a number and
@@ -8,6 +6,8 @@ subtract the squares from it first, then check that the difference is prime.
 """
 
 from mathfuncs import is_prime
+
+ANSWER = 5777
 
 
 def check(x):

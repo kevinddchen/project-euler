@@ -1,5 +1,3 @@
-# ANSWER 453647705
-
 """
 
 Similar to Problem 132, R(10^n) is divisible by p iff 10^gcd(10^n, p-1) = 1 mod p.
@@ -10,6 +8,8 @@ For for each p, we iterate through n until the gcd does not change.
 from math import gcd
 
 from mathfuncs import prime_factorize, prime_sieve
+
+ANSWER = 453647705
 
 
 def totient(x):

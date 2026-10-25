@@ -1,5 +1,3 @@
-# ANSWER 171
-
 """
 
 Can be solved by hand. See PDF for explanation.
@@ -7,6 +5,8 @@ Can be solved by hand. See PDF for explanation.
 Below, we use John Conway's Doomsday algorithm.
 
 """
+
+ANSWER = 171
 
 
 def p19():

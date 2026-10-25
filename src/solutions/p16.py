@@ -1,4 +1,4 @@
-# ANSWER 1366
+ANSWER = 1366
 
 
 def p16():

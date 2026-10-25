@@ -1,5 +1,3 @@
-# ANSWER 148693670
-
 """
 
 For each tuple of numbers, we recursively generate all possible values that can
@@ -11,6 +9,8 @@ from itertools import combinations, product
 from typing import Generator, NamedTuple
 
 from mathfuncs import read_text
+
+ANSWER = 148693670
 
 
 def _iterate_subsets(nums: tuple[int, ...]) -> Generator[tuple[tuple[int, ...], tuple[int, ...]], None, None]:

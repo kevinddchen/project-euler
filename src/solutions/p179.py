@@ -1,10 +1,10 @@
-# ANSWER 986262
-
 """
 
 Use a sieve to count number of divisors.
 
 """
+
+ANSWER = 986262
 
 
 def p179():

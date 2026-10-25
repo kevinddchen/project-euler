@@ -1,5 +1,3 @@
-# ANSWER 259679
-
 """
 
 This can be solved using Kruskal's algorithm. We start with a graph with no
@@ -9,6 +7,8 @@ that do not combine two trees, until the graph is connected.
 """
 
 from mathfuncs import read_text
+
+ANSWER = 259679
 
 
 def merge_trees(forest, t1, t2):

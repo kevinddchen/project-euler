@@ -1,4 +1,4 @@
-# ANSWER 932718654
+ANSWER = 932718654
 
 
 def check(x):

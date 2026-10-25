@@ -1,11 +1,11 @@
-# ANSWER 0.464399
-
 """
 
 Straight forward probability question. Just make sure you do a breadth-first
 tree search.
 
 """
+
+ANSWER = 0.464399
 
 
 def next_job(prob_space):

@@ -1,5 +1,3 @@
-# ANSWER 44680
-
 """
 
 To solve this problem, every single concatenation was reached using a
@@ -19,6 +17,8 @@ check that all elements are prime. Each set is guaranteed to be unique.
 """
 
 from mathfuncs import is_prime
+
+ANSWER = 44680
 
 
 def recurse(lst=[], n=1):

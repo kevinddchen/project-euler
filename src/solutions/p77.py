@@ -1,5 +1,3 @@
-# ANSWER 71
-
 """
 
 Make a recursive function that counts the number of ways to partition a number
@@ -8,6 +6,8 @@ using primes under a certain maximum prime.
 """
 
 from mathfuncs import is_prime
+
+ANSWER = 71
 
 
 def prime_gen():

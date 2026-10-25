@@ -1,10 +1,10 @@
-# ANSWER 518408346
-
 """
 
 Can be solved by hand. See PDF for explanation.
 
 """
+
+ANSWER = 518408346
 
 
 def p94():

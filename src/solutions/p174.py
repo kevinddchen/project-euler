@@ -1,11 +1,11 @@
-# ANSWER 209566
-
 """
 
 With a lamina of length x and thinkness y (where 0 < y < x/2), the number of
 tiles used is x^2 - (x-2y)^2 = 4y(x-y).
 
 """
+
+ANSWER = 209566
 
 
 def p174():

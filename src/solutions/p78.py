@@ -1,5 +1,3 @@
-# ANSWER 55374
-
 """
 
 We can use the exact same methods in problem 76 to solve this one.
@@ -7,6 +5,8 @@ We can use the exact same methods in problem 76 to solve this one.
 """
 
 from .p76 import partition
+
+ANSWER = 55374
 
 
 def p78():

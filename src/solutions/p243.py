@@ -1,5 +1,3 @@
-# ANSWER: 892371480
-
 """
 
 The resilience of d is phi(d)/(d-1), where phi(d) is the totient function.
@@ -11,6 +9,8 @@ primordial, and the answer should be a multiple of it.
 """
 
 from mathfuncs import is_prime
+
+ANSWER = 892371480
 
 
 def prime_gen():

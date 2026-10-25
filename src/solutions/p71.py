@@ -1,5 +1,3 @@
-# ANSWER 428570
-
 """
 
 For a given q, the largest p such that p/q < 3/7 is given by p =
@@ -13,6 +11,8 @@ where 3/7 - p'/q' <= 1/7q.
 """
 
 from math import gcd
+
+ANSWER = 428570
 
 
 def p71():

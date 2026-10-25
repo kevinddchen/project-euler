@@ -1,5 +1,3 @@
-# ANSWER 1322
-
 """
 
 The continued fraction expansion for an irrational square root sqrt(n) is a
@@ -15,6 +13,8 @@ Then once a_n = 2a_0, one period has passed.
 """
 
 from math import isqrt
+
+ANSWER = 1322
 
 
 def continued_fraction_of_sqrt(n):

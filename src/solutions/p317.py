@@ -1,5 +1,3 @@
-# ANSWER 1856532.8455
-
 """
 
 Can be solved by hand. See PDF for explanation.
@@ -7,6 +5,8 @@ Can be solved by hand. See PDF for explanation.
 """
 
 from math import pi
+
+ANSWER = 1856532.8455
 
 
 def p317():

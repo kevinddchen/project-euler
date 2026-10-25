@@ -1,5 +1,3 @@
-# ANSWER 743
-
 """
 
 Pretty straightforward. Here we deconstructed each roman numeral to its
@@ -8,6 +6,8 @@ numerical value, then constructed the minimal roman numeral.
 """
 
 from mathfuncs import read_text
+
+ANSWER = 743
 
 v_dict = {"I": 1, "V": 5, "X": 10, "L": 50, "C": 100, "D": 500, "M": 1000}
 r_dict = dict((v, k) for k, v in v_dict.items())

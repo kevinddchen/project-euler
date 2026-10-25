@@ -1,5 +1,3 @@
-# ANSWER 38182
-
 """
 
 Can be solved rather directly. Things for certain:
@@ -12,6 +10,8 @@ i.e. 6 = 6 + 0
 3) Each of these darts can be expressed in a number of ways.
 
 """
+
+ANSWER = 38182
 
 
 def oneDartPossibilities(score):

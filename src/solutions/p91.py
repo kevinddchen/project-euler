@@ -1,6 +1,6 @@
-# ANSWER 14234
-
 from math import gcd
+
+ANSWER = 14234
 
 
 def p91():

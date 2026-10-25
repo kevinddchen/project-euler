@@ -1,5 +1,3 @@
-# ANSWER 2783915460
-
 """
 
 Can be solved by hand. See PDF for explanation.
@@ -7,6 +5,8 @@ Can be solved by hand. See PDF for explanation.
 """
 
 from math import factorial
+
+ANSWER = 2783915460
 
 
 def p24():

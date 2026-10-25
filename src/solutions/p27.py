@@ -1,5 +1,3 @@
-# ANSWER -59231
-
 """
 
 We can optimize slightly: n=0 implies b must be positive and prime. n=1 implies
@@ -8,6 +6,8 @@ a >= 1-b
 """
 
 from mathfuncs import is_prime, prime_sieve
+
+ANSWER = -59231
 
 
 def quadratic_chain(a, b):

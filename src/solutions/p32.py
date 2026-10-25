@@ -1,4 +1,4 @@
-# ANSWER 45228
+ANSWER = 45228
 
 
 def count_digits(a, b, c):

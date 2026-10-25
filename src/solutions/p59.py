@@ -1,5 +1,3 @@
-# ANSWER 107359
-
 """
 
 Solving this in reasonable time needs certain assumptions. Here, I generated
@@ -10,6 +8,8 @@ to be correct. The key is 'god' and the encrypted text is John 1:1-14
 """
 
 from mathfuncs import read_text
+
+ANSWER = 107359
 
 
 def key_gen():

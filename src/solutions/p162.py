@@ -1,10 +1,10 @@
-# ANSWER 3D58725572C62302
-
 """
 
 Can be solved by hand. See PDF for explanation.
 
 """
+
+ANSWER = "3D58725572C62302"
 
 
 def p162():

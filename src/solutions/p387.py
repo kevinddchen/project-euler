@@ -1,5 +1,3 @@
-# ANSWER 696067597313468
-
 """
 
 A direct method works fine. First build up right truncatable Harshad numbers
@@ -8,6 +6,8 @@ resursively with increasing number of digits.
 """
 
 from mathfuncs import is_prime
+
+ANSWER = 696067597313468
 
 
 def get_next_generation(RTHN_list):

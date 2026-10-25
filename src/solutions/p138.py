@@ -1,10 +1,10 @@
-# ANSWER 1118049290473932
-
 """
 
 Can be solved by hand. See PDF for explanation.
 
 """
+
+ANSWER = 1118049290473932
 
 
 def p138():

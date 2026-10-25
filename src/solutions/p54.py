@@ -1,5 +1,3 @@
-# ANSWER 376
-
 """
 
 Simple in theory, but quite tedious in practice. There are many approaches to
@@ -24,6 +22,8 @@ Straight Flush:     9   | Single | -      | -      | -      | -      |
 """
 
 from mathfuncs import read_text
+
+ANSWER = 376
 
 
 def score(hand):

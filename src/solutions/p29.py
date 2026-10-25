@@ -1,4 +1,4 @@
-# ANSWER 9183
+ANSWER = 9183
 
 
 def p29():

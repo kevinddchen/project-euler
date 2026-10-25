@@ -1,5 +1,3 @@
-# ANSWER 1097343
-
 """
 
 If you generate all the primes and create the set of all combinations, it is
@@ -10,6 +8,8 @@ quite straightforward to count them all.
 from math import isqrt
 
 from mathfuncs import is_prime
+
+ANSWER = 1097343
 
 
 def prime_gen(maxim):

@@ -1,5 +1,3 @@
-# ANSWER 18613426663617118
-
 """
 
 Let p, q be consecutive primes and k be the number of digits in p. Then we are
@@ -9,6 +7,8 @@ explicitly, a = -p*10^(-k) mod q.
 """
 
 from mathfuncs import prime_sieve
+
+ANSWER = 18613426663617118
 
 
 def p134():

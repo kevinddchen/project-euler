@@ -1,5 +1,3 @@
-# ANSWER 983
-
 """
 
 If n is not divisible by 2 or 5, then 1/n will have a repeating decimal
@@ -7,6 +5,8 @@ representation with periodicity equal to the order of 10 modulo n. This can be
 checked using long-division.
 
 """
+
+ANSWER = 983
 
 
 def order(x, n):

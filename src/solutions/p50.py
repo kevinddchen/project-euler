@@ -1,5 +1,3 @@
-# ANSWER 997651
-
 """
 
 Here I generate all the primes under a million, then add every consecutive
@@ -8,6 +6,8 @@ run up and check that it is prime.
 """
 
 from mathfuncs import prime_sieve
+
+ANSWER = 997651
 
 
 def gen_next_primes(p, sieve):

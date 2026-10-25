@@ -1,5 +1,3 @@
-# ANSWER 1517926517777556
-
 """
 
 Let E1 be the first Eulercoin and P be the large prime. The other Eulercoins can be determined using long division:
@@ -10,6 +8,8 @@ Let E1 be the first Eulercoin and P be the large prime. The other Eulercoins can
     ...
 
 """
+
+ANSWER = 1517926517777556
 
 
 def p700():

@@ -1,10 +1,10 @@
-# ANSWER 1533776805
-
 """
 
 Can be solved by hand. See PDF for explanation.
 
 """
+
+ANSWER = 1533776805
 
 
 def p45():

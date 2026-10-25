@@ -1,10 +1,10 @@
-# ANSWER 669171001
-
 """
 
 Can be solved by hand. See PDF for explanation.
 
 """
+
+ANSWER = 669171001
 
 
 def p28():

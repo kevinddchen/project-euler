@@ -1,5 +1,3 @@
-# ANSWER 260324
-
 """
 
 From left to right, go through each cell in a column and replace its value
@@ -8,6 +6,8 @@ with the lowest sum to reach that cell.
 """
 
 from mathfuncs import read_text
+
+ANSWER = 260324
 
 
 def p82():

@@ -1,5 +1,3 @@
-# ANSWER 922058210
-
 """
 
 Note that
@@ -14,6 +12,8 @@ Then we just add up all the S(N) calls, using Fermat's Little theorem to speed
 up calculation of exponents (the number 1000000007 given is a prime).
 
 """
+
+ANSWER = 922058210
 
 
 def next_fib(f1, f2):

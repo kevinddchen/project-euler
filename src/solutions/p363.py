@@ -1,5 +1,3 @@
-# ANSWER 0.0000372091
-
 """
 
 We first compute v by hand. Starting from the definition of the Bezier curve,
@@ -30,6 +28,8 @@ We do this numerically using scipy.
 from math import pi, sqrt
 
 import scipy.integrate
+
+ANSWER = 0.0000372091
 
 
 def p363() -> str:

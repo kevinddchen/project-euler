@@ -1,5 +1,3 @@
-# ANSWER 1258
-
 """
 
 Can be solved directly using brute force by iterating through all combinations
@@ -9,6 +7,8 @@ of digits, permutations of those digits, permutations of the symbols (+, -, *,
 """
 
 from itertools import combinations, combinations_with_replacement, permutations
+
+ANSWER = 1258
 
 
 def add(x, y):

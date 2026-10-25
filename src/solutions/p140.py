@@ -1,10 +1,10 @@
-# ANSWER 5673835352990
-
 """
 
 Can be solved by hand. See PDF for explanation.
 
 """
+
+ANSWER = 5673835352990
 
 
 def p140():

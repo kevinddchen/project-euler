@@ -1,5 +1,3 @@
-# ANSWER 232792560
-
 """
 
 Can be solved by hand. See PDF for explanation.
@@ -12,6 +10,8 @@ factors needed.
 from math import prod
 
 from mathfuncs import prime_factorize
+
+ANSWER = 232792560
 
 
 def p5():

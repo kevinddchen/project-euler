@@ -1,5 +1,3 @@
-# ANSWER 296962999629
-
 """
 
 It is faster to generate 4-digit primes, go through permutations for a larger
@@ -11,6 +9,8 @@ a prime and permutation.
 from itertools import permutations
 
 from mathfuncs import prime_sieve
+
+ANSWER = 296962999629
 
 
 def is_permutation(a, b):

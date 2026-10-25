@@ -1,5 +1,3 @@
-# ANSWER 2.223561019313554106173177
-
 """
 
 Note that
@@ -14,6 +12,8 @@ The hardest part is keeping track of enough precision, which we do using the
 """
 
 import decimal
+
+ANSWER = 2.223561019313554106173177
 
 decimal.getcontext().prec = 30
 

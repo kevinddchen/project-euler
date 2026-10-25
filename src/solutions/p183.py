@@ -1,5 +1,3 @@
-# ANSWER 48861552
-
 """
 
 For a given N, we want to maximize (N/k)^k. We can do this by differentiating
@@ -11,6 +9,8 @@ factors other than 2 or 5, then the decimal does not terminate.
 """
 
 from math import e, gcd, log
+
+ANSWER = 48861552
 
 
 def terminating_decimal(N):

@@ -1,8 +1,8 @@
-# ANSWER 31626
-
 from math import prod
 
 from mathfuncs import prime_factorize
+
+ANSWER = 31626
 
 """
 

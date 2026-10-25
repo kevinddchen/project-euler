@@ -1,5 +1,3 @@
-# ANSWER 100
-
 """
 
 Only possiblities are diagonal cancellations, and not cancelling just the tens
@@ -8,6 +6,8 @@ digits or just the units digits.
 """
 
 from math import gcd
+
+ANSWER = 100
 
 
 def p33():

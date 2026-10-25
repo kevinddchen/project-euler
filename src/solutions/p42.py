@@ -1,6 +1,6 @@
-# ANSWER 162
-
 from mathfuncs import read_text
+
+ANSWER = 162
 
 
 def convert_to_int(word):
