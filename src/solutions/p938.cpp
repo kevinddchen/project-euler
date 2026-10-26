@@ -1,3 +1,5 @@
+#include "mf/mathfuncs.hpp"
+
 #include <Eigen/Dense>
 
 /*
@@ -65,7 +67,7 @@ double p938()
 
 int main()
 {
-    const double ans = p938();
+    const double ans = mf::round(p938(), 10);
     printf("%.10f\n", ans);
     assert(ans == ANSWER);
 }

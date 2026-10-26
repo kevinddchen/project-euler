@@ -1,9 +1,7 @@
+#include "mf/mathfuncs.hpp"
+
 #include <algorithm>
 #include <array>
-
-#include <cassert>
-#include <cmath>
-#include <cstdio>
 
 /*
 
@@ -110,7 +108,7 @@ double p901()
 
 int main()
 {
-    const double ans = p901();
+    const double ans = mf::round(p901(), 9);
     printf("%.9f\n", ans);
     assert(ans == ANSWER);
 }
