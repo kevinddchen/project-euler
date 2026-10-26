@@ -26,9 +26,9 @@ For tractability, we define y = 2**(2**52). The expansion then simplifies to
     = (y**3 + y + 1) X (y**(3 * 32) + y**32 + 1) X ... X (y**(3 * 2**12) + y**(2**12) + 1)
 y mod 1,000,000,007 can be computed using Fermat's little theorem.
 
-ANSWER 14063639
-
 */
+
+constexpr long ANSWER = 14063639;
 
 /**
  * Expand the xor product in `unexpanded_powers_of_y`, throwing away powers of
@@ -105,5 +105,7 @@ long p813()
 
 int main()
 {
-    printf("%ld\n", p813());
+    const long ans = p813();
+    printf("%ld\n", ans);
+    assert(ans == ANSWER);
 }

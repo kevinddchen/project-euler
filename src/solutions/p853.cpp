@@ -12,9 +12,9 @@ Fib(60). This is aided by the following facts:
  -  pi(p^m)         = p^(m-1) * pi(m) ... technically still a conjecture
  -  pi(p^m * q^n)   = lcm( pi(p^m) , pi(q^n) )
 
-ANSWER 44511058204
-
 */
+
+constexpr long ANSWER = 44511058204;
 
 /**
  * Computes the Pisano period of `n`.
@@ -101,5 +101,7 @@ long p853()
 
 int main()
 {
-    printf("%ld\n", p853());
+    const long ans = p853();
+    printf("%ld\n", ans);
+    assert(ans == ANSWER);
 }

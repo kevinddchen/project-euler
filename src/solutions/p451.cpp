@@ -31,9 +31,9 @@ https://en.wikipedia.org/wiki/Primitive_root_modulo_n.
 
 (Related problems: 271, 407)
 
-ANSWER 153651073760956
-
 */
+
+constexpr long ANSWER = 153651073760956;
 
 /**
  * Copied from Problem 407.
@@ -108,5 +108,7 @@ long p451()
 
 int main()
 {
-    printf("%ld\n", p451());
+    const long ans = p451();
+    printf("%ld\n", ans);
+    assert(ans == ANSWER);
 }

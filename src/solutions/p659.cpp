@@ -39,9 +39,9 @@ k = 4, p = 65 ... X this is not prime! but we marked 5 as a divisor previously,
 
 This is quite efficient since it is just a sieve.
 
-ANSWER 238518915714422000
-
 */
+
+constexpr long ANSWER = 238518915714422000;
 
 long p659()
 {
@@ -105,5 +105,7 @@ long p659()
 
 int main()
 {
-    printf("%ld\n", p659());
+    const long ans = p659();
+    printf("%ld\n", ans);
+    assert(ans == ANSWER);
 }

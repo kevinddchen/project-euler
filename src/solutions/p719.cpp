@@ -1,3 +1,4 @@
+#include <cassert>
 #include <cmath>
 #include <cstdio>
 
@@ -5,9 +6,9 @@
 
 Brute force. Iterate through all square roots.
 
-ANSWER 128088830547982
-
 */
+
+constexpr long ANSWER = 128088830547982;
 
 bool recurse(long target, long digits)
 {
@@ -46,5 +47,7 @@ long p719()
 
 int main()
 {
-    printf("%ld\n", p719());
+    const long ans = p719();
+    printf("%ld\n", ans);
+    assert(ans == ANSWER);
 }

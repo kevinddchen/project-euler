@@ -1,3 +1,4 @@
+#include <cassert>
 #include <cstdio>
 
 /*
@@ -15,9 +16,9 @@ There are two cases:
 Thus, we just need to compute the first 500,000 Fibonacci and Lucas numbers,
 mod 1,234,567,891.
 
-ANSWER 29894398
-
 */
+
+constexpr long ANSWER = 29894398;
 
 long p854()
 {
@@ -56,5 +57,7 @@ long p854()
 
 int main()
 {
-    printf("%ld\n", p854());
+    const long ans = p854();
+    printf("%ld\n", ans);
+    assert(ans == ANSWER);
 }

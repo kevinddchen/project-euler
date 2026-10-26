@@ -14,9 +14,9 @@ We note that if N has prime factorization p1^k1 * p2^k2 * ... * pn^kn, then the 
 The first term in the sum represents the number of divisors of N, excluding 1. The second term in the sum represents the
 number of divisors of N that are squares, exclusing 1. And so forth.
 
-ANSWER 40410219
-
 */
+
+constexpr long ANSWER = 40410219;
 
 constexpr long MOD = 1'000'000'007;
 
@@ -75,5 +75,7 @@ long p926()
 
 int main()
 {
-    printf("%ld\n", p926());
+    const long ans = p926();
+    printf("%ld\n", ans);
+    assert(ans == ANSWER);
 }

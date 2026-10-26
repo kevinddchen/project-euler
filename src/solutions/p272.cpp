@@ -23,9 +23,9 @@ each of these numbers, we further consider all products with the other primes
 not in the list. This sounds like a lot of nested loops, but with enough
 filtering it can run in a reasonable time.
 
-ANSWER 8495585919506151122
-
 */
+
+constexpr long ANSWER = 8495585919506151122;
 
 long p272()
 {
@@ -140,5 +140,7 @@ long p272()
 
 int main()
 {
-    printf("%ld\n", p272());
+    const long ans = p272();
+    printf("%ld\n", ans);
+    assert(ans == ANSWER);
 }

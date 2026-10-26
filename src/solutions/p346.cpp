@@ -1,13 +1,15 @@
 #include <set>
 
+#include <cassert>
+
 /*
 
 Brute force. Note that any number n is 11 in base n-1. With this in mind, we
 just enumerate all numbers for all bases up to 10^6, checking for repeats.
 
-ANSWER 336108797689259276
-
 */
+
+constexpr long ANSWER = 336108797689259276;
 
 long p346()
 {
@@ -33,5 +35,7 @@ long p346()
 
 int main()
 {
-    printf("%ld\n", p346());
+    const long ans = p346();
+    printf("%ld\n", ans);
+    assert(ans == ANSWER);
 }

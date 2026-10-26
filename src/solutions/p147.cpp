@@ -1,5 +1,7 @@
 #include <algorithm>
 
+#include <cassert>
+
 /*
 
 Given an area of WxH, if we consider rectangles with width w and height h, then
@@ -13,9 +15,9 @@ types: those whose left-most corner lies on the integer lattice, i.e. (n, m),
 and those whose left-most corner lies on the half-integer lattice, i.e. (n+1/2,
 m+1/2).
 
-ANSWER 846910284
-
 */
+
+constexpr long ANSWER = 846910284;
 
 inline int triangle(int n)
 {
@@ -71,5 +73,7 @@ long p147()
 
 int main()
 {
-    printf("%ld\n", p147());
+    const long ans = p147();
+    printf("%ld\n", ans);
+    assert(ans == ANSWER);
 }

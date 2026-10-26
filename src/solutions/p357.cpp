@@ -5,9 +5,9 @@
 A PGI (prime generating integers) must be square-free, i.e. have a prime
 factorization with no powers greater than 1.
 
-ANSWER 1739023853137
-
 */
+
+constexpr long ANSWER = 1739023853137;
 
 bool prime_generating(long x, long* div_arr, const std::vector<bool>& sieve)
 {
@@ -62,5 +62,7 @@ long p357()
 
 int main()
 {
-    printf("%ld\n", p357());
+    const long ans = p357();
+    printf("%ld\n", ans);
+    assert(ans == ANSWER);
 }

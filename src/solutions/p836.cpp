@@ -1,13 +1,15 @@
 #include <string>
 
+#include <cassert>
+
 /*
 
 Take the first letter of each bolded word in the problem description:
 https://projecteuler.net/problem=836
 
-ANSWER aprilfoolsjoke
-
 */
+
+constexpr std::string_view ANSWER = "aprilfoolsjoke";
 
 std::string p836()
 {
@@ -16,5 +18,7 @@ std::string p836()
 
 int main()
 {
-    printf("%s\n", p836().c_str());
+    const std::string ans = p836();
+    printf("%s\n", ans.c_str());
+    assert(ans == ANSWER);
 }

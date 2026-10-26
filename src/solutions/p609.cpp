@@ -6,9 +6,9 @@ Use dynamic programming. If you know all values of p(n, k) for some n, then by
 computing the sequence n+1 --> pi(n+1) --> pi(pi(n+1)) --> ... --> 1, you can
 compute all values of p(n+1, k).
 
-ANSWER 172023848
-
 */
+
+constexpr long ANSWER = 172023848;
 
 long p609()
 {
@@ -64,5 +64,7 @@ long p609()
 
 int main()
 {
-    printf("%ld\n", p609());
+    const long ans = p609();
+    printf("%ld\n", ans);
+    assert(ans == ANSWER);
 }

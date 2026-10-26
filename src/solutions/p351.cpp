@@ -1,5 +1,7 @@
 #include <vector>
 
+#include <cassert>
+
 /*
 
 Each hidden point a taxicab distance n away from the center corresponds to a
@@ -7,9 +9,9 @@ pair of integers (a, b) where a+b = n and gcd(a, b) =/= 1. Thus we are summing
 up, for each n, the number of a < n that share a non-trivial divisor with n.
 This is given precisely by n - phi(n) - 1, where phi is the totient function.
 
-ANSWER 11762187201804552
-
 */
+
+constexpr long ANSWER = 11762187201804552;
 
 /* Taken from p69. */
 std::vector<int> totient_sieve(int size)
@@ -47,5 +49,7 @@ long p351()
 
 int main()
 {
-    printf("%ld\n", p351());
+    const long ans = p351();
+    printf("%ld\n", ans);
+    assert(ans == ANSWER);
 }

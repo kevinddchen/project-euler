@@ -13,9 +13,9 @@ limit is increased by a factor of 10 each iteration. This is implemented by
 keeping track of the values of `s` that have already been computed for each
 value of `c`.
 
-ANSWER 1004195061
-
 */
+
+constexpr long ANSWER = 1004195061;
 
 bool is_palindrome(long n)
 {
@@ -100,5 +100,7 @@ long p348()
 
 int main()
 {
-    printf("%ld\n", p348());
+    const long ans = p348();
+    printf("%ld\n", ans);
+    assert(ans == ANSWER);
 }

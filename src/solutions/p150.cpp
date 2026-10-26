@@ -1,5 +1,6 @@
 #include <array>
 
+#include <cassert>
 #include <climits>
 
 /*
@@ -10,9 +11,9 @@ an O(n^4) algorithm, we can reduce it to O(n^3) by precomputing the partial sum
 of each row. In this way, the sum over a sequence of elements in any particular
 row can be done in one or two queries of this array of partial sums.
 
-ANSWER -271248680
-
 */
+
+constexpr long ANSWER = -271248680;
 
 /**
  * Linear Congruential Generator.
@@ -96,5 +97,7 @@ long p150()
 
 int main()
 {
-    printf("%ld\n", p150());
+    const long ans = p150();
+    printf("%ld\n", ans);
+    assert(ans == ANSWER);
 }

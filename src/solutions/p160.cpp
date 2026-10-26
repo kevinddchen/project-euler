@@ -26,9 +26,9 @@ have omitted in computing the factorials. This can be done modulo 100,000 by
 exploiting the fact that the powers of 2 are periodic modulo 100,000 (2 is not
 invertible so 1 is not in this periodic cycle).
 
-ANSWER 16576
-
 */
+
+constexpr long ANSWER = 16576;
 
 /**
  * Computes the period of `x` modulo `m`, i.e. the smallest `k > 0` such that
@@ -95,5 +95,7 @@ long p160()
 
 int main()
 {
-    printf("%ld\n", p160());
+    const long ans = p160();
+    printf("%ld\n", ans);
+    assert(ans == ANSWER);
 }

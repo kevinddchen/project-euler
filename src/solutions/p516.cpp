@@ -24,9 +24,9 @@ Thus, our method is the following:
  3. Compute all products of these primes.
  4. Compute all products of the numbers found in (1) and (3). Sum these.
 
-ANSWER 939087315
-
 */
+
+constexpr long ANSWER = 939087315;
 
 /**
  * Generate all Hamming numbers not exceeding the limit, sorted.
@@ -99,5 +99,7 @@ long p516()
 
 int main()
 {
-    printf("%ld\n", p516());
+    const long ans = p516();
+    printf("%ld\n", ans);
+    assert(ans == ANSWER);
 }

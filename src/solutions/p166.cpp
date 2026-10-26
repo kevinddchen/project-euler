@@ -15,9 +15,9 @@ m n o p
 given a, b, c, and d we know the sum for each row. Thus if we also know e, f,
 g, i, and k we can deduce all the other numbers.
 
-ANSWER 7130034
-
 */
+
+constexpr long ANSWER = 7130034;
 
 long p166()
 {
@@ -79,5 +79,7 @@ long p166()
 
 int main()
 {
-    printf("%ld\n", p166());
+    const long ans = p166();
+    printf("%ld\n", ans);
+    assert(ans == ANSWER);
 }

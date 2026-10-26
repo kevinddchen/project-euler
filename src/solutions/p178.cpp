@@ -18,9 +18,9 @@ digits 1-9, and add back the step numbers using the digits 1-7 (because they
 were double subtracted). The only additional consideration is whether the
 consecutive digits contain zero.
 
-ANSWER 126461847755
-
 */
+
+constexpr long ANSWER = 126461847755;
 
 using MatrixXl = Eigen::Matrix<long, Eigen::Dynamic, Eigen::Dynamic>;
 using VectorXl = Eigen::Matrix<long, Eigen::Dynamic, 1>;
@@ -79,5 +79,7 @@ long p178()
 
 int main()
 {
-    printf("%ld\n", p178());
+    const long ans = p178();
+    printf("%ld\n", ans);
+    assert(ans == ANSWER);
 }

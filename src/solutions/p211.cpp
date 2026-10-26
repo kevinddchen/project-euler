@@ -19,9 +19,9 @@ Then the sum of squares of the divisors of n is
 The prime factorizations of all numbers up to 64,000,000 can be computed
 efficiently using a sieve.
 
-ANSWER 1922364685
-
 */
+
+constexpr long ANSWER = 1922364685;
 
 /**
  * Compute sum of the squares of the divisors of n.
@@ -69,5 +69,7 @@ long p211()
 
 int main()
 {
-    printf("%ld\n", p211());
+    const long ans = p211();
+    printf("%ld\n", ans);
+    assert(ans == ANSWER);
 }

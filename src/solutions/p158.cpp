@@ -1,12 +1,13 @@
+#include <cassert>
 #include <cstdio>
 
 /*
 
 Can be solved by hand. See PDF for explanation.
 
-ANSWER 409511334375
-
 */
+
+constexpr long ANSWER = 409511334375;
 
 long p158()
 {
@@ -32,5 +33,7 @@ long p158()
 
 int main()
 {
-    printf("%ld\n", p158());
+    const long ans = p158();
+    printf("%ld\n", ans);
+    assert(ans == ANSWER);
 }

@@ -1,5 +1,7 @@
 #include <vector>
 
+#include <cassert>
+
 /*
 
 One can show that f(n) equals the number of ordered binary trees we can draw:
@@ -29,9 +31,9 @@ numbers, but in the end we have the following recursion relation:
 
 See: https://en.wikipedia.org/wiki/Alternating_permutation
 
-ANSWER 773479144
-
 */
+
+constexpr long ANSWER = 773479144;
 
 /**
  * Given array of n choose 0, n choose 1, ..., n choose n, compute array of
@@ -83,5 +85,7 @@ long p709()
 
 int main()
 {
-    printf("%ld\n", p709());
+    const long ans = p709();
+    printf("%ld\n", ans);
+    assert(ans == ANSWER);
 }

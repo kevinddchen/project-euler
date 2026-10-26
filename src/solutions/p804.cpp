@@ -1,3 +1,4 @@
+#include <cassert>
 #include <cmath>
 #include <cstdio>
 
@@ -27,9 +28,9 @@ resource is the first chapter of John Conway's book "The Senual (quadratic)
 Form". With these observations, we count the number of points in regions A and
 B by finding the boundary of points satisfying the inequality.
 
-ANSWER 4921370551019052
-
 */
+
+constexpr long ANSWER = 4921370551019052;
 
 inline long quad_form(long x, long y)
 {
@@ -88,5 +89,7 @@ long p804()
 
 int main()
 {
-    printf("%ld\n", p804());
+    const long ans = p804();
+    printf("%ld\n", ans);
+    assert(ans == ANSWER);
 }

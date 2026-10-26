@@ -5,9 +5,9 @@
 If n = 10*a + b, then f(n) = a + m*b. We note, working in mod p, that n and f(n) are both zero/nonzero when m is the
 modular inverse of 10.
 
-ANSWER 1601912348822
-
 */
+
+constexpr long ANSWER = 1601912348822;
 
 long p274()
 {
@@ -34,5 +34,7 @@ long p274()
 
 int main()
 {
-    printf("%ld\n", p274());
+    const long ans = p274();
+    printf("%ld\n", ans);
+    assert(ans == ANSWER);
 }

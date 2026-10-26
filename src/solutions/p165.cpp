@@ -15,9 +15,9 @@ The tricky part is keeping track of the unique true intersection points. This
 is done with perfect precision by recording the {p1/q1, p2/q1} rational
 coordinates in a hash table.
 
-ANSWER 2868868
-
 */
+
+constexpr long ANSWER = 2868868;
 
 using Vec2l = Eigen::Matrix<long, 2, 1>;
 
@@ -137,5 +137,7 @@ long p165()
 
 int main()
 {
-    printf("%ld\n", p165());
+    const long ans = p165();
+    printf("%ld\n", ans);
+    assert(ans == ANSWER);
 }

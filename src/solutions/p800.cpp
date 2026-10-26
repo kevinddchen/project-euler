@@ -5,9 +5,9 @@
 Brute force. It is easier to work with logarithms,
     p log q + q log p <= 800800 log 800800
 
-ANSWER 1412403576
-
 */
+
+constexpr long ANSWER = 1412403576;
 
 long p800()
 {
@@ -47,5 +47,7 @@ long p800()
 
 int main()
 {
-    printf("%ld\n", p800());
+    const long ans = p800();
+    printf("%ld\n", ans);
+    assert(ans == ANSWER);
 }

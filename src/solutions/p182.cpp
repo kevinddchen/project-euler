@@ -31,9 +31,9 @@ satisfy
 
     gcd(e, p-1) = gcd(e, q-1) = 1   and     gcd(e-1, p-1) = gcd(e-1, q-1) = 2
 
-ANSWER 399788195976
-
 */
+
+constexpr long ANSWER = 399788195976;
 
 void filter(const std::vector<mf::PrimePower>& pf, std::vector<bool>& sieve, int size)
 {
@@ -93,5 +93,7 @@ long p182()
 
 int main()
 {
-    printf("%ld\n", p182());
+    const long ans = p182();
+    printf("%ld\n", ans);
+    assert(ans == ANSWER);
 }

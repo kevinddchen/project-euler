@@ -9,9 +9,9 @@ Our strategy is to iterate over all choices of 18 digits, and then for each
 choice, count the numbers formed by taking all permutations of digits. This
 works because each choice of digits has a single unique representation for f().
 
-ANSWER 827850196
-
 */
+
+constexpr long ANSWER = 827850196;
 
 /**
  * Compute factorial. Slow, but good enough.
@@ -94,5 +94,7 @@ long p885()
 
 int main()
 {
-    printf("%ld\n", p885());
+    const long ans = p885();
+    printf("%ld\n", ans);
+    assert(ans == ANSWER);
 }

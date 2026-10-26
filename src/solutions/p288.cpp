@@ -17,9 +17,9 @@ is equal to
     + ...
     + Tq
 
-ANSWER 605857431263981935
-
 */
+
+constexpr long ANSWER = 605857431263981935;
 
 long p288()
 {
@@ -61,5 +61,7 @@ long p288()
 
 int main()
 {
-    printf("%ld\n", p288());
+    const long ans = p288();
+    printf("%ld\n", ans);
+    assert(ans == ANSWER);
 }

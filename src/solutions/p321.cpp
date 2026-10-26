@@ -36,9 +36,9 @@ All other solutions can be obtained by multiplying by powers of (1 + sqrt2).
 All that remains is to check that n and k are integer, i.e. x is odd and y is
 even.
 
-ANSWER 2470433131948040
-
 */
+
+constexpr long ANSWER = 2470433131948040;
 
 struct PellPair {
     long x;
@@ -96,5 +96,7 @@ long p321()
 
 int main()
 {
-    printf("%ld\n", p321());
+    const long ans = p321();
+    printf("%ld\n", ans);
+    assert(ans == ANSWER);
 }

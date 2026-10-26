@@ -1,6 +1,8 @@
 #include <numeric>
 #include <vector>
 
+#include <cassert>
+
 /*
 
 Forgetting about Gaussian integers, the sum of the divisors of n for all
@@ -12,9 +14,9 @@ If we include Gaussian integers, we just need to change the `n` factor in the
 sum to include each time we are able to write n = k(a^2 + b^2) for coprime a, b.
 We use a sieve method to generate how these `n` factors change.
 
-ANSWER 17971254122360635
-
 */
+
+constexpr long ANSWER = 17971254122360635;
 
 long p153()
 {
@@ -49,5 +51,7 @@ long p153()
 
 int main()
 {
-    printf("%ld\n", p153());
+    const long ans = p153();
+    printf("%ld\n", ans);
+    assert(ans == ANSWER);
 }

@@ -12,9 +12,9 @@ This gives all the semidivisible numbers up to 999983^2. Thankfully, there are
 no semidivisible numbers between 999983^2 and 999966663333, which can be
 checked.
 
-ANSWER 1259187438574927161
-
 */
+
+constexpr long ANSWER = 1259187438574927161;
 
 long p234()
 {
@@ -61,5 +61,7 @@ long p234()
 
 int main()
 {
-    printf("%ld\n", p234());
+    const long ans = p234();
+    printf("%ld\n", ans);
+    assert(ans == ANSWER);
 }

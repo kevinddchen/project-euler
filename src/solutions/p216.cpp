@@ -1,5 +1,7 @@
 #include <vector>
 
+#include <cassert>
+
 /*
 
 We can use a sieve method to generate all primes. This relies on two claims:
@@ -29,9 +31,9 @@ the same procedure to find more composites. For instance, t(9) = 7 * 23 is
 composite and 23 has not been encountered before. Then all n = 23-9, 23+9, 46-9,
 46+9, ... correspond to composite t(n).
 
-ANSWER 5437849
-
 */
+
+constexpr long ANSWER = 5437849;
 
 /* Divide out t=sieve[n] from indices t-n, t+n, 2t-n, 2t+n, ... */
 void filter_multiples(std::vector<long>& sieve, int limit, long n)
@@ -75,5 +77,7 @@ long p216()
 
 int main()
 {
-    printf("%ld\n", p216());
+    const long ans = p216();
+    printf("%ld\n", ans);
+    assert(ans == ANSWER);
 }

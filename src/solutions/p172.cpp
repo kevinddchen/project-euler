@@ -1,5 +1,7 @@
 #include <array>
 
+#include <cassert>
+
 /*
 
 Brute force. Iterate over all occurrences of digits, e.g. 0 appears a0 times, 1
@@ -10,13 +12,13 @@ the possible combinations of digits, making sure that the leading digit is not
 My specific implementation is very ugly with many nested loops, but it was
 fast to write.
 
-ANSWER 227485267000992000
-
 */
+
+constexpr long ANSWER = 227485267000992000;
 
 static const int DIGITS = 18;
 
-long p0()
+long p172()
 {
     // Generate Pascal's triangle to calculate up to `18 choose k`
     std::array<std::array<long, DIGITS + 1>, DIGITS + 1> choose;
@@ -76,5 +78,7 @@ long p0()
 
 int main()
 {
-    printf("%ld\n", p0());
+    const long ans = p172();
+    printf("%ld\n", ans);
+    assert(ans == ANSWER);
 }

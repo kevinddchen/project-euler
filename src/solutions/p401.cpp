@@ -1,3 +1,4 @@
+#include <cassert>
 #include <cmath>
 #include <cstdio>
 
@@ -9,9 +10,9 @@ faster to find ranges of k where floor(n/k) = target, and then use the sum of
 consecutive squares formula. If we take this alternative stragegy for values
 of k > sqrt(n), then we can compute the sum in O(sqrt(n)) time.
 
-ANSWER 281632621
-
 */
+
+constexpr long ANSWER = 281632621;
 
 /**
  * Return sum of squares of i = 1, 2, ..., n. Equals n(n+1)(2n+1)/6. Care has
@@ -85,5 +86,7 @@ long p401()
 
 int main()
 {
-    printf("%ld\n", p401());
+    const long ans = p401();
+    printf("%ld\n", ans);
+    assert(ans == ANSWER);
 }

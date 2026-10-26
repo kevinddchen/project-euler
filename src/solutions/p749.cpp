@@ -8,9 +8,9 @@ We iterate through all combinations of digits. For each combination, we go
 through its power sums for k = 1, 2, 3, ... and check if the power sum +/- 1
 contains the same digits. If so, we have a near power sum.
 
-ANSWER 13459471903176422
-
 */
+
+constexpr long ANSWER = 13459471903176422;
 
 static const int BASE = 10;
 
@@ -154,5 +154,7 @@ long p749()
 
 int main()
 {
-    printf("%ld\n", p749());
+    const long ans = p749();
+    printf("%ld\n", ans);
+    assert(ans == ANSWER);
 }

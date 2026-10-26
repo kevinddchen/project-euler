@@ -1,6 +1,8 @@
 #include <array>
 #include <numeric>
 
+#include <cassert>
+
 /*
 
 Brute force. Note that the number of strictly contained lattice points is equal to
@@ -10,9 +12,9 @@ Brute force. Note that the number of strictly contained lattice points is equal 
 where g is the greatest common divisor function, which can be calculated
 quickly the Euclidian algorithm.
 
-ANSWER 694687
-
 */
+
+constexpr long ANSWER = 694687;
 
 bool is_square(int x)
 {
@@ -51,5 +53,7 @@ long p504()
 
 int main()
 {
-    printf("%ld\n", p504());
+    const long ans = p504();
+    printf("%ld\n", ans);
+    assert(ans == ANSWER);
 }

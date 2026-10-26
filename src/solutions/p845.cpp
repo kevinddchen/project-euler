@@ -24,9 +24,9 @@ instance, below is the example for n = 61.
 155 has digits that sum to a prime. We now have 60 integers.
 157 has digits that sum to a prime. We now have 61 integers. We are done.
 
-ANSWER 45009328011709400
-
 */
+
+constexpr long ANSWER = 45009328011709400;
 
 /**
  * Sum over array[i] where i + shift is prime.
@@ -135,5 +135,7 @@ long p845()
 
 int main()
 {
-    printf("%ld\n", p845());
+    const long ans = p845();
+    printf("%ld\n", ans);
+    assert(ans == ANSWER);
 }

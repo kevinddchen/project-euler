@@ -10,9 +10,9 @@ The digits of the decimal expansion of 1/3^i can be quickly calculated by
 determining the modular power of 10 mod 3^i. We just have to be careful about
 integer overflow when multiplying together large longs.
 
-ANSWER 6086371427
-
 */
+
+constexpr long ANSWER = 6086371427;
 
 /**
  * Get the nth, n+1th, ..., n+mth digit of the decimal expansion of 1/k. n and
@@ -80,5 +80,7 @@ long p731()
 
 int main()
 {
-    printf("%ld\n", p731());
+    const long ans = p731();
+    printf("%ld\n", ans);
+    assert(ans == ANSWER);
 }

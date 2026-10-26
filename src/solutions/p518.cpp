@@ -9,9 +9,9 @@ Since a+1, b+1, c+1 form a geometric sequence, we can note that
 This means that if we prime factorize (b+1)^2, we can iterate over its divisors to create candidate a+1 and c+1 pairs.
 What remains is to check that a and c are primes.
 
-ANSWER 100315739184392
-
 */
+
+constexpr long ANSWER = 100315739184392;
 
 constexpr int LIMIT = 1e8;
 
@@ -91,5 +91,7 @@ long p518()
 
 int main()
 {
-    printf("%ld\n", p518());
+    const long ans = p518();
+    printf("%ld\n", ans);
+    assert(ans == ANSWER);
 }

@@ -5,9 +5,9 @@
 We use depth first search to traverse the de Bruijn graph. The graph has 2^N
 vertices, which are enumerated from 0 to 2^N - 1.
 
-ANSWER 209110240768
-
 */
+
+constexpr long ANSWER = 209110240768;
 
 /**
  * Generate the next two vertices in the de Bruijn graph.
@@ -90,5 +90,7 @@ long p265()
 
 int main()
 {
-    printf("%ld\n", p265());
+    const long ans = p265();
+    printf("%ld\n", ans);
+    assert(ans == ANSWER);
 }

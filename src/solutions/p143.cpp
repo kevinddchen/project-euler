@@ -1,6 +1,8 @@
 #include <array>
 #include <vector>
 
+#include <cassert>
+
 /*
 
 For a Torricelli triangle, we can use the law of cosines to show that
@@ -12,9 +14,9 @@ For a Torricelli triangle, we can use the law of cosines to show that
 It is faster to generate all p, q, r and then check that the a, b, c defined in
 this way are integers.
 
-ANSWER 30758397
-
 */
+
+constexpr long ANSWER = 30758397;
 
 bool is_square(long x)
 {
@@ -76,5 +78,7 @@ long p143()
 
 int main()
 {
-    printf("%ld\n", p143());
+    const long ans = p143();
+    printf("%ld\n", ans);
+    assert(ans == ANSWER);
 }

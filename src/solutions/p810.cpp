@@ -11,9 +11,9 @@ based on the fact that the XOR product does not carry, we can note that the
 XOR product of `a` and `b` will be between `a * b` and `2^(log2(a) + log2(b))`.
 This observation guides our sieving strategy.
 
-ANSWER 124136381
-
 */
+
+constexpr long ANSWER = 124136381;
 
 /**
  * Compute the XOR product of two numbers.
@@ -109,5 +109,7 @@ long p810()
 
 int main()
 {
-    printf("%ld\n", p810());
+    const long ans = p810();
+    printf("%ld\n", ans);
+    assert(ans == ANSWER);
 }

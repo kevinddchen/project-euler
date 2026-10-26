@@ -25,9 +25,9 @@ in Z_n.
 
 (Related problems: 407, 451)
 
-ANSWER 4617456485273129588
-
 */
+
+constexpr long ANSWER = 4617456485273129588;
 
 /**
  * Copied from Problem 407.
@@ -119,5 +119,7 @@ long p271()
 
 int main()
 {
-    printf("%ld\n", p271());
+    const long ans = p271();
+    printf("%ld\n", ans);
+    assert(ans == ANSWER);
 }

@@ -19,9 +19,9 @@ values of the nodes along the path to a particular node with value v:
   - If v > p/2, then the node corresponds to a node with value v - p/2 in
     T_{p/2}.
 
-ANSWER 2903144925319290239
-
 */
+
+constexpr long ANSWER = 2903144925319290239;
 
 long p872()
 {
@@ -51,5 +51,7 @@ long p872()
 
 int main()
 {
-    printf("%ld\n", p872());
+    const long ans = p872();
+    printf("%ld\n", ans);
+    assert(ans == ANSWER);
 }

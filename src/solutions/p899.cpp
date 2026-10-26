@@ -48,9 +48,9 @@ If you look at the pattern, you can convince yourself that the number of losses 
 The `* 2` factor around the square brackets is because the pattern is symmetric about the diagonal of the grid, i.e.
 interchanging a and b. The `- log2(n)` is to account for overcounting along the diagonal of the grid.
 
-ANSWER 10784223938983273
-
 */
+
+constexpr long ANSWER = 10784223938983273;
 
 
 void draw_grid(int size)
@@ -139,5 +139,7 @@ long p0()
 
 int main()
 {
-    printf("%ld\n", p0());
+    const long ans = p0();
+    printf("%ld\n", ans);
+    assert(ans == ANSWER);
 }

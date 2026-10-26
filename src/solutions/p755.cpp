@@ -36,9 +36,9 @@ fibonacci numbers < f_{i+1}, i.e. using fi and smaller.
 
 Using these, we can compute S(n) recursively.
 
-ANSWER 2877071595975576960
-
 */
+
+constexpr long ANSWER = 2877071595975576960;
 
 
 /**
@@ -94,5 +94,7 @@ long p755()
 
 int main()
 {
-    printf("%ld\n", p755());
+    const long ans = p755();
+    printf("%ld\n", ans);
+    assert(ans == ANSWER);
 }

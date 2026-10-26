@@ -1,5 +1,7 @@
 #include <array>
 
+#include <cassert>
+
 /*
 
 First, for all integers up to 1,000,000 we compute how many matches are needed to write down the number without any
@@ -11,9 +13,9 @@ matches in one pass of all pairs a, b.
 
 Finally, we do the same with addition.
 
-ANSWER 26688208
-
 */
+
+constexpr long ANSWER = 26688208;
 
 constexpr std::array<int, 10> DIGIT_MATCH_COUNT = {6, 2, 5, 5, 4, 5, 6, 3, 7, 6};
 
@@ -84,5 +86,7 @@ long p893()
 
 int main()
 {
-    printf("%ld\n", p893());
+    const long ans = p893();
+    printf("%ld\n", ans);
+    assert(ans == ANSWER);
 }

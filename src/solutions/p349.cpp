@@ -10,9 +10,9 @@ iterations. So we just need to simulate the first chaotic iterations, and then
 once we know the predictable behavior we can extrapolate to the desired number
 of iterations.
 
-ANSWER 115384615384614952
-
 */
+
+constexpr long ANSWER = 115384615384614952;
 
 constexpr bool WHITE = false;
 // constexpr bool BLACK = true;
@@ -183,5 +183,7 @@ long p349()
 
 int main()
 {
-    printf("%ld\n", p349());
+    const long ans = p349();
+    printf("%ld\n", ans);
+    assert(ans == ANSWER);
 }

@@ -23,9 +23,9 @@ Since everything is linear, we can start with the state {1, 1, ..., 1} and
 apply the transition matrix 9 times. If we sum the entries of the resultant
 vector, we get the total number of walls we can construct.
 
-ANSWER 806844323190414
-
 */
+
+constexpr long ANSWER = 806844323190414;
 
 using MatrixXl = Eigen::Matrix<long, Eigen::Dynamic, Eigen::Dynamic>;
 using VectorXl = Eigen::Matrix<long, Eigen::Dynamic, 1>;
@@ -123,5 +123,7 @@ long p215()
 
 int main()
 {
-    printf("%ld\n", p215());
+    const long ans = p215();
+    printf("%ld\n", ans);
+    assert(ans == ANSWER);
 }

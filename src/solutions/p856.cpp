@@ -20,9 +20,9 @@ of each state.
 
 The transition probabilities are summarized in the `prob_*()` methods below.
 
-ANSWER: 17.09661501
-
 */
+
+constexpr double ANSWER = 17.09661501;
 
 constexpr int SUITS = 4;
 constexpr int RANKS = 13;
@@ -196,5 +196,7 @@ double p856()
 
 int main()
 {
-    printf("%.8f\n", mf::round(p856(), 8));
+    const double ans = mf::round(p856(), 8);
+    printf("%.8f\n", ans);
+    assert(ans == ANSWER);
 }
