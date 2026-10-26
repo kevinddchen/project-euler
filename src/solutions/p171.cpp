@@ -8,9 +8,9 @@ We iterate over all choices of digits. For each choice of digits, we first check
 perfect square itself. If true, then we can compute the sum of all numbers matching that choice of digits. This just
 involves some combinatorics.
 
-ANSWER 142989277
-
 */
+
+constexpr long ANSWER = 142989277;
 
 constexpr long MOD = 1e9;
 
@@ -116,6 +116,7 @@ long p171()
 
 int main()
 {
-    // printf("%ld\n", p0());
-    printf("%ld\n", p171());
+    const long ans = p171();
+    printf("%ld\n", ans);
+    assert(ans == ANSWER);
 }

@@ -1,5 +1,7 @@
 #include <array>
 
+#include <cassert>
+
 /*
 
 It is more efficient to use a binary representation, which we call "pattern", e.g. 101, where "1" represents a non-zero
@@ -11,9 +13,9 @@ are winning. Then it is a simple matter of iterating through all the sub-pattern
 removing digits, and checking if that sub-pattern is losing (in which case the original pattern can always be won). If
 all sub-patterns are winning, then the original pattern is losing.
 
-ANSWER 166666666689036288
-
 */
+
+constexpr long ANSWER = 166666666689036288;
 
 constexpr int LOG_N = 18;
 
@@ -84,5 +86,7 @@ long p961()
 
 int main()
 {
-    printf("%ld\n", p961());
+    const long ans = p961();
+    printf("%ld\n", ans);
+    assert(ans == ANSWER);
 }

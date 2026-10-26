@@ -4,9 +4,9 @@
 
 Brute force.
 
-ANSWER 11109800204052
-
 */
+
+constexpr long ANSWER = 11109800204052;
 
 long M(long p, long q, long N)
 {
@@ -55,5 +55,7 @@ long p347()
 
 int main()
 {
-    printf("%ld\n", p347());
+    const long ans = p347();
+    printf("%ld\n", ans);
+    assert(ans == ANSWER);
 }

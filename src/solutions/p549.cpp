@@ -1,5 +1,7 @@
 #include <vector>
 
+#include <cassert>
+
 /*
 
 Note that s(n) can be calculated from its prime factorization. If
@@ -9,9 +11,9 @@ n = p1^a1 * p2^a2 * ... * pk^ak, then
 
 We use a sieve to keep track of s(n), and go through all powers of all primes.
 
-ANSWER 476001479068717
-
 */
+
+constexpr long ANSWER = 476001479068717;
 
 /* Count number of times d divides into x. */
 int count_divisions(int x, int d)
@@ -68,5 +70,7 @@ long p549()
 
 int main()
 {
-    printf("%ld\n", p549());
+    const long ans = p549();
+    printf("%ld\n", ans);
+    assert(ans == ANSWER);
 }

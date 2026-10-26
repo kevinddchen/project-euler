@@ -12,9 +12,9 @@ For each new license plate, we have a transition probability between states, as
 well as a probability to "win". We then just calcualte the expected time to
 "win".
 
-ANSWER 40.66368097
-
 */
+
+constexpr double ANSWER = 40.66368097;
 
 constexpr int TOTAL = 1000;
 constexpr int T_STATES = 501;
@@ -90,5 +90,7 @@ double p371()
 
 int main()
 {
-    printf("%.8f\n", mf::round(p371(), 8));
+    const double ans = mf::round(p371(), 8);
+    printf("%.8f\n", ans);
+    assert(ans == ANSWER);
 }

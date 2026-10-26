@@ -21,9 +21,9 @@ greater than `n * (k-1)`.
 In this form, the problem takes on the form of a linear optimization problem. I already wrote a C program to solve this
 exact kind of problem, so the only difficulty was porting it to C++.
 
-ANSWER 4992775389
-
 */
+
+constexpr long ANSWER = 4992775389;
 
 using ArrayXXl = Eigen::Array<long, Eigen::Dynamic, Eigen::Dynamic>;
 using ColXl = Eigen::Array<long, Eigen::Dynamic, 1>;
@@ -426,5 +426,7 @@ long p874()
 
 int main()
 {
-    printf("%ld\n", p874());
+    const long ans = p874();
+    printf("%ld\n", ans);
+    assert(ans == ANSWER);
 }

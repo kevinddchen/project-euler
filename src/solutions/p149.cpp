@@ -13,9 +13,9 @@ columns, and diagonals of the grid.
 This algorithm is O(n^2). The brute force algorithm is O(n^3) and isn't too
 slow either.
 
-ANSWER 52852124
-
 */
+
+constexpr long ANSWER = 52852124;
 
 /**
  * Get row, where 0 <= row < size.
@@ -142,5 +142,7 @@ long p149()
 
 int main()
 {
-    printf("%ld\n", p149());
+    const long ans = p149();
+    printf("%ld\n", ans);
+    assert(ans == ANSWER);
 }

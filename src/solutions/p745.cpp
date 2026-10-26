@@ -13,9 +13,9 @@ The Q(n) function to find square-free multiples of 4, or otherwise the number
 will be divisible by a larger square number. In general, the sum over terms
 with g(n) = k*k equals k * k * Q(floor(N / (k * k))).
 
-ANSWER 94586478
-
 */
+
+constexpr long ANSWER = 94586478;
 
 
 /**
@@ -82,5 +82,7 @@ long p745()
 
 int main()
 {
-    printf("%ld\n", p745());
+    const long ans = p745();
+    printf("%ld\n", ans);
+    assert(ans == ANSWER);
 }

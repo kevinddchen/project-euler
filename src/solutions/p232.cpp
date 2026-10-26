@@ -20,9 +20,9 @@ simply just take the maximum over all values of T.
 
 The values of p(i, j) can be computed efficiently using dynamic programming.
 
-ANSWER 0.83648556
-
 */
+
+constexpr double ANSWER = 0.83648556;
 
 /* Return ceil(log2(n)) for positive integers n. */
 int ceillog2(int n)
@@ -96,5 +96,7 @@ double p232()
 
 int main()
 {
-    printf("%.8f\n", mf::round(p232(), 8));
+    const double ans = mf::round(p232(), 8);
+    printf("%.8f\n", ans);
+    assert(ans == ANSWER);
 }

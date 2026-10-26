@@ -7,9 +7,9 @@ can deduce that (p-2)! = 1, (p-3)! = -1/2, (p-4)! = 1/6, and (p-5)! = -1/24 (mod
 p). Fractions are to be interpreted as modular inverses, since Z_p is a field.
 Thus S(p) = -3/8 (mod p).
 
-ANSWER 139602943319822
-
 */
+
+constexpr long ANSWER = 139602943319822;
 
 long p381()
 {
@@ -31,5 +31,7 @@ long p381()
 
 int main()
 {
-    printf("%ld\n", p381());
+    const long ans = p381();
+    printf("%ld\n", ans);
+    assert(ans == ANSWER);
 }

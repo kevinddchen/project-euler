@@ -16,9 +16,9 @@ values, which can be cone by re-casting the recurrence relations as a matrix mul
 
 and then using "exponentiation by squaring" to quickly compute high powers of these matrices.
 
-ANSWER 969134784
-
 */
+
+constexpr long ANSWER = 969134784;
 
 using Matrix2l = Eigen::Matrix<long, 2, 2>;
 using Vec2l = Eigen::Matrix<long, 2, 1>;
@@ -125,5 +125,7 @@ long p940()
 
 int main()
 {
-    printf("%ld\n", p940());
+    const long ans = p940();
+    printf("%ld\n", ans);
+    assert(ans == ANSWER);
 }

@@ -25,9 +25,9 @@ all from https://en.wikipedia.org/wiki/Repeating_decimal.
 Using these facts and doing things efficiently by utilizing a prime sieve to
 compute prime factors, we can compute the 10^7-th digit of all 1/n fractions.
 
-ANSWER 44967734
-
 */
+
+constexpr long ANSWER = 44967734;
 
 /**
  * Compute the multiplicative order of 10 modulo p. p must be prime not equal
@@ -150,5 +150,7 @@ long p820()
 
 int main()
 {
-    printf("%ld\n", p820());
+    const long ans = p820();
+    printf("%ld\n", ans);
+    assert(ans == ANSWER);
 }

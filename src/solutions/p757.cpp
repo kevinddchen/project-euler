@@ -1,5 +1,7 @@
 #include <unordered_set>
 
+#include <cassert>
+
 /*
 
 If N is "bipronic", i.e. N = x(x+1)y(y+1), then it is a stealthy number for
@@ -10,9 +12,9 @@ If N is "bipronic", i.e. N = x(x+1)y(y+1), then it is a stealthy number for
 I cannot prove that the inverse is correct, but experimentally it seems so. The
 answer is then obtained by simply iterating over these bipronic numbers.
 
-ANSWER 75737353
-
 */
+
+constexpr long ANSWER = 75737353;
 
 inline long bipronic(long x, long y)
 {
@@ -48,5 +50,7 @@ long p757()
 
 int main()
 {
-    printf("%ld\n", p757());
+    const long ans = p757();
+    printf("%ld\n", ans);
+    assert(ans == ANSWER);
 }

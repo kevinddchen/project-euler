@@ -3,15 +3,17 @@
 #include <array>
 #include <vector>
 
+#include <cassert>
+
 /*
 
 We use trees, since we only need to keep track of the root node and number of
 nodes. For efficiency, we keep the depth of the tree as shallow as possible by
 collapsing nodes whenever possible.
 
-ANSWER 2325629
-
 */
+
+constexpr long ANSWER = 2325629;
 
 template <size_t size>
 int find_root(int j, std::array<int, size>& parents)
@@ -68,5 +70,7 @@ long p186()
 
 int main()
 {
-    printf("%ld\n", p186());
+    const long ans = p186();
+    printf("%ld\n", ans);
+    assert(ans == ANSWER);
 }

@@ -14,9 +14,9 @@ figure out the length for `counts`, which should be able to store the sum of
 all primes 2, 3, ..., 4999. It turns out that `counts` should have length ~1.5
 million, which is not too bad.
 
-ANSWER 9275262564250418
-
 */
+
+constexpr long ANSWER = 9275262564250418;
 
 long p249()
 {
@@ -65,5 +65,7 @@ long p249()
 
 int main()
 {
-    printf("%ld\n", p249());
+    const long ans = p249();
+    printf("%ld\n", ans);
+    assert(ans == ANSWER);
 }

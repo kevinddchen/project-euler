@@ -29,9 +29,9 @@ Plugging this into the equation for value, we get
 Then we look for the largest value of k where this is still >= log(L). Once
 we know k, we just need to compute the sum of probabilities, prob(k).
 
-ANSWER 0.999992836187
-
 */
+
+constexpr double ANSWER = 0.999992836187;
 
 
 double log_max_value(int n, int k)
@@ -92,5 +92,7 @@ double p267()
 
 int main()
 {
-    printf("%.12f\n", mf::round(p267(), 12));
+    const double ans = mf::round(p267(), 12);
+    printf("%.12f\n", ans);
+    assert(ans == ANSWER);
 }

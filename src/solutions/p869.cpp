@@ -24,9 +24,9 @@ the child nodes:
 
 This can be computed via depth-first traversal.
 
-ANSWER 14.97696693
-
 */
+
+constexpr double ANSWER = 14.97696693;
 
 static const double UNSET_EXPECTED_SCORE = -1.0;
 
@@ -147,5 +147,7 @@ double p869()
 
 int main()
 {
-    printf("%.8f\n", mf::round(p869(), 8));
+    const double ans = mf::round(p869(), 8);
+    printf("%.8f\n", ans);
+    assert(ans == ANSWER);
 }

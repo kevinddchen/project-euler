@@ -39,9 +39,9 @@ A more convenient definition of T is
 
 We can find the minimum of T w.r.t d1, the initial drill depth, via numerical search.
 
-ANSWER 2.364497769
-
 */
+
+constexpr double ANSWER = 2.364497769;
 
 
 /**
@@ -110,5 +110,7 @@ double p901()
 
 int main()
 {
-    printf("%.9f\n", p901());
+    const double ans = p901();
+    printf("%.9f\n", ans);
+    assert(ans == ANSWER);
 }

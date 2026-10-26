@@ -34,9 +34,9 @@ value. Thus it becomes very easy to compute the Ackermann function modulo 14^8.
     A(5, 5) = 2^^^8 - 3 = 829,575,165 (mod 14^8)
     A(6, 6) = 2^^^^9 - 3 = 829,575,165 (mod 14^8)
 
-ANSWER 1098988351
-
 */
+
+constexpr long ANSWER = 1098988351;
 
 
 /*
@@ -118,5 +118,7 @@ long p282()
 
 int main()
 {
-    printf("%ld\n", p282());
+    const long ans = p282();
+    printf("%ld\n", ans);
+    assert(ans == ANSWER);
 }

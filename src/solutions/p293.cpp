@@ -8,9 +8,9 @@ Generating admissible numbers can be done by DFS through the following graph:
 Start with 2. For each element n whose larget prime factor is p, explore n * p
 and n * next_prime(p).
 
-ANSWER 2209
-
 */
+
+constexpr long ANSWER = 2209;
 
 /**
  * Node in the graph. Stores an admissible number as `value`, the current
@@ -97,5 +97,7 @@ long p293()
 
 int main()
 {
-    printf("%ld\n", p293());
+    const long ans = p293();
+    printf("%ld\n", ans);
+    assert(ans == ANSWER);
 }

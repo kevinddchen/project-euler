@@ -6,9 +6,9 @@
 
 Brute force.
 
-ANSWER 13625242
-
 */
+
+constexpr long ANSWER = 13625242;
 
 template <size_t n_digits>
 struct Clock {
@@ -101,5 +101,7 @@ long p315()
 
 int main()
 {
-    printf("%ld\n", p315());
+    const long ans = p315();
+    printf("%ld\n", ans);
+    assert(ans == ANSWER);
 }

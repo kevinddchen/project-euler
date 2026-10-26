@@ -1,3 +1,4 @@
+#include <cassert>
 #include <cstdio>
 
 /*
@@ -22,9 +23,9 @@ Let us see this in practice for the T(8, 4) solution. Since k = 3, we have 3
 bins. The minimum cost is to distribute the 8 fuses as evenly as possible into
 {3, 3, 2}. The total number of tests is 3 + 3 + 1 = 7.
 
-ANSWER 788626351539895
-
 */
+
+constexpr long ANSWER = 788626351539895;
 
 /**
  * Number of tests is `num_fuses * (num_fuses - 1) / 2`.
@@ -54,5 +55,7 @@ long p713()
 
 int main()
 {
-    printf("%ld\n", p713());
+    const long ans = p713();
+    printf("%ld\n", ans);
+    assert(ans == ANSWER);
 }

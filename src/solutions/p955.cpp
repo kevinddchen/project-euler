@@ -26,9 +26,9 @@ Note that we need `a < n` in order to have a positive k.
 In term of the implementation, we have to be very careful to avoid integer overflow, as in order to reach the 70th
 triangle number we will quickly hit values that exceed the max value of a C++ long.
 
-ANSWER 6795261671274
-
 */
+
+constexpr long ANSWER = 6795261671274;
 
 /**
  * Given prime factorization, produce divisors less than `n`.
@@ -119,5 +119,7 @@ long p955()
 
 int main()
 {
-    printf("%ld\n", p955());
+    const long ans = p955();
+    printf("%ld\n", ans);
+    assert(ans == ANSWER);
 }

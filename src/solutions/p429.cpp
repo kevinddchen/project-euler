@@ -11,9 +11,9 @@ divisors by iterating as follows:
     for (p_i is prime divisor with multiplicity a_i):
         result = (result * (p_i^a_i)^2) + result)
 
-ANSWER 98792821
-
 */
+
+constexpr long ANSWER = 98792821;
 
 /* Count the number of times p divides into N!. */
 int count_factors(int N, int p)
@@ -47,5 +47,7 @@ int p429()
 
 int main()
 {
-    printf("%d\n", p429());
+    const long ans = p429();
+    printf("%ld\n", ans);
+    assert(ans == ANSWER);
 }

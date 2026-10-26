@@ -1,5 +1,7 @@
 #include <vector>
 
+#include <cassert>
+
 /*
 
 Similar to Problem 250: keep a 2D array `counts` whose (n, i)th element
@@ -15,9 +17,9 @@ and the second dimension should be (51^2 + 52^2 + ... + 100^2) + 1, since that
 is one greater than the largest sum for a subset of 50 elements. It turns out
 the array has dimensions roughly equal to 50 x 300,000, which is not too bad.
 
-ANSWER 115039000
-
 */
+
+constexpr long ANSWER = 115039000;
 
 long p201()
 {
@@ -67,5 +69,7 @@ long p201()
 
 int main()
 {
-    printf("%ld\n", p201());
+    const long ans = p201();
+    printf("%ld\n", ans);
+    assert(ans == ANSWER);
 }

@@ -18,9 +18,9 @@ try to find all solutions to
 
 where n > 1 and a > 0. Because p is odd, we can actually divide both sides by 2.
 
-ANSWER 2057774861813004
-
 */
+
+constexpr long ANSWER = 2057774861813004;
 
 /**
  * Count how many ways x = 3a + 4n for n > 1 and a > 0.
@@ -68,5 +68,7 @@ long p313()
 
 int main()
 {
-    printf("%ld\n", p313());
+    const long ans = p313();
+    printf("%ld\n", ans);
+    assert(ans == ANSWER);
 }

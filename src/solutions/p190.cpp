@@ -1,3 +1,4 @@
+#include <cassert>
 #include <cmath>
 #include <cstdio>
 
@@ -5,9 +6,9 @@
 
 Can be solved by hand. See PDF for explanation.
 
-ANSWER 371048281
-
 */
+
+constexpr long ANSWER = 371048281;
 
 int P(int m)
 {
@@ -29,5 +30,7 @@ long p190()
 
 int main()
 {
-    printf("%ld\n", p190());
+    const long ans = p190();
+    printf("%ld\n", ans);
+    assert(ans == ANSWER);
 }

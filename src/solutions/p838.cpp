@@ -38,9 +38,9 @@ enough to be brute forced.
 
 Not one of my favorite solutions...
 
-ANSWER 250591.442792
-
 */
+
+constexpr double ANSWER = 250591.442792;
 
 /**
  * Remove all sets in `factor_sets` that contain `p`.
@@ -244,5 +244,7 @@ double p838()
 
 int main()
 {
-    printf("%.6f\n", mf::round(p838(), 6));
+    const double ans = mf::round(p838(), 6);
+    printf("%.6f\n", ans);
+    assert(ans == ANSWER);
 }

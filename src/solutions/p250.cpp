@@ -19,9 +19,9 @@ number of subsets of the array {1, 2, 3, ...}. There, the answer can be
 computed by hand. There is a great Youtube video on this:
 https://youtu.be/bOXCLR3Wric
 
-ANSWER 1425480602091519
-
 */
+
+constexpr long ANSWER = 1425480602091519;
 
 
 long p250()
@@ -55,5 +55,7 @@ long p250()
 
 int main()
 {
-    printf("%ld\n", p250());
+    const long ans = p250();
+    printf("%ld\n", ans);
+    assert(ans == ANSWER);
 }

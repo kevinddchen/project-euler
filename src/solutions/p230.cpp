@@ -16,9 +16,9 @@ element of the sequence F_{A,B}, then we have the following recursion relation:
 
 All that remains is to compute L_i until we exceed the desired initial n.
 
-ANSWER 850481152593119296
-
 */
+
+constexpr long ANSWER = 850481152593119296;
 
 int get_nth_digit(const std::string& A, const std::string& B, long n)
 {
@@ -71,5 +71,7 @@ long p0()
 
 int main()
 {
-    printf("%ld\n", p0());
+    const long ans = p0();
+    printf("%ld\n", ans);
+    assert(ans == ANSWER);
 }

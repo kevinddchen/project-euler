@@ -24,9 +24,9 @@ to do some pruning to get below the 1 minute mark. One important optimization
 is that since we are iterating over primes in increasing order, we can drop
 elements of the set if their product with the prime exceeds the 10^10 limit.
 
-ANSWER 2811077773
-
 */
+
+constexpr long ANSWER = 2811077773;
 
 long p668()
 {
@@ -68,5 +68,7 @@ long p668()
 
 int main()
 {
-    printf("%ld\n", p668());
+    const long ans = p668();
+    printf("%ld\n", ans);
+    assert(ans == ANSWER);
 }

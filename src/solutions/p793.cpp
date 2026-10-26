@@ -20,9 +20,9 @@ either pick the upper half or lower half and update the ranges.
 This can be repeated until the number of products is small enough to brute
 force.
 
-ANSWER 475808650131120
-
 */
+
+constexpr long ANSWER = 475808650131120;
 
 inline long ceil_div(long a, long b)
 {
@@ -163,5 +163,7 @@ long p793()
 
 int main()
 {
-    printf("%ld\n", p793());
+    const long ans = p793();
+    printf("%ld\n", ans);
+    assert(ans == ANSWER);
 }

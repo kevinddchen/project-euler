@@ -2,6 +2,8 @@
 #include <memory>
 #include <vector>
 
+#include <cassert>
+
 /*
 
 This is solved using the Hungarian algorithm, as outlined on Wikipedia:
@@ -9,9 +11,9 @@ This is solved using the Hungarian algorithm, as outlined on Wikipedia:
 Step 3 requires the use of the Hopcroft-Karp algorithm and Konig's theorem to
 find the minimal vertex cover of a bipartite graph.
 
-ANSWER: 13938
-
 */
+
+constexpr long ANSWER = 13938;
 
 // Simple tree node.
 struct Node {
@@ -365,5 +367,7 @@ long p345()
 
 int main()
 {
-    printf("%ld\n", p345());
+    const long ans = p345();
+    printf("%ld\n", ans);
+    assert(ans == ANSWER);
 }

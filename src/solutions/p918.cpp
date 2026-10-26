@@ -1,5 +1,7 @@
 #include <unordered_map>
 
+#include <cassert>
+
 /*
 
 We can prove by induction that
@@ -9,9 +11,9 @@ We can prove by induction that
 Therefore, we just need to compute a_5e11, which can be done quite efficiently using the recursive definition of the
 sequence if we memoize intermediate computations.
 
-ANSWER -6999033352333308
-
 */
+
+constexpr long ANSWER = -6999033352333308;
 
 /**
  * Memoized computation of a_n.
@@ -55,5 +57,7 @@ long p918()
 
 int main()
 {
-    printf("%ld\n", p918());
+    const long ans = p918();
+    printf("%ld\n", ans);
+    assert(ans == ANSWER);
 }

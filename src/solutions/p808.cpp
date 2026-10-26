@@ -4,9 +4,9 @@
 
 Brute force.
 
-ANSWER 3807504276997394
-
 */
+
+constexpr long ANSWER = 3807504276997394;
 
 /*
  * Reverse an integer in base 10.
@@ -55,5 +55,7 @@ long p808()
 
 int main()
 {
-    printf("%ld\n", p808());
+    const long ans = p808();
+    printf("%ld\n", ans);
+    assert(ans == ANSWER);
 }

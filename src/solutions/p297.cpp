@@ -1,5 +1,7 @@
 #include <vector>
 
+#include <cassert>
+
 /*
 
 We first note some properties of z(n):
@@ -24,9 +26,9 @@ In general, if k has the Zeckendorf representation k = F_a0 + F_a1 + ... F_an, t
 Using this recurrence relation, we can compute S(10^17) quite efficiently
 knowing its Zeckendorf representation.
 
-ANSWER 2252639041804718029
-
 */
+
+constexpr long ANSWER = 2252639041804718029;
 
 /**
  * Returns the Zeckendorf representation of `n`. The Fibonacci numbers are
@@ -100,5 +102,7 @@ long p297()
 
 int main()
 {
-    printf("%ld\n", p297());
+    const long ans = p297();
+    printf("%ld\n", ans);
+    assert(ans == ANSWER);
 }

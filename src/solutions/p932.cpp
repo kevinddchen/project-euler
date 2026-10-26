@@ -1,3 +1,4 @@
+#include <cassert>
 #include <cstdio>
 
 /*
@@ -5,10 +6,9 @@
 Since 2025-numbers are square, its simple to iterate over all squares with up to 16 digits. For each square, we simply
 iterate over all ways to split its digits into a and b, and check that their sum equals what we want.
 
-ANSWER 72673459417881349
-
 */
 
+constexpr long ANSWER = 72673459417881349;
 
 long p932()
 {
@@ -49,5 +49,7 @@ long p932()
 
 int main()
 {
-    printf("%ld\n", p932());
+    const long ans = p932();
+    printf("%ld\n", ans);
+    assert(ans == ANSWER);
 }

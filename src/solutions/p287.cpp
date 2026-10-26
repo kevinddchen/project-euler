@@ -9,9 +9,9 @@ are all of the same color. Since the curve of the circle is monotonic in a
 region, we can check if it intersects the region by checking the colors of the
 four corners.
 
-ANSWER 313135496
-
 */
+
+constexpr long ANSWER = 313135496;
 
 /**
  * Subdivision choices, in the order given by the problem. A "region"
@@ -147,5 +147,7 @@ long p287()
 
 int main()
 {
-    printf("%ld\n", p287());
+    const long ans = p287();
+    printf("%ld\n", ans);
+    assert(ans == ANSWER);
 }

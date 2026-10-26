@@ -12,9 +12,9 @@ handled by multiplying the probabilities by 1/3 or 2/3, depending on the letter
 croaked and the value on the square, and a "jump" is handled by updating the
 probabilities based on the probabilities of the adjacent squares.
 
-ANSWER 199740353/29386561536000
-
 */
+
+constexpr std::string_view ANSWER = "199740353/29386561536000";
 
 static const int SIZE = 500;
 
@@ -53,7 +53,7 @@ void jump(std::array<mf::Frac, SIZE>& probs)
     probs = new_probs;
 }
 
-mf::Frac p329()
+std::string p329()
 {
     const std::string sequence = "PPPPNNPPPNPPNPN";
 
@@ -70,11 +70,12 @@ mf::Frac p329()
     }
 
     mf::Frac sum = std::accumulate(probs.begin(), probs.end(), mf::Frac(0));
-    return sum;
+    return std::to_string(sum.numer) + "/" + std::to_string(sum.denom);
 }
 
 int main()
 {
-    const auto ans = p329();
-    printf("%ld/%ld\n", ans.numer, ans.denom);
+    const std::string ans = p329();
+    printf("%s\n", ans.c_str());
+    assert(ans == ANSWER);
 }

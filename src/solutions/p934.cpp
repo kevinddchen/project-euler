@@ -19,9 +19,9 @@ n = 1470 (mod 2310) because 1470 % 11 = 7 is divisible by 7. This means that whe
 considering n = 0 and 1470 (mod 2310). In fact, as the primes we consider increase, the number of "remainders" we have
 to consider also increase. For example, for p=17 we are considering n = 0, 13020, 18480, and 24570 (mod 30030).
 
-ANSWER 292137809490441370
-
 */
+
+constexpr long ANSWER = 292137809490441370;
 
 /**
  * Compute the sum by brute force: compute u(n) for each n.
@@ -116,5 +116,7 @@ long p934()
 
 int main()
 {
-    printf("%ld\n", p934());
+    const long ans = p934();
+    printf("%ld\n", ans);
+    assert(ans == ANSWER);
 }

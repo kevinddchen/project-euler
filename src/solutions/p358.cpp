@@ -19,9 +19,9 @@ These two conditions yields 3 candidates for p: 725509891, 726509891, and
 729809891. We can explicitly check each p that the fractions 1/p gives a cyclic
 number, and it turns out that p = 729809891 is the unique solution.
 
-ANSWER 3284144505
-
 */
+
+constexpr long ANSWER = 3284144505;
 
 /**
  * Since the cyclic number * p = 999...999, if the cyclic number ends with
@@ -78,5 +78,7 @@ long p358()
 
 int main()
 {
-    printf("%ld\n", p358());
+    const long ans = p358();
+    printf("%ld\n", ans);
+    assert(ans == ANSWER);
 }

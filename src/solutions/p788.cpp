@@ -8,9 +8,9 @@ dominating numbers. If n digits are equal, there are three cases:
 2) n digits do not contain the first digit, and are nonzero
 3) n digits do not contain the first digit, and are zero
 
-ANSWER 471745499
-
 */
+
+constexpr long ANSWER = 471745499;
 
 /**
  * Given array of n choose 0, n choose 1, ..., n choose n, compute array of
@@ -80,5 +80,7 @@ long p788()
 
 int main()
 {
-    printf("%ld\n", p788());
+    const long ans = p788();
+    printf("%ld\n", ans);
+    assert(ans == ANSWER);
 }

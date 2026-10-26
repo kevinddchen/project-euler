@@ -1,12 +1,14 @@
 #include <numeric>
 
+#include <cassert>
+
 /*
 
 Very similar to Problem 71.
 
-ANSWER 7295372
-
 */
+
+constexpr long ANSWER = 7295372;
 
 long p73()
 {
@@ -28,5 +30,7 @@ long p73()
 
 int main()
 {
-    printf("%ld\n", p73());
+    const long ans = p73();
+    printf("%ld\n", ans);
+    assert(ans == ANSWER);
 }

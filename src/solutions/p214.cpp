@@ -1,13 +1,15 @@
 #include <vector>
 
+#include <cassert>
+
 /*
 
 Use a sieve to calculate totients, like in Problem 69, and then replace old
 values with the chain length.
 
-ANSWER 1677366278943
-
 */
+
+constexpr long ANSWER = 1677366278943;
 
 long p214()
 {
@@ -45,5 +47,7 @@ long p214()
 
 int main()
 {
-    printf("%ld\n", p214());
+    const long ans = p214();
+    printf("%ld\n", ans);
+    assert(ans == ANSWER);
 }

@@ -21,9 +21,9 @@ below.
 
 It is important to traverse this tree iteratively, since recursion is too slow.
 
-ANSWER 1339784153569958487
-
 */
+
+constexpr long ANSWER = 1339784153569958487;
 
 /**
  * Returns a vector of all primes less than `size`.
@@ -113,5 +113,7 @@ long p694()
 
 int main()
 {
-    printf("%ld\n", p694());
+    const long ans = p694();
+    printf("%ld\n", ans);
+    assert(ans == ANSWER);
 }

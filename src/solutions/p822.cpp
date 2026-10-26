@@ -14,9 +14,9 @@ Once all k + log2(log2(n)) values in the set are roughly equal, then the
 pattern of "which value is the smallest" becomes cyclic. This makes the final
 value of k for each n easy to calculate.
 
-ANSWER 950591530
-
 */
+
+constexpr long ANSWER = 950591530;
 
 long p822()
 {
@@ -88,5 +88,7 @@ long p822()
 
 int main()
 {
-    printf("%ld\n", p822());
+    const long ans = p822();
+    printf("%ld\n", ans);
+    assert(ans == ANSWER);
 }

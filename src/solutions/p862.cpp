@@ -1,5 +1,7 @@
 #include <vector>
 
+#include <cassert>
+
 /*
 
 We note that since we are summing T(k) over all k-digit numbers, we can
@@ -26,9 +28,9 @@ e.g. `aaa` has 9 specifications: 111, 222, 333, ..., 999. The number of
 orderings gives the size of the partition, and the number of specifications
 counts the total number of partitions that match that collection.
 
-ANSWER 6111397420935766740
-
 */
+
+constexpr long ANSWER = 6111397420935766740;
 
 long factorial(long n)
 {
@@ -172,5 +174,7 @@ long p862()
 
 int main()
 {
-    printf("%ld\n", p862());
+    const long ans = p862();
+    printf("%ld\n", ans);
+    assert(ans == ANSWER);
 }

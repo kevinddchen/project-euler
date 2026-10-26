@@ -22,9 +22,9 @@ have any solutions. This is because the norm of 1 + sqrt(7) is -6, which needs
 to be coprime to x for both -6 and 1 + sqrt(7) to have a multiplicative order
 defined in the first place.
 
-ANSWER 5610899769745488
-
 */
+
+constexpr long ANSWER = 5610899769745488;
 
 /*
  * Quadratic integer, a + b * sqrt(rad).
@@ -151,5 +151,7 @@ long p752()
 
 int main()
 {
-    printf("%ld\n", p752());
+    const long ans = p752();
+    printf("%ld\n", ans);
+    assert(ans == ANSWER);
 }

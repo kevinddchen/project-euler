@@ -32,9 +32,9 @@ than or less than pi/2 tells us whether our initial guess for theta_1 was too
 low or too high. We can then use binary search to find the optimal value for
 theta_1.
 
-ANSWER 3.1486734435
-
 */
+
+constexpr double ANSWER = 3.1486734435;
 
 /**
  * Given theta_0 and theta_1, extrapolate out to theta_{N+1} which should
@@ -109,5 +109,7 @@ double p392()
 
 int main()
 {
-    printf("%.10f\n", p392());
+    const double ans = p392();
+    printf("%.10f\n", ans);
+    assert(ans == ANSWER);
 }

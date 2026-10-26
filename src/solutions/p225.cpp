@@ -1,5 +1,7 @@
 #include <algorithm>
 
+#include <cassert>
+
 /*
 
 Brute force. For each odd n, we check the tribonacci numbers mod n. Such a
@@ -7,9 +9,9 @@ sequence must be periodic. Moreover, because the tribonacci sequence can be
 defined backwards as well as forwards, we will eventually reach the initial
 state (1, 1, 1) again.
 
-ANSWER 2009
-
 */
+
+constexpr long ANSWER = 2009;
 
 /**
  * Check if an odd number divides some tribonacci number.
@@ -50,5 +52,7 @@ long p225()
 
 int main()
 {
-    printf("%ld\n", p225());
+    const long ans = p225();
+    printf("%ld\n", ans);
+    assert(ans == ANSWER);
 }

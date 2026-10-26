@@ -14,9 +14,9 @@ The only difficulty is trying to explicitly sum this for N=1e14. The trick is to
 n = 1, 2, 3, ..., 1e7 - 1 and a second one over n = 1e7, 1e7 + 1, ... 1e14. The second sum is more easier parametrized
 by the values of N//n instead. So in some sense, we are "meeting in the middle".
 
-ANSWER 1228599511
-
 */
+
+constexpr long ANSWER = 1228599511;
 
 constexpr long MOD = 1234567891;
 
@@ -73,5 +73,7 @@ long p944()
 
 int main()
 {
-    printf("%ld\n", p944());
+    const long ans = p944();
+    printf("%ld\n", ans);
+    assert(ans == ANSWER);
 }

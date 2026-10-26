@@ -23,9 +23,9 @@ modulo n.
 
 (Related problems: 271, 451)
 
-ANSWER 39782849136421
-
 */
+
+constexpr long ANSWER = 39782849136421;
 
 /**
  * In the ring Z_n, for a given prime factor p^a find the integer 1 <= m < n
@@ -81,5 +81,7 @@ long p407()
 
 int main()
 {
-    printf("%ld\n", p407());
+    const long ans = p407();
+    printf("%ld\n", ans);
+    assert(ans == ANSWER);
 }

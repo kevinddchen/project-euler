@@ -18,9 +18,9 @@ representation,
 and then efficiently compute the modular power of the matrix in a way analogous
 to how it is done for integers.
 
-ANSWER 283988410192
-
 */
+
+constexpr long ANSWER = 283988410192;
 
 using Matrix2l = std::array<std::array<long, 2>, 2>;
 
@@ -141,5 +141,7 @@ long p304()
 
 int main()
 {
-    printf("%ld\n", p304());
+    const long ans = p304();
+    printf("%ld\n", ans);
+    assert(ans == ANSWER);
 }

@@ -13,9 +13,9 @@ location.
 Once we find this "angle of incidence", we can directly compute the time of
 travel.
 
-ANSWER 13.1265108586
-
 */
+
+constexpr double ANSWER = 13.1265108586;
 
 // number of regions in the marsh
 constexpr int N = 5;
@@ -122,5 +122,7 @@ double p607()
 
 int main()
 {
-    printf("%.10f\n", mf::round(p607(), 10));
+    const double ans = mf::round(p607(), 10);
+    printf("%.10f\n", ans);
+    assert(ans == ANSWER);
 }

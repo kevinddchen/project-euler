@@ -7,9 +7,9 @@
 
 The radical can be precomputed quite efficiently using a sieve.
 
-ANSWER 18407904
-
 */
+
+constexpr long ANSWER = 18407904;
 
 std::vector<int> radical_sieve(int size)
 {
@@ -60,5 +60,7 @@ long p127()
 
 int main()
 {
-    printf("%ld\n", p127());
+    const long ans = p127();
+    printf("%ld\n", ans);
+    assert(ans == ANSWER);
 }

@@ -11,9 +11,9 @@ and that n^2 + 15, n^2 + 19, n^2 + 21, and n^2 + 25 are all composite.
 We use a prime sieve to generate the primes. We also only need to use p >= 5
 when checking primality.
 
-ANSWER 676333270
-
 */
+
+constexpr long ANSWER = 676333270;
 
 bool check(long n, const std::vector<long>& primes)
 {
@@ -83,5 +83,7 @@ long p146()
 
 int main()
 {
-    printf("%ld\n", p146());
+    const long ans = p146();
+    printf("%ld\n", ans);
+    assert(ans == ANSWER);
 }

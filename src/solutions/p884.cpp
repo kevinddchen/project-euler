@@ -28,9 +28,9 @@ smaller than N, then
 Thus if we compute S(M) for M = 1, 2, ..., 64 and 5^3, 6^3, ... up to N, we can
 efficiently compute S(N).
 
-ANSWER 1105985795684653500
-
 */
+
+constexpr long ANSWER = 1105985795684653500;
 
 long cube(long x)
 {
@@ -116,5 +116,7 @@ long p884()
 
 int main()
 {
-    printf("%ld\n", p884());
+    const long ans = p884();
+    printf("%ld\n", ans);
+    assert(ans == ANSWER);
 }

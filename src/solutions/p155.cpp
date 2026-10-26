@@ -16,9 +16,9 @@ n unit capacitors. Thus, the set of capacitances that can be obtained with n
 unit capacitors can be obtained by taking n `+` operations and arbitrarily many
 reciprocals. We keep track of the capacitances inductively for n=1, 2, 3, ...
 
-ANSWER 3857447
-
 */
+
+constexpr long ANSWER = 3857447;
 
 long p155()
 {
@@ -59,5 +59,7 @@ long p155()
 
 int main()
 {
-    printf("%ld\n", p155());
+    const long ans = p155();
+    printf("%ld\n", ans);
+    assert(ans == ANSWER);
 }

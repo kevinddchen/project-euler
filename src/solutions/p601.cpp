@@ -17,9 +17,9 @@ This can be solved by the Chinese Remainder Theorem, where we are essentially
 just solving for n = 1 (mod M) where M is the LCM of the first couple
 consecutive integers 2, 3, 4, ...
 
-ANSWER 1617243
-
 */
+
+constexpr long ANSWER = 1617243;
 
 /**
  * Count the number of n such that 1 < n < N and n = 1 (mod m).
@@ -79,5 +79,7 @@ long p601()
 
 int main()
 {
-    printf("%ld\n", p601());
+    const long ans = p601();
+    printf("%ld\n", ans);
+    assert(ans == ANSWER);
 }

@@ -15,9 +15,9 @@ these must be added back in. But this over subtracts the multiples of 4*9*25,
 so we add these back in. And so on. This logic is implemented in the `recurse`
 function.
 
-ANSWER 684465067343069
-
 */
+
+constexpr long ANSWER = 684465067343069;
 
 /**
  * Recursively count the number of squarefree numbers.
@@ -66,5 +66,7 @@ long p193()
 
 int main()
 {
-    printf("%ld\n", p193());
+    const long ans = p193();
+    printf("%ld\n", ans);
+    assert(ans == ANSWER);
 }

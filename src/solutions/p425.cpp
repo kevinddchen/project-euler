@@ -14,9 +14,9 @@ chain to 2, called `connected[p]`. But since we are encountering the primes `p`
 in increasing order, we can be sure that `connected[p]` is the smallest out of
 all possible chains (otherwise, we would have encountered `p` earlier).
 
-ANSWER 46479497324
-
 */
+
+constexpr long ANSWER = 46479497324;
 
 long p425()
 {
@@ -88,5 +88,7 @@ long p425()
 
 int main()
 {
-    printf("%ld\n", p425());
+    const long ans = p425();
+    printf("%ld\n", ans);
+    assert(ans == ANSWER);
 }

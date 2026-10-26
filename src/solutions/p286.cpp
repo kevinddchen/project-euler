@@ -11,9 +11,9 @@ Given a value of q, we can compute the generating function for the scores:
 The probability is then the coefficient of x^20. We can then use binary search
 to look for the value of q that leads to the desired probability.
 
-ANSWER 52.6494571953
-
 */
+
+constexpr double ANSWER = 52.6494571953;
 
 constexpr int DEGREE = 50;
 
@@ -88,5 +88,7 @@ double p286()
 
 int main()
 {
-    printf("%.10f\n", mf::round(p286(), 10));
+    const double ans = mf::round(p286(), 10);
+    printf("%.10f\n", ans);
+    assert(ans == ANSWER);
 }

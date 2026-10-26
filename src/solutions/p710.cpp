@@ -62,9 +62,9 @@ In going from 7 to 8, we added f(4) - g(4) + g(3)
 
 This pattern continues.
 
-ANSWER 1275000
-
 */
+
+constexpr long ANSWER = 1275000;
 
 /**
  * Computes the number of compositions of n with no part equal to 2.
@@ -130,5 +130,7 @@ long p710()
 
 int main()
 {
-    printf("%ld\n", p710());
+    const long ans = p710();
+    printf("%ld\n", ans);
+    assert(ans == ANSWER);
 }

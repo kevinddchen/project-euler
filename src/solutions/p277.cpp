@@ -11,9 +11,9 @@ input is related to an output n by an affine map,
 
 We then simply find the first integer input that exceeds the target.
 
-ANSWER 1125977393124310
-
 */
+
+constexpr long ANSWER = 1125977393124310;
 
 inline void inv_D(long* affine)
 {
@@ -75,5 +75,7 @@ long p277()
 
 int main()
 {
-    printf("%ld\n", p277());
+    const long ans = p277();
+    printf("%ld\n", ans);
+    assert(ans == ANSWER);
 }

@@ -10,9 +10,9 @@ Given a state (R, B), we can work out that after repeated trials, we will eventu
 This then becomes a dynamic programming question, with the boundary conditions P(0, B) = 1 and P(R, 0) = 0. We create an
 array containing values of P(R, B), and work our way outwards from the P(1, 1) corner.
 
-ANSWER 0.2928967987
-
 */
+
+constexpr double ANSWER = 0.2928967987;
 
 
 // Sentinel value marking an uncomputed probability.
@@ -65,5 +65,7 @@ double p938()
 
 int main()
 {
-    printf("%.10f\n", p938());
+    const double ans = p938();
+    printf("%.10f\n", ans);
+    assert(ans == ANSWER);
 }

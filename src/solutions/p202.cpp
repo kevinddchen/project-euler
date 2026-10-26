@@ -17,9 +17,9 @@ slow). We do the counting here by inclusion-exclusion. For instance, the
 integers coprime to 3*5*7 excludes all multiples of 3 and 5, but we need to add
 back multiples of 15 since they were counted twice.
 
-ANSWER 1209002624
-
 */
+
+constexpr long ANSWER = 1209002624;
 
 /* Count multiples of a that satisfy k*a < n and k*a + n = 0 (mod 3). */
 long count_multiples(long a, long n)
@@ -77,5 +77,7 @@ long p202()
 
 int main()
 {
-    printf("%ld\n", p202());
+    const long ans = p202();
+    printf("%ld\n", ans);
+    assert(ans == ANSWER);
 }

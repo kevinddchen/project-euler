@@ -28,9 +28,9 @@ This is most efficiently done by generating all numbers whose prime
 factorizations contain primes in {2, 3, 7, 11, ...}, sorting the list, and then
 keeping track of the partial sums.
 
-ANSWER 271204031455541309
-
 */
+
+constexpr long ANSWER = 271204031455541309;
 
 /* Return all integers <= N whose prime factorizations only include elements of `primes`. */
 std::vector<int> generate_restricted_integers(const std::vector<int>& primes, int N)
@@ -147,5 +147,7 @@ long p233()
 
 int main()
 {
-    printf("%ld\n", p233());
+    const long ans = p233();
+    printf("%ld\n", ans);
+    assert(ans == ANSWER);
 }

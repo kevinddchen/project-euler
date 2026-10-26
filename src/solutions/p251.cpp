@@ -32,9 +32,9 @@ Thus the largest number we will need to prime factorize is (4p + 1) ~= 4N /
 3.39 ~= 1.18N. This is important only because we use a prime sieve to speed up
 factorization.
 
-ANSWER 18946051
-
 */
+
+constexpr long ANSWER = 18946051;
 
 
 long p251()
@@ -134,5 +134,7 @@ long p251()
 
 int main()
 {
-    printf("%ld\n", p251());
+    const long ans = p251();
+    printf("%ld\n", ans);
+    assert(ans == ANSWER);
 }

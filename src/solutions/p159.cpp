@@ -1,5 +1,7 @@
 #include <array>
 
+#include <cassert>
+
 /*
 
 Use dynamic programming. We keep an array of the mdrs's of all integers up to
@@ -7,9 +9,9 @@ n. To calculate the mdrs of n, we iterate over all factors of n = a * b. We
 have candidate drs's given by mdrs(a) + mdrs(b). We take the maximum of these
 and store it in mdrs(n).
 
-ANSWER 14489159
-
 */
+
+constexpr long ANSWER = 14489159;
 
 int digital_root(int n)
 {
@@ -49,5 +51,7 @@ long p159()
 
 int main()
 {
-    printf("%ld\n", p159());
+    const long ans = p159();
+    printf("%ld\n", ans);
+    assert(ans == ANSWER);
 }

@@ -18,9 +18,9 @@ entry of the matrix is 1 or the lower entry is 1). Explicitly, the answer is
 where n = k*j. We also have to calculate the terms of this series efficiently
 while preventing overflow.
 
-ANSWER 259158998
-
 */
+
+constexpr long ANSWER = 259158998;
 
 long p743()
 {
@@ -48,5 +48,7 @@ long p743()
 
 int main()
 {
-    printf("%ld\n", p743());
+    const long ans = p743();
+    printf("%ld\n", ans);
+    assert(ans == ANSWER);
 }
