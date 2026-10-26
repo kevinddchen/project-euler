@@ -1,5 +1,6 @@
 #include "mf/mathfuncs.hpp"
 
+#include <algorithm>
 #include <array>
 
 /*

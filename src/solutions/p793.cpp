@@ -1,5 +1,6 @@
 #include "mf/generators.hpp"
 
+#include <algorithm>
 #include <array>
 #include <vector>
 

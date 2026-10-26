@@ -2,6 +2,8 @@
 #include <numeric>
 
 #include <cassert>
+#include <cmath>
+#include <cstdio>
 
 /*
 
@@ -18,7 +20,7 @@ constexpr long ANSWER = 694687;
 
 bool is_square(int x)
 {
-    int y = sqrt(x);
+    int y = std::sqrt(x);
     return x == y * y;
 }
 

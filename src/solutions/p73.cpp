@@ -1,6 +1,7 @@
 #include <numeric>
 
 #include <cassert>
+#include <cstdio>
 
 /*
 
