@@ -53,7 +53,7 @@ int get_nth_digit(const std::string& A, const std::string& B, long n)
     return d - '0';
 }
 
-long p0()
+long p230()
 {
     const std::string A =
         "1415926535897932384626433832795028841971693993751058209749445923078164062862089986280348253421170679";
@@ -71,7 +71,7 @@ long p0()
 
 int main()
 {
-    const long ans = p0();
+    const long ans = p230();
     printf("%ld\n", ans);
     assert(ans == ANSWER);
 }

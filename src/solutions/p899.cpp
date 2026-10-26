@@ -117,7 +117,7 @@ int compute_log2(long n)
     return count;
 }
 
-long p0()
+long p899()
 {
     // draw_grid(50);
 
@@ -139,7 +139,7 @@ long p0()
 
 int main()
 {
-    const long ans = p0();
+    const long ans = p899();
     printf("%ld\n", ans);
     assert(ans == ANSWER);
 }

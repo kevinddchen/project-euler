@@ -1,4 +1,4 @@
-#include <set>
+#include <unordered_set>
 
 #include <cassert>
 
@@ -16,7 +16,7 @@ long p346()
     const long limit = 1'000'000'000'000;
     long sum = 1;
 
-    std::set<long> repeats;
+    std::unordered_set<long> repeats;
 
     for (long i = 2; i * i < limit; i++) {
         long x = (i + 1) * i + 1;
