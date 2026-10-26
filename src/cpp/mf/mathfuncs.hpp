@@ -3,6 +3,7 @@
 #include <vector>
 
 #include <cassert>
+#include <cmath>
 
 
 namespace mf
@@ -333,7 +334,7 @@ inline long pow(long a, int b)
  */
 inline double round(double arg, uint32_t n_decimals)
 {
-    const double x = pow(10.0, static_cast<double>(n_decimals));
+    const double x = std::pow(10.0, static_cast<double>(n_decimals));
     return std::round(arg * x) / x;
 }
 

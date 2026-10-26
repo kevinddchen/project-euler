@@ -1,5 +1,7 @@
 #include "mf/mathfuncs.hpp"
 
+#include <algorithm>
+
 /*
 
 For any integers a, b such that N^2 = a^2 + b^2, we can check that the integers

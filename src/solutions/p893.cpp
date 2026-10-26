@@ -1,6 +1,7 @@
 #include <array>
 
 #include <cassert>
+#include <cstdio>
 
 /*
 

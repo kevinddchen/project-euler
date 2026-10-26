@@ -1,4 +1,4 @@
--std=c++20
+-std=c++23
 -I./src/cpp
 -I./src/cpp/thirdparty/eigen
 -Wall

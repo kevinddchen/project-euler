@@ -1,5 +1,7 @@
 #include "mf/mathfuncs.hpp"
 
+#include <algorithm>
+
 /*
 
 From Problem 271, we know that if we decompose n into its prime factors,

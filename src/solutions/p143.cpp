@@ -2,6 +2,7 @@
 #include <vector>
 
 #include <cassert>
+#include <cmath>
 
 /*
 
@@ -20,7 +21,7 @@ constexpr long ANSWER = 30758397;
 
 bool is_square(long x)
 {
-    long y = sqrt(x);
+    long y = std::sqrt(x);
     return (x == y * y);
 }
 
