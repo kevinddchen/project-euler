@@ -17,8 +17,8 @@ include $(SRC)/cpp/tests/module.mk
 -include $(deps)
 
 CXX      := g++
-CPPFLAGS := -I./src/cpp -I./src/cpp/thirdparty/eigen -MMD -MP
-CXXFLAGS := -std=c++20 -O3 -march=native -pipe -Wall -Wextra -pedantic-errors
+CPPFLAGS := -I./src/cpp -isystem./src/cpp/thirdparty/eigen -MMD -MP
+CXXFLAGS := -std=c++23 -O3 -march=native -pipe -Wall -Wextra -pedantic-errors
 LDFLAGS  :=
 LDLIBS   :=
 
