@@ -1,6 +1,7 @@
-#include "mf/mathfuncs.hpp"
-
 #include <array>
+#include <format>
+
+#include <cassert>
 
 /*
 
@@ -22,7 +23,7 @@ The values of p(i, j) can be computed efficiently using dynamic programming.
 
 */
 
-constexpr double ANSWER = 0.83648556;
+constexpr std::string_view ANSWER = "0.83648556";
 
 /* Return ceil(log2(n)) for positive integers n. */
 int ceillog2(int n)
@@ -96,7 +97,7 @@ double p232()
 
 int main()
 {
-    const double ans = mf::round(p232(), 8);
-    printf("%.8f\n", ans);
+    const auto ans = std::format("{:.8f}", p232());
+    printf("%s\n", ans.c_str());
     assert(ans == ANSWER);
 }

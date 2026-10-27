@@ -1,6 +1,6 @@
-#include "mf/mathfuncs.hpp"
-
 #include <Eigen/Dense>
+
+#include <format>
 
 /*
 
@@ -14,7 +14,7 @@ array containing values of P(R, B), and work our way outwards from the P(1, 1) c
 
 */
 
-constexpr double ANSWER = 0.2928967987;
+constexpr std::string_view ANSWER = "0.2928967987";
 
 
 // Sentinel value marking an uncomputed probability.
@@ -67,7 +67,7 @@ double p938()
 
 int main()
 {
-    const double ans = mf::round(p938(), 10);
-    printf("%.10f\n", ans);
+    const auto ans = std::format("{:.10f}", p938());
+    printf("%s\n", ans.c_str());
     assert(ans == ANSWER);
 }

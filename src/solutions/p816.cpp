@@ -1,7 +1,8 @@
 #include "mf/generators.hpp"
-#include "mf/mathfuncs.hpp"
 
 #include <Eigen/Dense>
+
+#include <format>
 
 /*
 
@@ -11,7 +12,7 @@ compare points that are too far away from each other.
 
 */
 
-constexpr double ANSWER = 20.880613018;
+constexpr std::string_view ANSWER = "20.880613018";
 
 using Vec2l = Eigen::Matrix<long, 2, 1>;
 using Vec2i = Eigen::Matrix<int, 2, 1>;
@@ -184,7 +185,7 @@ double p816()
 
 int main()
 {
-    const double ans = mf::round(p816(), 9);
-    printf("%.9f\n", ans);
+    const auto ans = std::format("{:.9f}", p816());
+    printf("%s\n", ans.c_str());
     assert(ans == ANSWER);
 }

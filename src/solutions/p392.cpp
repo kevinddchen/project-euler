@@ -1,6 +1,7 @@
-#include "mf/mathfuncs.hpp"
-
+#include <format>
 #include <numbers>
+
+#include <cassert>
 
 /*
 
@@ -34,7 +35,7 @@ theta_1.
 
 */
 
-constexpr double ANSWER = 3.1486734435;
+constexpr std::string_view ANSWER = "3.1486734435";
 
 /**
  * Given theta_0 and theta_1, extrapolate out to theta_{N+1} which should
@@ -103,13 +104,12 @@ double p392()
         }
     }
 
-    const double area = get_area(0, min, N);
-    return mf::round(area, 10);
+    return get_area(0, min, N);
 }
 
 int main()
 {
-    const double ans = p392();
-    printf("%.10f\n", ans);
+    const auto ans = std::format("{:.10f}", p392());
+    printf("%s\n", ans.c_str());
     assert(ans == ANSWER);
 }

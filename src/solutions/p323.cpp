@@ -1,4 +1,6 @@
-#include "mf/mathfuncs.hpp"
+#include <format>
+
+#include <cassert>
 
 /*
 
@@ -16,7 +18,7 @@ Then we simply calculate the expected value.
 
 */
 
-constexpr double ANSWER = 6.3551758451;
+constexpr std::string_view ANSWER = "6.3551758451";
 
 double p323()
 {
@@ -39,7 +41,7 @@ double p323()
 
 int main()
 {
-    const double ans = mf::round(p323(), 10);
-    printf("%.10f\n", ans);
+    const auto ans = std::format("{:.10f}", p323());
+    printf("%s\n", ans.c_str());
     assert(ans == ANSWER);
 }

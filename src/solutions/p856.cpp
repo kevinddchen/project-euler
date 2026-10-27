@@ -1,6 +1,7 @@
-#include "mf/mathfuncs.hpp"
-
+#include <format>
 #include <vector>
+
+#include <cassert>
 
 /*
 
@@ -22,7 +23,7 @@ The transition probabilities are summarized in the `prob_*()` methods below.
 
 */
 
-constexpr double ANSWER = 17.09661501;
+constexpr std::string_view ANSWER = "17.09661501";
 
 constexpr int SUITS = 4;
 constexpr int RANKS = 13;
@@ -196,7 +197,7 @@ double p856()
 
 int main()
 {
-    const double ans = mf::round(p856(), 8);
-    printf("%.8f\n", ans);
+    const auto ans = std::format("{:.8f}", p856());
+    printf("%s\n", ans.c_str());
     assert(ans == ANSWER);
 }

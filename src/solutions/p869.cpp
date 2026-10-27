@@ -1,5 +1,6 @@
 #include "mf/mathfuncs.hpp"
 
+#include <format>
 #include <memory>
 #include <vector>
 
@@ -26,7 +27,7 @@ This can be computed via depth-first traversal.
 
 */
 
-constexpr double ANSWER = 14.97696693;
+constexpr std::string_view ANSWER = "14.97696693";
 
 static const double UNSET_EXPECTED_SCORE = -1.0;
 
@@ -147,7 +148,7 @@ double p869()
 
 int main()
 {
-    const double ans = mf::round(p869(), 8);
-    printf("%.8f\n", ans);
+    const auto ans = std::format("{:.8f}", p869());
+    printf("%s\n", ans.c_str());
     assert(ans == ANSWER);
 }

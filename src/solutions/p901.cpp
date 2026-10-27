@@ -1,7 +1,8 @@
-#include "mf/mathfuncs.hpp"
-
 #include <algorithm>
 #include <array>
+#include <format>
+
+#include <cassert>
 
 /*
 
@@ -39,7 +40,7 @@ We can find the minimum of T w.r.t d1, the initial drill depth, via numerical se
 
 */
 
-constexpr double ANSWER = 2.364497769;
+constexpr std::string_view ANSWER = "2.364497769";
 
 
 /**
@@ -108,7 +109,7 @@ double p901()
 
 int main()
 {
-    const double ans = mf::round(p901(), 9);
-    printf("%.9f\n", ans);
+    const auto ans = std::format("{:.9f}", p901());
+    printf("%s\n", ans.c_str());
     assert(ans == ANSWER);
 }
