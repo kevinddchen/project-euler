@@ -1,5 +1,6 @@
 #include "mf/mathfuncs.hpp"
 
+#include <format>
 #include <unordered_map>
 #include <unordered_set>
 
@@ -40,7 +41,7 @@ Not one of my favorite solutions...
 
 */
 
-constexpr double ANSWER = 250591.442792;
+constexpr std::string_view ANSWER = "250591.442792";
 
 /**
  * Remove all sets in `factor_sets` that contain `p`.
@@ -244,7 +245,7 @@ double p838()
 
 int main()
 {
-    const double ans = mf::round(p838(), 6);
-    printf("%.6f\n", ans);
+    const auto ans = std::format("{:.6f}", p838());
+    printf("%s\n", ans.c_str());
     assert(ans == ANSWER);
 }

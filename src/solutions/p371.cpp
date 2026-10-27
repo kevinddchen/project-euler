@@ -1,6 +1,7 @@
-#include "mf/mathfuncs.hpp"
-
 #include <array>
+#include <format>
+
+#include <cassert>
 
 /*
 
@@ -14,7 +15,7 @@ well as a probability to "win". We then just calcualte the expected time to
 
 */
 
-constexpr double ANSWER = 40.66368097;
+constexpr std::string_view ANSWER = "40.66368097";
 
 constexpr int TOTAL = 1000;
 constexpr int T_STATES = 501;
@@ -90,7 +91,7 @@ double p371()
 
 int main()
 {
-    const double ans = mf::round(p371(), 8);
-    printf("%.8f\n", ans);
+    const auto ans = std::format("{:.8f}", p371());
+    printf("%s\n", ans.c_str());
     assert(ans == ANSWER);
 }

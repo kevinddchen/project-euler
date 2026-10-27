@@ -1,6 +1,7 @@
-#include "mf/mathfuncs.hpp"
-
 #include <array>
+#include <format>
+
+#include <cassert>
 
 /*
 
@@ -31,7 +32,7 @@ we know k, we just need to compute the sum of probabilities, prob(k).
 
 */
 
-constexpr double ANSWER = 0.999992836187;
+constexpr std::string_view ANSWER = "0.999992836187";
 
 
 double log_max_value(int n, int k)
@@ -92,7 +93,7 @@ double p267()
 
 int main()
 {
-    const double ans = mf::round(p267(), 12);
-    printf("%.12f\n", ans);
+    const auto ans = std::format("{:.12f}", p267());
+    printf("%s\n", ans.c_str());
     assert(ans == ANSWER);
 }

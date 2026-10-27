@@ -1,6 +1,7 @@
-#include "mf/mathfuncs.hpp"
-
 #include <array>
+#include <format>
+
+#include <cassert>
 
 /*
 
@@ -13,7 +14,7 @@ to look for the value of q that leads to the desired probability.
 
 */
 
-constexpr double ANSWER = 52.6494571953;
+constexpr std::string_view ANSWER = "52.6494571953";
 
 constexpr int DEGREE = 50;
 
@@ -88,7 +89,7 @@ double p286()
 
 int main()
 {
-    const double ans = mf::round(p286(), 10);
-    printf("%.10f\n", ans);
+    const auto ans = std::format("{:.10f}", p286());
+    printf("%s\n", ans.c_str());
     assert(ans == ANSWER);
 }

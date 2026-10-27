@@ -1,6 +1,7 @@
-#include "mf/mathfuncs.hpp"
-
 #include <array>
+#include <format>
+
+#include <cassert>
 
 /*
 
@@ -15,7 +16,7 @@ travel.
 
 */
 
-constexpr double ANSWER = 13.1265108586;
+constexpr std::string_view ANSWER = "13.1265108586";
 
 // number of regions in the marsh
 constexpr int N = 5;
@@ -122,7 +123,7 @@ double p607()
 
 int main()
 {
-    const double ans = mf::round(p607(), 10);
-    printf("%.10f\n", ans);
+    const auto ans = std::format("{:.10f}", p607());
+    printf("%s\n", ans.c_str());
     assert(ans == ANSWER);
 }
