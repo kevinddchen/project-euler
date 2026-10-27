@@ -12,10 +12,9 @@ constexpr long ANSWER = 13625242;
 
 template <size_t n_digits>
 struct Clock {
-    int n;
     std::array<int, n_digits> digit_states;
 
-    Clock(int n) : n(n)
+    Clock(int n)
     {
         for (int i = 0; i < static_cast<int>(n_digits); i++) {
             if (n == 0) {

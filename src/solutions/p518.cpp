@@ -27,13 +27,13 @@ std::vector<long> divisors_less_than_n(const std::vector<mf::PrimePower>& prime_
         // first, generate all prime powers
         std::vector<long> powers;
         powers.reserve(prime_factor.exp);
-        long power = 1;
+        long prime_power = 1;
         for (int i = 0; i < prime_factor.exp; ++i) {
-            power *= prime_factor.base;
-            if (power >= n) {
+            prime_power *= prime_factor.base;
+            if (prime_power >= n) {
                 break;
             }
-            powers.push_back(power);
+            powers.push_back(prime_power);
         }
         // multiply prime powers against all divisors
         std::vector<long> new_divisors;
