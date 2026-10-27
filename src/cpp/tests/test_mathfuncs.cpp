@@ -1,5 +1,4 @@
 #include "mf/mathfuncs.hpp"
-#include "mf/test.hpp"
 
 #include <numeric>
 
@@ -287,20 +286,6 @@ void test_pow()
     printf("Done!\n");
 }
 
-void test_round()
-{
-    printf("Testing `round()`... ");
-
-    assert(mf::test::is_equal(mf::round(0.90909, 0), 1.0));
-    assert(mf::test::is_equal(mf::round(0.90909, 1), 0.9));
-    assert(mf::test::is_equal(mf::round(0.90909, 2), 0.91));
-    assert(mf::test::is_equal(mf::round(0.90909, 3), 0.909));
-    assert(mf::test::is_equal(mf::round(0.90909, 4), 0.9091));
-    assert(mf::test::is_equal(mf::round(0.90909, 5), 0.90909));
-
-    printf("Done!\n");
-}
-
 int main()
 {
     test_is_prime();
@@ -314,7 +299,6 @@ int main()
     test_modular_product();
     test_modular_power();
     test_pow();
-    test_round();
 
     return 0;
 }

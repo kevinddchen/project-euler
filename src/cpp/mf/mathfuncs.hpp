@@ -327,15 +327,4 @@ inline long pow(long a, int b)
     return result;
 }
 
-/**
- * Round a float to a certain number of decimal places.
- * @param arg float to round.
- * @param n_decimals number of decimal places to round to.
- */
-inline double round(double arg, uint32_t n_decimals)
-{
-    const double x = std::pow(10.0, static_cast<double>(n_decimals));
-    return std::round(arg * x) / x;
-}
-
 }  // namespace mf
