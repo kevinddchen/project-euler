@@ -29,8 +29,6 @@ This can be computed via depth-first traversal.
 
 constexpr std::string_view ANSWER = "14.97696693";
 
-static const double UNSET_EXPECTED_SCORE = -1.0;
-
 /**
  * Convert a number to a vector of bits, least significant bit first.
  */
@@ -50,12 +48,13 @@ std::vector<char> convert_to_bits(int n)
  * @param num_primes Number of primes in the subtree rooted at this node.
  * @param expected_score Expectation value of the score one would get using the
  * optimal strategy from this node: pick the bit with the highest probability.
+ * Is negative if unset.
  * @param zero Pointer to the child node with a 0 bit.
  * @param one Pointer to the child node with a 1 bit.
  */
 struct Node {
     int num_primes = 0;
-    double expected_score = UNSET_EXPECTED_SCORE;
+    double expected_score = -1;
     std::unique_ptr<Node> zero = nullptr;
     std::unique_ptr<Node> one = nullptr;
 };
@@ -114,11 +113,11 @@ double p869()
 
         // check that both children have computed expectation values. if not,
         // add child to stack and continue DFS
-        if (current->zero && current->zero->expected_score == UNSET_EXPECTED_SCORE) {
+        if (current->zero && current->zero->expected_score < 0) {
             stack.push_back(current->zero.get());
             continue;
         }
-        if (current->one && current->one->expected_score == UNSET_EXPECTED_SCORE) {
+        if (current->one && current->one->expected_score < 0) {
             stack.push_back(current->one.get());
             continue;
         }

@@ -16,11 +16,6 @@ array containing values of P(R, B), and work our way outwards from the P(1, 1) c
 
 constexpr std::string_view ANSWER = "0.2928967987";
 
-
-// Sentinel value marking an uncomputed probability.
-constexpr double MISSING_VALUE = -1.0;
-
-
 /**
  * Get previously computed P(red, black).
  */
@@ -36,7 +31,7 @@ double get_prob(int red, int black, const Eigen::ArrayXXd& P)
         return 0;
     }
     const double p = P(red, black);
-    assert(p != MISSING_VALUE);
+    assert(p >= 0);
     return p;
 }
 
@@ -46,9 +41,9 @@ double p938()
     constexpr int MAX_R = 24690;
     constexpr int MAX_B = 12345;
 
-    // array to store probabilities
+    // array to store probabilities. initialize to negative value.
     Eigen::ArrayXXd P(MAX_R + 1, MAX_B + 1);
-    P.fill(MISSING_VALUE);
+    P.fill(-1);
 
     for (int red = 1; red <= MAX_R; ++red) {
         for (int black = 1; black <= MAX_B; ++black) {

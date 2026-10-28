@@ -77,11 +77,7 @@ void binary_search(double& min, double& max, double target, int n_bisects)
     for (int i = 0; i < n_bisects; i++) {
         const double mid = (min + max) / 2.0;
         const double val = parallel_distance(mid);
-        if (val == target) {
-            min = mid;
-            max = mid;
-            break;
-        } else if (val < target) {
+        if (val < target) {
             min = mid;
         } else {
             max = mid;
