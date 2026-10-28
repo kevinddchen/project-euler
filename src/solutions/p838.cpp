@@ -166,7 +166,7 @@ double p838()
             }
 
             for (const auto& [p, score] : scores) {
-                if (std::log(p) < score) {
+                if (std::logf(p) < score) {
                     primes.push_back(p);
                     filter_out_prime(factor_sets, p);
                 }

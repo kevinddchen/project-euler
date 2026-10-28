@@ -51,7 +51,7 @@ std::array<double, n + 1> binomial_probs()
     // We generate Pascal's triangle for the binomial coefficients. For the
     // probabilities, we just divide by 2 each time we make a new row.
     std::array<double, n + 1> triangle;
-    triangle[0] = 1.0f;
+    triangle[0] = 1.0;
 
     // iterate over rows of Pascal's triangle
     for (int i = 1; i <= static_cast<int>(n); i++) {

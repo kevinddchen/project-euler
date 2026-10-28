@@ -51,7 +51,7 @@ bool check_limit(long a, long b, long c)
     const float bf = b;
     const float cf = c;
     // multiply by 1.1 to account for rounding errors
-    return (af * bf <= cf * 1.1) && (a * b <= c);
+    return (af * bf <= cf * 1.1f) && (a * b <= c);
 }
 
 struct Node {
