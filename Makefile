@@ -19,7 +19,8 @@ include $(SRC)/cpp/tests/module.mk
 CXX      := g++
 CPPFLAGS := -I./src/cpp -isystem./src/cpp/thirdparty/eigen -MMD -MP
 CXXFLAGS := -std=c++23 -O3 -march=native -pipe -fno-math-errno -ffast-math \
-            -Wall -Wextra -pedantic-errors -Wshadow -Wdouble-promotion -Wfloat-equal
+            -Wall -Wextra -pedantic-errors -Wshadow -Wdouble-promotion -Wfloat-equal -Wold-style-cast -Wcast-qual \
+            -Wundef -Wmissing-declarations -Wextra-semi -Wnull-dereference -Wvla
 LDFLAGS  :=
 LDLIBS   :=
 

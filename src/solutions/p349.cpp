@@ -40,7 +40,7 @@ struct Grid {
                 squares[x][y] = WHITE;
             }
         }
-    };
+    }
 
     bool& at(int x, int y)
     {

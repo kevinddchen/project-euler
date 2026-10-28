@@ -15,7 +15,7 @@ namespace mf
 struct Frac {
     Frac() = default;
 
-    Frac(long a) : numer(a), denom(1) {};
+    Frac(long a) : numer(a), denom(1) {}
 
     Frac(long a, long b) : numer(a), denom(b)
     {
@@ -27,7 +27,7 @@ struct Frac {
         const long d = std::gcd(numer, denom);
         numer /= d;
         denom /= d;
-    };
+    }
 
     inline bool operator==(const Frac& other) const { return numer == other.numer && denom == other.denom; }
 

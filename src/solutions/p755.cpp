@@ -79,7 +79,7 @@ long compute_si(const std::vector<long>& fibs, int i, long n)
     // otherwise use recursion
     const long fib_i = fibs[i];
     return compute_si(fibs, i - 1, n) + compute_si(fibs, i - 1, n - fib_i);
-};
+}
 
 long p755()
 {
